@@ -67,7 +67,6 @@ public class menu {
 					persona p = new persona(n,d,e);
 					
 					ciudadano.add(p);
-					p.imprimir();
 					
 			} while (true);
 
@@ -217,13 +216,13 @@ public class menu {
 				if (pos == aux) {
 					System.out.println("Vas a eliminar esto: ");
 					p.imprimir();
-					ciudadano.remove(aux);
 					System.out.println("Cambios realizados. ");
 					
 				} else {
 					aux++;
 				}
 			}
+			ciudadano.remove(pos);
 			
 			String nombreFichero = "Personas.txt";
 			
