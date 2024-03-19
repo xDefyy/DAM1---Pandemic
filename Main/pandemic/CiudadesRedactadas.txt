@@ -210,7 +210,6 @@ Bagdad x: 880 y: 320 y la distancia es: 105.94810050208545
 Nueva Delhi x: 1025 y: 330 y la distancia es: 51.478150704935004
 Riad x: 895 y: 385 y la distancia es: 90.13878188659973
 Bombay x: 1005 y: 395 y la distancia es: 47.16990566028302
-Bombay x: 1005 y: 395 y la distancia es: 47.16990566028302
 
 La ciudad inicial es: Bombay x: 1005 y: 395
 
@@ -222,7 +221,6 @@ La ciudad inicial es: Nueva Delhi x: 1025 y: 330
 
 Teheran x: 920 y: 310 y la distancia es: 106.88779163215975
 Karachi x: 980 y: 355 y la distancia es: 51.478150704935004
-Bombay x: 1005 y: 395 y la distancia es: 68.00735254367721
 Bombay x: 1005 y: 395 y la distancia es: 68.00735254367721
 Madras x: 1035 y: 410 y la distancia es: 80.62257748298549
 Calcuta x: 1070 y: 370 y la distancia es: 60.207972893961475
@@ -237,17 +235,10 @@ Bangkok x: 1120 y: 415 y la distancia es: 67.26812023536856
 La ciudad inicial es: Madras x: 1035 y: 410
 
 Bombay x: 1005 y: 395 y la distancia es: 33.54101966249684
-Bombay x: 1005 y: 395 y la distancia es: 33.54101966249684
 Nueva Delhi x: 1025 y: 330 y la distancia es: 80.62257748298549
 Calcuta x: 1070 y: 370 y la distancia es: 53.150729063673246
 Bangkok x: 1120 y: 415 y la distancia es: 85.14693182963201
 Yakarta x: 1150 y: 525 y la distancia es: 162.63455967290594
-
-La ciudad inicial es: Bombay x: 1005 y: 395
-
-Karachi x: 980 y: 355 y la distancia es: 47.16990566028302
-Madras x: 1035 y: 410 y la distancia es: 33.54101966249684
-Nueva Delhi x: 1025 y: 330 y la distancia es: 68.00735254367721
 
 La ciudad inicial es: Yakarta x: 1150 y: 525
 
