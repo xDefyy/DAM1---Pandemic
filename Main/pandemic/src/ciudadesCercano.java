@@ -1,8 +1,11 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.math.*;
+
 
 public class ciudadesCercano {
 	public static ArrayList<String> ciudades = new ArrayList<String>();
@@ -46,18 +49,6 @@ public class ciudadesCercano {
 
 					ciudadesE.add(ciudadExtras);
 
-					System.out.print(
-							ciudad + " " + coordenadas[0] + ", " + coordenadas[1] + " y " + coordenadas[2] + " - ");
-
-					for (int i = 0; i < ciudadExtras.length; i++) {
-						if (i != ciudadExtras.length - 1) {
-							System.out.print(ciudadExtras[i] + " - ");
-						} else {
-							System.out.print(ciudadExtras[i] + ".");
-						}
-					}
-					System.out.println();
-
 				}
 
 			} while (linea != null);
@@ -68,54 +59,42 @@ public class ciudadesCercano {
 		} catch (IOException e) {
 			System.out.println("Ha habido un error al intentar abrir el fichero" + e);
 		}
+		
+		String Fichero = "CiudadesRedactadas.txt";
+		try {
 
-//		for (String c : ciudades) {
-//			System.out.println(c);
-//		}
-//		
-//		for (Integer ekis : x) {
-//			System.out.println(ekis);
-//		}
-//		
-//		for (Integer ei : y) {
-//			System.out.println(ei);
-//		}
-//		
-//		for (int i = 0; i < ciudadesE.size(); i++) {
-//			String ciudadFinal[] = ciudadesE.get(i);
-//			for (String ciudad: ciudadFinal) {
-//				System.out.print(ciudad + " ");
-//			}
-//			System.out.println();
-//		}
-
-		for (int i = 0; i < ciudadesE.size(); i++) {
-			String ciudadFinal[] = ciudadesE.get(i);
-			for (int j = 0; j < ciudadFinal.length; j++) {
-				for (int k = 0; k < ciudades.size(); k++) {
-					if (ciudades.get(k).equalsIgnoreCase(ciudadFinal[j])) {
-						System.out.println(ciudades.get(i) + " x: " + x.get(i) + " y: " + y.get(i) + " " + ciudadFinal[j] + " x: " + x.get(k) +  " y: " + y.get(k) );
-						mayor(x.get(i), x.get(k), y.get(i), y.get(k));
+			FileWriter fileWriter = new FileWriter(Fichero, false);
+			BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+			
+			for (int i = 0; i < ciudadesE.size(); i++) {
+				String ciudadFinal[] = ciudadesE.get(i);
+				bufferedWriter.write("La ciudad inicial es: " + ciudades.get(i) + " x: " + x.get(i) + " y: " + y.get(i) + "\n");
+				bufferedWriter.newLine();
+				for (int j = 0; j < ciudadFinal.length; j++) {
+					for (int k = 0; k < ciudades.size(); k++) {
+						if (ciudades.get(k).equalsIgnoreCase(ciudadFinal[j])) {
+							bufferedWriter.write(ciudadFinal[j] + " x: " + x.get(k) +  " y: " + y.get(k) 
+							+ " y la distancia es: " + mayor(x.get(i), x.get(k), y.get(i), y.get(k)));
+							bufferedWriter.newLine();
+						}
 					}
 				}
+				bufferedWriter.newLine();
 			}
+				
+			bufferedWriter.close();
+			fileWriter.close();
+			System.out.println("El fichero ha sido modificado correctamente");
+		} catch (IOException e) {
+			System.out.println("Ha habido un error de escritura: " + e);
 		}
 		
-		
-
-
 	}
 	
-	public static void mayor(int x, int x2, int y, int y2) {
-
-		System.out.println("Mayor X: "+ Math.max(x, x2));
-		System.out.println("Mayor Y: "+ Math.max(y, y2));
-
-		// ACABAR FUNCION DE VER MAYOR PARA PODER HACER LAS OPERACIONES
+	public static double mayor(int x, int x2, int y, int y2) {
+		
+		double distancia = Math.sqrt(Math.pow(x - x2 ,2) + Math.pow(y - y2,2));
+		return distancia;
+		
 	}
-
-	public static void distancia(int equis, int ei) {
-
-	}
-
 }

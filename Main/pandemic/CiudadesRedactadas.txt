@@ -1,0 +1,332 @@
+La ciudad inicial es: San Francisco x: 235 y: 315
+
+Chicago x: 300 y: 280 y la distancia es: 73.824115301167
+Los Angeles x: 275 y: 355 y la distancia es: 56.568542494923804
+Manila x: 1200 y: 420 y la distancia es: 970.6956268573584
+Tokio x: 1280 y: 290 y la distancia es: 1045.2990002865208
+
+La ciudad inicial es: Chicago x: 300 y: 280
+
+San Francisco x: 235 y: 315 y la distancia es: 73.824115301167
+Montreal x: 350 y: 280 y la distancia es: 50.0
+Atlanta x: 320 y: 320 y la distancia es: 44.721359549995796
+Mexico DF x: 300 y: 385 y la distancia es: 105.0
+Los Angeles x: 275 y: 355 y la distancia es: 79.05694150420949
+
+La ciudad inicial es: Atlanta x: 320 y: 320
+
+Chicago x: 300 y: 280 y la distancia es: 44.721359549995796
+Miami x: 380 y: 360 y la distancia es: 72.11102550927978
+Washington x: 360 y: 330 y la distancia es: 41.23105625617661
+
+La ciudad inicial es: Montreal x: 350 y: 280
+
+Chicago x: 300 y: 280 y la distancia es: 50.0
+Nueva York x: 380 y: 290 y la distancia es: 31.622776601683793
+Washington x: 360 y: 330 y la distancia es: 50.99019513592785
+
+La ciudad inicial es: Nueva York x: 380 y: 290
+
+Montreal x: 350 y: 280 y la distancia es: 31.622776601683793
+Washington x: 360 y: 330 y la distancia es: 44.721359549995796
+Londres x: 700 y: 230 y la distancia es: 325.5764119219941
+Madrid x: 687 y: 290 y la distancia es: 307.0
+
+La ciudad inicial es: Washington x: 360 y: 330
+
+Montreal x: 350 y: 280 y la distancia es: 50.99019513592785
+Nueva York x: 380 y: 290 y la distancia es: 44.721359549995796
+Atlanta x: 320 y: 320 y la distancia es: 41.23105625617661
+Miami x: 380 y: 360 y la distancia es: 36.05551275463989
+
+La ciudad inicial es: Londres x: 700 y: 230
+
+Nueva York x: 380 y: 290 y la distancia es: 325.5764119219941
+Madrid x: 687 y: 290 y la distancia es: 61.39218191268331
+Paris x: 727 y: 250 y la distancia es: 33.60059523282288
+Essen x: 755 y: 190 y la distancia es: 68.00735254367721
+
+La ciudad inicial es: Madrid x: 687 y: 290
+
+Nueva York x: 380 y: 290 y la distancia es: 307.0
+Londres x: 700 y: 230 y la distancia es: 61.39218191268331
+Paris x: 727 y: 250 y la distancia es: 56.568542494923804
+Sao Paulo x: 520 y: 570 y la distancia es: 326.0199380406051
+Argel x: 730 y: 330 y la distancia es: 58.728187440104094
+
+La ciudad inicial es: Paris x: 727 y: 250
+
+Madrid x: 687 y: 290 y la distancia es: 56.568542494923804
+Londres x: 700 y: 230 y la distancia es: 33.60059523282288
+Essen x: 755 y: 190 y la distancia es: 66.2117814289874
+Argel x: 730 y: 330 y la distancia es: 80.05623023850174
+Milan x: 755 y: 235 y la distancia es: 31.76476034853718
+
+La ciudad inicial es: Essen x: 755 y: 190
+
+Londres x: 700 y: 230 y la distancia es: 68.00735254367721
+Paris x: 727 y: 250 y la distancia es: 66.2117814289874
+San Petersburgo x: 815 y: 210 y la distancia es: 63.245553203367585
+Milan x: 755 y: 235 y la distancia es: 45.0
+
+La ciudad inicial es: Milan x: 755 y: 235
+
+Essen x: 755 y: 190 y la distancia es: 45.0
+Paris x: 727 y: 250 y la distancia es: 31.76476034853718
+Estambul x: 830 y: 294 y la distancia es: 95.42536350467836
+
+La ciudad inicial es: San Petersburgo x: 815 y: 210
+
+Essen x: 755 y: 190 y la distancia es: 63.245553203367585
+Estambul x: 830 y: 294 y la distancia es: 85.32877591996736
+Moscu x: 890 y: 230 y la distancia es: 77.62087348130012
+
+La ciudad inicial es: Los Angeles x: 275 y: 355
+
+San Francisco x: 235 y: 315 y la distancia es: 56.568542494923804
+Mexico DF x: 300 y: 385 y la distancia es: 39.05124837953327
+Chicago x: 300 y: 280 y la distancia es: 79.05694150420949
+Sidney x: 1320 y: 645 y la distancia es: 1084.492969087398
+
+La ciudad inicial es: Miami x: 380 y: 360
+
+Washington x: 360 y: 330 y la distancia es: 36.05551275463989
+Atlanta x: 320 y: 320 y la distancia es: 72.11102550927978
+Mexico DF x: 300 y: 385 y la distancia es: 83.81527307120105
+Bogota x: 400 y: 460 y la distancia es: 101.9803902718557
+
+La ciudad inicial es: Mexico DF x: 300 y: 385
+
+Los Angeles x: 275 y: 355 y la distancia es: 39.05124837953327
+Miami x: 380 y: 360 y la distancia es: 83.81527307120105
+Chicago x: 300 y: 280 y la distancia es: 105.0
+Bogota x: 400 y: 460 y la distancia es: 125.0
+Lima x: 395 y: 520 y la distancia es: 165.07574019219177
+
+La ciudad inicial es: Bogota x: 400 y: 460
+
+Miami x: 380 y: 360 y la distancia es: 101.9803902718557
+Mexico DF x: 300 y: 385 y la distancia es: 125.0
+Lima x: 395 y: 520 y la distancia es: 60.207972893961475
+Sao Paulo x: 520 y: 570 y la distancia es: 162.78820596099706
+Buenos Aires x: 453 y: 670 y la distancia es: 216.5848563496534
+
+La ciudad inicial es: Lima x: 395 y: 520
+
+Mexico DF x: 300 y: 385 y la distancia es: 165.07574019219177
+Bogota x: 400 y: 460 y la distancia es: 60.207972893961475
+Santiago de Chile x: 430 y: 620 y la distancia es: 105.94810050208545
+
+La ciudad inicial es: Santiago de Chile x: 430 y: 620
+
+Lima x: 395 y: 520 y la distancia es: 105.94810050208545
+
+La ciudad inicial es: Buenos Aires x: 453 y: 670
+
+Sao Paulo x: 520 y: 570 y la distancia es: 120.37026210821342
+Bogota x: 400 y: 460 y la distancia es: 216.5848563496534
+
+La ciudad inicial es: Sao Paulo x: 520 y: 570
+
+Bogota x: 400 y: 460 y la distancia es: 162.78820596099706
+Buenos Aires x: 453 y: 670 y la distancia es: 120.37026210821342
+Lagos x: 710 y: 450 y la distancia es: 224.72205054244233
+Madrid x: 687 y: 290 y la distancia es: 326.0199380406051
+
+La ciudad inicial es: Lagos x: 710 y: 450
+
+Sao Paulo x: 520 y: 570 y la distancia es: 224.72205054244233
+Kinsasa x: 770 y: 540 y la distancia es: 108.16653826391968
+Jartum x: 815 y: 450 y la distancia es: 105.0
+
+La ciudad inicial es: Kinsasa x: 770 y: 540
+
+Lagos x: 710 y: 450 y la distancia es: 108.16653826391968
+Jartum x: 815 y: 450 y la distancia es: 100.62305898749054
+Johannesburgo x: 815 y: 630 y la distancia es: 100.62305898749054
+
+La ciudad inicial es: Jartum x: 815 y: 450
+
+El Cairo x: 820 y: 350 y la distancia es: 100.12492197250393
+Lagos x: 710 y: 450 y la distancia es: 105.0
+Kinsasa x: 770 y: 540 y la distancia es: 100.62305898749054
+Johannesburgo x: 815 y: 630 y la distancia es: 180.0
+
+La ciudad inicial es: Johannesburgo x: 815 y: 630
+
+Kinsasa x: 770 y: 540 y la distancia es: 100.62305898749054
+Jartum x: 815 y: 450 y la distancia es: 180.0
+
+La ciudad inicial es: Argel x: 730 y: 330
+
+Madrid x: 687 y: 290 y la distancia es: 58.728187440104094
+Paris x: 727 y: 250 y la distancia es: 80.05623023850174
+Estambul x: 830 y: 294 y la distancia es: 106.28264204469139
+El Cairo x: 820 y: 350 y la distancia es: 92.19544457292888
+
+La ciudad inicial es: El Cairo x: 820 y: 350
+
+Argel x: 730 y: 330 y la distancia es: 92.19544457292888
+Estambul x: 830 y: 294 y la distancia es: 56.88585061331157
+Bagdad x: 880 y: 320 y la distancia es: 67.08203932499369
+
+La ciudad inicial es: Riad x: 895 y: 385
+
+El Cairo x: 820 y: 350 y la distancia es: 82.76472678623425
+Bagdad x: 880 y: 320 y la distancia es: 66.70832032063167
+Karachi x: 980 y: 355 y la distancia es: 90.13878188659973
+
+La ciudad inicial es: Estambul x: 830 y: 294
+
+Argel x: 730 y: 330 y la distancia es: 106.28264204469139
+El Cairo x: 820 y: 350 y la distancia es: 56.88585061331157
+Bagdad x: 880 y: 320 y la distancia es: 56.356011214421486
+Moscu x: 890 y: 230 y la distancia es: 87.72684879784524
+
+La ciudad inicial es: Bagdad x: 880 y: 320
+
+Estambul x: 830 y: 294 y la distancia es: 56.356011214421486
+Karachi x: 980 y: 355 y la distancia es: 105.94810050208545
+Riad x: 895 y: 385 y la distancia es: 66.70832032063167
+El Cairo x: 820 y: 350 y la distancia es: 67.08203932499369
+
+La ciudad inicial es: Moscu x: 890 y: 230
+
+Teheran x: 920 y: 310 y la distancia es: 85.44003745317531
+Estambul x: 830 y: 294 y la distancia es: 87.72684879784524
+San Petersburgo x: 815 y: 210 y la distancia es: 77.62087348130012
+
+La ciudad inicial es: Teheran x: 920 y: 310
+
+Moscu x: 890 y: 230 y la distancia es: 85.44003745317531
+Bagdad x: 880 y: 320 y la distancia es: 41.23105625617661
+Karachi x: 980 y: 355 y la distancia es: 75.0
+Nueva Delhi x: 1025 y: 330 y la distancia es: 106.88779163215975
+
+La ciudad inicial es: Karachi x: 980 y: 355
+
+Teheran x: 920 y: 310 y la distancia es: 75.0
+Bagdad x: 880 y: 320 y la distancia es: 105.94810050208545
+Nueva Delhi x: 1025 y: 330 y la distancia es: 51.478150704935004
+Riad x: 895 y: 385 y la distancia es: 90.13878188659973
+Bombay x: 1005 y: 395 y la distancia es: 47.16990566028302
+Bombay x: 1005 y: 395 y la distancia es: 47.16990566028302
+
+La ciudad inicial es: Bombay x: 1005 y: 395
+
+Karachi x: 980 y: 355 y la distancia es: 47.16990566028302
+Nueva Delhi x: 1025 y: 330 y la distancia es: 68.00735254367721
+Madras x: 1035 y: 410 y la distancia es: 33.54101966249684
+
+La ciudad inicial es: Nueva Delhi x: 1025 y: 330
+
+Teheran x: 920 y: 310 y la distancia es: 106.88779163215975
+Karachi x: 980 y: 355 y la distancia es: 51.478150704935004
+Bombay x: 1005 y: 395 y la distancia es: 68.00735254367721
+Bombay x: 1005 y: 395 y la distancia es: 68.00735254367721
+Madras x: 1035 y: 410 y la distancia es: 80.62257748298549
+Calcuta x: 1070 y: 370 y la distancia es: 60.207972893961475
+
+La ciudad inicial es: Calcuta x: 1070 y: 370
+
+Nueva Delhi x: 1025 y: 330 y la distancia es: 60.207972893961475
+Hong Kong x: 1165 y: 370 y la distancia es: 95.0
+Madras x: 1035 y: 410 y la distancia es: 53.150729063673246
+Bangkok x: 1120 y: 415 y la distancia es: 67.26812023536856
+
+La ciudad inicial es: Madras x: 1035 y: 410
+
+Bombay x: 1005 y: 395 y la distancia es: 33.54101966249684
+Bombay x: 1005 y: 395 y la distancia es: 33.54101966249684
+Nueva Delhi x: 1025 y: 330 y la distancia es: 80.62257748298549
+Calcuta x: 1070 y: 370 y la distancia es: 53.150729063673246
+Bangkok x: 1120 y: 415 y la distancia es: 85.14693182963201
+Yakarta x: 1150 y: 525 y la distancia es: 162.63455967290594
+
+La ciudad inicial es: Bombay x: 1005 y: 395
+
+Karachi x: 980 y: 355 y la distancia es: 47.16990566028302
+Madras x: 1035 y: 410 y la distancia es: 33.54101966249684
+Nueva Delhi x: 1025 y: 330 y la distancia es: 68.00735254367721
+
+La ciudad inicial es: Yakarta x: 1150 y: 525
+
+Madras x: 1035 y: 410 y la distancia es: 162.63455967290594
+Bangkok x: 1120 y: 415 y la distancia es: 114.0175425099138
+Ho Chi Minh x: 1148 y: 429 y la distancia es: 96.02083107326243
+Sidney x: 1320 y: 645 y la distancia es: 208.08652046684813
+
+La ciudad inicial es: Bangkok x: 1120 y: 415
+
+Yakarta x: 1150 y: 525 y la distancia es: 114.0175425099138
+Calcuta x: 1070 y: 370 y la distancia es: 67.26812023536856
+Madras x: 1035 y: 410 y la distancia es: 85.14693182963201
+Ho Chi Minh x: 1148 y: 429 y la distancia es: 31.304951684997057
+Hong Kong x: 1165 y: 370 y la distancia es: 63.63961030678928
+
+La ciudad inicial es: Hong Kong x: 1165 y: 370
+
+Bangkok x: 1120 y: 415 y la distancia es: 63.63961030678928
+Ho Chi Minh x: 1148 y: 429 y la distancia es: 61.40032573203501
+Taipei x: 1205 y: 375 y la distancia es: 40.311288741492746
+Manila x: 1200 y: 420 y la distancia es: 61.032778078668514
+Shanghai x: 1195 y: 355 y la distancia es: 33.54101966249684
+
+La ciudad inicial es: Shanghai x: 1195 y: 355
+
+Pekin x: 1175 y: 300 y la distancia es: 58.52349955359813
+Hong Kong x: 1165 y: 370 y la distancia es: 33.54101966249684
+Seul x: 1225 y: 297 y la distancia es: 65.29931086925804
+Tokio x: 1280 y: 290 y la distancia es: 107.00467279516349
+Taipei x: 1205 y: 375 y la distancia es: 22.360679774997898
+
+La ciudad inicial es: Pekin x: 1175 y: 300
+
+Seul x: 1225 y: 297 y la distancia es: 50.08991914547278
+Shanghai x: 1195 y: 355 y la distancia es: 58.52349955359813
+
+La ciudad inicial es: Seul x: 1225 y: 297
+
+Pekin x: 1175 y: 300 y la distancia es: 50.08991914547278
+Tokio x: 1280 y: 290 y la distancia es: 55.44366510251645
+
+La ciudad inicial es: Tokio x: 1280 y: 290
+
+San Francisco x: 235 y: 315 y la distancia es: 1045.2990002865208
+Seul x: 1225 y: 297 y la distancia es: 55.44366510251645
+Osaka x: 1255 y: 320 y la distancia es: 39.05124837953327
+Shanghai x: 1195 y: 355 y la distancia es: 107.00467279516349
+
+La ciudad inicial es: Osaka x: 1255 y: 320
+
+Tokio x: 1280 y: 290 y la distancia es: 39.05124837953327
+Taipei x: 1205 y: 375 y la distancia es: 74.33034373659252
+
+La ciudad inicial es: Taipei x: 1205 y: 375
+
+Osaka x: 1255 y: 320 y la distancia es: 74.33034373659252
+Shanghai x: 1195 y: 355 y la distancia es: 22.360679774997898
+Hong Kong x: 1165 y: 370 y la distancia es: 40.311288741492746
+Manila x: 1200 y: 420 y la distancia es: 45.27692569068709
+
+La ciudad inicial es: Ho Chi Minh x: 1148 y: 429
+
+Yakarta x: 1150 y: 525 y la distancia es: 96.02083107326243
+Bangkok x: 1120 y: 415 y la distancia es: 31.304951684997057
+Hong Kong x: 1165 y: 370 y la distancia es: 61.40032573203501
+Manila x: 1200 y: 420 y la distancia es: 52.773099207835045
+
+La ciudad inicial es: Manila x: 1200 y: 420
+
+San Francisco x: 235 y: 315 y la distancia es: 970.6956268573584
+Ho Chi Minh x: 1148 y: 429 y la distancia es: 52.773099207835045
+Taipei x: 1205 y: 375 y la distancia es: 45.27692569068709
+Hong Kong x: 1165 y: 370 y la distancia es: 61.032778078668514
+Sidney x: 1320 y: 645 y la distancia es: 255.0
+
+La ciudad inicial es: Sidney x: 1320 y: 645
+
+Los Angeles x: 275 y: 355 y la distancia es: 1084.492969087398
+Manila x: 1200 y: 420 y la distancia es: 255.0
+Yakarta x: 1150 y: 525 y la distancia es: 208.08652046684813
+
