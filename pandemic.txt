@@ -1,0 +1,49 @@
+SWIPE (INTERFAZ GRAFICA)
+1 Solo juagdor
+
+Funcionales: (necessaris per a que funcioni)
+
+	Diseño libre
+	Diferentes idiomas 
+	Añadir mecanicas
+	Rango de edad (12-99)
+
+	CIUTATS:
+		Nom i 2 cordenades x,y
+		1 Malaltia principal
+		diferents nivels d'infeccio, variant al llarg del joc
+		cada ciutat guarda les seves ciutats adjacenst
+		si s'infecta amb una malaltia una ciutat el nivell d'infecció augmenta +1
+		si el nivell d'una ciutat es > 3 (les seves ciutats adjacesnts s'infecten també, sumant +1 al contador de brotes).
+	
+	Partida:
+		Tindra contador de ronda
+		Tindra una llista amb totes les ciutats, i es podran realitzar accions dins d'aquestes (vacunes, viatjar, etc...)
+		Tindra una llista amb totes les vacunes i es podra realitzar operacions amb aquestes (augmentar 
+		% de vacuna i generar).
+
+		Tindra 4 acciones per ronda.
+		Cada vegada que es fa una investigació es gasten 4 accions a la vegada i es desenvolupara el % de la vacuna seleccionada (16 accions == vacuna 100%)
+		Si treus totes les infeccions d'una ciutat i no tens la vacuna, només es redueix el nivell d'infecció -1
+		Al finalitzar la ronda es comprova si el jugador a guanyat, ha perdut o encara no
+		Si aplico una vacuna 100% desenvolupada, el nivell d'infeccio d'aquella malaltia = 0.
+		Al inici de cada partida s'inicialitzan les vacunes.
+		Al inici de cada partida s'inicialitzan les ciutats.
+
+	Vacuna: 
+		Dividida en 4 parts (Augmenta un 25%)
+		Identificador de color i percentatges de desenvolupament
+		Les vacunes poden incrementar el seu %, pero si arriba al 100% vol dir que ja estan completes
+
+
+No funcionales: (encara que no estiguin, el joc funciona)
+
+		Numero de ciutats infectades a cada ronda es un paramtere de configuració (DIFICULTAT, PARAMETRE DE CONFIGURACIÓ, INTRODUITS PER NOSALTRES)
+		Numero de ciutats infectades al inici es un paramtere de configuració (DIFICULTAT, PARAMETRE DE CONFIGURACIÓ, INTRODUITS PER NOSALTRES)
+		Numero de numero de malaties es un paramtere de configuració (DIFICULTAT, PARAMETRE DE CONFIGURACIÓ, INTRODUITS PER NOSALTRES)
+
+VARIACIONES NUESTRAS:
+		
+		Al acabar la partida mostrar resumen de la partida i se guarde todo
+		Los parametros de configuració ya estén predefinidos por dificultades
+		
