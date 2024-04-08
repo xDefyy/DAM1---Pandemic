@@ -95,10 +95,11 @@ public class lecturaCCP {
 	
 	public static void comprobar (String nombreEnfermedad, int codigoEnfermedad) {
 		String nombreFichero = "ciudades-enfermedad.bin";
+		
+		
 		try {
-			FileOutputStream fs = new FileOutputStream(nombreFichero,true);
+			FileOutputStream fs = new FileOutputStream(nombreFichero, true);
 			DataOutputStream ds = new DataOutputStream(fs);
-
 			for (int x = 0; x < ciudades.size(); x++) {
 				if (idEnfermedad.get(x) == codigoEnfermedad ) {
 					ds.writeUTF(ciudades.get(x) + ": " + nombreEnfermedad);
