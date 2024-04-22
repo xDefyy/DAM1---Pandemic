@@ -2,7 +2,7 @@
 cubos de enfermedad x color
 
 Para ganar
-curar 4 enfermedades 
+curar 4 enfermedades
 
 Laboratorios
 6 fichas de investigacion
