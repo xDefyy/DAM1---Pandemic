@@ -1,0 +1,5 @@
+San Francisco;0;235,315;Chicago,Los Angeles,Manila,Tokio;
+Chicago;0;300,280;San Francisco,Montreal,Atlanta,Mexico DF,Los Angeles;
+Los Angeles;3;275,355;San Francisco,Mexico DF,Chicago,Sidney;
+Manila;1;1200,420;San Francisco,Ho Chi Minh,Taipei,Hong Kong,Sidney;
+Tokio;1;1280,290;San Francisco,Seul,Osaka,Shanghai;
