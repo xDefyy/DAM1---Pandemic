@@ -1,30 +1,21 @@
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Image;
-import java.awt.Insets;
-import java.awt.Toolkit;
-import java.awt.Window;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-
+import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
 
 public class Main {
     
-    public static JFrame frame1 = new JFrame();
-    public static Reglas reglasFrame = new Reglas(); // Instancia de la clase Reglas
+    public static JFrame frameMain = new JFrame();
+    public static CargarParty cargarParty = new CargarParty();
+    public static Reglas CargarReglas = new Reglas();
     
     public static void main(String args[]){
         
-        frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame1.setSize(1000, 650);
-        frame1.setLocationRelativeTo(null);
-        frame1.setResizable(false);
+        Dimension screen1 = Toolkit.getDefaultToolkit().getScreenSize();
+        
+        frameMain.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frameMain.setSize(screen1.width, screen1.height);
+        frameMain.setLocationRelativeTo(null);
+        frameMain.setResizable(false);
         
         JPanel panelright = new JPanel(new BorderLayout());
         panelright.setBackground(Color.gray);
@@ -40,8 +31,8 @@ public class Main {
         panelleft.setBackground(Color.black);
         panelleft.setPreferredSize(new Dimension(200, 300));
         
-        frame1.add(panelleft, BorderLayout.WEST);
-        frame1.add(panelright, BorderLayout.EAST);
+        frameMain.add(panelleft, BorderLayout.WEST);
+        frameMain.add(panelright, BorderLayout.EAST);
         
         // Icono
         ImageIcon iconoIcono = new ImageIcon("icono.png");
@@ -71,6 +62,11 @@ public class Main {
         button1.setBorderPainted(false);
         button1.setFocusPainted(false);
         button1.setForeground(Color.WHITE);
+        button1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	cargarParty.frameCargarParty.setVisible(true); // Hacer visible frameCargarParty a través de la instancia de CargarParty
+            }
+        });
         
         panelleft.add(button1, gbc);
         
@@ -81,11 +77,9 @@ public class Main {
         button2.setBorderPainted(false);
         button2.setFocusPainted(false);
         button2.setForeground(Color.WHITE);
-        
-        button2.addActionListener(new ActionListener() { //Esto hace que el boton este a la espera para hacer la funcion de abajo
+        button2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                frame1.dispose(); // Cierra el frame actual
-                reglasFrame.setVisible(true); // Muestra el frame de Reglas
+            	CargarReglas.frameReglas.setVisible(true); // Muestra el frame de Reglas
             }
         });
         
@@ -99,18 +93,15 @@ public class Main {
         button3.setFocusPainted(false);
         button3.setForeground(Color.WHITE);        
         
-        button3.addActionListener(new ActionListener() {  //Esto hace que el boton este a la espera para hacer la funcion de abajo
+        button3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	WindowEvent close = new WindowEvent(frame1, WindowEvent.WINDOW_CLOSING);
-            	Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(close);
+                WindowEvent close = new WindowEvent(frameMain, WindowEvent.WINDOW_CLOSING);
+                Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(close);
             }
         });
         
         panelleft.add(button3, gbc);
         
-        // Agregar un panel o componentes adicionales al frame2 si es necesario
-        
-        frame1.setVisible(true);
-
+        frameMain.setVisible(true);
     }
 }
