@@ -5,7 +5,8 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 public class pantallaPrincipal extends JFrame {
-    
+	public static CargarParty cargarParty = new CargarParty();
+    public static Reglas CargarReglas = new Reglas();
 	pantallaPrincipal(){
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 
@@ -16,7 +17,7 @@ public class pantallaPrincipal extends JFrame {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 // Dibuja la imagen de fondo
-                ImageIcon iconoFondo = new ImageIcon("src\\img\\FondoJuego.jfif");
+                ImageIcon iconoFondo = new ImageIcon("src\\img\\main\\FondoJuego.jfif");
                 Image imagenFondo = iconoFondo.getImage();
                 g.drawImage(imagenFondo, 0, 0, getWidth(), getHeight(), this);
             }
@@ -32,7 +33,7 @@ public class pantallaPrincipal extends JFrame {
         gbc.insets = new Insets(10, 10, 10, 10);
         
         // Icono
-        ImageIcon iconoIcono = new ImageIcon("src\\img\\icono.png");
+        ImageIcon iconoIcono = new ImageIcon("src\\img\\main\\icono.png");
         Image imagenIcono = iconoIcono.getImage().getScaledInstance(400, 400, Image.SCALE_SMOOTH);
         ImageIcon imgFinalIcono = new ImageIcon(imagenIcono);
         JLabel labelIcono = new JLabel(imgFinalIcono);
@@ -49,7 +50,11 @@ public class pantallaPrincipal extends JFrame {
         button1.setFont(new Font("Arial", Font.BOLD, 25));
         button1.setForeground(new Color(137,5,78));
         opciones.add(button1, gbc);
-        
+        button1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	cargarParty.frameCargarParty.setVisible(true); // Hacer visible frameCargarParty a través de la instancia de CargarParty
+            }
+        });
         gbc.gridy++;
         JButton button2 = new JButton("LOAD GAME");
         button2.setBackground(new Color(0,0,0,0));
@@ -82,7 +87,11 @@ public class pantallaPrincipal extends JFrame {
         button4.setFont(new Font("Arial", Font.BOLD, 25));
         button4.setForeground(new Color(137,5,78));
         opciones.add(button4, gbc);
-        
+        button4.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	CargarReglas.setVisible(true); // Muestra el frame de Reglas
+            }
+        });
         gbc.gridy++;
         JButton button5 = new JButton("EXIT");
         button5.setBackground(new Color(0,0,0,0));

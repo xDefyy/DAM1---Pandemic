@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.lang.*;
 
 public class CargaCiudades {
 
@@ -34,7 +35,6 @@ public class CargaCiudades {
 					String ciudadExtras[] = aux[3].split(",");
 					
 					colin.add(ciudadExtras);
-
 					//guarda las variables del split a uno exterior
 					ciudad = aux[0];
 					coordenadas[0] = Integer.valueOf(aux[1]);

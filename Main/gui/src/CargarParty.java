@@ -16,15 +16,8 @@ public class CargarParty {
         frameCargarParty.setResizable(true);
         
         JPanel panelgeneral = new JPanel(new GridLayout(2, 3));
-
-        ImageIcon iconoFondo = new ImageIcon("fondo.gif");
-        Image imagenFondo = iconoFondo.getImage().getScaledInstance(800, 650, Image.SCALE_SMOOTH);
-        ImageIcon imgFinalFondo = new ImageIcon(imagenFondo);
-        JLabel labelFondo = new JLabel(imgFinalFondo);
-        frameCargarParty.add(labelFondo, BorderLayout.CENTER);
         
-        
-        ImageIcon gifIcon = new ImageIcon("giftry.gif");
+        ImageIcon gifIcon = new ImageIcon("src\\img\\nuevaPartida\\giftry.gif");
         
         
         JLabel gifLabel1 = new JLabel(gifIcon);   

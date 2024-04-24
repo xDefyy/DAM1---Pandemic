@@ -11,6 +11,8 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.OutputStream;
 import java.io.PrintStream;
 
@@ -26,11 +28,15 @@ import javax.swing.JTextArea;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
-public class partida extends JFrame {
+public class partida extends JFrame {	
+	public static JProgressBar Alfa = new JProgressBar();
+	public static JProgressBar Beta = new JProgressBar();
+	public static JProgressBar Gamma = new JProgressBar();
+	public static JProgressBar Delta = new JProgressBar();
 	partida() {
 		
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-		ImageIcon iconoIcono = new ImageIcon("src\\img\\icono.png");
+		ImageIcon iconoIcono = new ImageIcon("src\\img\\inGame\\icono.png");
 	    Image imagenIcono = iconoIcono.getImage().getScaledInstance(400, 400, Image.SCALE_SMOOTH);
 	    Image IconPersonaje = iconoIcono.getImage().getScaledInstance(screen.height/7, screen.height/7, Image.SCALE_SMOOTH);
 	    ImageIcon imgFinalIcono = new ImageIcon(imagenIcono);
@@ -43,7 +49,7 @@ public class partida extends JFrame {
 	        protected void paintComponent(Graphics g) {
 	            super.paintComponent(g);
 	            // Dibuja la imagen de fondo
-	            ImageIcon iconoFondo = new ImageIcon("src\\img\\FondoJuego.jfif");
+	            ImageIcon iconoFondo = new ImageIcon("src\\img\\inGame\\FondoJuego.jfif");
 	            Image imagenFondo = iconoFondo.getImage();
 	            g.drawImage(imagenFondo, 0, 0, getWidth(), getHeight(), this);
 	        }
@@ -56,7 +62,7 @@ public class partida extends JFrame {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 // Dibuja la imagen de fondo
-                ImageIcon barraIcono = new ImageIcon("src\\img\\barra_Juego.jpg");
+                ImageIcon barraIcono = new ImageIcon("src\\img\\inGame\\barra_Juego.jpg");
                 Image imagenFondo = barraIcono.getImage();
                 g.drawImage(imagenFondo, 0, 0, getWidth(), getHeight(), this);
             }
@@ -215,7 +221,7 @@ public class partida extends JFrame {
 		
 		stats.add(brotes, gbcStats);
 		
-		JProgressBar Alfa = new JProgressBar();
+		
 		Alfa.setStringPainted(true); // Muestra el valor actual de la barra de progreso
 		Alfa.setString("Progreso Alfa = " + Alfa.getValue());
 		Alfa.setMinimum(0); // Valor mínimo de la barra de progreso
@@ -231,7 +237,6 @@ public class partida extends JFrame {
 		stats.add(Alfa,gbcStats);
 
 		gbcStats.gridy = 4;		
-		JProgressBar Beta = new JProgressBar();
 		Beta.setStringPainted(true); // Muestra el valor actual de la barra de progreso
 		Beta.setString("Progreso Beta = " + Beta.getValue());
 		Beta.setMinimum(0); // Valor mínimo de la barra de progreso
@@ -247,7 +252,6 @@ public class partida extends JFrame {
 		stats.add(Beta,gbcStats);
 
 		gbcStats.gridy = 5;		
-		JProgressBar Gamma = new JProgressBar();
 		Gamma.setStringPainted(true); // Muestra el valor actual de la barra de progreso
 		Gamma.setString("Progreso Gamma = " + Gamma.getValue());
 		Gamma.setMinimum(0); // Valor mínimo de la barra de progreso
@@ -263,7 +267,6 @@ public class partida extends JFrame {
 		stats.add(Gamma,gbcStats);
 		
 		gbcStats.gridy = 6;
-		JProgressBar Delta = new JProgressBar();
 		Delta.setStringPainted(true); // Muestra el valor actual de la barra de progreso
 		Delta.setString("Progreso Delta = " + Delta.getValue());
 		Delta.setMinimum(0); // Valor mínimo de la barra de progreso
@@ -291,6 +294,57 @@ public class partida extends JFrame {
 
 		stats.add(opciones, gbcStats);
 		
+		
+		
+		//FUNCIONES DE LOS BOTONES
+		curar.addActionListener(new ActionListener() {  //Esto hace que el boton este a la espera para hacer la funcion de abajo
+            public void actionPerformed(ActionEvent e) {
+            	controlPartida.gestionar_Cura();
+            }
+        });
+		
+		finalizarRonda.addActionListener(new ActionListener() {  //Esto hace que el boton este a la espera para hacer la funcion de abajo
+            public void actionPerformed(ActionEvent e) {
+            	controlPartida.gestionar_Turno();
+            }
+        });
+		
+		DAlfa.addActionListener(new ActionListener() {  //Esto hace que el boton este a la espera para hacer la funcion de abajo
+            public void actionPerformed(ActionEvent e) {
+            	controlPartida.gestionar_Vacuna(0);
+            }
+        });
+		
+		DBeta.addActionListener(new ActionListener() {  //Esto hace que el boton este a la espera para hacer la funcion de abajo
+            public void actionPerformed(ActionEvent e) {
+            	controlPartida.gestionar_Vacuna(1);
+            }
+        });
+		
+		DGamma.addActionListener(new ActionListener() {  //Esto hace que el boton este a la espera para hacer la funcion de abajo
+            public void actionPerformed(ActionEvent e) {
+            	controlPartida.gestionar_Vacuna(2);
+            }
+        });
+		
+		DDelta.addActionListener(new ActionListener() {  //Esto hace que el boton este a la espera para hacer la funcion de abajo
+            public void actionPerformed(ActionEvent e) {
+            	controlPartida.gestionar_Vacuna(3);
+            }
+        });
+		
+		opciones.addActionListener(new ActionListener() {  //Esto hace que el boton este a la espera para hacer la funcion de abajo
+            public void actionPerformed(ActionEvent e) {
+            	//menu para guardar partida
+            }
+        });
+		
+		
+		
+		
+		
+		
+		
 		this.add(game, BorderLayout.CENTER);
 		this.add(stats, BorderLayout.EAST);
 		this.add(botonesTexto, BorderLayout.SOUTH);
@@ -305,5 +359,9 @@ public class partida extends JFrame {
 		this.setTitle("Pandemic @Kader, @Liqi");
 		this.setIconImage(imgFinalIcono.getImage());
 		
+		
+		
+		
 	}
+	
 }

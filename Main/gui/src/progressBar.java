@@ -24,19 +24,7 @@ public class progressBar {
         frame.setVisible(true);
 
         // Simula el progreso
-        Thread thread = new Thread(new Runnable() {
-            public void run() {
-                try {
-                    for (int i = 0; i <= 100; i++) {
-                        progressBar.setValue(i); // Actualiza el valor de la barra de progreso
-                        Thread.sleep(50); // Espera un momento para simular el progreso
-                    }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-        thread.start();
+        
     }
 }
 
