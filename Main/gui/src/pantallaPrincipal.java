@@ -46,6 +46,8 @@ public class pantallaPrincipal extends JFrame {
         button1.setContentAreaFilled(false);
         button1.setBorderPainted(false);
         button1.setFocusPainted(false);
+        button1.setFont(new Font("Arial", Font.BOLD, 25));
+        button1.setForeground(new Color(137,5,78));
         opciones.add(button1, gbc);
         
         gbc.gridy++;
@@ -55,27 +57,44 @@ public class pantallaPrincipal extends JFrame {
         button2.setContentAreaFilled(false);
         button2.setBorderPainted(false);
         button2.setFocusPainted(false);
+        button2.setFont(new Font("Arial", Font.BOLD, 25));
+        button2.setForeground(new Color(137,5,78));
         opciones.add(button2, gbc);
         
         gbc.gridy++;
-        JButton button3 = new JButton("RULES");
+        JButton button3 = new JButton("RECORDS");
         button3.setBackground(new Color(0,0,0,0));
         button3.setOpaque(false);
         button3.setContentAreaFilled(false);
         button3.setBorderPainted(false);
         button3.setFocusPainted(false);
+        button3.setFont(new Font("Arial", Font.BOLD, 25));
+        button3.setForeground(new Color(137,5,78));
         opciones.add(button3, gbc);
         
         gbc.gridy++;
-        JButton button4 = new JButton("EXIT");
+        JButton button4 = new JButton("RULES");
         button4.setBackground(new Color(0,0,0,0));
         button4.setOpaque(false);
         button4.setContentAreaFilled(false);
         button4.setBorderPainted(false);
         button4.setFocusPainted(false);
+        button4.setFont(new Font("Arial", Font.BOLD, 25));
+        button4.setForeground(new Color(137,5,78));
         opciones.add(button4, gbc);
         
-        button4.addActionListener(new ActionListener() {  //Esto hace que el boton este a la espera para hacer la funcion de abajo
+        gbc.gridy++;
+        JButton button5 = new JButton("EXIT");
+        button5.setBackground(new Color(0,0,0,0));
+        button5.setOpaque(false);
+        button5.setContentAreaFilled(false);
+        button5.setBorderPainted(false);
+        button5.setFocusPainted(false);
+        button5.setFont(new Font("Arial", Font.BOLD, 25));
+        button5.setForeground(new Color(137,5,78));
+        opciones.add(button5, gbc);
+        
+        button5.addActionListener(new ActionListener() {  //Esto hace que el boton este a la espera para hacer la funcion de abajo
             public void actionPerformed(ActionEvent e) {
             	System.exit(0);
             }
