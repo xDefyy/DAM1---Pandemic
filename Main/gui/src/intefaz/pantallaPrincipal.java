@@ -1,13 +1,15 @@
+package intefaz;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import inicio.Main;
+
 public class pantallaPrincipal extends JFrame {
-	public static CargarParty cargarParty = new CargarParty();
-    public static Reglas CargarReglas = new Reglas();
-	pantallaPrincipal(){
+
+	public pantallaPrincipal(){
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 
         
@@ -51,10 +53,17 @@ public class pantallaPrincipal extends JFrame {
         button1.setForeground(new Color(137,5,78));
         opciones.add(button1, gbc);
         button1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            	cargarParty.frameCargarParty.setVisible(true); // Hacer visible frameCargarParty a través de la instancia de CargarParty
-            }
-        });
+        	public void actionPerformed(ActionEvent e) {
+        		Main.cargarParty.setVisible(true);
+    	        Timer timer = new Timer(300, new ActionListener() {
+    	            public void actionPerformed(ActionEvent e) {
+    	            	Main.cargarPrincipal.setVisible(false);
+    	            }
+    	        });
+    	        timer.setRepeats(false);
+    	        timer.start();
+    	    }
+    	});	
         gbc.gridy++;
         JButton button2 = new JButton("LOAD GAME");
         button2.setBackground(new Color(0,0,0,0));
@@ -88,10 +97,18 @@ public class pantallaPrincipal extends JFrame {
         button4.setForeground(new Color(137,5,78));
         opciones.add(button4, gbc);
         button4.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            	CargarReglas.setVisible(true); // Muestra el frame de Reglas
-            }
-        });
+        	public void actionPerformed(ActionEvent e) {
+        		Main.CargarReglas.setVisible(true);
+    	    	
+    	        Timer timer = new Timer(300, new ActionListener() {
+    	            public void actionPerformed(ActionEvent e) {
+    	            	Main.cargarPrincipal.setVisible(false);
+    	            }
+    	        });
+    	        timer.setRepeats(false);
+    	        timer.start();
+    	    }
+    	});	
         gbc.gridy++;
         JButton button5 = new JButton("EXIT");
         button5.setBackground(new Color(0,0,0,0));

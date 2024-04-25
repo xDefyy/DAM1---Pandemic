@@ -1,7 +1,12 @@
+package CargaDatos;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import objetos.ciudad;
+import objetos.vacunas;
+import objetos.virus;
 
 public class controlDatos {
 
@@ -12,13 +17,9 @@ public class controlDatos {
 	private String ficheroBin;
 	private String ficheroXml;
 	
-	public static ArrayList<ciudad> ciudades_obj = new ArrayList<>();
-	public static ArrayList<vacunas> vacunas_obj = new ArrayList<>();
-	
-	//falta arraylist de objetos
 	public static void cargarCiudades() {
 		
-String nombreFichero = "ciudades.txt";
+		String nombreFichero = "ciudades.txt";
 		
 		ArrayList<String[]> colin = new ArrayList<>();
 		
@@ -65,7 +66,7 @@ String nombreFichero = "ciudades.txt";
 					
 					ciudad ciudadnueva = new ciudad(ciudad, coordenadasXY, temp, 0, ciudadExtras);				
 					temp = "";					
-					ciudades_obj.add(ciudadnueva);
+					datosPartida.ciudades.add(ciudadnueva);
 				}	
 	
 			} while (linea != null);				
@@ -80,20 +81,30 @@ String nombreFichero = "ciudades.txt";
 	}
 	
 	public static void cargarVacunas() { //Pensar nombre potente vacuna VIH CANCER SARS ++  Nucle de inyeccion de generacion de grandes antibioticos (NIGGA)
-		
+
 		vacunas vacuna_alpha = new vacunas("Alpha", "Azul", 0);
 		vacunas vacuna_beta = new vacunas("Beta", "Rojo", 0);
 		vacunas vacuna_gamma = new vacunas("Gamma", "Verde", 0);
 		vacunas vacuna_delta = new vacunas("Delta", "Amarillo", 0);
 		
-		vacunas_obj.add(vacuna_alpha);
-		vacunas_obj.add(vacuna_beta);
-		vacunas_obj.add(vacuna_gamma);
-		vacunas_obj.add(vacuna_delta);
+		datosPartida.vacunas.add(vacuna_alpha);
+		datosPartida.vacunas.add(vacuna_beta);
+		datosPartida.vacunas.add(vacuna_gamma);
+		datosPartida.vacunas.add(vacuna_delta);
 			
 	}
 	
 	public static void cargarVirus() {
+		
+		virus virus_alpha = new virus("0","Alfa","Azul");
+		virus virus_beta = new virus("1","Beta","Rojo");
+		virus virus_gamma = new virus("2","Gamma","Verde");
+		virus virus_delta = new virus("3","Delta","Amarillo");
+		
+		datosPartida.virus.add(virus_alpha);
+		datosPartida.virus.add(virus_beta);
+		datosPartida.virus.add(virus_gamma);
+		datosPartida.virus.add(virus_delta);
 		
 	}
 	

@@ -1,3 +1,5 @@
+package controladores;
+import intefaz.partida;
 
 public class controlPartida {
 	
@@ -18,6 +20,7 @@ public class controlPartida {
 			Thread thread = new Thread(new Runnable() {
 			    public void run() {
 			        try {
+			        //for de 4 
 			            for (int i = 0; i <= 20; i++) {
 			                partida.Alfa.setValue(i); // Actualiza el valor de la barra de progreso
 			                partida.Alfa.setString("Progreso Alfa = " + partida.Alfa.getValue());

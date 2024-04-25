@@ -1,24 +1,24 @@
+package intefaz;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 
-public class CargarParty {
+import inicio.Main;
 
-    public static JFrame frameCargarParty;
+public class CargarParty extends JFrame {
     
     public CargarParty() {
     	
-        Dimension screen1 = Toolkit.getDefaultToolkit().getScreenSize();
-
-        frameCargarParty = new JFrame();
-        frameCargarParty.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frameCargarParty.setSize(screen1.width, screen1.height);
-        frameCargarParty.setUndecorated(true);
-        frameCargarParty.setResizable(true);
+        Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         
         JPanel panelgeneral = new JPanel(new GridLayout(2, 3));
         
         ImageIcon gifIcon = new ImageIcon("src\\img\\nuevaPartida\\giftry.gif");
-        
+        ImageIcon iconoIcono = new ImageIcon("src\\img\\main\\icono.png");
+        Image imagenIcono = iconoIcono.getImage().getScaledInstance(400, 400, Image.SCALE_SMOOTH);
+        ImageIcon imgFinalIcono = new ImageIcon(imagenIcono);
         
         JLabel gifLabel1 = new JLabel(gifIcon);   
         gifLabel1.setHorizontalAlignment(JLabel.CENTER); // Centrar la imagen horizontalmente
@@ -67,11 +67,45 @@ public class CargarParty {
         panel3.add(button3, BorderLayout.CENTER);
         label3.setHorizontalAlignment(JLabel.CENTER);
         panelgeneral.add(panel3);
+        
+        JButton volver = new JButton("VOLVER");
+	      volver.setPreferredSize(new Dimension(150,50));
+	      volver.setBackground(new Color(0,0,0,0));
+	      volver.setOpaque(false);
+	      volver.setContentAreaFilled(false);
+	      volver.setBorderPainted(false);
+	      volver.setFocusPainted(false);
+	      volver.setFont(new Font("Arial", Font.BOLD, 10));
+	      volver.setForeground(new Color(137,5,78));
+	      
+	      volver.addActionListener(new ActionListener() {
+	    	    public void actionPerformed(ActionEvent e) {
+	    	    	Main.cargarPrincipal.setVisible(true);
+	    	        Timer timer = new Timer(300, new ActionListener() {
+	    	            public void actionPerformed(ActionEvent e) {
+	    	                Main.cargarParty.setVisible(false);
+	    	            }
+	    	        });
+	    	        timer.setRepeats(false);
+	    	        timer.start();
+	    	    }
+	    	});	
+	      
+	      JPanel botonVolver = new JPanel();
+	      botonVolver.add(volver);
+	      
+	      this.add(botonVolver, BorderLayout.SOUTH);
+        
+        this.getContentPane().add(panelgeneral, BorderLayout.CENTER);
 
-        frameCargarParty.getContentPane().add(panelgeneral, BorderLayout.CENTER);
-
-        frameCargarParty.setVisible(true);
-        frameCargarParty.setLocationRelativeTo(null);
-        frameCargarParty.setVisible(false);
+        this.setSize(screen.width, screen.height);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setLocationRelativeTo(null); // siempre centro
+		this.setResizable(false); // no se puede ajustar
+		this.setExtendedState(JFrame.MAXIMIZED_BOTH); // pantalla completa
+		this.setUndecorated(true); // quita la barra de arriba
+		this.setVisible(false);
+		this.setTitle("Pandemic @Kader, @Liqi");
+		this.setIconImage(imgFinalIcono.getImage());
     }
 }

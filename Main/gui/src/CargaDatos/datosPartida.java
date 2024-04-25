@@ -1,10 +1,15 @@
+package CargaDatos;
 import java.util.ArrayList;
+
+import objetos.ciudad;
+import objetos.virus;
+import objetos.vacunas;
 
 public class datosPartida {
 	
-	private ArrayList<ciudad> ciudades = new ArrayList<>();
-	private ArrayList<virus> virus = new ArrayList<>();
-	private ArrayList<vacunas> vacunas = new ArrayList<>();
+	protected static ArrayList<ciudad> ciudades = new ArrayList<>();
+	protected static ArrayList<virus> virus = new ArrayList<>();
+	protected static ArrayList<vacunas> vacunas = new ArrayList<>();
 	private int brotes;
 	private int rondas;
 	private double pDesarrollo;

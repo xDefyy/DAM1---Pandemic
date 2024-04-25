@@ -1,3 +1,4 @@
+package objetos;
 public class ciudad {
 
 	private String nombre;

@@ -1,3 +1,4 @@
+package objetos;
 public class vacunas {
 	private String nombre;
 	private String color;

@@ -1,3 +1,4 @@
+package objetos;
 public class virus {
 	private String identificador;
 	private String nombre;

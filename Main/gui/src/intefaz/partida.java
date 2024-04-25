@@ -1,3 +1,4 @@
+package intefaz;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -25,15 +26,20 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.Timer;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
+
+import controladores.controlPartida;
+import inicio.Main;
+
 
 public class partida extends JFrame {	
 	public static JProgressBar Alfa = new JProgressBar();
 	public static JProgressBar Beta = new JProgressBar();
 	public static JProgressBar Gamma = new JProgressBar();
 	public static JProgressBar Delta = new JProgressBar();
-	partida() {
+	public partida() {
 		
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		ImageIcon iconoIcono = new ImageIcon("src\\img\\inGame\\icono.png");
@@ -293,7 +299,6 @@ public class partida extends JFrame {
 		opciones.setForeground(new Color(137,5,78));
 
 		stats.add(opciones, gbcStats);
-		
 		
 		
 		//FUNCIONES DE LOS BOTONES

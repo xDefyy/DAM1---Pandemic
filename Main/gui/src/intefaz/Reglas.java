@@ -1,9 +1,17 @@
+package intefaz;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.GridLayout;
 import javax.swing.*;
+
+import controladores.controlPartida;
+import inicio.Main;
 
 public class Reglas extends JFrame {
     
@@ -147,9 +155,36 @@ public class Reglas extends JFrame {
 
       JScrollPane scrollPane = new JScrollPane(panelgeneral);
       scrollPane.getVerticalScrollBar().setUnitIncrement(20); // Ajustar la velocidad de desplazamiento (en píxeles)
-
-
-      this.add(scrollPane);
+      
+      JButton volver = new JButton("VOLVER");
+      volver.setPreferredSize(new Dimension(150,50));
+      volver.setBackground(new Color(0,0,0,0));
+      volver.setOpaque(false);
+      volver.setContentAreaFilled(false);
+      volver.setBorderPainted(false);
+      volver.setFocusPainted(false);
+      volver.setFont(new Font("Arial", Font.BOLD, 10));
+      volver.setForeground(new Color(137,5,78));
+      
+      volver.addActionListener(new ActionListener() {
+    	    public void actionPerformed(ActionEvent e) {
+    	    	Main.cargarPrincipal.setVisible(true);
+    	        Timer timer = new Timer(300, new ActionListener() {
+    	            public void actionPerformed(ActionEvent e) {
+    	                Main.CargarReglas.setVisible(false);
+    	            }
+    	        });
+    	        timer.setRepeats(false);
+    	        timer.start();
+    	    }
+    	});	
+      
+      JPanel botonVolver = new JPanel();
+      botonVolver.add(volver);
+      
+      this.add(botonVolver, BorderLayout.SOUTH);
+      this.add(scrollPane, BorderLayout.CENTER);
+      
        
 
       	this.setSize(screen.width, screen.height);
