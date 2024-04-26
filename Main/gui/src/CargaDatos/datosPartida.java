@@ -16,7 +16,7 @@ public class datosPartida {
 	private int acciones;
 	
 	public datosPartida(ArrayList<ciudad> ciudades, ArrayList<virus> virus, ArrayList<vacunas> vacunas, int brotes,
-			int rondas, double pDesarrollo, int acciones) {
+		int rondas, double pDesarrollo, int acciones) {
 		this.ciudades = ciudades;
 		this.virus = virus;
 		this.vacunas = vacunas;

@@ -163,7 +163,8 @@ public class Reglas extends JFrame {
       volver.setContentAreaFilled(false);
       volver.setBorderPainted(false);
       volver.setFocusPainted(false);
-      volver.setFont(new Font("Arial", Font.BOLD, 10));
+      volver.setFont(new Font("Arial", Font.BOLD, 20));
+      volver.setPreferredSize(new Dimension(screen.width,50));
       volver.setForeground(new Color(137,5,78));
       
       volver.addActionListener(new ActionListener() {

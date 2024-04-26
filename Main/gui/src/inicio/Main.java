@@ -1,4 +1,5 @@
 package inicio;
+import CargaDatos.controlDatos;
 import intefaz.CargarParty;
 import intefaz.Reglas;
 import intefaz.pantallaPrincipal;
@@ -12,7 +13,7 @@ public class Main {
     public static pantallaPrincipal cargarPrincipal = new pantallaPrincipal();
     
 	public static void main(String[] args) {
-		partida frame = new partida();
+		
 	}
 
 }

@@ -39,6 +39,10 @@ public class partida extends JFrame {
 	public static JProgressBar Beta = new JProgressBar();
 	public static JProgressBar Gamma = new JProgressBar();
 	public static JProgressBar Delta = new JProgressBar();
+	public static JButton DAlfa = new JButton("Desarrollar VIH");
+	public static JButton DBeta = new JButton("Desarrollar CANCER");
+	public static JButton DGamma = new JButton("Desarrollar SARS");
+	public static JButton DDelta = new JButton("Desarrollar NIGGA");
 	public partida() {
 		
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
@@ -151,7 +155,7 @@ public class partida extends JFrame {
         DesarrollarCura.setLayout(new GridLayout(2,2,10,10));
         DesarrollarCura.setOpaque(false);
         
-        JButton DAlfa = new JButton("Desarrollar Alfa");
+        
         DAlfa.setPreferredSize(new Dimension(150,50));
         DAlfa.setBackground(new Color(0,0,0,0));
         DAlfa.setOpaque(false);
@@ -160,7 +164,7 @@ public class partida extends JFrame {
         DAlfa.setFocusPainted(false);
         DAlfa.setFont(new Font("Arial", Font.BOLD, 10));
         DAlfa.setForeground(new Color(137,5,78));
-        JButton DBeta = new JButton("Desarrollar Beta");
+
         DBeta.setPreferredSize(new Dimension(150,50));
         DBeta.setBackground(new Color(0,0,0,0));
         DBeta.setOpaque(false);
@@ -169,7 +173,7 @@ public class partida extends JFrame {
         DBeta.setFocusPainted(false);
         DBeta.setFont(new Font("Arial", Font.BOLD, 10));
         DBeta.setForeground(new Color(137,5,78));
-        JButton DGamma = new JButton("Desarrollar Gamma");
+
         DGamma.setPreferredSize(new Dimension(150,50));
         DGamma.setBackground(new Color(0,0,0,0));
         DGamma.setOpaque(false);
@@ -178,7 +182,7 @@ public class partida extends JFrame {
         DGamma.setFocusPainted(false);
         DGamma.setFont(new Font("Arial", Font.BOLD, 10));
         DGamma.setForeground(new Color(137,5,78));
-        JButton DDelta = new JButton("Desarrollar Delta");
+
         DDelta.setPreferredSize(new Dimension(150,50));
         DDelta.setBackground(new Color(0,0,0,0));
         DDelta.setOpaque(false);
@@ -229,7 +233,7 @@ public class partida extends JFrame {
 		
 		
 		Alfa.setStringPainted(true); // Muestra el valor actual de la barra de progreso
-		Alfa.setString("Progreso Alfa = " + Alfa.getValue());
+		Alfa.setString("Progreso VIH = " + Alfa.getValue());
 		Alfa.setMinimum(0); // Valor mínimo de la barra de progreso
 		Alfa.setMaximum(100); // Valor máximo de la barra de progreso
 		Alfa.setValue(0);
@@ -244,7 +248,7 @@ public class partida extends JFrame {
 
 		gbcStats.gridy = 4;		
 		Beta.setStringPainted(true); // Muestra el valor actual de la barra de progreso
-		Beta.setString("Progreso Beta = " + Beta.getValue());
+		Beta.setString("Progreso CANCER = " + Beta.getValue());
 		Beta.setMinimum(0); // Valor mínimo de la barra de progreso
 		Beta.setMaximum(100); // Valor máximo de la barra de progreso
 		Beta.setValue(0);
@@ -259,7 +263,7 @@ public class partida extends JFrame {
 
 		gbcStats.gridy = 5;		
 		Gamma.setStringPainted(true); // Muestra el valor actual de la barra de progreso
-		Gamma.setString("Progreso Gamma = " + Gamma.getValue());
+		Gamma.setString("Progreso SARS = " + Gamma.getValue());
 		Gamma.setMinimum(0); // Valor mínimo de la barra de progreso
 		Gamma.setMaximum(100); // Valor máximo de la barra de progreso
 		Gamma.setValue(0);
@@ -274,14 +278,14 @@ public class partida extends JFrame {
 		
 		gbcStats.gridy = 6;
 		Delta.setStringPainted(true); // Muestra el valor actual de la barra de progreso
-		Delta.setString("Progreso Delta = " + Delta.getValue());
+		Delta.setString("Progreso NIGGA = " + Delta.getValue());
 		Delta.setMinimum(0); // Valor mínimo de la barra de progreso
 		Delta.setMaximum(100); // Valor máximo de la barra de progreso
 		Delta.setValue(0);
 		
 		Delta.setUI(new javax.swing.plaf.basic.BasicProgressBarUI() {
             protected Color getSelectionBackground() { 
-                return new Color(255,254,124); // Cambia el color de la barra cuando progresa
+                return Color.black; // Cambia el color de la barra cuando progresa
             }
         });
 		
@@ -360,7 +364,7 @@ public class partida extends JFrame {
 		this.setResizable(false); // no se puede ajustar
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH); // pantalla completa
 		this.setUndecorated(true); // quita la barra de arriba
-		this.setVisible(true);
+		this.setVisible(false);
 		this.setTitle("Pandemic @Kader, @Liqi");
 		this.setIconImage(imgFinalIcono.getImage());
 		
@@ -369,4 +373,5 @@ public class partida extends JFrame {
 		
 	}
 	
+
 }

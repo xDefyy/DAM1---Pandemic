@@ -1,21 +1,30 @@
 package CargaDatos;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 import objetos.ciudad;
 import objetos.vacunas;
 import objetos.virus;
 
 public class controlDatos {
-
+	public static String desarrolloVacuna;
 	private String url;
 	private String user;
 	private String password;
 	private String ficheroTxt;
 	private String ficheroBin;
-	private String ficheroXml;
+	private static String ficheroXml;
 	
 	public static void cargarCiudades() {
 		
@@ -82,10 +91,10 @@ public class controlDatos {
 	
 	public static void cargarVacunas() { //Pensar nombre potente vacuna VIH CANCER SARS ++  Nucle de inyeccion de generacion de grandes antibioticos (NIGGA)
 
-		vacunas vacuna_alpha = new vacunas("Alpha", "Azul", 0);
-		vacunas vacuna_beta = new vacunas("Beta", "Rojo", 0);
-		vacunas vacuna_gamma = new vacunas("Gamma", "Verde", 0);
-		vacunas vacuna_delta = new vacunas("Delta", "Amarillo", 0);
+		vacunas vacuna_alpha = new vacunas("VIH", "Azul", 0);
+		vacunas vacuna_beta = new vacunas("CANCER", "Rojo", 0);
+		vacunas vacuna_gamma = new vacunas("SARS", "Verde", 0);
+		vacunas vacuna_delta = new vacunas("NIGGA", "Amarillo", 0);
 		
 		datosPartida.vacunas.add(vacuna_alpha);
 		datosPartida.vacunas.add(vacuna_beta);
@@ -122,6 +131,54 @@ public class controlDatos {
 	
 	public static void guardarRecord() {
 		
+	}
+	
+	public static void controlDificultad(int valor) {
+		String nodePrincipal = "";
+		if (valor == 0) {
+			ficheroXml = "src\\datos\\facil.xml";
+			nodePrincipal = "facil";
+		} else if (valor == 1) {
+			ficheroXml = "src\\datos\\normal.xml";
+			nodePrincipal = "normal";
+		} else {
+			ficheroXml = "src\\datos\\dificil.xml";
+			nodePrincipal = "dificil";
+		}
+
+		try {
+            File inputFile = new File(ficheroXml);
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(inputFile);
+            doc.getDocumentElement().normalize();
+
+            System.out.println("Root element: " + doc.getDocumentElement().getNodeName());
+
+            NodeList nodeList = doc.getElementsByTagName(nodePrincipal);
+
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                Node node = nodeList.item(i);
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    Element element = (Element) node;
+                    String numCiudadesInfectadasInicio = element.getElementsByTagName("numCiudadesInfectadasInicio").item(0).getTextContent();
+                    String numCuidadesInfectadasRonda = element.getElementsByTagName("numCuidadesInfectadasRonda").item(0).getTextContent();
+                    String numEnfermedadesActivasDerrota = element.getElementsByTagName("numEnfermedadesActivasDerrota").item(0).getTextContent();
+                    String numBrotesDerrota = element.getElementsByTagName("numBrotesDerrota").item(0).getTextContent();
+                    desarrolloVacuna = element.getElementsByTagName("desarrollovacuna").item(0).getTextContent();
+                    
+
+//                    System.out.println("CiudadesInfectadasInicio: " + numCiudadesInfectadasInicio);
+//                    System.out.println("CuidadesInfectadasRonda: " + numCuidadesInfectadasRonda);
+//                    System.out.println("numEnfermedadesActivasDerrota: " + numEnfermedadesActivasDerrota);
+//                    System.out.println("numBrotesDerrota: " + numBrotesDerrota);
+//                    System.out.println("desarrollovacuna: " + desarrolloVacuna);
+//                    System.out.println("----------------------");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 	}
 	
 }
