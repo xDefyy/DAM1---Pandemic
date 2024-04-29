@@ -34,7 +34,4 @@ public class vacunas {
 		this.porcentaje = porcentaje;
 	} 
 	
-	public static void desarrollarVacuna(double porcentaje) {
-		
-	}
 }

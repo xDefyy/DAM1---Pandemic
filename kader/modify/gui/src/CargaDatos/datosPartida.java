@@ -11,13 +11,13 @@ public class datosPartida {
 	protected static ArrayList<virus> virus = new ArrayList<>();
 	protected static ArrayList<vacunas> vacunas = new ArrayList<>();
 	
-	private int brotes = 1;
-	private int rondas = 0;
-	private double pDesarrollo = 0;
-	private int acciones = 4;
+	protected static int brotes = 1;
+	protected static int rondas = 0;
+	protected static int pDesarrollo = 0;
+	protected static int acciones = 4;
 	
 	public datosPartida(ArrayList<ciudad> ciudades, ArrayList<virus> virus, ArrayList<vacunas> vacunas, int brotes,
-			int rondas, double pDesarrollo, int acciones) {
+			int rondas, int pDesarrollo, int acciones) {
 		this.ciudades = ciudades;
 		this.virus = virus;
 		this.vacunas = vacunas;
@@ -71,7 +71,7 @@ public class datosPartida {
 		return pDesarrollo;
 	}
 	
-	public void setpDesarrollo(double pDesarrollo) {
+	public void setpDesarrollo(int pDesarrollo) {
 		this.pDesarrollo = pDesarrollo;
 	}
 	
@@ -88,6 +88,7 @@ public class datosPartida {
 		controlDatos.cargarCiudades();
 		controlDatos.cargarVacunas();
 		controlDatos.cargarVirus();
+		
 //		controlDatos.cargarRecord();
 		
 	}

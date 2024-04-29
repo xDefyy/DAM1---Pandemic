@@ -14,7 +14,7 @@ public class controlDatos {
 	private String url;
 	private String user;
 	private String password;
-	private String ficheroTxt;
+	protected static String ficheroTxt;
 	private String ficheroBin;
 	private String ficheroXml;
 	
@@ -86,7 +86,7 @@ public class controlDatos {
 		vacunas vacuna_alpha = new vacunas("VIH", "Azul", 0);
 		vacunas vacuna_beta = new vacunas("CANCER", "Rojo", 0);
 		vacunas vacuna_gamma = new vacunas("SARS", "Verde", 0);
-		vacunas vacuna_delta = new vacunas("NIGGA", "Amarillo", 0); //cambiar a negro
+		vacunas vacuna_delta = new vacunas("NIGGA", "Negro", 0);
 		
 		datosPartida.vacunas.add(vacuna_alpha);
 		datosPartida.vacunas.add(vacuna_beta);
@@ -111,11 +111,16 @@ public class controlDatos {
 	
 	public static void cargarPartida() {
 		getfromTXT.cargar_ciudades();
+		getfromTXT.cargar_vacunas();
+		getfromTXT.cargar_parametros();
+		
+		//crear fichero y pedir nombre al guardar partida o acabar
 	}
 	
 	public static void guardarPartida() {
 		savetoTXT.guardar_ciudades();
-		savetoTXT.cargar_vacunas();
+		savetoTXT.guardar_vacunas();
+		savetoTXT.guardar_parametros();
 	}
 	
 	public static void cargarRecord() {

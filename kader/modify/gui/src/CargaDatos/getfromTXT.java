@@ -9,8 +9,13 @@ import java.util.ArrayList;
 
 import objetos.ciudad;
 import objetos.vacunas;
+import objetos.virus;
 
 public class getfromTXT {
+	
+//	private static ArrayList<ciudad> ciudades = new ArrayList<>();
+//	private static ArrayList<virus> virus = new ArrayList<>();
+//	protected static ArrayList<vacunas> vacunas = new ArrayList<>();
 
     public static void cargar_ciudades() {
 
@@ -98,6 +103,52 @@ public class getfromTXT {
 
     }
     
+    public static void cargar_parametros() {
+
+        String nombreFichero = "try_parametros.txt";
+
+        try {
+            FileReader fileReader = new FileReader(nombreFichero);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            String linea = bufferedReader.readLine();
+
+            do {
+                String brotes;
+                String rondas;
+                String porcentaje;
+                String acciones;
+
+                brotes = linea; // brotes
+                
+                linea = bufferedReader.readLine(); // rondas
+                rondas = linea;
+                
+                linea = bufferedReader.readLine(); // porcentaje
+                porcentaje = linea;
+                
+                linea = bufferedReader.readLine(); // porcentaje
+                acciones = linea;
+                
+                int brotes_n = Integer.valueOf(brotes);
+                int rondas_n = Integer.valueOf(rondas);
+                int porcentaje_n = Integer.valueOf(porcentaje);
+                int acciones_n = Integer.valueOf(acciones); 
+                
+                datosPartida partida = new datosPartida(datosPartida.ciudades, datosPartida.virus, datosPartida.vacunas, brotes_n, rondas_n, porcentaje_n, acciones_n);
+
+                linea = bufferedReader.readLine();
+                
+            } while (linea != null);
+
+            bufferedReader.close();
+            fileReader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+    }
+    
+    
     public static void main(String[] args) {
         cargar_ciudades();
         
@@ -121,5 +172,8 @@ public class getfromTXT {
         	System.out.print(v.getColor() + "\n");
         	System.out.print(v.getPorcentaje() + "\n");
 		}
+        
+        cargar_parametros();
+        
     }
 }

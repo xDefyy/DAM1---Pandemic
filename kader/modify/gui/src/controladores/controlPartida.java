@@ -7,11 +7,13 @@ public class controlPartida {
 		
 	}
 	
-	public static void iniciar_Partida_Guardada(String id) {
+	public static void iniciar_Partida_Guardada(String id) {  //preguntar guillem
 		
 	}
 	
 	public static void gestionar_Turno() {
+		
+		
 		
 	}
 	
@@ -98,17 +100,25 @@ public class controlPartida {
 	
 	public static void gestionar_Infeccion() {
 		
+		
+		
 	}
 	
 	public static void gestionar_Brote() {
+		
+		
 		
 	}
 	
 	public static void gestionar_Fin_Partida() {
 		
+		
+		
 	}
 	
 	public static void gestionar_Frase() {
+		
+		
 		
 	}
 	
