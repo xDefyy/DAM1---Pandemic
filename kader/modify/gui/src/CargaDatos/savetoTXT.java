@@ -12,11 +12,11 @@ import objetos.virus;
 
 public class savetoTXT {
 
-	public static void cargar_ciudades() {
+	public static void guardar_ciudades() {
 		controlDatos.cargarCiudades();
 		
 		System.out.println(datosPartida.ciudades);
-		String nombreFichero = "C:\\Users\\alumnat\\Desktop\\DAM1---Pandemic-main\\kader\\modify\\pandemic\\try_ciudades.txt";
+		String nombreFichero = "try_ciudades.txt";
 		
 		ArrayList<String[]> colin = new ArrayList<>();
 		
@@ -25,12 +25,19 @@ public class savetoTXT {
 			FileWriter fileWriter = new FileWriter(nombreFichero, false);
 			BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 			
-			for (ciudad c : datosPartida.ciudades) {
-				bufferedWriter.write("Nombre de la ciudad: " + c.getNombre() + "\n");
-				bufferedWriter.write("Coordenadas: (" + c.getCoordenadas()[0] + ", " + c.getCoordenadas()[1] + ")" + "\n");
-				bufferedWriter.write("Enfermedad: " + c.getEnfermedad() + "\n");
-				bufferedWriter.write("Infección: " + c.getInfeccion() + "\n");
+			for (ciudad ciudad : datosPartida.ciudades) {
+			    bufferedWriter.write(ciudad.getNombre() + "\n");
+			    bufferedWriter.write(ciudad.getCoordenadas()[0] + ", " + ciudad.getCoordenadas()[1] + "\n");
+			    bufferedWriter.write(ciudad.getEnfermedad() + "\n");
+			    bufferedWriter.write(ciudad.getInfeccion() + "\n");
+
+			    // Escribir ciudades colindantes
+			    for (String colindante : ciudad.getCiudadesColindantes()) {
+			        bufferedWriter.write(colindante + ",");
+			    }
+			    bufferedWriter.write("\n");
 			}
+
 			
 			bufferedWriter.close();
 			fileWriter.close();
@@ -45,7 +52,7 @@ public class savetoTXT {
 		controlDatos.cargarVacunas();
 		
 		System.out.println(datosPartida.vacunas);
-		String nombreFichero = "C:\\Users\\alumnat\\Desktop\\DAM1---Pandemic-main\\kader\\modify\\pandemic\\try_vacunas.txt";
+		String nombreFichero = "try_vacunas.txt";
 		
 		try {
 
@@ -53,9 +60,9 @@ public class savetoTXT {
 			BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 			
 			for (vacunas v : datosPartida.vacunas) {
-				bufferedWriter.write("Nombre: " + v.getNombre() + "\n");
-				bufferedWriter.write("Color: " + v.getColor() + "\n");
-				bufferedWriter.write("Porcentaje: " + v.getPorcentaje() + "\n");
+				bufferedWriter.write(v.getNombre() + "\n");
+				bufferedWriter.write(v.getColor() + "\n");
+				bufferedWriter.write(v.getPorcentaje() + "\n");
 			}
 				
 			bufferedWriter.close();
@@ -69,7 +76,7 @@ public class savetoTXT {
 	
 	public static void main(String args[]) {
 		
-		cargar_ciudades();
+		guardar_ciudades();
 		cargar_vacunas();
 		
 	}

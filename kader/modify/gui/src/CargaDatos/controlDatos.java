@@ -20,7 +20,7 @@ public class controlDatos {
 	
 	public static void cargarCiudades() {
 		
-		String nombreFichero = "C:\\Users\\alumnat\\Desktop\\DAM1---Pandemic-main\\kader\\modify\\gui\\src\\datos\\ciudades.txt";
+		String nombreFichero = "ciudades.txt";
 		
 		ArrayList<String[]> colin = new ArrayList<>();
 		
@@ -110,11 +110,11 @@ public class controlDatos {
 	}
 	
 	public static void cargarPartida() {
-		
+		getfromTXT.cargar_ciudades();
 	}
 	
 	public static void guardarPartida() {
-		savetoTXT.cargar_ciudades();
+		savetoTXT.guardar_ciudades();
 		savetoTXT.cargar_vacunas();
 	}
 	

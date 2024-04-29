@@ -89,6 +89,7 @@ public class datosPartida {
 		controlDatos.cargarVacunas();
 		controlDatos.cargarVirus();
 //		controlDatos.cargarRecord();
+		
 	}
 	
 }
