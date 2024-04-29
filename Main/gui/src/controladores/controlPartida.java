@@ -11,7 +11,7 @@ import inicio.Main;
 import intefaz.CargarParty;
 import intefaz.partida;
 import CargaDatos.datosPartida;
-import CargaDatos.savetoTXT;
+
 
 public class controlPartida {
 
@@ -35,7 +35,7 @@ public class controlPartida {
 		datos = new datosPartida(datosPartida.ciudades, datosPartida.virus, datosPartida.vacunas, 0,0,pdesarrollo,4);
     	System.out.println(controlPartida.datos.getpDesarrollo());
     	progresoA = datos.getpDesarrollo();
-    	progresoB = datos.	getpDesarrollo();
+    	progresoB = datos.getpDesarrollo();
     	progresoG = datos.getpDesarrollo();
     	progresoD = datos.getpDesarrollo();
     	aux = datos.getpDesarrollo();
@@ -195,9 +195,6 @@ public class controlPartida {
 					}
 				}
 			}
-			savetoTXT.guardar_ciudades();
-			savetoTXT.guardar_parametros();
-			savetoTXT.guardar_vacunas();
 			
 		}
 		
