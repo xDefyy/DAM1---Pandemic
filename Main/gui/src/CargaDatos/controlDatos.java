@@ -16,9 +16,15 @@ import org.w3c.dom.NodeList;
 import objetos.ciudad;
 import objetos.vacunas;
 import objetos.virus;
+import CargaDatos.datosPartida;
 
 public class controlDatos {
-	public static String desarrolloVacuna;
+	 
+	public static String numCiudadesInfectadasInicio = "";
+	public static String numCiudadesInfectadasRonda = "";
+	public static String numEnfermedadesActivasDerrota = ""; 
+	public static String numBrotesDerrota = "";
+    public static String desarrolloVacuna = "";
 	private String url;
 	private String user;
 	private String password;
@@ -28,7 +34,7 @@ public class controlDatos {
 	
 	public static void cargarCiudades() {
 		
-		String nombreFichero = "ciudades.txt";
+		String nombreFichero = "src\\datos\\ciudades.txt";
 		
 		ArrayList<String[]> colin = new ArrayList<>();
 		
@@ -94,13 +100,13 @@ public class controlDatos {
 		vacunas vacuna_alpha = new vacunas("VIH", "Azul", 0);
 		vacunas vacuna_beta = new vacunas("CANCER", "Rojo", 0);
 		vacunas vacuna_gamma = new vacunas("SARS", "Verde", 0);
-		vacunas vacuna_delta = new vacunas("NIGGA", "Amarillo", 0);
+		vacunas vacuna_delta = new vacunas("NIGGA", "Negro", 0);
 		
 		datosPartida.vacunas.add(vacuna_alpha);
 		datosPartida.vacunas.add(vacuna_beta);
 		datosPartida.vacunas.add(vacuna_gamma);
 		datosPartida.vacunas.add(vacuna_delta);
-			
+		
 	}
 	
 	public static void cargarVirus() {
@@ -108,7 +114,7 @@ public class controlDatos {
 		virus virus_alpha = new virus("0","Alfa","Azul");
 		virus virus_beta = new virus("1","Beta","Rojo");
 		virus virus_gamma = new virus("2","Gamma","Verde");
-		virus virus_delta = new virus("3","Delta","Amarillo");
+		virus virus_delta = new virus("3","Delta","Negro");
 		
 		datosPartida.virus.add(virus_alpha);
 		datosPartida.virus.add(virus_beta);
@@ -153,7 +159,6 @@ public class controlDatos {
             Document doc = dBuilder.parse(inputFile);
             doc.getDocumentElement().normalize();
 
-            System.out.println("Root element: " + doc.getDocumentElement().getNodeName());
 
             NodeList nodeList = doc.getElementsByTagName(nodePrincipal);
 
@@ -161,19 +166,13 @@ public class controlDatos {
                 Node node = nodeList.item(i);
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element element = (Element) node;
-                    String numCiudadesInfectadasInicio = element.getElementsByTagName("numCiudadesInfectadasInicio").item(0).getTextContent();
-                    String numCuidadesInfectadasRonda = element.getElementsByTagName("numCuidadesInfectadasRonda").item(0).getTextContent();
-                    String numEnfermedadesActivasDerrota = element.getElementsByTagName("numEnfermedadesActivasDerrota").item(0).getTextContent();
-                    String numBrotesDerrota = element.getElementsByTagName("numBrotesDerrota").item(0).getTextContent();
-                    desarrolloVacuna = element.getElementsByTagName("desarrollovacuna").item(0).getTextContent();
+                     numCiudadesInfectadasInicio = element.getElementsByTagName("numCiudadesInfectadasInicio").item(0).getTextContent();
+                     numCiudadesInfectadasRonda = element.getElementsByTagName("numCuidadesInfectadasRonda").item(0).getTextContent();
+                     numEnfermedadesActivasDerrota = element.getElementsByTagName("numEnfermedadesActivasDerrota").item(0).getTextContent();
+                     numBrotesDerrota = element.getElementsByTagName("numBrotesDerrota").item(0).getTextContent();
+                     desarrolloVacuna = element.getElementsByTagName("desarrollovacuna").item(0).getTextContent();
                     
 
-//                    System.out.println("CiudadesInfectadasInicio: " + numCiudadesInfectadasInicio);
-//                    System.out.println("CuidadesInfectadasRonda: " + numCuidadesInfectadasRonda);
-//                    System.out.println("numEnfermedadesActivasDerrota: " + numEnfermedadesActivasDerrota);
-//                    System.out.println("numBrotesDerrota: " + numBrotesDerrota);
-//                    System.out.println("desarrollovacuna: " + desarrolloVacuna);
-//                    System.out.println("----------------------");
                 }
             }
         } catch (Exception e) {

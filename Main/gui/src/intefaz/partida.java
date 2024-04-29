@@ -2,6 +2,7 @@ package intefaz;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -20,16 +21,22 @@ import java.io.PrintStream;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.SwingUtilities;
 import javax.swing.Timer;
+import javax.swing.UIManager;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
+import CargaDatos.controlDatos;
 import controladores.controlPartida;
 import inicio.Main;
 
@@ -219,7 +226,7 @@ public class partida extends JFrame {
 		
 		gbcStats.gridy = 1;
 		JLabel ciudadesInf = new JLabel();
-		ciudadesInf.setText("Ciudades Infectadas: 0"); //TODO METER VARIABLE DE SCORE
+		ciudadesInf.setText("Ciudades Infectadas: " ); //TODO METER VARIABLE DE SCORE
 		ciudadesInf.setFont(new Font("Arial", Font.BOLD, 15));
 		
 		stats.add(ciudadesInf, gbcStats);
@@ -231,7 +238,6 @@ public class partida extends JFrame {
 		
 		stats.add(brotes, gbcStats);
 		
-		
 		Alfa.setStringPainted(true); // Muestra el valor actual de la barra de progreso
 		Alfa.setString("Progreso VIH = " + Alfa.getValue());
 		Alfa.setMinimum(0); // Valor mínimo de la barra de progreso
@@ -239,8 +245,8 @@ public class partida extends JFrame {
 		Alfa.setValue(0);
 		
 		Alfa.setUI(new javax.swing.plaf.basic.BasicProgressBarUI() {
-            protected Color getSelectionBackground() { 
-                return Color.BLUE; // Cambia el color de la barra cuando progresa
+            protected Color getSelectionForeground() { 
+                return Color.black; // Cambia el color de la barra cuando progresa
             }
         });
 		gbcStats.gridy = 3;
@@ -254,8 +260,8 @@ public class partida extends JFrame {
 		Beta.setValue(0);
 		
 		Beta.setUI(new javax.swing.plaf.basic.BasicProgressBarUI() {
-            protected Color getSelectionBackground() { 
-                return Color.red; // Cambia el color de la barra cuando progresa
+            protected Color getSelectionForeground() { 
+                return Color.black; // Cambia el color de la barra cuando progresa
             }
         });
 		
@@ -269,8 +275,8 @@ public class partida extends JFrame {
 		Gamma.setValue(0);
 		
 		Gamma.setUI(new javax.swing.plaf.basic.BasicProgressBarUI() {
-            protected Color getSelectionBackground() { 
-                return Color.green; // Cambia el color de la barra cuando progresa
+            protected Color getSelectionForeground() { 
+                return Color.black; // Cambia el color de la barra cuando progresa
             }
         });
 		
@@ -284,7 +290,7 @@ public class partida extends JFrame {
 		Delta.setValue(0);
 		
 		Delta.setUI(new javax.swing.plaf.basic.BasicProgressBarUI() {
-            protected Color getSelectionBackground() { 
+            protected Color getSelectionForeground() { 
                 return Color.black; // Cambia el color de la barra cuando progresa
             }
         });
@@ -292,6 +298,12 @@ public class partida extends JFrame {
 		stats.add(Delta,gbcStats);
 
 		gbcStats.gridy = 7;
+		JLabel acciones = new JLabel();
+		acciones.setText("Acciones = " + "4");
+		
+		stats.add(acciones, gbcStats);
+		
+		gbcStats.gridy = 8;
 		JButton opciones = new JButton("OPCIONES");
 		opciones.setPreferredSize(new Dimension(150,50));
 		opciones.setBackground(new Color(0,0,0,0));
@@ -301,7 +313,33 @@ public class partida extends JFrame {
 		opciones.setFocusPainted(false);
 		opciones.setFont(new Font("Arial", Font.BOLD, 20));
 		opciones.setForeground(new Color(137,5,78));
+		
+		JPopupMenu popupMenu = new JPopupMenu();
+		popupMenu.setPreferredSize(new Dimension(screen.width/6,screen.height/4));
+		popupMenu.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
+		popupMenu.setLayout(new FlowLayout());
+		
+        JMenuItem menuItem1 = new JMenuItem("Opción 1");
+        JMenuItem menuItem2 = new JMenuItem("Opción 2");
+        JMenuItem menuItem3 = new JMenuItem("Opción 3");
+        
+        menuItem1.setBackground(new Color(137,5,78));
+        
+        menuItem2.setBackground(new Color(137,5,78));
 
+        menuItem3.setBackground(new Color(137,5,78));
+
+        
+        popupMenu.add(menuItem1);
+        popupMenu.add(menuItem2);
+        popupMenu.add(menuItem3);
+        
+        opciones.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                popupMenu.show(CargarParty.iniciarPartida, (screen.width - screen.width / 6) / 2, (screen.height - screen.height / 4) / 2);
+            }
+        });
+		
 		stats.add(opciones, gbcStats);
 		
 		
@@ -357,7 +395,6 @@ public class partida extends JFrame {
 		this.add(game, BorderLayout.CENTER);
 		this.add(stats, BorderLayout.EAST);
 		this.add(botonesTexto, BorderLayout.SOUTH);
-		
 		this.setSize(screen.width, screen.height);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null); // siempre centro
@@ -367,11 +404,7 @@ public class partida extends JFrame {
 		this.setVisible(false);
 		this.setTitle("Pandemic @Kader, @Liqi");
 		this.setIconImage(imgFinalIcono.getImage());
-		
-		
-		
-		
-	}
 	
+	}
 
 }

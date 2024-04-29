@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <facil>
-	   <numCiudadesInfectadasInicio>9</numCiudadesInfectadasInicio>
-	   <numCuidadesInfectadasRonda>4</numCuidadesInfectadasRonda>
+	   <numCiudadesInfectadasInicio>5</numCiudadesInfectadasInicio>
+	   <numCuidadesInfectadasRonda>3</numCuidadesInfectadasRonda>
 	   <numEnfermedadesActivasDerrota>30</numEnfermedadesActivasDerrota>
 	   <numBrotesDerrota>8</numBrotesDerrota>
 	   <desarrollovacuna>25</desarrollovacuna>

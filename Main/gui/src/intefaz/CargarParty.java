@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 import CargaDatos.controlDatos;
+import controladores.controlPartida;
 import inicio.Main;
 
 public class CargarParty extends JFrame {
@@ -73,6 +74,7 @@ public class CargarParty extends JFrame {
     	        timer.start();
         		
         		controlDatos.controlDificultad(0);
+        		controlPartida.iniciar_Partida();
         		
     	    }
     	});
@@ -106,6 +108,7 @@ public class CargarParty extends JFrame {
     	        timer.start();
         		
         		controlDatos.controlDificultad(1);
+        		controlPartida.iniciar_Partida();
         		
     	    }
     	});
@@ -127,6 +130,7 @@ public class CargarParty extends JFrame {
         
         button3.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+        		
         		iniciarPartida.setVisible(true);
     	    	
     	        Timer timer = new Timer(300, new ActionListener() {
@@ -138,6 +142,7 @@ public class CargarParty extends JFrame {
     	        timer.start();
         		
         		controlDatos.controlDificultad(2);
+        		controlPartida.iniciar_Partida();
         		
     	    }
     	});

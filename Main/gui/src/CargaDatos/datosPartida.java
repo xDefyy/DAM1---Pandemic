@@ -4,19 +4,20 @@ import java.util.ArrayList;
 import objetos.ciudad;
 import objetos.virus;
 import objetos.vacunas;
+import controladores.controlPartida;
 
 public class datosPartida {
 	
-	protected static ArrayList<ciudad> ciudades = new ArrayList<>();
-	protected static ArrayList<virus> virus = new ArrayList<>();
-	protected static ArrayList<vacunas> vacunas = new ArrayList<>();
-	private int brotes;
-	private int rondas;
-	private double pDesarrollo;
-	private int acciones;
+	public static ArrayList<ciudad> ciudades = new ArrayList<>();
+	public static ArrayList<virus> virus = new ArrayList<>();
+	public static ArrayList<vacunas> vacunas = new ArrayList<>();
+	public int brotes;
+	public int rondas;
+	public static int pDesarrollo;
+	public int acciones;
 	
 	public datosPartida(ArrayList<ciudad> ciudades, ArrayList<virus> virus, ArrayList<vacunas> vacunas, int brotes,
-		int rondas, double pDesarrollo, int acciones) {
+		int rondas, int pDesarrollo, int acciones) {
 		this.ciudades = ciudades;
 		this.virus = virus;
 		this.vacunas = vacunas;
@@ -66,11 +67,11 @@ public class datosPartida {
 		this.rondas = rondas;
 	}
 	
-	public double getpDesarrollo() {
+	public int getpDesarrollo() {
 		return pDesarrollo;
 	}
 	
-	public void setpDesarrollo(double pDesarrollo) {
+	public void setpDesarrollo(int pDesarrollo) {
 		this.pDesarrollo = pDesarrollo;
 	}
 	

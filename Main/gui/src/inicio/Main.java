@@ -1,10 +1,8 @@
 package inicio;
-import CargaDatos.controlDatos;
+import controladores.controlPartida;
 import intefaz.CargarParty;
 import intefaz.Reglas;
 import intefaz.pantallaPrincipal;
-import intefaz.partida;
-
 
 public class Main {
 	
@@ -13,7 +11,7 @@ public class Main {
     public static pantallaPrincipal cargarPrincipal = new pantallaPrincipal();
     
 	public static void main(String[] args) {
-		
+
 	}
 
 }
