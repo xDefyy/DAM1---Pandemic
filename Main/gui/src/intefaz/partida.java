@@ -50,8 +50,12 @@ public class partida extends JFrame {
 	public static JButton DBeta = new JButton("Desarrollar CANCER");
 	public static JButton DGamma = new JButton("Desarrollar SARS");
 	public static JButton DDelta = new JButton("Desarrollar NIGGA");
+	public static JButton finalizarRonda = new JButton("Finalizar Ronda");
+	public static JLabel rondas = new JLabel();
+	public static JTextArea textArea = new JTextArea();
+	public static JLabel acciones = new JLabel();
 	public partida() {
-		
+
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		ImageIcon iconoIcono = new ImageIcon("src\\img\\inGame\\icono.png");
 	    Image imagenIcono = iconoIcono.getImage().getScaledInstance(400, 400, Image.SCALE_SMOOTH);
@@ -103,7 +107,7 @@ public class partida extends JFrame {
 		curar.setFont(new Font("Arial", Font.BOLD, 10));
 		curar.setForeground(new Color(137,5,78));
 		
-		JButton finalizarRonda = new JButton("Finalizar Ronda");
+		
 		finalizarRonda.setPreferredSize(new Dimension(150,50));
 		finalizarRonda.setBackground(new Color(0,0,0,0));
         finalizarRonda.setOpaque(false);
@@ -124,7 +128,7 @@ public class partida extends JFrame {
 		
 		botonesTexto.add(personaje);
 		
-		JTextArea textArea = new JTextArea();
+		
 		textArea.setEditable(false); // No editable
 		textArea.setPreferredSize(new Dimension(screen.width/2, screen.height/7));
 		
@@ -238,6 +242,14 @@ public class partida extends JFrame {
 		
 		stats.add(brotes, gbcStats);
 		
+		gbcStats.gridy = 3;
+		
+		
+		 
+		rondas.setFont(new Font("Arial", Font.BOLD, 15));
+		
+		stats.add(rondas, gbcStats);
+		
 		Alfa.setStringPainted(true); // Muestra el valor actual de la barra de progreso
 		Alfa.setString("Progreso VIH = " + Alfa.getValue());
 		Alfa.setMinimum(0); // Valor mínimo de la barra de progreso
@@ -249,10 +261,10 @@ public class partida extends JFrame {
                 return Color.black; // Cambia el color de la barra cuando progresa
             }
         });
-		gbcStats.gridy = 3;
+		gbcStats.gridy = 4;
 		stats.add(Alfa,gbcStats);
 
-		gbcStats.gridy = 4;		
+		gbcStats.gridy = 5;		
 		Beta.setStringPainted(true); // Muestra el valor actual de la barra de progreso
 		Beta.setString("Progreso CANCER = " + Beta.getValue());
 		Beta.setMinimum(0); // Valor mínimo de la barra de progreso
@@ -267,7 +279,7 @@ public class partida extends JFrame {
 		
 		stats.add(Beta,gbcStats);
 
-		gbcStats.gridy = 5;		
+		gbcStats.gridy = 6;		
 		Gamma.setStringPainted(true); // Muestra el valor actual de la barra de progreso
 		Gamma.setString("Progreso SARS = " + Gamma.getValue());
 		Gamma.setMinimum(0); // Valor mínimo de la barra de progreso
@@ -282,7 +294,7 @@ public class partida extends JFrame {
 		
 		stats.add(Gamma,gbcStats);
 		
-		gbcStats.gridy = 6;
+		gbcStats.gridy = 7;
 		Delta.setStringPainted(true); // Muestra el valor actual de la barra de progreso
 		Delta.setString("Progreso NIGGA = " + Delta.getValue());
 		Delta.setMinimum(0); // Valor mínimo de la barra de progreso
@@ -297,13 +309,13 @@ public class partida extends JFrame {
 		
 		stats.add(Delta,gbcStats);
 
-		gbcStats.gridy = 7;
-		JLabel acciones = new JLabel();
-		acciones.setText("Acciones = " + "4");
+		gbcStats.gridy = 8;
+		
+		acciones.setText("Acciones : 4" );
 		
 		stats.add(acciones, gbcStats);
 		
-		gbcStats.gridy = 8;
+		gbcStats.gridy = 9;
 		JButton opciones = new JButton("OPCIONES");
 		opciones.setPreferredSize(new Dimension(150,50));
 		opciones.setBackground(new Color(0,0,0,0));
