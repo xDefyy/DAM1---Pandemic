@@ -16,7 +16,7 @@ import org.w3c.dom.NodeList;
 import objetos.ciudad;
 import objetos.vacunas;
 import objetos.virus;
-import CargaDatos.datosPartida;
+
 
 public class controlDatos {
 	 
@@ -25,6 +25,9 @@ public class controlDatos {
 	public static String numEnfermedadesActivasDerrota = ""; 
 	public static String numBrotesDerrota = "";
     public static String desarrolloVacuna = "";
+    public static  ArrayList<ciudad> ciudades = new ArrayList<>();
+    public static  ArrayList<virus> virus = new ArrayList<>();
+    public static  ArrayList<vacunas> vacunas = new ArrayList<>();
 	private String url;
 	private String user;
 	private String password;
@@ -81,7 +84,7 @@ public class controlDatos {
 					
 					ciudad ciudadnueva = new ciudad(ciudad, coordenadasXY, temp, 0, ciudadExtras);				
 					temp = "";					
-					datosPartida.ciudades.add(ciudadnueva);
+					ciudades.add(ciudadnueva);
 				}	
 	
 			} while (linea != null);				
@@ -102,10 +105,10 @@ public class controlDatos {
 		vacunas vacuna_gamma = new vacunas("SARS", "Verde", 0);
 		vacunas vacuna_delta = new vacunas("NIGGA", "Negro", 0);
 		
-		datosPartida.vacunas.add(vacuna_alpha);
-		datosPartida.vacunas.add(vacuna_beta);
-		datosPartida.vacunas.add(vacuna_gamma);
-		datosPartida.vacunas.add(vacuna_delta);
+		vacunas.add(vacuna_alpha);
+		vacunas.add(vacuna_beta);
+		vacunas.add(vacuna_gamma);
+		vacunas.add(vacuna_delta);
 		
 	}
 	
@@ -116,10 +119,10 @@ public class controlDatos {
 		virus virus_gamma = new virus("2","Gamma","Verde");
 		virus virus_delta = new virus("3","Delta","Negro");
 		
-		datosPartida.virus.add(virus_alpha);
-		datosPartida.virus.add(virus_beta);
-		datosPartida.virus.add(virus_gamma);
-		datosPartida.virus.add(virus_delta);
+		virus.add(virus_alpha);
+		virus.add(virus_beta);
+		virus.add(virus_gamma);
+		virus.add(virus_delta);
 		
 	}
 	

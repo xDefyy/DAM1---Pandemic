@@ -11,7 +11,7 @@ import inicio.Main;
 import intefaz.CargarParty;
 import intefaz.partida;
 import CargaDatos.datosPartida;
-
+import CargaDatos.savetoTXT;
 
 public class controlPartida {
 
@@ -32,7 +32,7 @@ public class controlPartida {
 		controlDatos.cargarVacunas();
 		controlDatos.cargarVirus();
 		
-		datos = new datosPartida(datosPartida.ciudades, datosPartida.virus, datosPartida.vacunas, 0,0,pdesarrollo,4);
+		datos = new datosPartida(controlDatos.ciudades, controlDatos.virus, controlDatos.vacunas, 0,0,pdesarrollo,4);
     	System.out.println(controlPartida.datos.getpDesarrollo());
     	progresoA = datos.getpDesarrollo();
     	progresoB = datos.getpDesarrollo();
@@ -97,7 +97,7 @@ public class controlPartida {
 							}
 							if (partida.Beta.getValue() == aux) {
 								for (objetos.vacunas vacuna : datos.getVacunas()) {
-									if (vacuna.getColor().equalsIgnoreCase("azul")) {
+									if (vacuna.getColor().equalsIgnoreCase("rojo")) {
 										vacuna.setPorcentaje(partida.Beta.getValue());
 										System.out.println(vacuna.getPorcentaje());
 									}
@@ -126,7 +126,7 @@ public class controlPartida {
 							}
 							if (partida.Gamma.getValue() == aux) {
 								for (objetos.vacunas vacuna : datos.getVacunas()) {
-									if (vacuna.getColor().equalsIgnoreCase("azul")) {
+									if (vacuna.getColor().equalsIgnoreCase("verde")) {
 										vacuna.setPorcentaje(partida.Gamma.getValue());
 										System.out.println(vacuna.getPorcentaje());
 									}
@@ -155,7 +155,7 @@ public class controlPartida {
 							}
 							if (partida.Delta.getValue() == aux) {
 								for (objetos.vacunas vacuna : datos.getVacunas()) {
-									if (vacuna.getColor().equalsIgnoreCase("azul")) {
+									if (vacuna.getColor().equalsIgnoreCase("negro")) {
 										vacuna.setPorcentaje(partida.Delta.getValue());
 										System.out.println(vacuna.getPorcentaje());
 									}
@@ -183,19 +183,14 @@ public class controlPartida {
 			
 			for (int i = 0; i < infectadoStart; i++) {
 				random = rand.nextInt(48);
-				for (int j = 0; j < datos.getCiudades().size(); j++) {
-					if (j == random) {
-						int nivel = datos.ciudades.get(j).getInfeccion();
-						if (nivel == 1) {
-							infectadoStart++;	
-						} else {
-							nivel++;
-							datos.ciudades.get(j).setInfeccion(nivel);
-						}
-					}
+				int nivel = datos.getCiudades().get(random).getInfeccion();
+				if (nivel == 1) {
+					infectadoStart++;	
+				} else {
+					nivel++;
+					datos.getCiudades().get(random).setInfeccion(nivel);
 				}
 			}
-			
 		}
 		
 	}

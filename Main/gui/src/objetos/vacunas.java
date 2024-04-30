@@ -2,9 +2,9 @@ package objetos;
 public class vacunas {
 	private String nombre;
 	private String color;
-	private double porcentaje;
+	private int porcentaje;
 	
-	public vacunas(String nombre, String color, double porcentaje) {
+	public vacunas(String nombre, String color, int porcentaje) {
 		this.nombre = nombre;
 		this.color = color;
 		this.porcentaje = porcentaje;
@@ -30,7 +30,7 @@ public class vacunas {
 		return porcentaje;
 	}
 	
-	public void setPorcentaje(double porcentaje) {
+	public void setPorcentaje(int porcentaje) {
 		this.porcentaje = porcentaje;
 	} 
 	

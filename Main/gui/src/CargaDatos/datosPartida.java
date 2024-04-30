@@ -4,17 +4,16 @@ import java.util.ArrayList;
 import objetos.ciudad;
 import objetos.virus;
 import objetos.vacunas;
-import controladores.controlPartida;
 
 public class datosPartida {
 	
-	public static ArrayList<ciudad> ciudades = new ArrayList<>();
-	public static ArrayList<virus> virus = new ArrayList<>();
-	public static ArrayList<vacunas> vacunas = new ArrayList<>();
-	public int brotes;
-	public int rondas;
-	public static int pDesarrollo;
-	public int acciones;
+	private  ArrayList<ciudad> ciudades = new ArrayList<>();
+	private  ArrayList<virus> virus = new ArrayList<>();
+	private  ArrayList<vacunas> vacunas = new ArrayList<>();
+	private int brotes;
+	private int rondas;
+	private int pDesarrollo;
+	private int acciones;
 	
 	public datosPartida(ArrayList<ciudad> ciudades, ArrayList<virus> virus, ArrayList<vacunas> vacunas, int brotes,
 		int rondas, int pDesarrollo, int acciones) {

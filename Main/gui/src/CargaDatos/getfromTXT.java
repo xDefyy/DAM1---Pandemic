@@ -54,7 +54,7 @@ public class getfromTXT {
                 }
 
                 ciudad ciudadNueva = new ciudad(nombre, coordenadas, enfermedad, infeccion, ciudadesColindantes.toArray(new String[0]));
-                datosPartida.ciudades.add(ciudadNueva);
+                controlDatos.ciudades.add(ciudadNueva);
 
                 linea = bufferedReader.readLine();
             } while (linea != null);
@@ -79,7 +79,7 @@ public class getfromTXT {
             do {
                 String nombre = "";
                 String color = "";
-                double porcentaje = 0;
+                int porcentaje = 0;
 
                 nombre = linea; // Nombre
                 
@@ -87,10 +87,10 @@ public class getfromTXT {
                 color = linea;
                 
                 linea = bufferedReader.readLine(); // Enfermedad
-                porcentaje = Double.parseDouble(linea);
+                porcentaje = Integer.parseInt(linea);
 
                 vacunas vacunaNueva = new vacunas(nombre, color, porcentaje);
-                datosPartida.vacunas.add(vacunaNueva);
+                controlDatos.vacunas.add(vacunaNueva);
 
                 linea = bufferedReader.readLine();
             } while (linea != null);
@@ -134,7 +134,7 @@ public class getfromTXT {
                 int porcentaje_n = Integer.valueOf(porcentaje);
                 int acciones_n = Integer.valueOf(acciones); 
                 
-                datosPartida partida = new datosPartida(datosPartida.ciudades, datosPartida.virus, datosPartida.vacunas, brotes_n, rondas_n, porcentaje_n, acciones_n);
+                datosPartida partida = new datosPartida(controlDatos.ciudades, controlDatos.virus, controlDatos.vacunas, brotes_n, rondas_n, porcentaje_n, acciones_n);
 
                 linea = bufferedReader.readLine();
                 
@@ -152,7 +152,7 @@ public class getfromTXT {
     public static void main(String[] args) {
         cargar_ciudades();
         
-        for (ciudad c : datosPartida.ciudades) {
+        for (ciudad c : controlDatos.ciudades) {
             System.out.print("Nombre de la ciudad: " + c.getNombre() + "\n");
             System.out.print("Coordenadas: (" + c.getCoordenadas()[0] + ", " + c.getCoordenadas()[1] + ")" + "\n");
             System.out.print("Enfermedad: " + c.getEnfermedad() + "\n");
@@ -167,7 +167,7 @@ public class getfromTXT {
         
         cargar_vacunas();
         
-        for (vacunas v : datosPartida.vacunas) {
+        for (vacunas v : controlDatos.vacunas) {
         	System.out.print(v.getNombre() + "\n");
         	System.out.print(v.getColor() + "\n");
         	System.out.print(v.getPorcentaje() + "\n");
