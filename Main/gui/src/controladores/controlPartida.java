@@ -189,7 +189,7 @@ public class controlPartida {
 			datos.setAcciones(0);
 			partida.acciones.setText("Acciones : " + datos.getAcciones());
 		} else {
-			
+			System.out.println("No tienes acciones...");
 		}
 	}
 

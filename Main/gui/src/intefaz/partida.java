@@ -7,14 +7,17 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Insets;
+import java.awt.RenderingHints;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
 
@@ -34,7 +37,10 @@ import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.plaf.basic.BasicProgressBarUI;
 
 import CargaDatos.controlDatos;
 import controladores.controlPartida;
@@ -55,13 +61,16 @@ public class partida extends JFrame {
 	public static JTextArea textArea = new JTextArea();
 	public static JLabel acciones = new JLabel();
 	public partida() {
-
+		SoftBevelBorder softBevelBorder = new SoftBevelBorder(SoftBevelBorder.LOWERED);
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		ImageIcon iconoIcono = new ImageIcon("src\\img\\inGame\\icono.png");
 	    Image imagenIcono = iconoIcono.getImage().getScaledInstance(400, 400, Image.SCALE_SMOOTH);
-	    Image IconPersonaje = iconoIcono.getImage().getScaledInstance(screen.height/7, screen.height/7, Image.SCALE_SMOOTH);
 	    ImageIcon imgFinalIcono = new ImageIcon(imagenIcono);
+	    
+	    ImageIcon personajes = new ImageIcon("src\\img\\inGame\\hitler.jpg");
+	    Image IconPersonaje = personajes.getImage().getScaledInstance(screen.height/7, screen.height/7, Image.SCALE_SMOOTH);
 	    ImageIcon personajeIcon = new ImageIcon(IconPersonaje);
+	    
 		LineBorder borderRojo = new LineBorder(new Color(137,5,78),3);
 
 	    //pabel principal
@@ -78,16 +87,7 @@ public class partida extends JFrame {
 		game.setLayout(new BorderLayout());
 		
 		//panel izquierdo botones
-		JPanel botonesTexto = new JPanel() {
-            @Override
-            protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                // Dibuja la imagen de fondo
-                ImageIcon barraIcono = new ImageIcon("src\\img\\inGame\\barra_Juego.jpg");
-                Image imagenFondo = barraIcono.getImage();
-                g.drawImage(imagenFondo, 0, 0, getWidth(), getHeight(), this);
-            }
-        };
+		JPanel botonesTexto = new JPanel();
 		botonesTexto.setLayout(new FlowLayout());
 		botonesTexto.setOpaque(false);
 		botonesTexto.setPreferredSize(new Dimension (screen.width, screen.height / 6));
@@ -151,14 +151,31 @@ public class partida extends JFrame {
 
 
         // Redirigir la salida de la consola al JTextArea
-        OutputStream outputStream = new OutputStream() {
+		PrintStream printStream = new PrintStream(new OutputStream() {
             @Override
-            public void write(int b) {
-                textArea.append(String.valueOf((char) b));
+            public void write(int b) throws IOException {
+                new Thread(() -> {
+                    textArea.append(String.valueOf((char) b));
+                    int lineCount = textArea.getLineCount();
+                    if (lineCount > 7) {
+                        try {
+                            int endOfFirstLine = textArea.getLineEndOffset(0);
+                            textArea.replaceRange("", 0, endOfFirstLine);
+                        } catch (Exception ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                    textArea.setCaretPosition(textArea.getDocument().getLength());
+                }).start();
+                try {
+                    Thread.sleep(20);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
-        };
-        PrintStream printStream = new PrintStream(outputStream);
+        });
         System.setOut(printStream);
+        System.setErr(printStream);
         
         botonesTexto.add(textArea);
         
@@ -211,10 +228,19 @@ public class partida extends JFrame {
         botonesTexto.add(DesarrollarCura);
         
         //panel derecha
-		JPanel stats = new JPanel();
+		JPanel stats = new JPanel() {
+			@Override
+	        protected void paintComponent(Graphics g) {
+	            super.paintComponent(g);
+	            // Dibuja la imagen de fondo
+	            ImageIcon iconoFondo = new ImageIcon("src\\img\\inGame\\fondoStats.png");
+	            Image imagenFondo = iconoFondo.getImage();
+	            g.drawImage(imagenFondo, 0, 0, getWidth(), getHeight(), this);
+	        }
+		};
 		stats.setPreferredSize(new Dimension (screen.width/7, screen.height));
 		stats.setLayout(new GridBagLayout());
-		
+
 		
 		
 		GridBagConstraints gbcStats = new GridBagConstraints();
@@ -250,17 +276,23 @@ public class partida extends JFrame {
 		
 		stats.add(rondas, gbcStats);
 		
-		Alfa.setStringPainted(true); // Muestra el valor actual de la barra de progreso
-		Alfa.setString("Progreso VIH = " + Alfa.getValue());
-		Alfa.setMinimum(0); // Valor mínimo de la barra de progreso
-		Alfa.setMaximum(100); // Valor máximo de la barra de progreso
-		Alfa.setValue(0);
-		
+
+		ImageIcon jeringa = new ImageIcon("src\\img\\inGame\\borderJeringa.png");
+		Image Jeringaes = jeringa.getImage().getScaledInstance(110, 50, Image.SCALE_SMOOTH);
+		ImageIcon jerFinal = new ImageIcon(Jeringaes);
 		Alfa.setUI(new javax.swing.plaf.basic.BasicProgressBarUI() {
             protected Color getSelectionForeground() { 
                 return Color.black; // Cambia el color de la barra cuando progresa
             }
         });
+		
+		Alfa.setStringPainted(true); // Muestra el valor actual de la barra de progreso
+		Alfa.setString("Progreso VIH = " + Alfa.getValue());
+		Alfa.setMinimum(0); // Valor mínimo de la barra de progreso
+		Alfa.setMaximum(100); // Valor máximo de la barra de progreso
+		Alfa.setValue(0);
+		Alfa.setBorder(softBevelBorder);
+		
 		gbcStats.gridy = 4;
 		stats.add(Alfa,gbcStats);
 
@@ -270,7 +302,7 @@ public class partida extends JFrame {
 		Beta.setMinimum(0); // Valor mínimo de la barra de progreso
 		Beta.setMaximum(100); // Valor máximo de la barra de progreso
 		Beta.setValue(0);
-		
+		Beta.setBorder(softBevelBorder);
 		Beta.setUI(new javax.swing.plaf.basic.BasicProgressBarUI() {
             protected Color getSelectionForeground() { 
                 return Color.black; // Cambia el color de la barra cuando progresa
@@ -285,7 +317,7 @@ public class partida extends JFrame {
 		Gamma.setMinimum(0); // Valor mínimo de la barra de progreso
 		Gamma.setMaximum(100); // Valor máximo de la barra de progreso
 		Gamma.setValue(0);
-		
+		Gamma.setBorder(softBevelBorder);
 		Gamma.setUI(new javax.swing.plaf.basic.BasicProgressBarUI() {
             protected Color getSelectionForeground() { 
                 return Color.black; // Cambia el color de la barra cuando progresa
@@ -300,7 +332,7 @@ public class partida extends JFrame {
 		Delta.setMinimum(0); // Valor mínimo de la barra de progreso
 		Delta.setMaximum(100); // Valor máximo de la barra de progreso
 		Delta.setValue(0);
-		
+		Delta.setBorder(softBevelBorder);
 		Delta.setUI(new javax.swing.plaf.basic.BasicProgressBarUI() {
             protected Color getSelectionForeground() { 
                 return Color.black; // Cambia el color de la barra cuando progresa
@@ -403,7 +435,6 @@ public class partida extends JFrame {
 		
 		
 		
-		
 		this.add(game, BorderLayout.CENTER);
 		this.add(stats, BorderLayout.EAST);
 		this.add(botonesTexto, BorderLayout.SOUTH);
@@ -420,3 +451,5 @@ public class partida extends JFrame {
 	}
 
 }
+
+
