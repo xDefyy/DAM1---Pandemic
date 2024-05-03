@@ -47,7 +47,7 @@ import CargaDatos.controlDatos;
 import controladores.controlPartida;
 import inicio.Main;
 
-public class partida extends JFrame {
+public class partida extends JFrame implements ActionListener  {
 	public static JProgressBar Alfa = new JProgressBar();
 	public static JProgressBar Beta = new JProgressBar();
 	public static JProgressBar Gamma = new JProgressBar();
@@ -57,11 +57,12 @@ public class partida extends JFrame {
 	public static JButton DGamma = new JButton("Desarrollar SARS");
 	public static JButton DDelta = new JButton("Desarrollar NIGGA");
 	public static JButton finalizarRonda = new JButton("Finalizar Ronda");
+	public static JButton curar = new JButton("Curar");
 	public static JLabel rondas = new JLabel();
 	public static JTextArea textArea = new JTextArea();
 	public static JLabel acciones = new JLabel();
 
-	public partida() {
+	public partida()  {
 		SoftBevelBorder softBevelBorder = new SoftBevelBorder(SoftBevelBorder.LOWERED);
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		ImageIcon iconoIcono = new ImageIcon("src\\img\\inGame\\icono.png");
@@ -99,7 +100,7 @@ public class partida extends JFrame {
 		botonCurarFinalizar.setOpaque(false);
 		botonCurarFinalizar.setLayout(new GridLayout(2, 1, 10, 10));
 
-		JButton curar = new JButton("Curar");
+		
 		curar.setPreferredSize(new Dimension(150, 50));
 		curar.setBackground(new Color(0, 0, 0, 0));
 		curar.setOpaque(false);
@@ -142,22 +143,7 @@ public class partida extends JFrame {
 		// Bordes personalizados
 		Border border = BorderFactory.createLineBorder(Color.GRAY, 2);
 		textArea.setBorder(BorderFactory.createCompoundBorder(border, BorderFactory.createEmptyBorder(5, 5, 5, 5))); // Agrega
-																														// un
-																														// borde
-																														// compuesto
-																														// con
-																														// un
-																														// borde
-																														// de
-																														// línea
-																														// gris
-																														// y
-																														// un
-																														// relleno
-																														// interno
-																														// de
-																														// 5
-																														// píxeles
+																														// un																											// píxeles
 
 		// Espaciado interno
 		textArea.setMargin(new Insets(5, 5, 5, 5)); // Ajusta el margen interno del JTextArea
@@ -212,7 +198,8 @@ public class partida extends JFrame {
 		DesarrollarCura.add(DBeta);
 		DesarrollarCura.add(DGamma);
 		DesarrollarCura.add(DDelta);
-
+		
+		
 		botonesTexto.add(DesarrollarCura);
 
 		// panel derecha
@@ -260,9 +247,7 @@ public class partida extends JFrame {
 
 		stats.add(rondas, gbcStats);
 
-		ImageIcon jeringa = new ImageIcon("src\\img\\inGame\\borderJeringa.png");
-		Image Jeringaes = jeringa.getImage().getScaledInstance(110, 50, Image.SCALE_SMOOTH);
-		ImageIcon jerFinal = new ImageIcon(Jeringaes);
+
 		Alfa.setUI(new javax.swing.plaf.basic.BasicProgressBarUI() {
 			protected Color getSelectionForeground() {
 				return Color.black; // Cambia el color de la barra cuando progresa
@@ -373,52 +358,10 @@ public class partida extends JFrame {
 						(screen.height - screen.height / 4) / 2);
 			}
 		});
-
+		
+		
 		stats.add(opciones, gbcStats);
 
-		// FUNCIONES DE LOS BOTONES
-		curar.addActionListener(new ActionListener() { // Esto hace que el boton este a la espera para hacer la funcion
-														// de abajo
-			public void actionPerformed(ActionEvent e) {
-				controlPartida.gestionar_Cura(1);
-			}
-		});
-
-		finalizarRonda.addActionListener(new ActionListener() { // Esto hace que el boton este a la espera para hacer la
-																// funcion de abajo
-			public void actionPerformed(ActionEvent e) {
-				controlPartida.gestionar_Turno();
-			}
-		});
-
-		DAlfa.addActionListener(new ActionListener() { // Esto hace que el boton este a la espera para hacer la funcion
-														// de abajo
-			public void actionPerformed(ActionEvent e) {
-					controlPartida.gestionar_Vacuna(0);
-				
-			}
-		});
-
-		DBeta.addActionListener(new ActionListener() { // Esto hace que el boton este a la espera para hacer la funcion
-														// de abajo
-			public void actionPerformed(ActionEvent e) {
-				controlPartida.gestionar_Vacuna(1);
-			}
-		});
-
-		DGamma.addActionListener(new ActionListener() { // Esto hace que el boton este a la espera para hacer la funcion
-														// de abajo
-			public void actionPerformed(ActionEvent e) {
-				controlPartida.gestionar_Vacuna(2);
-			}
-		});
-
-		DDelta.addActionListener(new ActionListener() { // Esto hace que el boton este a la espera para hacer la funcion
-														// de abajo
-			public void actionPerformed(ActionEvent e) {
-				controlPartida.gestionar_Vacuna(3);
-			}
-		});
 
 		opciones.addActionListener(new ActionListener() { 
 			
@@ -445,7 +388,7 @@ public class partida extends JFrame {
 					textArea.setCaretPosition(textArea.getDocument().getLength());
 				}).start();
 				try {
-					Thread.sleep(20);
+					Thread.sleep(10);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -454,6 +397,13 @@ public class partida extends JFrame {
 		System.setOut(printStream);
 		System.setErr(printStream);
 		
+		
+		DAlfa.addActionListener(this);
+		DBeta.addActionListener(this);
+		DGamma.addActionListener(this);
+		DDelta.addActionListener(this);
+		finalizarRonda.addActionListener(this);
+		curar.addActionListener(this);
 		
 		this.add(game, BorderLayout.CENTER);
 		this.add(stats, BorderLayout.EAST);
@@ -469,5 +419,65 @@ public class partida extends JFrame {
 		this.setIconImage(imgFinalIcono.getImage());
 
 	}
+	
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+	    Object source = e.getSource(); // Obtiene el objeto que generó el evento
+
+	    if (source == DAlfa) {
+	        Thread vac = new Thread(new Runnable() {
+				
+				@Override
+				public void run() {
+					controlPartida.gestionar_Vacuna(0);
+					
+				}
+	        });
+	        vac.start();
+	    } else if (source == DBeta) {
+	    	Thread vac = new Thread(new Runnable() {
+				
+				@Override
+				public void run() {
+					controlPartida.gestionar_Vacuna(1);
+					
+				}
+	        });
+	        vac.start();
+	        
+	        
+	    } else if (source == DGamma) {
+	    	Thread vac = new Thread(new Runnable() {
+				
+				@Override
+				public void run() {
+					controlPartida.gestionar_Vacuna(2);
+					
+				}
+	        });
+	        vac.start();
+
+	    } else if (source == DDelta) {
+	    	Thread vac = new Thread(new Runnable() {
+				
+				@Override
+				public void run() {
+					controlPartida.gestionar_Vacuna(3);
+					
+				}
+	        });
+	        vac.start();
+
+	    } else if (source == finalizarRonda) {
+	        controlPartida.gestionar_Turno();
+	    } else if (source == curar) {
+	    	controlPartida.gestionar_Cura(1);
+	    } else {
+	        System.out.println("Se presionó un botón no identificado");
+	    }
+	}
+
+	
 
 }

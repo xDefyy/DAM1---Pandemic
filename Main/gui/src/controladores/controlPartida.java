@@ -22,6 +22,7 @@ public class controlPartida {
 	public static int progresoD;
 	public static int aux;
 	public static boolean newGame = false;
+	public static boolean desarrolloPush = false;
 
 	public static void iniciar_Partida() {
 
@@ -87,14 +88,7 @@ public class controlPartida {
 									System.out.println("¡Bien hecho!");
 									partida.DAlfa.setEnabled(false);
 								}
-								if (partida.Alfa.getValue() == aux) {
-									for (objetos.vacunas vacuna : datos.getVacunas()) {
-										if (vacuna.getColor().equalsIgnoreCase("azul")) {
-											vacuna.setPorcentaje(partida.Alfa.getValue());
-											System.out.println("Has realizado el " + vacuna.getPorcentaje() + "% de la vacuna " + vacuna.getNombre());
-										}
-									}
-								}
+								datos.getVacunas().get(0).setPorcentaje(partida.Alfa.getValue());
 							}
 							progresoA += aux;
 						} catch (InterruptedException e) {
@@ -116,14 +110,7 @@ public class controlPartida {
 									System.out.println("¡Bien hecho!");
 									partida.DBeta.setEnabled(false);
 								}
-								if (partida.Beta.getValue() == aux) {
-									for (objetos.vacunas vacuna : datos.getVacunas()) {
-										if (vacuna.getColor().equalsIgnoreCase("rojo")) {
-											vacuna.setPorcentaje(partida.Beta.getValue());
-											System.out.println("Has realizado el " + vacuna.getPorcentaje() + "% de la vacuna " + vacuna.getNombre());
-										}
-									}
-								}
+								datos.getVacunas().get(1).setPorcentaje(partida.Beta.getValue());
 							}
 							progresoB += aux;
 						} catch (InterruptedException e) {
@@ -145,14 +132,7 @@ public class controlPartida {
 									System.out.println("¡Bien hecho!");
 									partida.DGamma.setEnabled(false);
 								}
-								if (partida.Gamma.getValue() == aux) {
-									for (objetos.vacunas vacuna : datos.getVacunas()) {
-										if (vacuna.getColor().equalsIgnoreCase("verde")) {
-											vacuna.setPorcentaje(partida.Gamma.getValue());
-											System.out.println("Has realizado el " + vacuna.getPorcentaje() + "% de la vacuna " + vacuna.getNombre());
-										}
-									}
-								}
+								datos.getVacunas().get(2).setPorcentaje(partida.Gamma.getValue());
 							}
 							progresoG += aux;
 						} catch (InterruptedException e) {
@@ -173,15 +153,9 @@ public class controlPartida {
 									partida.Delta.setString("NIGGA COMPLETADO!");
 									System.out.println("¡Bien hecho!");
 									partida.DDelta.setEnabled(false);
+									
 								}
-								if (partida.Delta.getValue() == aux) {
-									for (objetos.vacunas vacuna : datos.getVacunas()) {
-										if (vacuna.getColor().equalsIgnoreCase("negro")) {
-											vacuna.setPorcentaje(partida.Delta.getValue());
-											System.out.println("Has realizado el " + vacuna.getPorcentaje() + "% de la vacuna " + vacuna.getNombre());
-										}
-									}
-								}
+								datos.getVacunas().get(3).setPorcentaje(partida.Delta.getValue());
 							}
 							progresoD += aux;
 						} catch (InterruptedException e) {
@@ -191,15 +165,19 @@ public class controlPartida {
 				});
 				thread.start();
 			}
-			datos.setAcciones(0);
-			partida.acciones.setText("Acciones : " + datos.getAcciones());
-			partida.DDelta.setEnabled(false);
-			partida.DAlfa.setEnabled(false);
-			partida.DGamma.setEnabled(false);
-			partida.DBeta.setEnabled(false);
-			System.out.println("Has gastado 4 acciones!");
+			gestionAcciones();
 	}
-
+	
+	public static void gestionAcciones() {
+		controlPartida.datos.setAcciones(0);
+        partida.acciones.setText("Acciones : " + controlPartida.datos.getAcciones());
+        partida.DDelta.setEnabled(false);
+        partida.DAlfa.setEnabled(false);
+        partida.DGamma.setEnabled(false);
+        partida.DBeta.setEnabled(false);
+        System.out.println("Has gastado 4 acciones!");
+	}
+	
 	public static void gestionar_Infeccion() {
 		int infectadoStart = Integer.valueOf(controlDatos.numCiudadesInfectadasInicio);
 		int numCiudadesxRonda = Integer.valueOf(controlDatos.numCiudadesInfectadasRonda);
