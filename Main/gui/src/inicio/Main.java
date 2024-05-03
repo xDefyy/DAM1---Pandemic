@@ -1,11 +1,10 @@
 package inicio;
-import java.awt.Font;
 
-import controladores.controlPartida;
+
 import intefaz.CargarParty;
 import intefaz.Reglas;
 import intefaz.pantallaPrincipal;
-import intefaz.partida;
+
 
 public class Main {
 	
@@ -18,3 +17,25 @@ public class Main {
 	}
 	
 }
+
+/*	
+ 	Prioridad:
+ 
+	Mapa con los botones
+	Apartado de reglas
+	Records
+	Cargar partida
+	Guardar partida
+	Reset de partida
+	Revisar funciones del juego
+	
+	Gestionar Frases que se muestre en dificultad facil y normal
+	
+	
+	Opcional:
+	
+	Eventos extras
+	GUI 
+	Optimizar juego
+	Añadir funciones extras
+*/

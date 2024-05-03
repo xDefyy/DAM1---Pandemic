@@ -26,23 +26,34 @@ public class CargarParty extends JFrame {
             }
         };
         
-        ImageIcon mundoFacil = new ImageIcon("src\\img\\nuevaPartida\\facil.gif");
+        ImageIcon mundoFacil = new ImageIcon("src\\img\\nuevaPartida\\facil.gif");  //115 px y 300fps
+        Image mundoFaciles = mundoFacil.getImage().getScaledInstance(400, 400, Image.SCALE_DEFAULT);
+        ImageIcon facil = new ImageIcon(mundoFaciles);
+
+        
+        
         ImageIcon mundoNormal = new ImageIcon("src\\img\\nuevaPartida\\normal.gif");
+        Image mundoNormales = mundoNormal.getImage().getScaledInstance(400, 400, Image.SCALE_DEFAULT);
+        ImageIcon normal = new ImageIcon(mundoNormales);
+        
         ImageIcon mundoDificil = new ImageIcon("src\\img\\nuevaPartida\\dificil.gif");
+        Image mundoDificiles = mundoDificil.getImage().getScaledInstance(400, 400, Image.SCALE_DEFAULT);
+        ImageIcon dificil = new ImageIcon(mundoDificiles);
+        
         
         ImageIcon iconoIcono = new ImageIcon("src\\img\\main\\icono.png");
         Image imagenIcono = iconoIcono.getImage().getScaledInstance(400, 400, Image.SCALE_SMOOTH);
         ImageIcon imgFinalIcono = new ImageIcon(imagenIcono);
         
-        JLabel gifLabel1 = new JLabel(mundoFacil);   
+        JLabel gifLabel1 = new JLabel(facil);   
         gifLabel1.setHorizontalAlignment(JLabel.CENTER); 
         panelgeneral.add(gifLabel1);
 
-        JLabel gifLabel2 = new JLabel(mundoNormal);
+        JLabel gifLabel2 = new JLabel(normal);
         gifLabel2.setHorizontalAlignment(JLabel.CENTER); 
         panelgeneral.add(gifLabel2);
         
-        JLabel gifLabel3 = new JLabel(mundoDificil);
+        JLabel gifLabel3 = new JLabel(dificil);
         gifLabel3.setHorizontalAlignment(JLabel.CENTER); 
         panelgeneral.add(gifLabel3);
 

@@ -50,7 +50,12 @@ public class controlPartida {
 	}
 
 	public static void gestionar_Turno() {
-
+		
+		
+		partida.DDelta.setEnabled(true);
+		partida.DAlfa.setEnabled(true);
+		partida.DGamma.setEnabled(true);
+		partida.DBeta.setEnabled(true);
 		int turno = datos.getRondas();
 		turno++;
 		
@@ -65,10 +70,10 @@ public class controlPartida {
 		partida.textArea.setText("");
 
 	}
-
+	
+	
+	
 	public static void gestionar_Vacuna(int valor) {
-		int acciones = datos.getAcciones();
-		if (acciones == 4) {
 			if (valor == 0) {
 				Thread thread = new Thread(new Runnable() {
 					public void run() {
@@ -188,9 +193,11 @@ public class controlPartida {
 			}
 			datos.setAcciones(0);
 			partida.acciones.setText("Acciones : " + datos.getAcciones());
-		} else {
-			System.out.println("No tienes acciones...");
-		}
+			partida.DDelta.setEnabled(false);
+			partida.DAlfa.setEnabled(false);
+			partida.DGamma.setEnabled(false);
+			partida.DBeta.setEnabled(false);
+			System.out.println("Has gastado 4 acciones!");
 	}
 
 	public static void gestionar_Infeccion() {
