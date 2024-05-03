@@ -82,7 +82,7 @@ public class partida extends JFrame implements ActionListener  {
 			protected void paintComponent(Graphics g) {
 				super.paintComponent(g);
 				// Dibuja la imagen de fondo
-				ImageIcon iconoFondo = new ImageIcon("src\\img\\inGame\\FondoJuego.jfif");
+				ImageIcon iconoFondo = new ImageIcon("src\\img\\inGame\\mapa_acabado.png");
 				Image imagenFondo = iconoFondo.getImage();
 				g.drawImage(imagenFondo, 0, 0, getWidth(), getHeight(), this);
 			}

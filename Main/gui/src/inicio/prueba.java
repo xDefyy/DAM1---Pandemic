@@ -117,7 +117,7 @@ public class prueba {
             dificultadIm.setFont(fuente());
             dificultadIm.setForeground(new Color(79,164,184));
             dificultad.add(dificultadIm);
-            
+            //mirar panel princpal y ponerle wl width
             JLabel mundoF = new JLabel(mundoimgFacil);
             dificultad.add(mundoF);
             
@@ -163,6 +163,7 @@ public class prueba {
             desc.setFont(fuenteTextoDesc());
             desc.setAlignmentX(0);
             desc.setMargin(new Insets(10,10,10,10));
+            
             
             dificultadEz.add(desc, gbcEasyAbajo);
             
