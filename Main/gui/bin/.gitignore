@@ -1,8 +1,9 @@
-/inicio/
-/intefaz/
 /CargaDatos/
 /controladores/
-/objetos/
 /datos/
-/img/
 /fuente/
+/img/
+/inicio/
+/intefaz/
+/objetos/
+/progressBar.class

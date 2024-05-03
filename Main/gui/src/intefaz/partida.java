@@ -390,7 +390,7 @@ public class partida extends JFrame {
 		//FUNCIONES DE LOS BOTONES
 		curar.addActionListener(new ActionListener() {  //Esto hace que el boton este a la espera para hacer la funcion de abajo
             public void actionPerformed(ActionEvent e) {
-            	controlPartida.gestionar_Cura();
+            	controlPartida.gestionar_Cura(1);
             }
         });
 		
@@ -429,9 +429,6 @@ public class partida extends JFrame {
             	//menu para guardar partida
             }
         });
-		
-		
-		
 		
 		
 		
