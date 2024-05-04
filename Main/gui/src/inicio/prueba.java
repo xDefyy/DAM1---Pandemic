@@ -106,6 +106,7 @@ public class prueba {
             gbcEasyAbajo.gridx = 0;
             gbcEasyAbajo.gridy = 0;
             
+            dificultadEz.setPreferredSize(new Dimension(screen.width/3-20, 450));
             dificultadEz.setOpaque(true);
             dificultadEz.setBackground(new Color(0,0,0,128));
             dificultadEz.setBorder(new EtchedBorder(EtchedBorder.RAISED));
@@ -149,20 +150,23 @@ public class prueba {
             descFacil.add(textofacil2);
             
             dificultadEz.add(descFacil, gbcEasyAbajo);
-            
+
             gbcEasyAbajo.gridy = 2;
+            gbcEasyAbajo.fill = GridBagConstraints.BOTH; // Expande vertical y horizontalmente
+            gbcEasyAbajo.weightx = 1.0; // Peso horizontal (para expandirse horizontalmente)
+            gbcEasyAbajo.weighty = 1.0; // Peso vertical (para expandirse verticalmente)
             
-            JTextArea desc = new JTextArea();
-            desc.setSize(screen.width/3 - 20, 400);
-            desc.setText("Este es un texto largo que no debería ser cortado si el área de texto es lo suficientemente grande.");
-            desc.setEditable(false);
+           
+            
+            JLabel desc = new JLabel();
+            FontMetrics metrics = desc.getFontMetrics(fuenteTextoDesc());
+            int textocupado = metrics.getHeight() + screen.height/6;
+            String pixel = textocupado + "px";
+            desc.setPreferredSize(mundo);
+            desc.setText("<html><div style='text-align: center; margin-left: 10px; margin-right: 10px; padding-bottom:" + pixel + ";'>Aquí, las epidemias se manejan con facilidad y los desafíos son prácticamente inexistentes. ¡Relájate mientras te paseas por el jardín de infancia del juego y crees que eres un héroe!");
             desc.setForeground(Color.white);
             desc.setOpaque(false);
-            desc.setLineWrap(true);
-            desc.setWrapStyleWord(true);
             desc.setFont(fuenteTextoDesc());
-            desc.setAlignmentX(0);
-            desc.setMargin(new Insets(10,10,10,10));
             
             
             dificultadEz.add(desc, gbcEasyAbajo);
@@ -273,6 +277,7 @@ public class prueba {
             float fontSize = 13.5f;
             
             font = font.deriveFont(fontSize);
+            GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(font);
             return font;
 
         } catch (IOException | FontFormatException e) {
