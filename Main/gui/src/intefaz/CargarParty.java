@@ -33,7 +33,7 @@ public class CargarParty extends JFrame {
                 g.drawImage(imagenFondo, 0, 0, getWidth(), getHeight(), this);
             }
         };
-        double widthScreen = screen.width/3.06;
+        double widthScreen = screen.width/3.07;
         Border EmptyBorder = new EmptyBorder(10,10,10,10);
         
         ImageIcon mundoFacil = new ImageIcon("src\\img\\nuevaPartida\\facil.gif");  //115 px y 300fps
@@ -104,16 +104,24 @@ public class CargarParty extends JFrame {
         //agregar layout de dificultad
         gbcEasy.gridy = 1;
         
-        JPanel dificultadEz =  new JPanel(new GridBagLayout());
+        JPanel dificultadEz =  new JPanel(new GridBagLayout()) {
+        	@Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                Graphics2D g2d = (Graphics2D) g.create();
+                g2d.setColor(new Color(0,0,0,128));
+                g2d.fillRect(0, 0, getWidth(), getHeight());
+                g2d.dispose();
+            }
+        };
         
         GridBagConstraints gbcEasyAbajo = new GridBagConstraints();
         
         gbcEasyAbajo.gridx = 0;
         gbcEasyAbajo.gridy = 0;
         
-        dificultadEz.setPreferredSize(new Dimension((int) widthScreen-20, 450));
-        dificultadEz.setOpaque(true);
-        dificultadEz.setBackground(new Color(0,0,0,128));
+        dificultadEz.setPreferredSize(new Dimension((int) widthScreen-4, 250));
+        dificultadEz.setOpaque(false);
         dificultadEz.setBorder(new EtchedBorder(EtchedBorder.RAISED));
         
         JPanel dificultad = new JPanel(new FlowLayout());
@@ -166,10 +174,10 @@ public class CargarParty extends JFrame {
         
         JLabel desc = new JLabel();
         FontMetrics metrics = desc.getFontMetrics(fuenteTextoDesc());
-        int textocupado = metrics.getHeight() + screen.height/6;
+        int textocupado = metrics.getHeight() + screen.height/12;
         String pixel = textocupado + "px";
         desc.setPreferredSize(mundo);
-        desc.setText("<html><div style='text-align: center; margin-left: 32px; margin-right: 10px; padding-bottom:" + pixel + ";'><br><br>Aquí, las epidemias se manejan con<br><br> facilidad y los desafíos son<br><br> prácticamente inexistentes. ¡Relájate<br><br> mientras te paseas por el jardín de<br><br> infancia del juego salvando vidas...");
+        desc.setText("<html><div style='text-align: center; margin-left: 32px; margin-right: 10px; padding-bottom:" + pixel + ";'><br><br>Aquí, las epidemias se manejan con facilidad y los desafíos son prácticamente inexistentes. ¡Relájate mientras te paseas por el jardín de infancia del juego salvando vidas...");
         desc.setForeground(Color.white);
         desc.setOpaque(false);
         desc.setFont(fuenteTextoDesc());
@@ -180,7 +188,7 @@ public class CargarParty extends JFrame {
         easyGeneral.add(dificultadEz, gbcEasy);
         
         JButton bFacil = new JButton("JUGAR");
-        bFacil.setPreferredSize(new Dimension((int) widthScreen-20, 90));
+        bFacil.setPreferredSize(new Dimension((int) widthScreen-4, 90));
         bFacil.setOpaque(true);
         bFacil.setBorder(new LineBorder(Color.white));
         bFacil.setBackground(Color.gray);
@@ -235,11 +243,11 @@ public class CargarParty extends JFrame {
         gbcNormal.gridx = 0;
         gbcNormal.gridy = 0;
         
-        Dimension mundo2 = new Dimension(450,450);
+
         //agregar mundo
         JPanel mundoNor = new JPanel();
         mundoNor.setOpaque(false);
-        mundoNor.setPreferredSize(mundo2);
+        mundoNor.setPreferredSize(mundo);
         JLabel normalIcon = new JLabel(normal);
         mundoNor.add(normalIcon);
         	
@@ -248,16 +256,24 @@ public class CargarParty extends JFrame {
         //agregar layout de dificultad
         gbcNormal.gridy = 1;
         
-        JPanel dificultadNormal =  new JPanel(new GridBagLayout());
+        JPanel dificultadNormal =  new JPanel(new GridBagLayout()) {
+        	@Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                Graphics2D g2d = (Graphics2D) g.create();
+                g2d.setColor(new Color(0,0,0,128));
+                g2d.fillRect(0, 0, getWidth(), getHeight());
+                g2d.dispose();
+            }
+        };
         
         GridBagConstraints gbcNormalAbajo = new GridBagConstraints();
         
         gbcNormalAbajo.gridx = 0;
         gbcNormalAbajo.gridy = 0;
         
-        dificultadNormal.setPreferredSize(new Dimension((int) widthScreen-20, 450));
-        dificultadNormal.setOpaque(true);
-        dificultadNormal.setBackground(new Color(0,0,0,128));
+        dificultadNormal.setPreferredSize(new Dimension((int) widthScreen-4, 250));
+        dificultadNormal.setOpaque(false);
         dificultadNormal.setBorder(new EtchedBorder(EtchedBorder.RAISED));
         
         JPanel dificultad2 = new JPanel(new FlowLayout());
@@ -310,10 +326,10 @@ public class CargarParty extends JFrame {
         
         JLabel desc2 = new JLabel();
         FontMetrics metrics2 = desc2.getFontMetrics(fuenteTextoDesc());
-        int textocupado2 = metrics2.getHeight() + screen.height/6;
+        int textocupado2 = metrics2.getHeight() + screen.height/12;
         String pixel2 = textocupado2 + "px";
-        desc2.setPreferredSize(mundo2);
-        desc2.setText("<html><div style='text-align: center; margin-left: 32px; margin-right: 10px; padding-bottom:" + pixel2 + ";'><br><br>Aquí, las epidemias se manejan con<br><br> facilidad y los desafíos son<br><br> prácticamente inexistentes. ¡Relájate<br><br> mientras te paseas por el jardín de<br><br> infancia del juego salvando vidas...");
+        desc2.setPreferredSize(mundo);
+        desc2.setText("<html><div style='text-align: center; margin-left: 32px; margin-right: 10px; padding-bottom:" + pixel2 + ";'><br><br>Aquí, las epidemias se manejan con facilidad y los desafíos son prácticamente inexistentes. ¡Relájate mientras te paseas por el jardín de infancia del juego salvando vidas...");
         desc2.setForeground(Color.white);
         desc2.setOpaque(false);
         desc2.setFont(fuenteTextoDesc());
@@ -324,7 +340,7 @@ public class CargarParty extends JFrame {
         normalGeneral.add(dificultadNormal, gbcNormal);
         
         JButton bNormal = new JButton("JUGAR");
-        bNormal.setPreferredSize(new Dimension((int) widthScreen-20, 90));
+        bNormal.setPreferredSize(new Dimension((int) widthScreen-4, 90));
         bNormal.setOpaque(true);
         bNormal.setBorder(new LineBorder(Color.white));
         bNormal.setBackground(Color.gray);
@@ -389,16 +405,24 @@ public class CargarParty extends JFrame {
         //agregar layout de dificultad
         gbcDificil.gridy = 1;
         
-        JPanel dificultadDif =  new JPanel(new GridBagLayout());
+        JPanel dificultadDif =  new JPanel(new GridBagLayout())  {
+        	@Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                Graphics2D g2d = (Graphics2D) g.create();
+                g2d.setColor(new Color(0,0,0,128));
+                g2d.fillRect(0, 0, getWidth(), getHeight());
+                g2d.dispose();
+            }
+        };
         
         GridBagConstraints gbcDificilAbajo = new GridBagConstraints();
         
         gbcDificilAbajo.gridx = 0;
         gbcDificilAbajo.gridy = 0;
         
-        dificultadDif.setPreferredSize(new Dimension((int) widthScreen-20, 450));
-        dificultadDif.setOpaque(true);
-        dificultadDif.setBackground(new Color(0,0,0,128));
+        dificultadDif.setPreferredSize(new Dimension((int) widthScreen-4, 250));
+        dificultadDif.setOpaque(false);
         dificultadDif.setBorder(new EtchedBorder(EtchedBorder.RAISED));
         
         JPanel dificultad3 = new JPanel(new FlowLayout());
@@ -451,10 +475,10 @@ public class CargarParty extends JFrame {
         
         JLabel desc3 = new JLabel();
         FontMetrics metrics3 = desc3.getFontMetrics(fuenteTextoDesc());
-        int textocupado3 = metrics3.getHeight() + screen.height/6;
+        int textocupado3 = metrics3.getHeight() + screen.height/12;
         String pixel3 = textocupado3 + "px";
         desc3.setPreferredSize(mundo);
-        desc3.setText("<html><div style='text-align: center; margin-left: 32px; margin-right: 10px; padding-bottom:" + pixel3 + ";'><br><br>Aquí, las epidemias se manejan con<br><br> facilidad y los desafíos son<br><br> prácticamente inexistentes. ¡Relájate<br><br> mientras te paseas por el jardín de<br><br> infancia del juego salvando vidas...");
+        desc3.setText("<html><div style='text-align: center; margin-left: 32px; margin-right: 10px; padding-bottom:" + pixel3 + ";'><br><br>Aquí, las epidemias se manejan con facilidad y los desafíos son prácticamente inexistentes. ¡Relájate mientras te paseas por el jardín de infancia del juego salvando vidas...");
         desc3.setForeground(Color.white);
         desc3.setOpaque(false);
         desc3.setFont(fuenteTextoDesc());
@@ -465,7 +489,7 @@ public class CargarParty extends JFrame {
         dificilGeneral.add(dificultadDif, gbcDificil);
         
         JButton bDificil = new JButton("JUGAR");
-        bDificil.setPreferredSize(new Dimension((int) widthScreen-20, 90));
+        bDificil.setPreferredSize(new Dimension((int) widthScreen-4, 90));
         bDificil.setOpaque(true);
         bDificil.setBorder(new LineBorder(Color.white));
         bDificil.setBackground(Color.gray);
@@ -556,7 +580,7 @@ public class CargarParty extends JFrame {
             Font font = Font.createFont(Font.TRUETYPE_FONT, fuente);
             
             // Tamaño de la fuente (en puntos)
-            float fontSize = 25;
+            float fontSize = 22.5f;
             
             font = font.deriveFont(fontSize);
             return font;
@@ -590,9 +614,9 @@ public class CargarParty extends JFrame {
         	File fuente = new File("src\\fuente\\fuenteTexto.ttf");
             
             Font font = Font.createFont(Font.TRUETYPE_FONT, fuente);
-            
+           
             // Tamaño de la fuente (en puntos)
-            float fontSize = 13.5f;
+            float fontSize = 12.5f;
             
             font = font.deriveFont(fontSize);
             GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(font);
