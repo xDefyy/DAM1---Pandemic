@@ -129,7 +129,7 @@ public class CargarParty extends JFrame {
         
         
         JLabel dificultadIm = new JLabel("Dificultad - ");
-        dificultadIm.setFont(fuente());
+        dificultadIm.setFont(controlDatos.fuenteTitulo22());
         dificultadIm.setForeground(new Color(79,164,184));
         dificultad.add(dificultadIm);
 
@@ -151,13 +151,13 @@ public class CargarParty extends JFrame {
         
         JLabel textofacil = new JLabel();
         textofacil.setForeground(Color.white);
-        textofacil.setFont(fuenteTexto());
+        textofacil.setFont(controlDatos.fuenteTexto15());
         textofacil.setText("Bienvenido al modo");
         descFacil.add(textofacil);
         
         JLabel textofacil2 = new JLabel();
         textofacil2.setForeground(new Color(79,164,184));
-        textofacil2.setFont(fuenteTexto());
+        textofacil2.setFont(controlDatos.fuenteTexto15());
         textofacil2.setText("Chupete");
         
         
@@ -173,14 +173,14 @@ public class CargarParty extends JFrame {
        
         
         JLabel desc = new JLabel();
-        FontMetrics metrics = desc.getFontMetrics(fuenteTextoDesc());
+        FontMetrics metrics = desc.getFontMetrics(controlDatos.fuenteTexto12());
         int textocupado = metrics.getHeight() + screen.height/12;
         String pixel = textocupado + "px";
         desc.setPreferredSize(mundo);
         desc.setText("<html><div style='text-align: center; margin-left: 32px; margin-right: 10px; padding-bottom:" + pixel + ";'><br><br>Aquí, las epidemias se manejan con facilidad y los desafíos son prácticamente inexistentes. ¡Relájate mientras te paseas por el jardín de infancia del juego salvando vidas...");
         desc.setForeground(Color.white);
         desc.setOpaque(false);
-        desc.setFont(fuenteTextoDesc());
+        desc.setFont(controlDatos.fuenteTexto12());
         
         
         dificultadEz.add(desc, gbcEasyAbajo);
@@ -192,7 +192,7 @@ public class CargarParty extends JFrame {
         bFacil.setOpaque(true);
         bFacil.setBorder(new LineBorder(Color.white));
         bFacil.setBackground(Color.gray);
-        bFacil.setFont(fuente());
+        bFacil.setFont(controlDatos.fuenteTitulo22());
         bFacil.setContentAreaFilled(true);
         bFacil.setBorderPainted(true);
         bFacil.setFocusPainted(false);
@@ -216,6 +216,8 @@ public class CargarParty extends JFrame {
             }
         });
         gbcEasy.gridy++;
+        gbcEasy.weighty = 1.0;
+        gbcEasy.fill = GridBagConstraints.BOTH;
         easyGeneral.add(bFacil,gbcEasy);
         
         panelgeneral.add(easyGeneral);
@@ -281,7 +283,7 @@ public class CargarParty extends JFrame {
         
         
         JLabel dificultadIm2 = new JLabel("Dificultad - ");
-        dificultadIm2.setFont(fuente());
+        dificultadIm2.setFont(controlDatos.fuenteTitulo22());
         dificultadIm2.setForeground(new Color(79,164,184));
         dificultad2.add(dificultadIm2);
 
@@ -303,13 +305,13 @@ public class CargarParty extends JFrame {
         
         JLabel textonormal = new JLabel();
         textonormal.setForeground(Color.white);
-        textonormal.setFont(fuenteTexto());
+        textonormal.setFont(controlDatos.fuenteTexto15());
         textonormal.setText("Bienvenido al modo");
         descNormal.add(textonormal);
         
         JLabel textonormal2 = new JLabel();
         textonormal2.setForeground(new Color(79,164,184));
-        textonormal2.setFont(fuenteTexto());
+        textonormal2.setFont(controlDatos.fuenteTexto15());
         textonormal2.setText("Chupete");
         
         
@@ -325,14 +327,14 @@ public class CargarParty extends JFrame {
        
         
         JLabel desc2 = new JLabel();
-        FontMetrics metrics2 = desc2.getFontMetrics(fuenteTextoDesc());
+        FontMetrics metrics2 = desc2.getFontMetrics(controlDatos.fuenteTexto12());
         int textocupado2 = metrics2.getHeight() + screen.height/12;
         String pixel2 = textocupado2 + "px";
         desc2.setPreferredSize(mundo);
         desc2.setText("<html><div style='text-align: center; margin-left: 32px; margin-right: 10px; padding-bottom:" + pixel2 + ";'><br><br>Aquí, las epidemias se manejan con facilidad y los desafíos son prácticamente inexistentes. ¡Relájate mientras te paseas por el jardín de infancia del juego salvando vidas...");
         desc2.setForeground(Color.white);
         desc2.setOpaque(false);
-        desc2.setFont(fuenteTextoDesc());
+        desc2.setFont(controlDatos.fuenteTexto12());
         
         
         dificultadNormal.add(desc2, gbcNormalAbajo);
@@ -344,7 +346,7 @@ public class CargarParty extends JFrame {
         bNormal.setOpaque(true);
         bNormal.setBorder(new LineBorder(Color.white));
         bNormal.setBackground(Color.gray);
-        bNormal.setFont(fuente());
+        bNormal.setFont(controlDatos.fuenteTitulo22());
         bNormal.setContentAreaFilled(true);
         bNormal.setBorderPainted(true);
         bNormal.setFocusPainted(false);
@@ -368,6 +370,8 @@ public class CargarParty extends JFrame {
             }
         });
         gbcNormal.gridy++;
+        gbcNormal.weighty = 1.0;
+        gbcNormal.fill = GridBagConstraints.BOTH;
         normalGeneral.add(bNormal,gbcNormal);
         
         panelgeneral.add(normalGeneral);
@@ -430,7 +434,7 @@ public class CargarParty extends JFrame {
         
         
         JLabel dificultadIm3 = new JLabel("Dificultad - ");
-        dificultadIm3.setFont(fuente());
+        dificultadIm3.setFont(controlDatos.fuenteTitulo22());
         dificultadIm3.setForeground(new Color(79,164,184));
         dificultad3.add(dificultadIm3);
 
@@ -452,13 +456,13 @@ public class CargarParty extends JFrame {
         
         JLabel textoDificil = new JLabel();
         textoDificil.setForeground(Color.white);
-        textoDificil.setFont(fuenteTexto());
+        textoDificil.setFont(controlDatos.fuenteTexto15());
         textoDificil.setText("Bienvenido al modo");
         descDificil.add(textoDificil);
         
         JLabel textoDificil2 = new JLabel();
         textoDificil2.setForeground(new Color(79,164,184));
-        textoDificil2.setFont(fuenteTexto());
+        textoDificil2.setFont(controlDatos.fuenteTexto15());
         textoDificil2.setText("Chupete");
         
         
@@ -474,14 +478,14 @@ public class CargarParty extends JFrame {
        
         
         JLabel desc3 = new JLabel();
-        FontMetrics metrics3 = desc3.getFontMetrics(fuenteTextoDesc());
+        FontMetrics metrics3 = desc3.getFontMetrics(controlDatos.fuenteTexto12());
         int textocupado3 = metrics3.getHeight() + screen.height/12;
         String pixel3 = textocupado3 + "px";
         desc3.setPreferredSize(mundo);
-        desc3.setText("<html><div style='text-align: center; margin-left: 32px; margin-right: 10px; padding-bottom:" + pixel3 + ";'><br><br>Aquí, las epidemias se manejan con facilidad y los desafíos son prácticamente inexistentes. ¡Relájate mientras te paseas por el jardín de infancia del juego salvando vidas...");
+        desc3.setText("<html><body><div style='text-align: center; margin-left: 32px; margin-right: 10px; padding-bottom:" + pixel3 + ";'><br><br>Aquí, las epidemias se manejan con facilidad y los desafíos son prácticamente inexistentes. ¡Relájate mientras te paseas por el jardín de infancia del juego salvando vidas...");
         desc3.setForeground(Color.white);
         desc3.setOpaque(false);
-        desc3.setFont(fuenteTextoDesc());
+        desc3.setFont(controlDatos.fuenteTexto12());
         
         
         dificultadDif.add(desc3, gbcDificilAbajo);
@@ -493,7 +497,7 @@ public class CargarParty extends JFrame {
         bDificil.setOpaque(true);
         bDificil.setBorder(new LineBorder(Color.white));
         bDificil.setBackground(Color.gray);
-        bDificil.setFont(fuente());
+        bDificil.setFont(controlDatos.fuenteTitulo22());
         bDificil.setContentAreaFilled(true);
         bDificil.setBorderPainted(true);
         bDificil.setFocusPainted(false);
@@ -517,6 +521,8 @@ public class CargarParty extends JFrame {
             }
         });
         gbcDificil.gridy++;
+        gbcDificil.weighty = 1.0;
+        gbcDificil.fill = GridBagConstraints.BOTH;
         dificilGeneral.add(bDificil,gbcDificil);
         
         panelgeneral.add(dificilGeneral);
@@ -573,59 +579,5 @@ public class CargarParty extends JFrame {
 		this.setTitle("Pandemic @Kader, @Liqi");
 		this.setIconImage(imgFinalIcono.getImage());
     }
-    private static Font fuente() {
-		try {
-        	File fuente = new File("src\\fuente\\fuenteTitulo.ttf");
-            
-            Font font = Font.createFont(Font.TRUETYPE_FONT, fuente);
-            
-            // Tamaño de la fuente (en puntos)
-            float fontSize = 22.5f;
-            
-            font = font.deriveFont(fontSize);
-            return font;
-
-        } catch (IOException | FontFormatException e) {
-        	Font defaultFont = new Font("Arial", Font.PLAIN, 30);
-            e.printStackTrace();
-            return defaultFont;
-        }
-	}
-    private static Font fuenteTexto() {
-		try {
-        	File fuente = new File("src\\fuente\\fuenteTexto.ttf");
-            
-            Font font = Font.createFont(Font.TRUETYPE_FONT, fuente);
-            
-            // Tamaño de la fuente (en puntos)
-            float fontSize = 15;
-            
-            font = font.deriveFont(fontSize);
-            return font;
-
-        } catch (IOException | FontFormatException e) {
-        	Font defaultFont = new Font("Arial", Font.PLAIN, 15);
-            e.printStackTrace();
-            return defaultFont;
-        }
-	}
-    private static Font fuenteTextoDesc() {
-		try {
-        	File fuente = new File("src\\fuente\\fuenteTexto.ttf");
-            
-            Font font = Font.createFont(Font.TRUETYPE_FONT, fuente);
-           
-            // Tamaño de la fuente (en puntos)
-            float fontSize = 12.5f;
-            
-            font = font.deriveFont(fontSize);
-            GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(font);
-            return font;
-
-        } catch (IOException | FontFormatException e) {
-        	Font defaultFont = new Font("Arial", Font.PLAIN, 15);
-            e.printStackTrace();
-            return defaultFont;
-        }
-	}
+    
 }

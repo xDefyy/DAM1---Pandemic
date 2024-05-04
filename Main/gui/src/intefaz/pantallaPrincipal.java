@@ -9,6 +9,7 @@ import java.io.IOException;
 
 import javax.swing.*;
 
+import CargaDatos.controlDatos;
 import inicio.Main;
 
 public class pantallaPrincipal extends JFrame {
@@ -55,7 +56,7 @@ public class pantallaPrincipal extends JFrame {
         button1.setContentAreaFilled(false);
         button1.setBorderPainted(false);
         button1.setFocusPainted(false);
-        button1.setFont(fuente());
+        button1.setFont(controlDatos.fuenteTitulo());
         button1.setForeground(new Color(137,5,78));
         opciones.add(button1, gbc);
         
@@ -92,7 +93,7 @@ public class pantallaPrincipal extends JFrame {
         button2.setContentAreaFilled(false);
         button2.setBorderPainted(false);
         button2.setFocusPainted(false);
-        button2.setFont(fuente());
+        button2.setFont(controlDatos.fuenteTitulo());
         button2.setForeground(new Color(137,5,78));
         opciones.add(button2, gbc);
         
@@ -115,7 +116,7 @@ public class pantallaPrincipal extends JFrame {
         button3.setContentAreaFilled(false);
         button3.setBorderPainted(false);
         button3.setFocusPainted(false);
-        button3.setFont(fuente());
+        button3.setFont(controlDatos.fuenteTitulo());
         button3.setForeground(new Color(137,5,78));
         opciones.add(button3, gbc);
         
@@ -138,7 +139,7 @@ public class pantallaPrincipal extends JFrame {
         button4.setContentAreaFilled(false);
         button4.setBorderPainted(false);
         button4.setFocusPainted(false);
-        button4.setFont(fuente());
+        button4.setFont(controlDatos.fuenteTitulo());
         button4.setForeground(new Color(137,5,78));
         opciones.add(button4, gbc);
         
@@ -173,7 +174,7 @@ public class pantallaPrincipal extends JFrame {
         button5.setContentAreaFilled(false);
         button5.setBorderPainted(false);
         button5.setFocusPainted(false);
-        button5.setFont(fuente());
+        button5.setFont(controlDatos.fuenteTitulo());
         button5.setForeground(new Color(137,5,78));
         opciones.add(button5, gbc);
         
@@ -222,24 +223,5 @@ public class pantallaPrincipal extends JFrame {
         
     }
 	
-	private static Font fuente() {
-		try {
-        	File fuente = new File("src\\fuente\\fuenteTitulo.ttf");
-            
-            Font font = Font.createFont(Font.TRUETYPE_FONT, fuente);
-            
-            // Tamaño de la fuente (en puntos)
-            float fontSize = 30;
-            
-            font = font.deriveFont(fontSize);
-            return font;
-
-        } catch (IOException | FontFormatException e) {
-        	Font defaultFont = new Font("Arial", Font.PLAIN, 30);
-            System.err.println("No se pudo cargar la fuente. Se utilizará Arial como fuente predeterminada.");
-            e.printStackTrace();
-            return defaultFont;
-        }
-	}
 	
 }

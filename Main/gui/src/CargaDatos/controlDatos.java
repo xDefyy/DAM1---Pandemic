@@ -1,4 +1,7 @@
 package CargaDatos;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.GraphicsEnvironment;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -180,6 +183,82 @@ public class controlDatos {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+	}
+	
+	public static Font fuenteTitulo() {
+		try {
+        	File fuente = new File("src\\fuente\\fuenteTitulo.ttf");
+            
+            Font font = Font.createFont(Font.TRUETYPE_FONT, fuente);
+            
+            // Tamaño de la fuente (en puntos)
+            float fontSize = 30;
+            
+            font = font.deriveFont(fontSize);
+            return font;
+
+        } catch (IOException | FontFormatException e) {
+        	Font defaultFont = new Font("Arial", Font.PLAIN, 30);
+            System.err.println("No se pudo cargar la fuente. Se utilizará Arial como fuente predeterminada.");
+            e.printStackTrace();
+            return defaultFont;
+        }
+	}
+	
+	public static Font fuenteTitulo22() {
+		try {
+        	File fuente = new File("src\\fuente\\fuenteTitulo.ttf");
+            
+            Font font = Font.createFont(Font.TRUETYPE_FONT, fuente);
+            
+            // Tamaño de la fuente (en puntos)
+            float fontSize = 22.5f;
+            
+            font = font.deriveFont(fontSize);
+            return font;
+
+        } catch (IOException | FontFormatException e) {
+        	Font defaultFont = new Font("Arial", Font.PLAIN, 30);
+            e.printStackTrace();
+            return defaultFont;
+        }
+	}
+    public static Font fuenteTexto15() {
+		try {
+        	File fuente = new File("src\\fuente\\fuenteTexto.ttf");
+            
+            Font font = Font.createFont(Font.TRUETYPE_FONT, fuente);
+            
+            // Tamaño de la fuente (en puntos)
+            float fontSize = 15;
+            
+            font = font.deriveFont(fontSize);
+            return font;
+
+        } catch (IOException | FontFormatException e) {
+        	Font defaultFont = new Font("Arial", Font.PLAIN, 15);
+            e.printStackTrace();
+            return defaultFont;
+        }
+	}
+    public static Font fuenteTexto12() {
+		try {
+        	File fuente = new File("src\\fuente\\fuenteTexto.ttf");
+            
+            Font font = Font.createFont(Font.TRUETYPE_FONT, fuente);
+           
+            // Tamaño de la fuente (en puntos)
+            float fontSize = 12.5f;
+            
+            font = font.deriveFont(fontSize);
+            GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(font);
+            return font;
+
+        } catch (IOException | FontFormatException e) {
+        	Font defaultFont = new Font("Arial", Font.PLAIN, 15);
+            e.printStackTrace();
+            return defaultFont;
         }
 	}
 	
