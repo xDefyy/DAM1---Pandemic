@@ -13,35 +13,13 @@ public class prueba3 {
 	public static void main(String[] args) {
 //		button1.addActionListener(new ActionListener() {
 //        	public void actionPerformed(ActionEvent e) {
-//        		iniciarPartida.setVisible(true);
-//    	    	
-//    	        Timer timer = new Timer(300, new ActionListener() {
-//    	            public void actionPerformed(ActionEvent e) {
-//    	            	Main.cargarParty.setVisible(false);
-//    	            }
-//    	        });
-//    	        timer.setRepeats(false);
-//    	        timer.start();
-//        		
-//        		controlDatos.controlDificultad(0);
-//        		controlPartida.iniciar_Partida();
+
 //        		
 //    	    }
 //    	});
 //        button2.addActionListener(new ActionListener() {
 //        	public void actionPerformed(ActionEvent e) {
-//        		iniciarPartida.setVisible(true);
-//    	    	
-//    	        Timer timer = new Timer(300, new ActionListener() {
-//    	            public void actionPerformed(ActionEvent e) {
-//    	            	Main.cargarParty.setVisible(false);
-//    	            }
-//    	        });
-//    	        timer.setRepeats(false);
-//    	        timer.start();
 //        		
-//        		controlDatos.controlDificultad(1);
-//        		controlPartida.iniciar_Partida();
 //        		
 //    	    }
 //    	});

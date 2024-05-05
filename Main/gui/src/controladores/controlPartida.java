@@ -87,6 +87,8 @@ public class controlPartida {
 									partida.Alfa.setString("VIH COMPLETADO!");
 									System.out.println("¡Bien hecho!");
 									partida.DAlfa.setEnabled(false);
+								}	else if (partida.Beta.getValue() == progresoA) {
+									System.out.println("Has desarrolado el " + partida.Alfa.getValue() + "%");
 								}
 								datos.getVacunas().get(0).setPorcentaje(partida.Alfa.getValue());
 							}
@@ -109,6 +111,8 @@ public class controlPartida {
 									partida.Beta.setString("CANCER COMPLETADO!");
 									System.out.println("¡Bien hecho!");
 									partida.DBeta.setEnabled(false);
+								} else if (partida.Beta.getValue() == progresoB) {
+									System.out.println("Has desarrolado el " + partida.Beta.getValue() + "%");
 								}
 								datos.getVacunas().get(1).setPorcentaje(partida.Beta.getValue());
 							}
@@ -131,6 +135,8 @@ public class controlPartida {
 									partida.Gamma.setString("SARS COMPLETADO!");
 									System.out.println("¡Bien hecho!");
 									partida.DGamma.setEnabled(false);
+								} else if (partida.Gamma.getValue() == progresoG) {
+									System.out.println("Has desarrolado el " + partida.Gamma.getValue() + "%");
 								}
 								datos.getVacunas().get(2).setPorcentaje(partida.Gamma.getValue());
 							}
@@ -154,6 +160,8 @@ public class controlPartida {
 									System.out.println("¡Bien hecho!");
 									partida.DDelta.setEnabled(false);
 									
+								} else if (partida.Delta.getValue() == progresoD) {
+									System.out.println("Has desarrolado el " + partida.Delta.getValue() + "%");
 								}
 								datos.getVacunas().get(3).setPorcentaje(partida.Delta.getValue());
 							}
@@ -175,7 +183,6 @@ public class controlPartida {
         partida.DAlfa.setEnabled(false);
         partida.DGamma.setEnabled(false);
         partida.DBeta.setEnabled(false);
-        System.out.println("Has gastado 4 acciones!");
 	}
 	
 	public static void gestionar_Infeccion() {

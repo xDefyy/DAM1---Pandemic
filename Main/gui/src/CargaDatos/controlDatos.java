@@ -242,14 +242,14 @@ public class controlDatos {
             return defaultFont;
         }
 	}
-    public static Font fuenteTexto12() {
+    public static Font fuenteMC() {
 		try {
-        	File fuente = new File("src\\fuente\\fuenteTexto.ttf");
+        	File fuente = new File("src\\fuente\\Minecraft.ttf");
             
             Font font = Font.createFont(Font.TRUETYPE_FONT, fuente);
            
             // Tamaño de la fuente (en puntos)
-            float fontSize = 12.5f;
+            float fontSize = 15.5f;
             
             font = font.deriveFont(fontSize);
             GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(font);

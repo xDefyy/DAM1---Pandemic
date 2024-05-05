@@ -87,8 +87,55 @@ public class partida extends JFrame implements ActionListener  {
 				g.drawImage(imagenFondo, 0, 0, getWidth(), getHeight(), this);
 			}
 		};
-		game.setLayout(new BorderLayout());
-
+		game.setLayout(null);
+		addButton(game, "San Francisco", 170, 250);
+        addButton(game, "Chicago", 270, 220);
+        addButton(game, "Atlanta", 320, 320);
+        addButton(game, "Montreal", 350, 280);
+        addButton(game, "Nueva York", 455, 260);
+        addButton(game, "Washington", 450, 370);
+        addButton(game, "Londres", 700, 230);
+        addButton(game, "Madrid", 650, 345);
+        addButton(game, "Paris", 740, 300);
+        addButton(game, "Essen", 755, 190);
+        addButton(game, "Milan", 805, 265);
+        addButton(game, "San Petersburgo", 915, 180);
+        addButton(game, "Los Angeles", 170, 370);
+        addButton(game, "Miami", 370, 390);
+        addButton(game, "Mexico DF", 290, 425);
+        addButton(game, "Bogota", 400, 570);
+        addButton(game, "Lima", 350, 650);
+        addButton(game, "Santiago de Chile", 380, 750);
+        addButton(game, "Buenos Aires", 483, 730);
+        addButton(game, "Sao Paulo", 520, 680);
+        addButton(game, "Lagos", 710, 530);
+        addButton(game, "Kinsasa", 830, 540);
+        addButton(game, "Jartum", 815, 620);
+        addButton(game, "Johannesburgo", 815, 730);
+        addButton(game, "Argel", 730, 430);
+        addButton(game, "El Cairo", 820, 450);
+        addButton(game, "Riad", 895, 485);
+        addButton(game, "Estambul", 830, 345);
+        addButton(game, "Bagdad", 920, 370);
+        addButton(game, "Moscu", 925, 285);
+        addButton(game, "Teheran", 1040, 280);
+        addButton(game, "Karachi", 1010, 395);
+        addButton(game, "Bombay", 1045, 505);
+        addButton(game, "Nueva Delhi", 1125, 350);
+        addButton(game, "Calcuta", 1195, 400);
+        addButton(game, "Madras", 1085, 545);
+        addButton(game, "Yakarta", 1200, 620);
+        addButton(game, "Bangkok", 1200, 490);
+        addButton(game, "Hong Kong", 1265, 450);
+        addButton(game, "Shanghai", 1265, 340);
+        addButton(game, "Pekin", 1265, 270);
+        addButton(game, "Seul", 1375, 250);
+        addButton(game, "Tokio", 1390, 315);
+        addButton(game, "Osaka", 1430, 400);
+        addButton(game, "Taipei", 1360, 430);
+        addButton(game, "Ho Chi Minh", 1270, 580);
+        addButton(game, "Manila", 1350, 560);
+        addButton(game, "Sidney", 1350, 730);
 		// panel izquierdo botones
 		JPanel botonesTexto = new JPanel();
 		botonesTexto.setLayout(new FlowLayout());
@@ -134,7 +181,7 @@ public class partida extends JFrame implements ActionListener  {
 		textArea.setPreferredSize(new Dimension(screen.width / 2, screen.height / 7));
 
 		// Tipo de letra personalizado
-		textArea.setFont(new Font("Arial", Font.ITALIC, 15));
+		textArea.setFont(controlDatos.fuenteMC());
 
 		// Color de fondo y texto
 		textArea.setBackground(Color.LIGHT_GRAY);
@@ -370,7 +417,6 @@ public class partida extends JFrame implements ActionListener  {
 			}
 		});
 
-		
 		PrintStream printStream = new PrintStream(new OutputStream() {
 			@Override
 			public void write(int b) throws IOException {
@@ -478,6 +524,10 @@ public class partida extends JFrame implements ActionListener  {
 	    }
 	}
 
-	
+	private void addButton(Container container, String nombre, int x, int y) {
+        JButton button = new JButton(nombre);
+        button.setBounds(x, y, 100, 30); // Establecer el tamaño del botón
+        container.add(button);
+    }
 
 }
