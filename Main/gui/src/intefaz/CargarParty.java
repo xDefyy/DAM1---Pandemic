@@ -18,12 +18,10 @@ import inicio.Main;
 
 public class CargarParty extends JFrame implements ActionListener {
 	public static CargarParty iniciarPartida = new CargarParty();
-	public static JPanel hoverDif;
-	public static JPanel hoverEz;
-	public static JPanel hoverNor;
 	public static JButton bNormal;
 	public static JButton bFacil; 
 	public static JButton bDificil; 
+	private CardLayout cards;
 	public CargarParty() {
 
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
@@ -162,7 +160,7 @@ public class CargarParty extends JFrame implements ActionListener {
 		descFacil.add(textofacil);
 
 		JLabel textofacil2 = new JLabel();
-		textofacil2.setForeground(new Color(79, 164, 184));
+		textofacil2.setForeground(new Color(79, 240, 100));
 		textofacil2.setFont(controlDatos.fuenteTexto15());
 		textofacil2.setText("Chupete");
 
@@ -307,9 +305,9 @@ public class CargarParty extends JFrame implements ActionListener {
 		descNormal.add(textonormal);
 
 		JLabel textonormal2 = new JLabel();
-		textonormal2.setForeground(new Color(79, 164, 184));
+		textonormal2.setForeground(new Color(173, 216, 240));
 		textonormal2.setFont(controlDatos.fuenteTexto15());
-		textonormal2.setText("Chupete");
+		textonormal2.setText("Normal");
 
 		descNormal.add(textonormal2);
 
@@ -325,7 +323,7 @@ public class CargarParty extends JFrame implements ActionListener {
 		desc2.setPreferredSize(mundo);
 		desc2.setText("<html><div style='text-align: center; margin-left: 32px; margin-right: 10px; padding-bottom:"
 				+ pixel
-				+ ";'><br><br>Aquí, las epidemias se manejan con facilidad y los desafíos son prácticamente inexistentes. ¡Relájate mientras te paseas por el jardín de infancia del juego salvando vidas...");
+				+ ";'><br><br>¡Salva ciudades y detén pandemias en este desafiante juego de estrategia global! Como líder de un equipo de expertos en salud, tu misión es desarrollar una cura y proteger a la población.");
 		desc2.setForeground(Color.white);
 		desc2.setOpaque(false);
 		desc2.setFont(controlDatos.fuenteMC());
@@ -450,18 +448,18 @@ public class CargarParty extends JFrame implements ActionListener {
 		descDificil.add(textoDificil);
 
 		JLabel textoDificil2 = new JLabel();
-		textoDificil2.setForeground(new Color(79, 164, 184));
+		textoDificil2.setForeground(new Color(230, 70, 79));
 		textoDificil2.setFont(controlDatos.fuenteTexto15());
-		textoDificil2.setText("Chupete");
+		textoDificil2.setText("Crisis");
 
 		descDificil.add(textoDificil2);
 
 		dificultadDif.add(descDificil, gbcDificilAbajo);
 
 		gbcDificilAbajo.gridy = 2;
-		gbcDificilAbajo.fill = GridBagConstraints.BOTH; // Expande vertical y horizontalmente
-		gbcDificilAbajo.weightx = 1.0; // Peso horizontal (para expandirse horizontalmente)
-		gbcDificilAbajo.weighty = 1.0; // Peso vertical (para expandirse verticalmente)
+		gbcDificilAbajo.fill = GridBagConstraints.BOTH; 
+		gbcDificilAbajo.weightx = 1.0; 
+		gbcDificilAbajo.weighty = 1.0; 
 
 		JLabel desc3 = new JLabel();
 
@@ -469,7 +467,7 @@ public class CargarParty extends JFrame implements ActionListener {
 		desc3.setText(
 				"<html><body><div style='text-align: center; margin-left: 32px; margin-right: 10px; padding-bottom:"
 						+ pixel
-						+ ";'><br><br>Aquí, las epidemias se manejan con facilidad y los desafíos son prácticamente inexistentes. ¡Relájate mientras te paseas por el jardín de infancia del juego salvando vidas...");
+						+ ";'><br><br>¡La situación es crítica! Tu tarea es urgente: contener la pandemia, distribuir recursos y salvar ciudades. ¿Tienes lo necesario para liderar la respuesta mundial?");
 		desc3.setForeground(Color.white);
 		desc3.setOpaque(false);
 		desc3.setFont(controlDatos.fuenteMC());
@@ -511,40 +509,261 @@ public class CargarParty extends JFrame implements ActionListener {
 		dificilGeneral.add(bDificil, gbcDificil);
 		
 		GridBagConstraints gbcGeneral = new GridBagConstraints();
-		hoverEz = new JPanel();
-		hoverNor = new JPanel();
-		hoverDif = new JPanel();
+		
+		JPanel hoverDif = new JPanel() {
+			@Override
+			protected void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				// Dibuja la imagen de fondo
+				ImageIcon iconoFondo = new ImageIcon("src\\img\\nuevaPartida\\marcoDificilOP.png");
+				Image imagenFondo = iconoFondo.getImage();
+				g.drawImage(imagenFondo, 0, 0, getWidth(), getHeight(), this);
+			}
+		};
+		
+		
+		
+		
+		JPanel hoverNor = new JPanel() {
+			@Override
+			protected void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				// Dibuja la imagen de fondo
+				ImageIcon iconoFondo = new ImageIcon("src\\img\\nuevaPartida\\marcoNormalOP.png");
+				Image imagenFondo = iconoFondo.getImage();
+				g.drawImage(imagenFondo, 0, 0, getWidth(), getHeight(), this);
+			}
+		};
+
+		
+		JPanel hoverEz = new JPanel() {
+			@Override
+			protected void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				// Dibuja la imagen de fondo
+				ImageIcon iconoFondo = new ImageIcon("src\\img\\nuevaPartida\\marcoFacilOP.png");
+				Image imagenFondo = iconoFondo.getImage();
+				g.drawImage(imagenFondo, 0, 0, getWidth(), getHeight(), this);
+			}
+		};
+
+		
 		Dimension paneles = new Dimension ((int) widthScreen, screen.height - 70);
 		hoverEz.setPreferredSize(paneles);
 		hoverNor.setPreferredSize(paneles);
 		hoverDif.setPreferredSize(paneles);
-		
-		gbcGeneral.gridx = 0;
-		gbcGeneral.gridy = 0;
-		gbcGeneral.insets = new Insets (5,5,5,5);
-		
-		//funcion hover
-		
-		
-		
 		hoverEz.setOpaque(false);
 		hoverNor.setOpaque(false);
 		hoverDif.setOpaque(false);
+		hoverDif.setBorder(new LineBorder(Color.LIGHT_GRAY, 3, false));
+		hoverNor.setBorder(new LineBorder(Color.LIGHT_GRAY, 3, false));
+		hoverEz.setBorder(new LineBorder(Color.LIGHT_GRAY, 3, false));
+		
+		hoverEz.setLayout(new BorderLayout());
+		
+		JPanel hoverContentEz = new JPanel(new GridBagLayout()) {
+			@Override
+			protected void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				Graphics2D g2d = (Graphics2D) g.create();
+				g2d.setColor(new Color(0, 0, 0, 128));
+				g2d.fillRect(0, 0, getWidth(), getHeight());
+				g2d.dispose();
+			}
+		};
+		hoverContentEz.setOpaque(false);
+
+		GridBagConstraints gbchoverContentEz = new GridBagConstraints();
+		gbchoverContentEz.gridx = 0;
+		gbchoverContentEz.gridy = 0;
+		gbchoverContentEz.anchor = GridBagConstraints.CENTER;
+		JLabel mundoHover1 = new JLabel(facil);
+		hoverContentEz.add(mundoHover1, gbchoverContentEz);
+		
+		hoverEz.add(hoverContentEz, BorderLayout.CENTER);
+		
+		hoverNor.setLayout(new BorderLayout());
+		
+		JPanel hoverContentNor = new JPanel(new GridBagLayout()) {
+			@Override
+			protected void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				Graphics2D g2d = (Graphics2D) g.create();
+				g2d.setColor(new Color(0, 0, 0, 128));
+				g2d.fillRect(0, 0, getWidth(), getHeight());
+				g2d.dispose();
+			}
+		};
+		hoverContentNor.setOpaque(false);
+		GridBagConstraints gbchoverContentNor = new GridBagConstraints();
+		gbchoverContentNor.gridx = 0;
+		gbchoverContentNor.gridy = 0;
+		gbchoverContentNor.anchor = GridBagConstraints.CENTER;
+		JLabel mundoHover2 = new JLabel(normal);
+		hoverContentNor.add(mundoHover2, gbchoverContentNor);
+		
+		hoverNor.add(hoverContentNor, BorderLayout.CENTER);
+		
+		hoverDif.setLayout(new BorderLayout());
+		
+		JPanel hoverContentDif = new JPanel(new GridBagLayout()) {
+			@Override
+			protected void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				Graphics2D g2d = (Graphics2D) g.create();
+				g2d.setColor(new Color(0, 0, 0, 128));
+				g2d.fillRect(0, 0, getWidth(), getHeight());
+				g2d.dispose();
+			}
+		};
+		hoverContentDif.setOpaque(false);
+		GridBagConstraints gbchoverContentDif = new GridBagConstraints();
+		gbchoverContentDif.gridx = 0;
+		gbchoverContentDif.gridy = 0;
+		gbchoverContentDif.anchor = GridBagConstraints.CENTER;
+		JLabel mundoHover3 = new JLabel(dificil);
+		hoverContentDif.add(mundoHover3, gbchoverContentDif);
+		
+		hoverDif.add(hoverContentDif, BorderLayout.CENTER);
 		
 		
-		panelgeneral.add(hoverEz, gbcGeneral);
-		panelgeneral.add(easyGeneral, gbcGeneral);
+		cards = new CardLayout();
+		
+		JPanel card1 = new JPanel();
+		card1.setLayout(cards);
+		
+		JPanel card2 = new JPanel();
+		card2.setLayout(cards);
+		
+		JPanel card3 = new JPanel();
+		card3.setLayout(cards);
+		
+		card1.add(easyGeneral, "CardMundo1");
+		card1.add(hoverEz, "CardMundo1Hover");
+		
+		card2.add(normalGeneral, "CardMundo2");
+		card2.add(hoverNor, "CardMundo2Hover");
+
+		card3.add(dificilGeneral, "CardMundo3");
+		card3.add(hoverDif, "CardMundo3Hover");
+		
+		
+		
+		
+	
+		gbcGeneral.gridx = 0;
+		gbcGeneral.gridy = 0;
+		gbcGeneral.insets = new Insets (5,5,5,5);
+
+		bFacil.addMouseListener(new MouseAdapter() {
+			Timer timer;
+		    
+		    @Override
+		    public void mouseEntered(MouseEvent e) {
+		        timer = new Timer(250, new ActionListener() { 
+		            public void actionPerformed(ActionEvent e) {
+		                cards.show(card2, "CardMundo2Hover");
+		                cards.show(card3, "CardMundo3Hover");
+		                easyGeneral.setBorder(new LineBorder(Color.PINK, 2, false));
+		            }
+		        });
+		        timer.setRepeats(false); // Solo se ejecuta una vez
+		        timer.start();
+		    }
+
+		    @Override
+		    public void mouseExited(MouseEvent e) {
+		        if (timer != null) {
+		            timer.stop(); // Detiene el timer si se sale antes de que se complete el retraso
+		        }
+		        cards.show(card2, "CardMundo2");
+		        cards.show(card3, "CardMundo3");
+		        easyGeneral.setBorder(new LineBorder(Color.LIGHT_GRAY, 2, false));
+		    }
+		});
+
+		bNormal.addMouseListener(new MouseAdapter() {
+			private Timer timer;
+
+		    @Override
+		    public void mouseEntered(MouseEvent e) {
+		        if (timer != null && timer.isRunning()) {
+		            timer.stop();
+		        }
+		        timer = new Timer(250, new ActionListener() {
+		            @Override
+		            public void actionPerformed(ActionEvent e) {
+		                cards.show(card1, "CardMundo1Hover");
+		                cards.show(card3, "CardMundo3Hover");
+		                normalGeneral.setBorder(new LineBorder(Color.pink, 2, false));
+		            }
+		        });
+		        timer.setRepeats(false);
+		        timer.start();
+		    }
+
+		    @Override
+		    public void mouseExited(MouseEvent e) {
+		        if (timer != null && timer.isRunning()) {
+		            timer.stop();
+		        }
+		        timer = new Timer(250, new ActionListener() {
+		            @Override
+		            public void actionPerformed(ActionEvent e) {
+		                cards.show(card1, "CardMundo1");
+		                cards.show(card3, "CardMundo3");
+		                normalGeneral.setBorder(new LineBorder(Color.LIGHT_GRAY, 2, false));
+		            }
+		        });
+		        timer.setRepeats(false);
+		        timer.start();
+		    }
+		});
+
+		bDificil.addMouseListener(new MouseAdapter() {
+			private Timer timer;
+
+		    @Override
+		    public void mouseEntered(MouseEvent e) {
+		        if (timer == null) {
+		            timer = new Timer(250, new ActionListener() {
+		                @Override
+		                public void actionPerformed(ActionEvent e) {
+		                    cards.show(card1, "CardMundo1Hover");
+		                    cards.show(card2, "CardMundo2Hover");
+		                    timer = null;
+		                    dificilGeneral.setBorder(new LineBorder(Color.pink, 2, false));
+		                }
+		            });
+		            timer.setRepeats(false);
+		            timer.start();
+		        }
+		    }
+
+		    @Override
+		    public void mouseExited(MouseEvent e) {
+		        if (timer != null) {
+		            timer.stop();
+		            timer = null;
+		        }
+		        cards.show(card1, "CardMundo1");
+		        cards.show(card2, "CardMundo2");
+		        dificilGeneral.setBorder(new LineBorder(Color.LIGHT_GRAY, 2, false));
+		    }
+		});
+		
+		panelgeneral.add(card1, gbcGeneral);
 		
 		gbcGeneral.gridx = 1;
-		panelgeneral.add(hoverNor,gbcGeneral);
-		panelgeneral.add(normalGeneral,gbcGeneral);
-		
+		panelgeneral.add(card2,gbcGeneral);
 		
 		gbcGeneral.gridx = 2;
-		panelgeneral.add(hoverDif,gbcGeneral);
-		panelgeneral.add(dificilGeneral,gbcGeneral);
+		panelgeneral.add(card3,gbcGeneral);
+
 		
 
+		
+		//boton volver
 		JButton volver = new JButton("VOLVER");
 		volver.setPreferredSize(new Dimension(150, 50));
 		volver.setBackground(new Color(0, 0, 0, 0));
