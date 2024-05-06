@@ -5,7 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
+import java.io.File;
+import java.io.IOException;
 
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
@@ -133,8 +134,8 @@ public class CargarParty extends JFrame implements ActionListener {
 		dificultad.setOpaque(false);
 
 		JLabel dificultadIm = new JLabel("Dificultad - ");
-		dificultadIm.setFont(controlDatos.fuenteTitulo22());
-		dificultadIm.setForeground(new Color(79, 164, 184));
+		dificultadIm.setFont(fuente());
+		dificultadIm.setForeground(Color.LIGHT_GRAY);
 		dificultad.add(dificultadIm);
 
 		JLabel mundoF = new JLabel(mundoimgFacil);
@@ -193,11 +194,11 @@ public class CargarParty extends JFrame implements ActionListener {
 		bFacil.setOpaque(true);
 		bFacil.setBorder(new LineBorder(Color.white));
 		bFacil.setBackground(Color.gray);
-		bFacil.setFont(controlDatos.fuenteTitulo22());
+		bFacil.setFont(fuente());
 		bFacil.setContentAreaFilled(true);
 		bFacil.setBorderPainted(true);
 		bFacil.setFocusPainted(false);
-		bFacil.setForeground(new Color(79, 164, 184));
+		bFacil.setForeground(new Color(79, 220, 100));
 		bFacil.setUI(new BasicButtonUI() {
 			@Override
 			protected void paintButtonPressed(Graphics g, AbstractButton b) {
@@ -208,12 +209,12 @@ public class CargarParty extends JFrame implements ActionListener {
 		bFacil.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				bFacil.setForeground(new Color(79, 164, 255));
+				bFacil.setForeground(new Color(79, 230, 100));
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				bFacil.setForeground(new Color(79, 164, 184));
+				bFacil.setForeground(new Color(79, 192, 100));
 			}
 		});
 		gbcEasy.gridy++;
@@ -278,8 +279,8 @@ public class CargarParty extends JFrame implements ActionListener {
 		dificultad2.setOpaque(false);
 
 		JLabel dificultadIm2 = new JLabel("Dificultad - ");
-		dificultadIm2.setFont(controlDatos.fuenteTitulo22());
-		dificultadIm2.setForeground(new Color(79, 164, 184));
+		dificultadIm2.setFont(fuente());
+		dificultadIm2.setForeground(Color.LIGHT_GRAY);
 		dificultad2.add(dificultadIm2);
 
 		JLabel mundoF2 = new JLabel(mundoimgFacil);
@@ -337,7 +338,7 @@ public class CargarParty extends JFrame implements ActionListener {
 		bNormal.setOpaque(true);
 		bNormal.setBorder(new LineBorder(Color.white));
 		bNormal.setBackground(Color.gray);
-		bNormal.setFont(controlDatos.fuenteTitulo22());
+		bNormal.setFont(fuente());
 		bNormal.setContentAreaFilled(true);
 		bNormal.setBorderPainted(true);
 		bNormal.setFocusPainted(false);
@@ -421,8 +422,8 @@ public class CargarParty extends JFrame implements ActionListener {
 		dificultad3.setOpaque(false);
 
 		JLabel dificultadIm3 = new JLabel("Dificultad - ");
-		dificultadIm3.setFont(controlDatos.fuenteTitulo22());
-		dificultadIm3.setForeground(new Color(79, 164, 184));
+		dificultadIm3.setFont(fuente());
+		dificultadIm3.setForeground(Color.LIGHT_GRAY);
 		dificultad3.add(dificultadIm3);
 
 		JLabel mundoF3 = new JLabel(mundoimgFacil);
@@ -480,11 +481,11 @@ public class CargarParty extends JFrame implements ActionListener {
 		bDificil.setOpaque(true);
 		bDificil.setBorder(new LineBorder(Color.white));
 		bDificil.setBackground(Color.gray);
-		bDificil.setFont(controlDatos.fuenteTitulo22());
+		bDificil.setFont(fuente());
 		bDificil.setContentAreaFilled(true);
 		bDificil.setBorderPainted(true);
 		bDificil.setFocusPainted(false);
-		bDificil.setForeground(new Color(79, 164, 184));
+		bDificil.setForeground(new Color(230, 70, 79));
 		bDificil.setUI(new BasicButtonUI() {
 			@Override
 			protected void paintButtonPressed(Graphics g, AbstractButton b) {
@@ -495,12 +496,12 @@ public class CargarParty extends JFrame implements ActionListener {
 		bDificil.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				bDificil.setForeground(new Color(79, 164, 255));
+				bDificil.setForeground(new Color(230, 70, 79));
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				bDificil.setForeground(new Color(79, 164, 184));
+				bDificil.setForeground(new Color(200, 70, 79));
 			}
 		});
 		gbcDificil.gridy++;
@@ -897,5 +898,23 @@ public class CargarParty extends JFrame implements ActionListener {
 	        System.out.println("Se presionó un botón no identificado");
 	    }
 	}
+	public static Font fuente() {
+		try {
+        	File fuente = new File("src\\fuente\\fuenteCargarParty.ttf");
+            
+            Font font = Font.createFont(Font.TRUETYPE_FONT, fuente);
+           
+            // Tamaño de la fuente (en puntos)
+            float fontSize = 45f;
+            
+            font = font.deriveFont(fontSize);
+            GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(font);
+            return font;
 
+        } catch (IOException | FontFormatException e) {
+        	Font defaultFont = new Font("Arial", Font.PLAIN, 15);
+            e.printStackTrace();
+            return defaultFont;
+        }
+	}
 }

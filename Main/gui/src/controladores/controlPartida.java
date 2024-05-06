@@ -87,8 +87,8 @@ public class controlPartida {
 									partida.Alfa.setString("VIH COMPLETADO!");
 									System.out.println("¡Bien hecho!");
 									partida.DAlfa.setEnabled(false);
-								}	else if (partida.Beta.getValue() == progresoA) {
-									System.out.println("Has desarrolado el " + partida.Alfa.getValue() + "%");
+								}	if (partida.Alfa.getValue() == progresoA) {
+									System.out.println("Franko: Has desarrolado el " + partida.Alfa.getValue() + "% y gastado todas tus acciones.");
 								}
 								datos.getVacunas().get(0).setPorcentaje(partida.Alfa.getValue());
 							}
@@ -111,8 +111,8 @@ public class controlPartida {
 									partida.Beta.setString("CANCER COMPLETADO!");
 									System.out.println("¡Bien hecho!");
 									partida.DBeta.setEnabled(false);
-								} else if (partida.Beta.getValue() == progresoB) {
-									System.out.println("Has desarrolado el " + partida.Beta.getValue() + "%");
+								}  if (partida.Beta.getValue() == progresoB) {
+									System.out.println("Franko: Has desarrolado el " + partida.Beta.getValue() + "% y gastado todas tus acciones.");
 								}
 								datos.getVacunas().get(1).setPorcentaje(partida.Beta.getValue());
 							}
@@ -135,8 +135,8 @@ public class controlPartida {
 									partida.Gamma.setString("SARS COMPLETADO!");
 									System.out.println("¡Bien hecho!");
 									partida.DGamma.setEnabled(false);
-								} else if (partida.Gamma.getValue() == progresoG) {
-									System.out.println("Has desarrolado el " + partida.Gamma.getValue() + "%");
+								}  if (partida.Gamma.getValue() == progresoG) {
+									System.out.println("Franko: Has desarrolado el " + partida.Gamma.getValue() + "% y gastado todas tus acciones.");
 								}
 								datos.getVacunas().get(2).setPorcentaje(partida.Gamma.getValue());
 							}
@@ -160,8 +160,8 @@ public class controlPartida {
 									System.out.println("¡Bien hecho!");
 									partida.DDelta.setEnabled(false);
 									
-								} else if (partida.Delta.getValue() == progresoD) {
-									System.out.println("Has desarrolado el " + partida.Delta.getValue() + "%");
+								}  if (partida.Delta.getValue() == progresoD) {
+									System.out.println("Franko: Has desarrolado el " + partida.Delta.getValue() + "% y gastado todas tus acciones.");
 								}
 								datos.getVacunas().get(3).setPorcentaje(partida.Delta.getValue());
 							}
