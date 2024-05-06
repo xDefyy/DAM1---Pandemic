@@ -10,6 +10,7 @@ import java.io.IOException;
 import javax.swing.*;
 
 import CargaDatos.controlDatos;
+import controladores.reproductorWav;
 import inicio.Main;
 
 public class pantallaPrincipal extends JFrame {
@@ -197,7 +198,6 @@ public class pantallaPrincipal extends JFrame {
         });
         
         
-        
         JLabel verCre = new JLabel();
 		verCre.setText("Ver 1.0 @Kader, @Liqi");
 		verCre.setFont(new Font("Arial", Font.ITALIC, 10));
@@ -219,8 +219,6 @@ public class pantallaPrincipal extends JFrame {
 		this.setVisible(true);
 		this.setTitle("Pandemic @Kader, @Liqi");
 		this.setIconImage(imgFinalIcono.getImage());
-		
-        
     }
 	
 	

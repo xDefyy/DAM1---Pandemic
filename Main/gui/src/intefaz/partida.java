@@ -18,6 +18,8 @@ import java.awt.RenderingHints;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
@@ -61,7 +63,14 @@ public class partida extends JFrame implements ActionListener  {
 	public static JLabel rondas = new JLabel();
 	public static JTextArea textArea = new JTextArea();
 	public static JLabel acciones = new JLabel();
-
+	public static JMenuItem music;
+	public static ImageIcon iconoMus = new ImageIcon("src\\img\\main\\iconoMusica.png");
+	public static Image iconoMusica = iconoMus.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+	public static ImageIcon iconoMusFinal = new ImageIcon(iconoMusica);
+	public static ImageIcon iconoMusDes = new ImageIcon("src\\img\\main\\iconoMusicaTachado.png");
+	public static Image iconoMusicaDes = iconoMusDes.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+	public static ImageIcon iconoMusFinalDes = new ImageIcon(iconoMusicaDes);	
+	public static boolean musica = true;;
 	public partida()  {
 		SoftBevelBorder softBevelBorder = new SoftBevelBorder(SoftBevelBorder.LOWERED);
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
@@ -73,6 +82,8 @@ public class partida extends JFrame implements ActionListener  {
 		Image IconPersonaje = personajes.getImage().getScaledInstance(screen.height / 7, screen.height / 7,
 				Image.SCALE_SMOOTH);
 		ImageIcon personajeIcon = new ImageIcon(IconPersonaje);
+		
+		
 
 		LineBorder borderRojo = new LineBorder(new Color(137, 5, 78), 3);
 
@@ -373,11 +384,23 @@ public class partida extends JFrame implements ActionListener  {
 		opciones.setFont(new Font("Arial", Font.BOLD, 20));
 		opciones.setForeground(new Color(137, 5, 78));
 
-		JPopupMenu popupMenu = new JPopupMenu();
-		popupMenu.setPreferredSize(new Dimension(screen.width / 6, screen.height / 4));
+		JPopupMenu popupMenu = new JPopupMenu() {
+			@Override
+			protected void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				// Dibuja la imagen de fondo
+				ImageIcon iconoFondo = new ImageIcon("src\\img\\inGame\\fondo.jpg");
+				Image imagenFondo = iconoFondo.getImage();
+				g.drawImage(imagenFondo, 0, 0, getWidth(), getHeight(), this);
+			}
+		};
+		
+		JLabel iconoOpciones = new JLabel(imgFinalIcono);
+		popupMenu.setOpaque(false);
+		popupMenu.setPreferredSize(new Dimension(screen.width, screen.height));
 		popupMenu.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
-		popupMenu.setLayout(new FlowLayout());
-
+		popupMenu.setLayout(new GridBagLayout());
+		
 		JMenuItem menuItem1 = new JMenuItem("Opción 1");
 		
 		menuItem1.addActionListener(new ActionListener() {
@@ -386,22 +409,37 @@ public class partida extends JFrame implements ActionListener  {
 			}
 		});
 		
-		JMenuItem menuItem2 = new JMenuItem("Opción 2");
-		JMenuItem menuItem3 = new JMenuItem("Opción 3");
-
-		menuItem1.setBackground(new Color(137, 5, 78));
-
-		menuItem2.setBackground(new Color(137, 5, 78));
-
-		menuItem3.setBackground(new Color(137, 5, 78));
-
-		popupMenu.add(menuItem1);
-		popupMenu.add(menuItem2);
-		popupMenu.add(menuItem3);
+		music = new JMenuItem("Activado");
+		music.setPreferredSize(new Dimension(300, 50));
+		music.setOpaque(false);
+		music.setFont(controlDatos.fuenteTitulo22());
+		music.setForeground(new Color(173, 216, 240));
+		music.setIcon(iconoMusFinal);
+		music.setContentAreaFilled(false);
+		music.setBorderPainted(false);
+		music.setFocusPainted(false);
+		JMenuItem volver = new JMenuItem("Volver al menu");
+		
+		GridBagConstraints gbcPopUP = new GridBagConstraints();
+		
+		music.addActionListener(this);
+		
+		gbcPopUP.insets = new Insets(10,10,10,10);
+		gbcPopUP.gridx = 0;
+		gbcPopUP.gridy = 0;
+		
+		
+		popupMenu.add(iconoOpciones,gbcPopUP);
+		gbcPopUP.gridy = 1;
+		popupMenu.add(menuItem1,gbcPopUP);
+		gbcPopUP.gridy = 2;
+		popupMenu.add(music,gbcPopUP);
+		gbcPopUP.gridy = 3;
+		popupMenu.add(volver,gbcPopUP);
 
 		opciones.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				popupMenu.show(CargarParty.iniciarPartida, (screen.width - screen.width / 6) / 2,
+				popupMenu.show(CargarParty.game, (screen.width - screen.width / 6) / 2,
 						(screen.height - screen.height / 4) / 2);
 			}
 		});
@@ -410,12 +448,6 @@ public class partida extends JFrame implements ActionListener  {
 		stats.add(opciones, gbcStats);
 
 
-		opciones.addActionListener(new ActionListener() { 
-			
-			public void actionPerformed(ActionEvent e) {
-				// menu para guardar partida
-			}
-		});
 
 		PrintStream printStream = new PrintStream(new OutputStream() {
 			@Override
@@ -519,8 +551,21 @@ public class partida extends JFrame implements ActionListener  {
 	        controlPartida.gestionar_Turno();
 	    } else if (source == curar) {
 	    	controlPartida.gestionar_Cura(1);
-	    } else {
-	        System.out.println("Se presionó un botón no identificado");
+	    } else if (source == music){
+	    	if (musica) {
+	    		System.out.println("Franko: Quitas lo divertido a la vida.");
+	    		Main.reproductor.detener();
+	    		music.setText("Desactivado");
+	    		music.setIcon(iconoMusFinalDes);
+	    		musica = false;
+	    	} else {
+	    		System.out.println("Franko: Yeee, se siente todo muy cuadrado..");
+	    		musica = true;
+	    		music.setText("Activado");
+	    		music.setIcon(iconoMusFinal);
+	    		Main.reproductor.reproducirConRepetir();
+	    	}
+	    	
 	    }
 	}
 

@@ -18,7 +18,7 @@ import controladores.controlPartida;
 import inicio.Main;
 
 public class CargarParty extends JFrame implements ActionListener {
-	public static CargarParty iniciarPartida = new CargarParty();
+	public static partida game = new partida();
 	public static JButton bNormal;
 	public static JButton bFacil; 
 	public static JButton bDificil; 
@@ -766,7 +766,6 @@ public class CargarParty extends JFrame implements ActionListener {
 		
 		//boton volver
 		JButton volver = new JButton("VOLVER");
-		volver.setPreferredSize(new Dimension(150, 50));
 		volver.setBackground(new Color(0, 0, 0, 0));
 		volver.setOpaque(false);
 		volver.setContentAreaFilled(false);
@@ -833,7 +832,7 @@ public class CargarParty extends JFrame implements ActionListener {
 				
 				@Override
 				public void run() {
-	        		Main.nuevaPartida.setVisible(true);
+	        		game.setVisible(true);
 	    	    	
 	    	        Timer timer = new Timer(300, new ActionListener() {
 	    	            public void actionPerformed(ActionEvent e) {
@@ -854,7 +853,7 @@ public class CargarParty extends JFrame implements ActionListener {
 				
 				@Override
 				public void run() {
-					Main.nuevaPartida.setVisible(true);
+					game.setVisible(true);
 	    	    	
 	    	        Timer timer = new Timer(300, new ActionListener() {
 	    	            public void actionPerformed(ActionEvent e) {
@@ -877,7 +876,7 @@ public class CargarParty extends JFrame implements ActionListener {
 				
 				@Override
 				public void run() {
-					Main.nuevaPartida.setVisible(true);
+					game.setVisible(true);
 	    	    	
 	    	        Timer timer = new Timer(300, new ActionListener() {
 	    	            public void actionPerformed(ActionEvent e) {
