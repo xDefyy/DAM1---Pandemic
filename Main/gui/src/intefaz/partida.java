@@ -143,6 +143,69 @@ public class partida extends JFrame implements ActionListener {
 				Image.SCALE_SMOOTH);
 		ImageIcon personajeIcon = new ImageIcon(IconPersonaje);
 		
+		ImageIcon azul0 = new ImageIcon("src\\img\\inGame\\virusAzul0.png");
+		Image Alfa0 = azul0.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+		ImageIcon azulVirusCiudad0 = new ImageIcon(Alfa0);
+		
+		ImageIcon azul = new ImageIcon("src\\img\\inGame\\virusAzul.png");
+		Image Alfa1 = azul.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+		ImageIcon azulVirusCiudad = new ImageIcon(Alfa1);
+		
+		ImageIcon azul2 = new ImageIcon("src\\img\\inGame\\virusAzul2.png");
+		Image Alfa2 = azul2.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+		ImageIcon azulVirusCiudad2 = new ImageIcon(Alfa2);
+		
+		ImageIcon azul3 = new ImageIcon("src\\img\\inGame\\virusAzul3.png");
+		Image Alfa3 = azul3.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+		ImageIcon azulVirusCiudad3 = new ImageIcon(Alfa3);
+		
+		ImageIcon rojo0 = new ImageIcon("src\\img\\inGame\\virusRojo0.png");
+		Image beta0 = azul0.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+		ImageIcon rojoVirusCiudad0 = new ImageIcon(beta0);
+		
+		ImageIcon rojo = new ImageIcon("src\\img\\inGame\\virusRojo.png");
+		Image beta = azul.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+		ImageIcon rojoVirusCiudad = new ImageIcon(beta);
+		
+		ImageIcon rojo2 = new ImageIcon("src\\img\\inGame\\virusRojo2.png");
+		Image beta2 = azul2.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+		ImageIcon rojoVirusCiudad2 = new ImageIcon(beta2);
+		
+		ImageIcon rojo3 = new ImageIcon("src\\img\\inGame\\virusRojo3.png");
+		Image beta3 = azul3.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+		ImageIcon rojoVirusCiudad3 = new ImageIcon(beta3);
+		
+		ImageIcon amarillo0 = new ImageIcon("src\\img\\inGame\\virusAmarillo0.png");
+		Image gamma0 = amarillo0.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+		ImageIcon amarilloVirusCiudad0 = new ImageIcon(gamma0);
+		
+		ImageIcon amarillo = new ImageIcon("src\\img\\inGame\\virusAmarillo.png");
+		Image gamma = rojo.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+		ImageIcon amarilloVirusCiudad = new ImageIcon(gamma);
+		
+		ImageIcon amarillo2 = new ImageIcon("src\\img\\inGame\\virusAmarillo.png");
+		Image gamma2 = amarillo2.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+		ImageIcon amarilloVirusCiudad2 = new ImageIcon(gamma2);
+		
+		ImageIcon amarillo3 = new ImageIcon("src\\img\\inGame\\virusAmarillo3.png");
+		Image gamma3 = amarillo3.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+		ImageIcon amarilloVirusCiudad3 = new ImageIcon(gamma3);
+		
+		ImageIcon negro0 = new ImageIcon("src\\img\\inGame\\virusNegro0.png");
+		Image delta0 = amarillo0.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+		ImageIcon negroVirusCiudad0 = new ImageIcon(delta0);
+		
+		ImageIcon negro = new ImageIcon("src\\img\\inGame\\virusNegro.png");
+		Image delta = negro.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+		ImageIcon negroVirusCiudad = new ImageIcon(delta);
+		
+		ImageIcon negro2 = new ImageIcon("src\\img\\inGame\\virusNegro2.png");
+		Image delta2 = negro2.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+		ImageIcon negroVirusCiudad2 = new ImageIcon(delta2);
+		
+		ImageIcon negro3 = new ImageIcon("src\\img\\inGame\\virusNegro3.png");
+		Image delta3 = negro3.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+		ImageIcon negroVirusCiudad3 = new ImageIcon(delta3);
 		
 
 		LineBorder borderRojo = new LineBorder(new Color(137, 5, 78), 3);
@@ -164,12 +227,13 @@ public class partida extends JFrame implements ActionListener {
 		int x = 50;
 		ButtonGroup ciudadesBtn = new ButtonGroup();
 		//botones
-		Francisco = new JButton();
+		Francisco = new JButton();;
 		Francisco.setOpaque(falso);
 		Francisco.setFocusPainted(falso);
 		Francisco.setContentAreaFilled(falso);
 		Francisco.setBorderPainted(falso);
 		Francisco.setBounds(105,205,x,x);
+		Francisco.setIcon(azulVirusCiudad0);
 		ciudadesBtn.add(Francisco);
 		game.add(Francisco);
 		 
@@ -179,6 +243,7 @@ public class partida extends JFrame implements ActionListener {
 		Chicago.setContentAreaFilled(falso);
 		Chicago.setBorderPainted(falso);
 		Chicago.setBounds(195,175,x,x);
+		Chicago.setIcon(azulVirusCiudad0);
 		ciudadesBtn.add(Chicago);
 		game.add(Chicago);
 		
@@ -188,6 +253,7 @@ public class partida extends JFrame implements ActionListener {
 		Atlanta.setContentAreaFilled(falso);
 		Atlanta.setBorderPainted(falso);
 		Atlanta.setBounds(250, 260, x,x);
+		Atlanta.setIcon(azulVirusCiudad0);
 		ciudadesBtn.add(Atlanta);
 		game.add(Atlanta);
 		
@@ -197,6 +263,7 @@ public class partida extends JFrame implements ActionListener {
 		Montreal.setContentAreaFilled(falso);
 		Montreal.setBorderPainted(falso);
 		Montreal.setBounds(305,205,x,x);
+		Montreal.setIcon(azulVirusCiudad0);
 		ciudadesBtn.add(Montreal);
 		game.add(Montreal);
 		
@@ -206,6 +273,7 @@ public class partida extends JFrame implements ActionListener {
 		NuevaYork.setContentAreaFilled(falso);
 		NuevaYork.setBorderPainted(falso);
 		NuevaYork.setBounds(385, 195, x ,x );
+		NuevaYork.setIcon(azulVirusCiudad0);
 		ciudadesBtn.add(NuevaYork);
 		game.add(NuevaYork);
 		
@@ -215,6 +283,7 @@ public class partida extends JFrame implements ActionListener {
 		Washington.setContentAreaFilled(falso);
 		Washington.setBorderPainted(falso);
 		Washington.setBounds(375, 275,x,x);
+		Washington.setIcon(azulVirusCiudad0);
 		ciudadesBtn.add(Washington);
 		game.add(Washington);
 		
@@ -223,7 +292,8 @@ public class partida extends JFrame implements ActionListener {
 		Londres.setFocusPainted(falso);
 		Londres.setContentAreaFilled(falso);
 		Londres.setBorderPainted(falso);
-		Londres.setBounds(550,190,x,x);
+		Londres.setBounds(550,180,x,x);
+		Londres.setIcon(azulVirusCiudad0);
 		ciudadesBtn.add(Londres);
 		game.add(Londres);
 		
@@ -232,6 +302,7 @@ public class partida extends JFrame implements ActionListener {
 		Madrid.setFocusPainted(falso);
 		Madrid.setContentAreaFilled(falso);
 		Madrid.setBorderPainted(falso);
+		Madrid.setIcon(azulVirusCiudad0);
 		Madrid.setBounds(535, 270, x,x);
 		ciudadesBtn.add(Madrid);
 		game.add(Madrid);
@@ -242,6 +313,7 @@ public class partida extends JFrame implements ActionListener {
 		Paris.setContentAreaFilled(falso);
 		Paris.setBorderPainted(falso);
 		Paris.setBounds(605,225,x,x);
+		Paris.setIcon(azulVirusCiudad0);
 		ciudadesBtn.add(Paris);
 		game.add(Paris);
 		
@@ -251,6 +323,7 @@ public class partida extends JFrame implements ActionListener {
 		Essen.setContentAreaFilled(falso);
 		Essen.setBorderPainted(falso);
 		Essen.setBounds(630, 155,x,x);
+		Essen.setIcon(azulVirusCiudad0);
 		ciudadesBtn.add(Essen);
 		game.add(Essen);
 		
@@ -260,6 +333,7 @@ public class partida extends JFrame implements ActionListener {
 		Milan.setContentAreaFilled(falso);
 		Milan.setBorderPainted(falso);
 		Milan.setBounds(670, 205,x,x);
+		Milan.setIcon(azulVirusCiudad0);
 		ciudadesBtn.add(Milan);
 		game.add(Milan);
 		
@@ -269,6 +343,7 @@ public class partida extends JFrame implements ActionListener {
 		Petersburgo.setContentAreaFilled(falso);
 		Petersburgo.setBorderPainted(falso);
 		Petersburgo.setBounds(745, 125,x,x);
+		Petersburgo.setIcon(azulVirusCiudad0);
 		ciudadesBtn.add(Petersburgo);
 		game.add(Petersburgo);
 		
@@ -1218,7 +1293,7 @@ public class partida extends JFrame implements ActionListener {
 				@Override
 				public void run() {
 					System.out.println("Has seleccionado Madrid");
-					System.out.println("Franko: Ese es mi país!!");
+					System.out.println("Franko: Esa es mi ciudad!!");
 					controlPartida.ciudadSize = ciudadNombre("Madrid");
 					ciudadSeleccionada = true;
 				}
@@ -1555,12 +1630,14 @@ public class partida extends JFrame implements ActionListener {
 				}
 			});
 			vac.start();
-		} else if (source == Calcuta) { //TODO 
+		} else if (source == Calcuta) {  
 			Thread vac = new Thread(new Runnable() {
 
 				@Override
 				public void run() {
-					System.out.println("Soy Calcuta");
+					System.out.println("Has seleccionado Calcuta");
+					controlPartida.ciudadSize = ciudadNombre("Calcuta");
+					ciudadSeleccionada = true;
 
 				}
 			});
@@ -1570,17 +1647,21 @@ public class partida extends JFrame implements ActionListener {
 
 				@Override
 				public void run() {
-					System.out.println("Soy Madras");
+					System.out.println("Has seleccionado Madras");
+					controlPartida.ciudadSize = ciudadNombre("Madras");
+					ciudadSeleccionada = true;
 
 				}
 			});
 			vac.start();
-		} else if (source == Yakarta) { //TODO
+		} else if (source == Yakarta) { 
 			Thread vac = new Thread(new Runnable() {
 
 				@Override
 				public void run() {
-					System.out.println("Soy Yakarta");
+					System.out.println("Has seleccionado Yakarta");
+					controlPartida.ciudadSize = ciudadNombre("Yakarta");
+					ciudadSeleccionada = true;
 
 				}
 			});
@@ -1590,7 +1671,9 @@ public class partida extends JFrame implements ActionListener {
 
 				@Override
 				public void run() {
-					System.out.println("Soy Bangkok");
+					System.out.println("Has seleccionado Bangkok");
+					controlPartida.ciudadSize = ciudadNombre("Bangkok");
+					ciudadSeleccionada = true;
 
 				}
 			});
@@ -1600,7 +1683,9 @@ public class partida extends JFrame implements ActionListener {
 
 				@Override
 				public void run() {
-					System.out.println("Soy HongKong");
+					System.out.println("Has seleccionado Hong Kong");
+					controlPartida.ciudadSize = ciudadNombre("Hong Kong");
+					ciudadSeleccionada = true;
 
 				}
 			});
@@ -1610,7 +1695,9 @@ public class partida extends JFrame implements ActionListener {
 
 				@Override
 				public void run() {
-					System.out.println("Soy Shanghai");
+					System.out.println("Has seleccionado Shanghai");
+					controlPartida.ciudadSize = ciudadNombre("Shanghai");
+					ciudadSeleccionada = true;
 
 				}
 			});
@@ -1620,7 +1707,9 @@ public class partida extends JFrame implements ActionListener {
 
 				@Override
 				public void run() {
-					System.out.println("Soy Pekin");
+					System.out.println("Has seleccionado Pekin");
+					controlPartida.ciudadSize = ciudadNombre("Pekin");
+					ciudadSeleccionada = true;
 
 				}
 			});
@@ -1630,7 +1719,9 @@ public class partida extends JFrame implements ActionListener {
 
 				@Override
 				public void run() {
-					System.out.println("Soy Seul");
+					System.out.println("Has seleccionado Seul");
+					controlPartida.ciudadSize = ciudadNombre("Seul");
+					ciudadSeleccionada = true;
 
 				}
 			});
@@ -1640,8 +1731,9 @@ public class partida extends JFrame implements ActionListener {
 
 				@Override
 				public void run() {
-					System.out.println("Soy Tokio");
-
+					System.out.println("Has seleccionado Tokio");
+					controlPartida.ciudadSize = ciudadNombre("Tokio");
+					ciudadSeleccionada = true;
 				}
 			});
 			vac.start();
@@ -1650,7 +1742,9 @@ public class partida extends JFrame implements ActionListener {
 
 				@Override
 				public void run() {
-					System.out.println("Soy Osaka");
+					System.out.println("Has seleccionado Osaka");
+					controlPartida.ciudadSize = ciudadNombre("Osaka");
+					ciudadSeleccionada = true;
 
 				}
 			});
@@ -1660,7 +1754,9 @@ public class partida extends JFrame implements ActionListener {
 
 				@Override
 				public void run() {
-					System.out.println("Soy Taipei");
+					System.out.println("Has seleccionado Taipei");
+					controlPartida.ciudadSize = ciudadNombre("Taipei");
+					ciudadSeleccionada = true;
 
 				}
 			});
@@ -1670,7 +1766,9 @@ public class partida extends JFrame implements ActionListener {
 
 				@Override
 				public void run() {
-					System.out.println("Soy Minh");
+					System.out.println("Has seleccionado Ho Chi Minh");
+					controlPartida.ciudadSize = ciudadNombre("Ho Chi Minh");
+					ciudadSeleccionada = true;
 
 				}
 			});
@@ -1680,7 +1778,9 @@ public class partida extends JFrame implements ActionListener {
 
 				@Override
 				public void run() {
-					System.out.println("Soy Manila");
+					System.out.println("Has seleccionado Manila");
+					controlPartida.ciudadSize = ciudadNombre("Manila");
+					ciudadSeleccionada = true;
 
 				}
 			});
@@ -1690,7 +1790,9 @@ public class partida extends JFrame implements ActionListener {
 
 				@Override
 				public void run() {
-					System.out.println("Soy Sidney");
+					System.out.println("Has seleccionado Sydney");
+					controlPartida.ciudadSize = ciudadNombre("Sydney");
+					ciudadSeleccionada = true;
 
 				}
 			});

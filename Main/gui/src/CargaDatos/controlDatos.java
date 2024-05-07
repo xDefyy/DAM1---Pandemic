@@ -105,7 +105,7 @@ public class controlDatos {
 
 		vacunas vacuna_alpha = new vacunas("VIH", "Azul", 0);
 		vacunas vacuna_beta = new vacunas("CANCER", "Rojo", 0);
-		vacunas vacuna_gamma = new vacunas("SARS", "Verde", 0);
+		vacunas vacuna_gamma = new vacunas("SARS", "Amarillo", 0);
 		vacunas vacuna_delta = new vacunas("NIGGA", "Negro", 0);
 		
 		vacunas.add(vacuna_alpha);
@@ -119,7 +119,7 @@ public class controlDatos {
 		
 		virus virus_alpha = new virus("0","Alfa","Azul");
 		virus virus_beta = new virus("1","Beta","Rojo");
-		virus virus_gamma = new virus("2","Gamma","Verde");
+		virus virus_gamma = new virus("2","Gamma","Amarillo");
 		virus virus_delta = new virus("3","Delta","Negro");
 		
 		virus.add(virus_alpha);
