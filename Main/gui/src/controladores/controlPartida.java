@@ -41,14 +41,24 @@ public class controlPartida {
 		progresoG = datos.getpDesarrollo();
 		progresoD = datos.getpDesarrollo();
 		aux = datos.getpDesarrollo();
-
+		gestionar_InfeccionNewGame();
+		partida.ciudadesInf.setText("Ciudades Infectadas: " + ciudadesInfectadas());
 		partida.rondas.setText("Ronda: " + datos.getRondas());
 		partida.brotes.setText("Brotes:" + datos.getBrotes());
-		gestionar_InfeccionNewGame();
+		
 	}
-
+	
 	public static void iniciar_Partida_Guardada(String id) {
 
+	}
+	
+	public static int ciudadesInfectadas() {
+		int x = 0;
+		for (int i = 0; i < datos.getCiudades().size(); i++) {
+			 x += datos.getCiudades().get(i).getInfeccion();
+		}
+		
+		return x;
 	}
 
 	public static void gestionar_Turno() {
@@ -56,6 +66,7 @@ public class controlPartida {
 
 			@Override
 			public void run() {
+				partida.finalizarRonda.setEnabled(false);
 				gestionar_InfeccionNewRound();
 				partida.DDelta.setEnabled(true);
 				partida.DAlfa.setEnabled(true);
@@ -70,10 +81,16 @@ public class controlPartida {
 
 				datos.setAcciones(4);
 
-				partida.acciones.setText("Acciones = " + datos.getAcciones());
+				partida.acciones.setText("Acciones: " + datos.getAcciones());
 				// limpia el texto
 				gestionar_InfeccionNewRound();
-
+				try {
+					Thread.sleep(1800);
+					partida.finalizarRonda.setEnabled(true);
+				} catch (InterruptedException e) {
+			        e.printStackTrace();
+			    }
+				partida.ciudadesInf.setText("Ciudades Infectadas: " + ciudadesInfectadas());
 			}
 		});
 		vac.start();
@@ -84,6 +101,7 @@ public class controlPartida {
 	
 	
 	public static void gestionar_Vacuna(int valor) {
+		if (datos.getAcciones() == 4) {
 			if (valor == 0) {
 				Thread thread = new Thread(new Runnable() {
 					public void run() {
@@ -183,6 +201,10 @@ public class controlPartida {
 				thread.start();
 			}
 			gestionAcciones();
+		} else {
+			System.out.println("Franko: No tienes acciones suficientes.");
+		}
+			
 	}
 	
 	public static void gestionAcciones() {
@@ -287,39 +309,70 @@ public class controlPartida {
 		for (int i = 0; i < datos.getCiudades().size(); i++) {
 			 infeccionTotal += datos.getCiudades().get(i).getInfeccion();
 			 if (infeccionTotal >= derrotaEnfermedad) {
-				 System.out.println("has perdido por infecciones");//cambiar por panel de GAME OVER
-			 }	
+				 System.out.println("has perdido por infecciones");
+				 break;
+			 } else {
+				 infeccionTotal = 0;
+			 }
 		}	
 	}
 
 	public static void gestionar_Cura() {
-		
-		if ((datos.getAcciones() > 0) && (datos.getCiudades().get(ciudadSize)).getInfeccion() > 0) {
-			//funcion de curar con vacuna desarrollada
-			if (datos.getCiudades().get(ciudadSize).getEnfermedad())
-		}
-//		
-//		if ((datos.getAcciones() > 0) && (datos.getCiudades().get(x).getInfeccion() > 0)) {  //insertar boton donde liqi llora "0" (el boton va assignado a un objeto de ciudad)
-//			if (datos.getVacunas().get(x).getPorcentaje() == 100 && datos.getCiudades().get(x).getEnfermedad().equals("Alpha") && datos.getCiudades().get(x).getInfeccion() > 1) {  // && boton ciudad
-//				datos.getCiudades().get(x).setInfeccion(datos.getCiudades().get(x).getInfeccion()-1);
-//				datos.setAcciones(0);
-//			} else if (datos.getVacunas().get(1).getPorcentaje() == 100 && datos.getCiudades().get(x).getEnfermedad().equals("Beta") && datos.getCiudades().get(x).getInfeccion() > 1) {
-//				datos.getCiudades().get(0).setInfeccion(datos.getCiudades().get(x).getInfeccion()-1);
-//				datos.setAcciones(0);
-//			} else if (datos.getVacunas().get(2).getPorcentaje() == 100 && datos.getCiudades().get(x).getEnfermedad().equals("Delta") && datos.getCiudades().get(x).getInfeccion() > 1) {
-//				datos.getCiudades().get(0).setInfeccion(datos.getCiudades().get(x).getInfeccion()-1);
-//				datos.setAcciones(0);
-//			} else if (datos.getVacunas().get(3).getPorcentaje() == 100 && datos.getCiudades().get(x).getEnfermedad().equals("Gamma") && datos.getCiudades().get(x).getInfeccion() > 1) {
-//				datos.getCiudades().get(0).setInfeccion(datos.getCiudades().get(x).getInfeccion()-1);
-//				datos.setAcciones(0);	
-//			}
-//			
-//			datos.getCiudades().get(0).setInfeccion(datos.getCiudades().get(0).getInfeccion()-1);
-//			
-//			datos.setAcciones(datos.getAcciones()-1);
-//			partida.acciones.setText("Acciones : " + datos.getAcciones());
-//			
-//		}
+		Thread vac = new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				if ((datos.getAcciones() > 0) && (datos.getCiudades().get(ciudadSize)).getInfeccion() > 0 || datos.getCiudades().get(ciudadSize).getInfeccion() < 0 && partida.ciudadSeleccionada == true)  {
+					//funcion de curar con vacuna desarrollada
+					if (datos.getCiudades().get(ciudadSize).getEnfermedad().equalsIgnoreCase("Alfa") && datos.getVacunas().get(0).getPorcentaje() == 100) {
+						datos.getCiudades().get(ciudadSize).setInfeccion(0);
+						System.out.println("Has curado la ciudad " + datos.getCiudades().get(ciudadSize).getNombre() + " con la vacuna " + datos.getVacunas().get(0).getNombre() + " y has dejado el nivel de infeccion en: " + datos.getCiudades().get(ciudadSize).getInfeccion());
+						datos.setAcciones(datos.getAcciones()-1);
+						partida.acciones.setText("Acciones: " + datos.getAcciones());
+					} else if (datos.getCiudades().get(ciudadSize).getEnfermedad().equalsIgnoreCase("Beta") && datos.getVacunas().get(1).getPorcentaje() == 100) {
+						datos.getCiudades().get(ciudadSize).setInfeccion(0);
+						System.out.println("Has curado la ciudad " + datos.getCiudades().get(ciudadSize).getNombre() + " con la vacuna " + datos.getVacunas().get(1).getNombre() + " y has dejado el nivel de infeccion en: " + datos.getCiudades().get(ciudadSize).getInfeccion());
+						datos.setAcciones(datos.getAcciones()-1);
+						partida.acciones.setText("Acciones: " + datos.getAcciones());
+					} else if (datos.getCiudades().get(ciudadSize).getEnfermedad().equalsIgnoreCase("Gamma") && datos.getVacunas().get(2).getPorcentaje() == 100) {
+						datos.getCiudades().get(ciudadSize).setInfeccion(0);
+						System.out.println("Has curado la ciudad " + datos.getCiudades().get(ciudadSize).getNombre() + " con la vacuna " + datos.getVacunas().get(2).getNombre() + " y has dejado el nivel de infeccion en: " + datos.getCiudades().get(ciudadSize).getInfeccion());
+						datos.setAcciones(datos.getAcciones()-1);
+						partida.acciones.setText("Acciones: " + datos.getAcciones());
+					} else if (datos.getCiudades().get(ciudadSize).getEnfermedad().equalsIgnoreCase("Delta") && datos.getVacunas().get(3).getPorcentaje() == 100) {
+						datos.getCiudades().get(ciudadSize).setInfeccion(0);
+						System.out.println("Has curado la ciudad " + datos.getCiudades().get(ciudadSize).getNombre() + " con la vacuna " + datos.getVacunas().get(3).getNombre() + " y has dejado el nivel de infeccion en: " + datos.getCiudades().get(ciudadSize).getInfeccion());
+						datos.setAcciones(datos.getAcciones()-1);
+						partida.acciones.setText("Acciones: " + datos.getAcciones());
+					} else if (datos.getCiudades().get(ciudadSize).getEnfermedad().equalsIgnoreCase("Alfa") && datos.getVacunas().get(0).getPorcentaje() != 100) {
+						datos.getCiudades().get(ciudadSize).setInfeccion(datos.getCiudades().get(ciudadSize).getInfeccion()-1);
+						System.out.println("Has curado la ciudad " + datos.getCiudades().get(ciudadSize).getNombre() + " sin la vacuna " + datos.getVacunas().get(0).getNombre() + " y has dejado el nivel de infeccion en: " + datos.getCiudades().get(ciudadSize).getInfeccion());
+						datos.setAcciones(datos.getAcciones()-1);
+						partida.acciones.setText("Acciones: " + datos.getAcciones());
+					} else if (datos.getCiudades().get(ciudadSize).getEnfermedad().equalsIgnoreCase("Beta") && datos.getVacunas().get(1).getPorcentaje() != 100) {
+						datos.getCiudades().get(ciudadSize).setInfeccion(datos.getCiudades().get(ciudadSize).getInfeccion()-1);
+						System.out.println("Has curado la ciudad " + datos.getCiudades().get(ciudadSize).getNombre() + " sin la vacuna " + datos.getVacunas().get(1).getNombre() + " y has dejado el nivel de infeccion en: " + datos.getCiudades().get(ciudadSize).getInfeccion());
+						datos.setAcciones(datos.getAcciones()-1);
+						partida.acciones.setText("Acciones: " + datos.getAcciones());
+					} else if (datos.getCiudades().get(ciudadSize).getEnfermedad().equalsIgnoreCase("Gamma") && datos.getVacunas().get(2).getPorcentaje() != 100) {
+						datos.getCiudades().get(ciudadSize).setInfeccion(datos.getCiudades().get(ciudadSize).getInfeccion()-1);
+						System.out.println("Has curado la ciudad " + datos.getCiudades().get(ciudadSize).getNombre() + " sin la vacuna " + datos.getVacunas().get(2).getNombre() + " y has dejado el nivel de infeccion en: " + datos.getCiudades().get(ciudadSize).getInfeccion());
+						datos.setAcciones(datos.getAcciones()-1);
+						partida.acciones.setText("Acciones: " + datos.getAcciones());
+					} else if (datos.getCiudades().get(ciudadSize).getEnfermedad().equalsIgnoreCase("Delta") && datos.getVacunas().get(3).getPorcentaje() != 100) {
+						datos.getCiudades().get(ciudadSize).setInfeccion(datos.getCiudades().get(ciudadSize).getInfeccion()-1);
+						System.out.println("Has curado la ciudad " + datos.getCiudades().get(ciudadSize).getNombre() + " sin la vacuna " + datos.getVacunas().get(3).getNombre() + " y has dejado el nivel de infeccion en: " + datos.getCiudades().get(ciudadSize).getInfeccion());
+						datos.setAcciones(datos.getAcciones()-1);
+						partida.acciones.setText("Acciones: " + datos.getAcciones());
+					} 
+				} else if (datos.getAcciones() == 0) {
+					System.out.println("Franko: No tienes acciones...");
+				} else if (datos.getCiudades().get(ciudadSize).getInfeccion() == 0) {
+					System.out.println("Franko: No esta infectado la ciudad: " + datos.getCiudades().get(ciudadSize).getNombre());
+				} 
+			}
+		});
+		vac.start();
 		
 		
 	}

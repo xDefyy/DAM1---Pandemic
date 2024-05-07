@@ -5,7 +5,7 @@ import controladores.reproductorWav;
 import intefaz.CargarParty;
 import intefaz.Reglas;
 import intefaz.pantallaPrincipal;
-import intefaz.partida;
+
 
 
 public class Main {
