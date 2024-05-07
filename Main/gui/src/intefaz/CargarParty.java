@@ -134,7 +134,7 @@ public class CargarParty extends JFrame implements ActionListener {
 		dificultad.setOpaque(false);
 
 		JLabel dificultadIm = new JLabel("Dificultad - ");
-		dificultadIm.setFont(fuente());
+		dificultadIm.setFont(controlDatos.fuentecargar());
 		dificultadIm.setForeground(Color.LIGHT_GRAY);
 		dificultad.add(dificultadIm);
 
@@ -194,7 +194,7 @@ public class CargarParty extends JFrame implements ActionListener {
 		bFacil.setOpaque(true);
 		bFacil.setBorder(new LineBorder(Color.white));
 		bFacil.setBackground(Color.gray);
-		bFacil.setFont(fuente());
+		bFacil.setFont(controlDatos.fuentecargar());
 		bFacil.setContentAreaFilled(true);
 		bFacil.setBorderPainted(true);
 		bFacil.setFocusPainted(false);
@@ -279,7 +279,7 @@ public class CargarParty extends JFrame implements ActionListener {
 		dificultad2.setOpaque(false);
 
 		JLabel dificultadIm2 = new JLabel("Dificultad - ");
-		dificultadIm2.setFont(fuente());
+		dificultadIm2.setFont(controlDatos.fuentecargar());
 		dificultadIm2.setForeground(Color.LIGHT_GRAY);
 		dificultad2.add(dificultadIm2);
 
@@ -338,7 +338,7 @@ public class CargarParty extends JFrame implements ActionListener {
 		bNormal.setOpaque(true);
 		bNormal.setBorder(new LineBorder(Color.white));
 		bNormal.setBackground(Color.gray);
-		bNormal.setFont(fuente());
+		bNormal.setFont(controlDatos.fuentecargar());
 		bNormal.setContentAreaFilled(true);
 		bNormal.setBorderPainted(true);
 		bNormal.setFocusPainted(false);
@@ -422,7 +422,7 @@ public class CargarParty extends JFrame implements ActionListener {
 		dificultad3.setOpaque(false);
 
 		JLabel dificultadIm3 = new JLabel("Dificultad - ");
-		dificultadIm3.setFont(fuente());
+		dificultadIm3.setFont(controlDatos.fuentecargar());
 		dificultadIm3.setForeground(Color.LIGHT_GRAY);
 		dificultad3.add(dificultadIm3);
 
@@ -481,7 +481,7 @@ public class CargarParty extends JFrame implements ActionListener {
 		bDificil.setOpaque(true);
 		bDificil.setBorder(new LineBorder(Color.white));
 		bDificil.setBackground(Color.gray);
-		bDificil.setFont(fuente());
+		bDificil.setFont(controlDatos.fuentecargar());
 		bDificil.setContentAreaFilled(true);
 		bDificil.setBorderPainted(true);
 		bDificil.setFocusPainted(false);
@@ -648,10 +648,6 @@ public class CargarParty extends JFrame implements ActionListener {
 		card3.add(dificilGeneral, "CardMundo3");
 		card3.add(hoverDif, "CardMundo3Hover");
 		
-		
-		
-		
-	
 		gbcGeneral.gridx = 0;
 		gbcGeneral.gridy = 0;
 		gbcGeneral.insets = new Insets (5,5,5,5);
@@ -896,24 +892,5 @@ public class CargarParty extends JFrame implements ActionListener {
 	    } else {
 	        System.out.println("Se presionó un botón no identificado");
 	    }
-	}
-	public static Font fuente() {
-		try {
-        	File fuente = new File("src\\fuente\\fuenteCargarParty.ttf");
-            
-            Font font = Font.createFont(Font.TRUETYPE_FONT, fuente);
-           
-            // Tamaño de la fuente (en puntos)
-            float fontSize = 45f;
-            
-            font = font.deriveFont(fontSize);
-            GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(font);
-            return font;
-
-        } catch (IOException | FontFormatException e) {
-        	Font defaultFont = new Font("Arial", Font.PLAIN, 15);
-            e.printStackTrace();
-            return defaultFont;
-        }
 	}
 }

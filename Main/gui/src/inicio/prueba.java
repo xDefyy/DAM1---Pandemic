@@ -5,6 +5,7 @@ import javax.swing.text.*;
 import java.awt.*;
 
 public class prueba {
+	 
     prueba() {
         JFrame frame = new JFrame("Custom TextArea Example");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

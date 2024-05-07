@@ -25,6 +25,7 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 
 import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -34,6 +35,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JProgressBar;
+import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
@@ -48,8 +50,9 @@ import javax.swing.plaf.basic.BasicProgressBarUI;
 import CargaDatos.controlDatos;
 import controladores.controlPartida;
 import inicio.Main;
+import objetos.ciudad;
 
-public class partida extends JFrame implements ActionListener  {
+public class partida extends JFrame implements ActionListener {
 	public static JProgressBar Alfa = new JProgressBar();
 	public static JProgressBar Beta = new JProgressBar();
 	public static JProgressBar Gamma = new JProgressBar();
@@ -69,9 +72,61 @@ public class partida extends JFrame implements ActionListener  {
 	public static ImageIcon iconoMusFinal = new ImageIcon(iconoMusica);
 	public static ImageIcon iconoMusDes = new ImageIcon("src\\img\\main\\iconoMusicaTachado.png");
 	public static Image iconoMusicaDes = iconoMusDes.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
-	public static ImageIcon iconoMusFinalDes = new ImageIcon(iconoMusicaDes);	
+	public static ImageIcon iconoMusFinalDes = new ImageIcon(iconoMusicaDes);
 	public static boolean musica = true;;
+	
+	// botones
+	JButton Francisco;
+	JButton Chicago;
+	JButton Atlanta;
+	JButton Montreal;
+	JButton NuevaYork;
+	JButton Washington;
+	JButton Londres;
+	JButton Madrid;
+	JButton Paris;
+	JButton Essen;
+	JButton Milan;
+	JButton Petersburgo;
+	JButton Angeles;
+	JButton Miami;
+	JButton Mexico;
+	JButton Bogota;
+	JButton Lima;
+	JButton Santiago;
+	JButton BuenosAires;
+	JButton Paulo;
+	JButton Lagos;
+	JButton Kinsasa;
+	JButton Jartum;
+	JButton Johannesburgo;
+	JButton Argel;
+	JButton Cairo;
+	JButton Riad;
+	JButton Estambul;
+	JButton Bagdad;
+	JButton Moscu;
+	JButton Teheran;
+	JButton Karachi;
+	JButton Bombay;
+	JButton Delhi;
+	JButton Calcuta;
+	JButton Madras;
+	JButton Yakarta;
+	JButton Bangkok;
+	JButton HongKong;
+	JButton Shanghai;
+	JButton Pekin;
+	JButton Seul;
+	JButton Tokio;
+	JButton Osaka;
+	JButton Taipei;
+	JButton Minh;
+	JButton Manila;
+	JButton Sidney;
+
 	public partida()  {
+		
 		SoftBevelBorder softBevelBorder = new SoftBevelBorder(SoftBevelBorder.LOWERED);
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		ImageIcon iconoIcono = new ImageIcon("src\\img\\inGame\\icono.png");
@@ -99,54 +154,447 @@ public class partida extends JFrame implements ActionListener  {
 			}
 		};
 		game.setLayout(null);
-		addButton(game, "San Francisco", 170, 250);
-        addButton(game, "Chicago", 270, 220);
-        addButton(game, "Atlanta", 320, 320);
-        addButton(game, "Montreal", 350, 280);
-        addButton(game, "Nueva York", 455, 260);
-        addButton(game, "Washington", 450, 370);
-        addButton(game, "Londres", 700, 230);
-        addButton(game, "Madrid", 650, 345);
-        addButton(game, "Paris", 740, 300);
-        addButton(game, "Essen", 755, 190);
-        addButton(game, "Milan", 805, 265);
-        addButton(game, "San Petersburgo", 915, 180);
-        addButton(game, "Los Angeles", 170, 370);
-        addButton(game, "Miami", 370, 390);
-        addButton(game, "Mexico DF", 290, 425);
-        addButton(game, "Bogota", 400, 570);
-        addButton(game, "Lima", 350, 650);
-        addButton(game, "Santiago de Chile", 380, 750);
-        addButton(game, "Buenos Aires", 483, 730);
-        addButton(game, "Sao Paulo", 520, 680);
-        addButton(game, "Lagos", 710, 530);
-        addButton(game, "Kinsasa", 830, 540);
-        addButton(game, "Jartum", 815, 620);
-        addButton(game, "Johannesburgo", 815, 730);
-        addButton(game, "Argel", 730, 430);
-        addButton(game, "El Cairo", 820, 450);
-        addButton(game, "Riad", 895, 485);
-        addButton(game, "Estambul", 830, 345);
-        addButton(game, "Bagdad", 920, 370);
-        addButton(game, "Moscu", 925, 285);
-        addButton(game, "Teheran", 1040, 280);
-        addButton(game, "Karachi", 1010, 395);
-        addButton(game, "Bombay", 1045, 505);
-        addButton(game, "Nueva Delhi", 1125, 350);
-        addButton(game, "Calcuta", 1195, 400);
-        addButton(game, "Madras", 1085, 545);
-        addButton(game, "Yakarta", 1200, 620);
-        addButton(game, "Bangkok", 1200, 490);
-        addButton(game, "Hong Kong", 1265, 450);
-        addButton(game, "Shanghai", 1265, 340);
-        addButton(game, "Pekin", 1265, 270);
-        addButton(game, "Seul", 1375, 250);
-        addButton(game, "Tokio", 1390, 315);
-        addButton(game, "Osaka", 1430, 400);
-        addButton(game, "Taipei", 1360, 430);
-        addButton(game, "Ho Chi Minh", 1270, 580);
-        addButton(game, "Manila", 1350, 560);
-        addButton(game, "Sidney", 1350, 730);
+		boolean falso = false;
+		int x = 50;
+		ButtonGroup ciudadesBtn = new ButtonGroup();
+		//botones
+		Francisco = new JButton();
+		Francisco.setOpaque(falso);
+		Francisco.setFocusPainted(falso);
+		Francisco.setContentAreaFilled(falso);
+		Francisco.setBorderPainted(falso);
+		Francisco.setBounds(105,205,x,x);
+		ciudadesBtn.add(Francisco);
+		game.add(Francisco);
+		 
+		Chicago = new JButton();
+		Chicago.setOpaque(falso);
+		Chicago.setFocusPainted(falso);
+		Chicago.setContentAreaFilled(falso);
+		Chicago.setBorderPainted(falso);
+		Chicago.setBounds(195,175,x,x);
+		ciudadesBtn.add(Chicago);
+		game.add(Chicago);
+		
+		Atlanta = new JButton();
+		Atlanta.setOpaque(falso);
+		Atlanta.setFocusPainted(falso);
+		Atlanta.setContentAreaFilled(falso);
+		Atlanta.setBorderPainted(falso);
+		Atlanta.setBounds(250, 260, x,x);
+		ciudadesBtn.add(Atlanta);
+		game.add(Atlanta);
+		
+		Montreal = new JButton();
+		Montreal.setOpaque(falso);
+		Montreal.setFocusPainted(falso);
+		Montreal.setContentAreaFilled(falso);
+		Montreal.setBorderPainted(falso);
+		Montreal.setBounds(305,205,x,x);
+		ciudadesBtn.add(Montreal);
+		game.add(Montreal);
+		
+		NuevaYork = new JButton();
+		NuevaYork.setOpaque(falso);
+		NuevaYork.setFocusPainted(falso);
+		NuevaYork.setContentAreaFilled(falso);
+		NuevaYork.setBorderPainted(falso);
+		NuevaYork.setBounds(385, 195, x ,x );
+		ciudadesBtn.add(NuevaYork);
+		game.add(NuevaYork);
+		
+		Washington = new JButton();
+		Washington.setOpaque(falso);
+		Washington.setFocusPainted(falso);
+		Washington.setContentAreaFilled(falso);
+		Washington.setBorderPainted(falso);
+		Washington.setBounds(375, 275,x,x);
+		ciudadesBtn.add(Washington);
+		game.add(Washington);
+		
+		Londres = new JButton();
+		Londres.setOpaque(falso);
+		Londres.setFocusPainted(falso);
+		Londres.setContentAreaFilled(falso);
+		Londres.setBorderPainted(falso);
+		Londres.setBounds(550,190,x,x);
+		ciudadesBtn.add(Londres);
+		game.add(Londres);
+		
+		Madrid = new JButton();
+		Madrid.setOpaque(falso);
+		Madrid.setFocusPainted(falso);
+		Madrid.setContentAreaFilled(falso);
+		Madrid.setBorderPainted(falso);
+		Madrid.setBounds(535, 270, x,x);
+		ciudadesBtn.add(Madrid);
+		game.add(Madrid);
+		
+		Paris = new JButton();
+		Paris.setOpaque(falso);
+		Paris.setFocusPainted(falso);
+		Paris.setContentAreaFilled(falso);
+		Paris.setBorderPainted(falso);
+		Paris.setBounds(605,225,x,x);
+		ciudadesBtn.add(Paris);
+		game.add(Paris);
+		
+		Essen = new JButton();
+		Essen.setOpaque(falso);
+		Essen.setFocusPainted(falso);
+		Essen.setContentAreaFilled(falso);
+		Essen.setBorderPainted(falso);
+		Essen.setBounds(630, 155,x,x);
+		ciudadesBtn.add(Essen);
+		game.add(Essen);
+		
+		Milan = new JButton();
+		Milan.setOpaque(falso);
+		Milan.setFocusPainted(falso);
+		Milan.setContentAreaFilled(falso);
+		Milan.setBorderPainted(falso);
+		Milan.setBounds(670, 205,x,x);
+		ciudadesBtn.add(Milan);
+		game.add(Milan);
+		
+		Petersburgo = new JButton();
+		Petersburgo.setOpaque(falso);
+		Petersburgo.setFocusPainted(falso);
+		Petersburgo.setContentAreaFilled(falso);
+		Petersburgo.setBorderPainted(falso);
+		Petersburgo.setBounds(745, 125,x,x);
+		ciudadesBtn.add(Petersburgo);
+		game.add(Petersburgo);
+		
+		
+		Angeles = new JButton();
+		Angeles.setOpaque(falso);
+		Angeles.setFocusPainted(falso);
+		Angeles.setContentAreaFilled(falso);
+		Angeles.setBorderPainted(falso);
+		Angeles.setBounds(135, 275,x,x);
+		ciudadesBtn.add(Angeles);
+		game.add(Angeles);
+		
+		Miami = new JButton();
+		Miami.setOpaque(falso);
+		Miami.setFocusPainted(falso);
+		Miami.setContentAreaFilled(falso);
+		Miami.setBorderPainted(falso);
+		Miami.setBounds(300,312,x,x);
+		ciudadesBtn.add(Miami);
+		game.add(Miami);
+		
+		Mexico = new JButton();
+		Mexico.setOpaque(falso);
+		Mexico.setFocusPainted(falso);
+		Mexico.setContentAreaFilled(falso);
+		Mexico.setBorderPainted(falso);
+		Mexico.setBounds(225,335, x,x);
+		ciudadesBtn.add(Mexico);
+		game.add(Mexico);
+		
+		Bogota = new JButton();
+		Bogota.setOpaque(falso);
+		Bogota.setFocusPainted(falso);
+		Bogota.setContentAreaFilled(falso);
+		Bogota.setBorderPainted(falso);
+		Bogota.setBounds(320,430,x,x);
+		ciudadesBtn.add(Bogota);
+		game.add(Bogota);
+		
+		Lima = new JButton();
+		Lima.setOpaque(falso);
+		Lima.setFocusPainted(falso);
+		Lima.setContentAreaFilled(falso);
+		Lima.setBorderPainted(falso);
+		Lima.setBounds(280, 490, x ,x);
+		ciudadesBtn.add(Lima);
+		game.add(Lima);
+		
+		Santiago = new JButton();
+		Santiago.setOpaque(falso);
+		Santiago.setFocusPainted(falso);
+		Santiago.setContentAreaFilled(falso);
+		Santiago.setBorderPainted(falso);
+		Santiago.setBounds(305, 615, x ,x);
+		ciudadesBtn.add(Santiago);
+		game.add(Santiago);
+		
+		BuenosAires = new JButton();
+		BuenosAires.setOpaque(falso);
+		BuenosAires.setFocusPainted(falso);
+		BuenosAires.setContentAreaFilled(falso);
+		BuenosAires.setBorderPainted(falso);
+		BuenosAires.setBounds(390, 590,x,x);
+		ciudadesBtn.add(BuenosAires);
+		game.add(BuenosAires);
+		
+		Paulo = new JButton();
+		Paulo.setOpaque(falso);
+		Paulo.setFocusPainted(falso);
+		Paulo.setContentAreaFilled(falso);
+		Paulo.setBorderPainted(falso);
+		Paulo.setBounds(425,520,x,x);
+		ciudadesBtn.add(Paulo);
+		game.add(Paulo);
+		
+		Lagos = new JButton();
+		Lagos.setOpaque(falso);
+		Lagos.setFocusPainted(falso);
+		Lagos.setContentAreaFilled(falso);
+		Lagos.setBorderPainted(falso);
+		Lagos.setBounds(585, 425,x,x);
+		ciudadesBtn.add(Lagos);
+		game.add(Lagos);
+		
+		Kinsasa = new JButton();
+		Kinsasa.setOpaque(falso);
+		Kinsasa.setFocusPainted(falso);
+		Kinsasa.setContentAreaFilled(falso);
+		Kinsasa.setBorderPainted(falso);
+		Kinsasa.setBounds(695,425,x,x);
+		ciudadesBtn.add(Kinsasa);
+		game.add(Kinsasa);
+		
+		Jartum = new JButton();
+		Jartum.setOpaque(falso);
+		Jartum.setFocusPainted(falso);
+		Jartum.setContentAreaFilled(falso);
+		Jartum.setBorderPainted(falso);
+		Jartum.setBounds(650, 490,x,x);
+		ciudadesBtn.add(Jartum);
+		game.add(Jartum);
+		
+		Johannesburgo = new JButton();
+		Johannesburgo.setOpaque(falso);
+		Johannesburgo.setFocusPainted(falso);
+		Johannesburgo.setContentAreaFilled(falso);
+		Johannesburgo.setBorderPainted(falso);
+		Johannesburgo.setBounds(685,565,x,x);
+		ciudadesBtn.add(Johannesburgo);
+		game.add(Johannesburgo);
+		
+		Argel = new JButton();
+		Argel.setOpaque(falso);
+		Argel.setFocusPainted(falso);
+		Argel.setContentAreaFilled(falso);
+		Argel.setBorderPainted(falso);
+		Argel.setBounds(605,320,x,x);
+		ciudadesBtn.add(Argel);
+		game.add(Argel);
+		
+		Cairo = new JButton();
+		Cairo.setOpaque(falso);
+		Cairo.setFocusPainted(falso);
+		Cairo.setContentAreaFilled(falso);
+		Cairo.setBorderPainted(falso);
+		Cairo.setBounds(675, 355,x,x);
+		ciudadesBtn.add(Cairo);
+		game.add(Cairo);
+		
+		
+		Riad = new JButton();
+		Riad.setOpaque(falso);
+		Riad.setFocusPainted(falso);
+		Riad.setContentAreaFilled(falso);
+		Riad.setBorderPainted(falso);
+		Riad.setBounds(765, 385, x ,x);
+		ciudadesBtn.add(Riad);
+		game.add(Riad);
+		
+		Estambul = new JButton();
+		Estambul.setOpaque(falso);
+		Estambul.setFocusPainted(falso);
+		Estambul.setContentAreaFilled(falso);
+		Estambul.setBorderPainted(falso);
+		Estambul.setBounds(680, 270,x,x);
+		ciudadesBtn.add(Estambul);
+		game.add(Estambul);
+		
+		Bagdad = new JButton();
+		Bagdad.setOpaque(falso);
+		Bagdad.setFocusPainted(falso);
+		Bagdad.setContentAreaFilled(falso);
+		Bagdad.setBorderPainted(falso);
+		Bagdad.setBounds(755, 295, x, x);
+		ciudadesBtn.add(Bagdad);
+		game.add(Bagdad);
+		
+		Moscu = new JButton();
+		Moscu.setOpaque(falso);
+		Moscu.setFocusPainted(falso);
+		Moscu.setContentAreaFilled(falso);
+		Moscu.setBorderPainted(falso);
+		Moscu.setBounds(755, 210,x,x);
+		ciudadesBtn.add(Moscu);
+		game.add(Moscu);
+		
+		Teheran = new JButton();
+		Teheran.setOpaque(falso);
+		Teheran.setFocusPainted(falso);
+		Teheran.setContentAreaFilled(falso);
+		Teheran.setBounds(850,210,x,x);
+		Teheran.setBorderPainted(falso);
+		ciudadesBtn.add(Teheran);
+		game.add(Teheran);
+		
+		Karachi = new JButton();
+		Karachi.setOpaque(falso);
+		Karachi.setFocusPainted(falso);
+		Karachi.setContentAreaFilled(falso);
+		Karachi.setBorderPainted(falso);
+		Karachi.setBounds(825,305,x,x);
+		ciudadesBtn.add(Karachi);
+		game.add(Karachi);
+		
+		Bombay = new JButton();
+		Bombay.setOpaque(falso);
+		Bombay.setFocusPainted(falso);
+		Bombay.setContentAreaFilled(falso);
+		Bombay.setBorderPainted(falso);
+		Bombay.setBounds(840,385,x,x);
+		ciudadesBtn.add(Bombay);
+		game.add(Bombay);
+		
+		Delhi = new JButton();
+		Delhi.setOpaque(falso);
+		Delhi.setFocusPainted(falso);
+		Delhi.setContentAreaFilled(falso);
+		Delhi.setBorderPainted(falso);
+		Delhi.setBounds(910,275,x,x);
+		ciudadesBtn.add(Delhi);
+		game.add(Delhi);
+		
+		Calcuta = new JButton();
+		Calcuta.setOpaque(falso);
+		Calcuta.setFocusPainted(falso);
+		Calcuta.setContentAreaFilled(falso);
+		Calcuta.setBorderPainted(falso);
+		Calcuta.setBounds(965,310,x,x);
+		ciudadesBtn.add(Calcuta);
+		game.add(Calcuta);
+		
+		Madras = new JButton();
+		Madras.setOpaque(falso);
+		Madras.setFocusPainted(falso);
+		Madras.setContentAreaFilled(falso);
+		Madras.setBorderPainted(falso);
+		Madras.setBounds(910,425,x,x);
+		ciudadesBtn.add(Madras);
+		game.add(Madras);
+		
+		Yakarta = new JButton();
+		Yakarta.setOpaque(falso);
+		Yakarta.setFocusPainted(falso);
+		Yakarta.setContentAreaFilled(falso);
+		Yakarta.setBorderPainted(falso);
+		Yakarta.setBounds(955,500,x,x);
+		ciudadesBtn.add(Yakarta);
+		game.add(Yakarta);
+		
+		Bangkok = new JButton();
+		Bangkok.setOpaque(falso);
+		Bangkok.setFocusPainted(falso);
+		Bangkok.setContentAreaFilled(falso);
+		Bangkok.setBounds(975,395,x,x);
+		Bangkok.setBorderPainted(falso);
+		ciudadesBtn.add(Bangkok);
+		game.add(Bangkok);
+		
+		HongKong = new JButton();
+		HongKong.setOpaque(falso);
+		HongKong.setFocusPainted(falso);
+		HongKong.setContentAreaFilled(falso);
+		HongKong.setBorderPainted(falso);
+		HongKong.setBounds(1030,355,x,x);
+		ciudadesBtn.add(HongKong);
+		game.add(HongKong);
+		
+		Shanghai = new JButton();
+		Shanghai.setOpaque(falso);
+		Shanghai.setFocusPainted(falso);
+		Shanghai.setContentAreaFilled(falso);
+		Shanghai.setBorderPainted(falso);
+		Shanghai.setBounds(1030,275,x,x);
+		ciudadesBtn.add(Shanghai);
+		game.add(Shanghai);
+		
+		Pekin = new JButton();
+		Pekin.setOpaque(falso);
+		Pekin.setFocusPainted(falso);
+		Pekin.setContentAreaFilled(falso);
+		Pekin.setBorderPainted(falso);
+		Pekin.setBounds(1030,200,x,x);
+		ciudadesBtn.add(Pekin);
+		game.add(Pekin);
+		
+		Seul = new JButton();
+		Seul.setOpaque(falso);
+		Seul.setFocusPainted(falso);
+		Seul.setContentAreaFilled(falso);
+		Seul.setBorderPainted(falso);
+		Seul.setBounds(1100,175,x,x);
+		ciudadesBtn.add(Seul);
+		game.add(Seul);
+		
+		Tokio = new JButton();
+		Tokio.setOpaque(falso);
+		Tokio.setFocusPainted(falso);
+		Tokio.setContentAreaFilled(falso);
+		Tokio.setBorderPainted(falso);
+		Tokio.setBounds(1150,240,x,x);
+		ciudadesBtn.add(Tokio);
+		game.add(Tokio);
+		
+		
+		Osaka = new JButton();
+		Osaka.setOpaque(falso);
+		Osaka.setFocusPainted(falso);
+		Osaka.setContentAreaFilled(falso);
+		Osaka.setBorderPainted(falso);
+		Osaka.setBounds(1160,300,x,x);
+		ciudadesBtn.add(Osaka);
+		game.add(Osaka);
+		
+		Taipei = new JButton();
+		Taipei.setOpaque(falso);
+		Taipei.setFocusPainted(falso);
+		Taipei.setContentAreaFilled(falso);
+		Taipei.setBorderPainted(falso);
+		Taipei.setBounds(1100,320,x,x);
+		ciudadesBtn.add(Taipei);
+		game.add(Taipei);
+		
+		Minh = new JButton();
+		Minh.setOpaque(falso);
+		Minh.setFocusPainted(falso);
+		Minh.setContentAreaFilled(falso);
+		Minh.setBorderPainted(falso);
+		Minh.setBounds(1030,450,x,x);
+		ciudadesBtn.add(Minh);
+		game.add(Minh);	
+		
+		Manila = new JButton();
+		Manila.setOpaque(falso);
+		Manila.setFocusPainted(falso);
+		Manila.setContentAreaFilled(falso);
+		Manila.setBorderPainted(falso);
+		Manila.setBounds(1100,430,x,x);
+		ciudadesBtn.add(Manila);
+		game.add(Manila);	
+		
+		Sidney = new JButton();
+		Sidney.setOpaque(falso);
+		Sidney.setFocusPainted(falso);
+		Sidney.setContentAreaFilled(falso);
+		Sidney.setBorderPainted(falso);
+		Sidney.setBounds(1130,580,x,x);
+		ciudadesBtn.add(Sidney);
+		game.add(Sidney);
+		
+		
+		
 		// panel izquierdo botones
 		JPanel botonesTexto = new JPanel();
 		botonesTexto.setLayout(new FlowLayout());
@@ -200,15 +648,8 @@ public class partida extends JFrame implements ActionListener  {
 
 		// Bordes personalizados
 		Border border = BorderFactory.createLineBorder(Color.GRAY, 2);
-		textArea.setBorder(BorderFactory.createCompoundBorder(border, BorderFactory.createEmptyBorder(5, 5, 5, 5))); // Agrega
-																														// un																											// píxeles
-
-		// Espaciado interno
-		textArea.setMargin(new Insets(5, 5, 5, 5)); // Ajusta el margen interno del JTextArea
-
-		// Agrega el JTextArea a tu panel o contenedor
-
-		// Redirigir la salida de la consola al JTextArea
+		textArea.setBorder(BorderFactory.createCompoundBorder(border, BorderFactory.createEmptyBorder(5, 5, 5, 5))); 
+		textArea.setMargin(new Insets(5, 5, 5, 5)); 
 
 		botonesTexto.add(textArea);
 
@@ -412,7 +853,7 @@ public class partida extends JFrame implements ActionListener  {
 		music = new JMenuItem("Activado");
 		music.setPreferredSize(new Dimension(300, 50));
 		music.setOpaque(false);
-		music.setFont(controlDatos.fuenteTitulo22());
+		music.setFont(controlDatos.fuentecargar());
 		music.setForeground(new Color(173, 216, 240));
 		music.setIcon(iconoMusFinal);
 		music.setContentAreaFilled(false);
@@ -455,7 +896,7 @@ public class partida extends JFrame implements ActionListener  {
 				new Thread(() -> {
 					textArea.append(String.valueOf((char) b));
 					int lineCount = textArea.getLineCount();
-					if (lineCount > 7) {
+					if (lineCount > 6) {
 						try {
 							int endOfFirstLine = textArea.getLineEndOffset(0);
 							textArea.replaceRange("", 0, endOfFirstLine);
@@ -483,6 +924,57 @@ public class partida extends JFrame implements ActionListener  {
 		finalizarRonda.addActionListener(this);
 		curar.addActionListener(this);
 		
+		
+		//action listener de botones de ciudades
+		Francisco.addActionListener(this);
+		 Chicago.addActionListener(this);
+		 Atlanta.addActionListener(this);
+		 Montreal.addActionListener(this);
+		 NuevaYork.addActionListener(this);
+		 Washington.addActionListener(this);
+		 Londres.addActionListener(this);
+		 Madrid.addActionListener(this);
+		 Paris.addActionListener(this);
+		 Essen.addActionListener(this);
+		 Milan.addActionListener(this);
+		 Petersburgo.addActionListener(this);
+		 Angeles.addActionListener(this);
+		 Miami.addActionListener(this);
+		 Mexico.addActionListener(this);
+		 Bogota.addActionListener(this);
+		 Lima.addActionListener(this);
+		 Santiago.addActionListener(this);
+		 BuenosAires.addActionListener(this);
+		 Paulo.addActionListener(this);
+		 Lagos.addActionListener(this);
+		 Kinsasa.addActionListener(this);
+		 Jartum.addActionListener(this);
+		 Johannesburgo.addActionListener(this);
+		 Argel.addActionListener(this);
+		 Cairo.addActionListener(this);
+		 Riad.addActionListener(this);
+		 Estambul.addActionListener(this);
+		 Bagdad.addActionListener(this);
+		 Moscu.addActionListener(this);
+		 Teheran.addActionListener(this);
+		 Karachi.addActionListener(this);
+		 Bombay.addActionListener(this);
+		 Delhi.addActionListener(this);
+		 Calcuta.addActionListener(this);
+		 Madras.addActionListener(this);
+		 Yakarta.addActionListener(this);
+		 Bangkok.addActionListener(this);
+		 HongKong.addActionListener(this);
+		 Shanghai.addActionListener(this);
+		 Pekin.addActionListener(this);
+		 Seul.addActionListener(this);
+		 Tokio.addActionListener(this);
+		 Osaka.addActionListener(this);
+		 Taipei.addActionListener(this);
+		 Minh.addActionListener(this);
+		 Manila.addActionListener(this);
+		 Sidney.addActionListener(this);
+		
 		this.add(game, BorderLayout.CENTER);
 		this.add(stats, BorderLayout.EAST);
 		this.add(botonesTexto, BorderLayout.SOUTH);
@@ -498,81 +990,571 @@ public class partida extends JFrame implements ActionListener  {
 
 	}
 	
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
-	    Object source = e.getSource(); // Obtiene el objeto que generó el evento
+		Object source = e.getSource(); // Obtiene el objeto que generó el evento
 
-	    if (source == DAlfa) {
-	        Thread vac = new Thread(new Runnable() {
-				
+		if (source == DAlfa) {
+			Thread vac = new Thread(new Runnable() {
+
 				@Override
 				public void run() {
 					controlPartida.gestionar_Vacuna(0);
-					
+
 				}
-	        });
-	        vac.start();
-	    } else if (source == DBeta) {
-	    	Thread vac = new Thread(new Runnable() {
-				
+			});
+			vac.start();
+		} else if (source == DBeta) {
+			Thread vac = new Thread(new Runnable() {
+
 				@Override
 				public void run() {
 					controlPartida.gestionar_Vacuna(1);
-					
+
 				}
-	        });
-	        vac.start();
-	        
-	        
-	    } else if (source == DGamma) {
-	    	Thread vac = new Thread(new Runnable() {
-				
+			});
+			vac.start();
+
+		} else if (source == DGamma) {
+			Thread vac = new Thread(new Runnable() {
+
 				@Override
 				public void run() {
 					controlPartida.gestionar_Vacuna(2);
-					
-				}
-	        });
-	        vac.start();
 
-	    } else if (source == DDelta) {
-	    	Thread vac = new Thread(new Runnable() {
-				
+				}
+			});
+			vac.start();
+
+		} else if (source == DDelta) {
+			Thread vac = new Thread(new Runnable() {
+
 				@Override
 				public void run() {
 					controlPartida.gestionar_Vacuna(3);
-					
+
 				}
-	        });
-	        vac.start();
+			});
+			vac.start();
 
-	    } else if (source == finalizarRonda) {
-	        controlPartida.gestionar_Turno();
-	    } else if (source == curar) {
-	    	controlPartida.gestionar_Cura(1);
-	    } else if (source == music){
-	    	if (musica) {
-	    		System.out.println("Franko: Quitas lo divertido a la vida.");
-	    		Main.reproductor.detener();
-	    		music.setText("Desactivado");
-	    		music.setIcon(iconoMusFinalDes);
-	    		musica = false;
-	    	} else {
-	    		System.out.println("Franko: Yeee, se siente todo muy cuadrado..");
-	    		musica = true;
-	    		music.setText("Activado");
-	    		music.setIcon(iconoMusFinal);
-	    		Main.reproductor.reproducirConRepetir();
-	    	}
-	    	
-	    }
+		} else if (source == finalizarRonda) {
+			controlPartida.gestionar_Turno();
+		} else if (source == curar) {
+			controlPartida.gestionar_Cura(1);
+		} else if (source == music) {
+			if (musica) {
+				Thread vac = new Thread(new Runnable() {
+
+					@Override
+					public void run() {
+						System.out.println("Franko: Quitas lo divertido a la vida.");
+						Main.reproductor.detener();
+						music.setText("Desactivado");
+						music.setIcon(iconoMusFinalDes);
+						musica = false;
+
+					}
+				});
+				vac.start();
+
+			} else {
+				Thread vac = new Thread(new Runnable() {
+
+					@Override
+					public void run() {
+						System.out.println("Franko: Yeee, se siente todo muy cuadrado..");
+						musica = true;
+						music.setText("Activado");
+						music.setIcon(iconoMusFinal);
+						Main.reproductor.reproducirConRepetir();
+
+					}
+				});
+				vac.start();
+
+			}
+
+		} else if (source == Francisco) {
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					System.out.println("Soy Francisco");
+
+				}
+			});
+			vac.start();
+		} else if (source == Chicago) {
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					System.out.println("Soy Chicago");
+
+				}
+			});
+			vac.start();
+		} else if (source == Atlanta) {
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					System.out.println("Soy Atlanta");
+
+				}
+			});
+			vac.start();
+		} else if (source == Montreal) {
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					System.out.println("Soy Montreal");
+
+				}
+			});
+			vac.start();
+		} else if (source == NuevaYork) {
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					System.out.println("Soy NuevaYork");
+
+				}
+			});
+			vac.start();
+		}  else if (source == Washington) {
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					System.out.println("Soy Washington");
+
+				}
+			});
+			vac.start();
+		}  else if (source == Londres) {
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					System.out.println("Soy Londres");
+
+				}
+			});
+			vac.start();
+		} else if (source == Madrid) {
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					System.out.println("Soy Madrid");
+
+				}
+			});
+			vac.start();
+		} else if (source == Paris) {
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					System.out.println("Soy Paris");
+
+				}
+			});
+			vac.start();
+		} else if (source == Essen) {
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					System.out.println("Soy Essen");
+
+				}
+			});
+			vac.start();
+		} else if (source == Milan) {
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					System.out.println("Soy Milan");
+
+				}
+			});
+			vac.start();
+		} else if (source == Petersburgo) {
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					System.out.println("Soy Petersburgo");
+
+				}
+			});
+			vac.start();
+		} else if (source == Angeles) {
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					System.out.println("Soy Angeles");
+
+				}
+			});
+			vac.start();
+		} else if (source == Miami) {
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					System.out.println("Soy Miami");
+
+				}
+			});
+			vac.start();
+		} else if (source == Mexico) {
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					System.out.println("Soy Mexico");
+
+				}
+			});
+			vac.start();
+		} else if (source == Bogota) {
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					System.out.println("Soy Bogota");
+
+				}
+			});
+			vac.start();
+		} else if (source == Lima) {
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					System.out.println("Soy Lima");
+
+				}
+			});
+			vac.start();
+		} else if (source == Santiago) {
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					System.out.println("Soy Santiago");
+
+				}
+			});
+			vac.start();
+		} else if (source == BuenosAires) {
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					System.out.println("Soy BuenosAires");
+
+				}
+			});
+			vac.start();
+		} else if (source == Paulo) {
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					System.out.println("Soy Paulo");
+
+				}
+			});
+			vac.start();
+		} else if (source == Lagos) {
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					System.out.println("Soy Lagos");
+
+				}
+			});
+			vac.start();
+		} else if (source == Kinsasa) {
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					System.out.println("Soy Kinsasa");
+
+				}
+			});
+			vac.start();
+		} else if (source == Jartum) {
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					System.out.println("Soy Jartum");
+
+				}
+			});
+			vac.start();
+		} else if (source == Johannesburgo) {
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					System.out.println("Soy Johannesburgo");
+
+				}
+			});
+			vac.start();
+		} else if (source == Argel) {
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					System.out.println("Soy Argel");
+
+				}
+			});
+			vac.start();
+		} else if (source == Cairo) {
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					System.out.println("Soy Cairo");
+
+				}
+			});
+			vac.start();
+		} else if (source == Riad) {
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					System.out.println("Soy Riad");
+
+				}
+			});
+			vac.start();
+		} else if (source == Estambul) {
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					System.out.println("Soy Estambul");
+
+				}
+			});
+			vac.start();
+		} else if (source == Bagdad) {
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					System.out.println("Soy Bagdad");
+
+				}
+			});
+			vac.start();
+		} else if (source == Moscu) {
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					System.out.println("Soy Moscu");
+
+				}
+			});
+			vac.start();
+		} else if (source == Teheran) {
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					System.out.println("Soy Teheran");
+
+				}
+			});
+			vac.start();
+		} else if (source == Karachi) {
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					System.out.println("Soy Karachi");
+
+				}
+			});
+			vac.start();
+		} else if (source == Bombay) {
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					System.out.println("Soy Bombay");
+
+				}
+			});
+			vac.start();
+		} else if (source == Delhi) {
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					System.out.println("Soy Delhi");
+
+				}
+			});
+			vac.start();
+		} else if (source == Calcuta) {
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					System.out.println("Soy Calcuta");
+
+				}
+			});
+			vac.start();
+		} else if (source == Madras) {
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					System.out.println("Soy Madras");
+
+				}
+			});
+			vac.start();
+		} else if (source == Yakarta) { //TODO
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					System.out.println("Soy Yakarta");
+
+				}
+			});
+			vac.start();
+		} else if (source == Bangkok) {
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					System.out.println("Soy Bangkok");
+
+				}
+			});
+			vac.start();
+		} else if (source == HongKong) {
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					System.out.println("Soy HongKong");
+
+				}
+			});
+			vac.start();
+		} else if (source == Shanghai) {
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					System.out.println("Soy Shanghai");
+
+				}
+			});
+			vac.start();
+		} else if (source == Pekin) {
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					System.out.println("Soy Pekin");
+
+				}
+			});
+			vac.start();
+		}else if (source == Seul) {
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					System.out.println("Soy Seul");
+
+				}
+			});
+			vac.start();
+		}else if (source == Tokio) {
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					System.out.println("Soy Tokio");
+
+				}
+			});
+			vac.start();
+		}else if (source == Osaka) {
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					System.out.println("Soy Osaka");
+
+				}
+			});
+			vac.start();
+		}else if (source == Taipei) {
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					System.out.println("Soy Taipei");
+
+				}
+			});
+			vac.start();
+		}else if (source == Minh) {
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					System.out.println("Soy Minh");
+
+				}
+			});
+			vac.start();
+		}else if (source == Manila) {
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					System.out.println("Soy Manila");
+
+				}
+			});
+			vac.start();
+		} else if (source == Sidney) {
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					System.out.println("Soy Sidney");
+
+				}
+			});
+			vac.start();
+		}
 	}
-
-	private void addButton(Container container, String nombre, int x, int y) {
-        JButton button = new JButton(nombre);
-        button.setBounds(x, y, 100, 30); // Establecer el tamaño del botón
-        container.add(button);
-    }
 
 }

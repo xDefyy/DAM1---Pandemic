@@ -261,5 +261,24 @@ public class controlDatos {
             return defaultFont;
         }
 	}
+    public static Font fuentecargar() {
+		try {
+        	File fuente = new File("src\\fuente\\fuenteCargarParty.ttf");
+            
+            Font font = Font.createFont(Font.TRUETYPE_FONT, fuente);
+           
+            // Tamaño de la fuente (en puntos)
+            float fontSize = 45f;
+            
+            font = font.deriveFont(fontSize);
+            GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(font);
+            return font;
+
+        } catch (IOException | FontFormatException e) {
+        	Font defaultFont = new Font("Arial", Font.PLAIN, 15);
+            e.printStackTrace();
+            return defaultFont;
+        }
+	}
 	
 }
