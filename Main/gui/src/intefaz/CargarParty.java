@@ -23,6 +23,7 @@ public class CargarParty extends JFrame implements ActionListener {
 	public static JButton bFacil; 
 	public static JButton bDificil; 
 	private CardLayout cards;
+	public static int dificultad = 0;
 	public CargarParty() {
 
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
@@ -829,7 +830,7 @@ public class CargarParty extends JFrame implements ActionListener {
 				@Override
 				public void run() {
 	        		game.setVisible(true);
-	    	    	
+	    	    	dificultad = 0 ;
 	    	        Timer timer = new Timer(300, new ActionListener() {
 	    	            public void actionPerformed(ActionEvent e) {
 	    	            	Main.cargarParty.setVisible(false);
@@ -838,7 +839,7 @@ public class CargarParty extends JFrame implements ActionListener {
 	    	        timer.setRepeats(false);
 	    	        timer.start();
 	        		
-	        		controlDatos.controlDificultad(0);
+	        		controlDatos.controlDificultad(dificultad);
 	        		controlPartida.iniciar_Partida();
 					
 				}
@@ -850,7 +851,7 @@ public class CargarParty extends JFrame implements ActionListener {
 				@Override
 				public void run() {
 					game.setVisible(true);
-	    	    	
+					dificultad = 1;
 	    	        Timer timer = new Timer(300, new ActionListener() {
 	    	            public void actionPerformed(ActionEvent e) {
 	    	            	Main.cargarParty.setVisible(false);
@@ -859,7 +860,7 @@ public class CargarParty extends JFrame implements ActionListener {
 	    	        timer.setRepeats(false);
 	    	        timer.start();
 	        		
-	        		controlDatos.controlDificultad(1);
+	        		controlDatos.controlDificultad(dificultad);
 	        		controlPartida.iniciar_Partida();
 					
 				}
@@ -873,7 +874,7 @@ public class CargarParty extends JFrame implements ActionListener {
 				@Override
 				public void run() {
 					game.setVisible(true);
-	    	    	
+					dificultad = 2;
 	    	        Timer timer = new Timer(300, new ActionListener() {
 	    	            public void actionPerformed(ActionEvent e) {
 	    	            	Main.cargarParty.setVisible(false);
@@ -882,7 +883,7 @@ public class CargarParty extends JFrame implements ActionListener {
 	    	        timer.setRepeats(false);
 	    	        timer.start();
 	        		
-	        		controlDatos.controlDificultad(2);
+	        		controlDatos.controlDificultad(dificultad);
 	        		controlPartida.iniciar_Partida();
 					
 				}

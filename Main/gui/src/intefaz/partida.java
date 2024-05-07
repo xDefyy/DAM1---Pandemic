@@ -74,7 +74,8 @@ public class partida extends JFrame implements ActionListener {
 	public static Image iconoMusicaDes = iconoMusDes.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
 	public static ImageIcon iconoMusFinalDes = new ImageIcon(iconoMusicaDes);
 	public static boolean musica = true;;
-	
+	public static JLabel brotes;
+	public static boolean ciudadSeleccionada = false;
 	// botones
 	JButton Francisco;
 	JButton Chicago;
@@ -153,6 +154,7 @@ public class partida extends JFrame implements ActionListener {
 				g.drawImage(imagenFondo, 0, 0, getWidth(), getHeight(), this);
 			}
 		};
+		
 		game.setLayout(null);
 		boolean falso = false;
 		int x = 50;
@@ -728,14 +730,14 @@ public class partida extends JFrame implements ActionListener {
 
 		gbcStats.gridy = 1;
 		JLabel ciudadesInf = new JLabel();
-		ciudadesInf.setText("Ciudades Infectadas: "); // TODO METER VARIABLE DE SCORE
+		ciudadesInf.setText("Ciudades Infectadas: " ); // TODO METER VARIABLE DE SCORE
 		ciudadesInf.setFont(new Font("Arial", Font.BOLD, 15));
 
 		stats.add(ciudadesInf, gbcStats);
-
+		
 		gbcStats.gridy = 2;
-		JLabel brotes = new JLabel();
-		brotes.setText("Brotes: 0"); // TODO METER VARIABLE DE SCORE
+		brotes = new JLabel();
+		brotes.setText("Brotes: "); // TODO METER VARIABLE DE SCORE
 		brotes.setFont(new Font("Arial", Font.BOLD, 15));
 
 		stats.add(brotes, gbcStats);
@@ -990,6 +992,15 @@ public class partida extends JFrame implements ActionListener {
 
 	}
 	
+	private static int ciudadNombre(String nombre) {
+		for (int i = 0; i < controlPartida.datos.getCiudades().size(); i++) {
+			if (controlPartida.datos.getCiudades().get(i).getNombre().equalsIgnoreCase(nombre)) {
+				return i;
+			}
+		}
+		return 0;
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource(); // Obtiene el objeto que generó el evento
@@ -1040,7 +1051,11 @@ public class partida extends JFrame implements ActionListener {
 		} else if (source == finalizarRonda) {
 			controlPartida.gestionar_Turno();
 		} else if (source == curar) {
-			controlPartida.gestionar_Cura(1);
+			if (ciudadSeleccionada) {
+				controlPartida.gestionar_Cura();
+				ciudadSeleccionada = false;
+			}
+			
 		} else if (source == music) {
 			if (musica) {
 				Thread vac = new Thread(new Runnable() {
@@ -1079,7 +1094,8 @@ public class partida extends JFrame implements ActionListener {
 
 				@Override
 				public void run() {
-					System.out.println("Soy Francisco");
+					System.out.println("Has seleccionado San Francisco");
+					controlPartida.ciudadSize = ciudadNombre("San Francisco");
 
 				}
 			});
