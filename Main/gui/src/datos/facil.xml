@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <facil>
-	   <numCiudadesInfectadasInicio>5</numCiudadesInfectadasInicio>
+	   <numCiudadesInfectadasInicio>48</numCiudadesInfectadasInicio>
 	   <numCuidadesInfectadasRonda>3</numCuidadesInfectadasRonda>
 	   <numEnfermedadesActivasDerrota>30</numEnfermedadesActivasDerrota>
 	   <numBrotesDerrota>8</numBrotesDerrota>

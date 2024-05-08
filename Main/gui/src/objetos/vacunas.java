@@ -26,7 +26,7 @@ public class vacunas {
 		this.color = color;
 	}
 	
-	public double getPorcentaje() {
+	public int getPorcentaje() {
 		return porcentaje;
 	}
 	

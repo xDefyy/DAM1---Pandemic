@@ -15,7 +15,7 @@ import controladores.controlPartida;
 
 public class con__BBDD {
 
-	private static Connection conectarBaseDatos() {
+	public static Connection conectarBaseDatos() {
 	Connection con = null;
 
 	System.out.println("Intentando conectarse a la base de datos");
@@ -80,7 +80,7 @@ public class con__BBDD {
 	public static Connection con = conectarBaseDatos();
 	
 	
-	private static void insertarPersona(Connection con) {
+	public static void insertarPersona(Connection con) {
 		
 	Scanner scanner = new Scanner(System.in);
 	
@@ -103,7 +103,7 @@ public class con__BBDD {
 
 	}
 	
-	private static void insertarPartida(Connection con) {
+	public static void insertarPartida(Connection con) {
 		
 		int diff = 0;
 		
@@ -120,26 +120,43 @@ public class con__BBDD {
 		int rondas = controlPartida.datos.getRondas();
 		int acciones = controlPartida.datos.getAcciones();
 		int brotes = controlPartida.datos.getBrotes();
-
-		String sql = "INSERT INTO PLAYERS VALUES('" + partida_id + "', '" + numero_usuario + "', '" + diff + "', '" + rondas + "', '" + acciones + "', '" + brotes + "', '" + brotes + "' )";
+		
+		String color_vacuna0 = controlPartida.datos.getVacunas().get(0).getColor();
+		String color_vacuna1 = controlPartida.datos.getVacunas().get(1).getColor();
+		String color_vacuna2 = controlPartida.datos.getVacunas().get(2).getColor();
+		String color_vacuna3 = controlPartida.datos.getVacunas().get(3).getColor();
+		
+		int pr_vacuna0 = controlPartida.datos.getVacunas().get(0).getPorcentaje();
+		int pr_vacuna1 = controlPartida.datos.getVacunas().get(1).getPorcentaje();
+		int pr_vacuna2 = controlPartida.datos.getVacunas().get(2).getPorcentaje();
+		int pr_vacuna3 = controlPartida.datos.getVacunas().get(3).getPorcentaje();
 		
 		String nombre_ciudad = "";
 		int infeccion_ciudad = 0;
+		String SqlCIUDADES = "";
 		
 		for (int i = 0; i < controlPartida.datos.getCiudades().size(); i++) {
 			nombre_ciudad = controlPartida.datos.getCiudades().get(i).getNombre();
 			infeccion_ciudad = controlPartida.datos.getCiudades().get(i).getInfeccion();
+			
+			SqlCIUDADES += nombre_ciudad + ',' + infeccion_ciudad + ',';
 		}
+		
+		String sql = "INSERT INTO PARTIDA VALUES('" + partida_id + "', '" + numero_usuario + "', '" + diff + "', '" + rondas + "', '" + acciones + "', '" + brotes 
+						+ "',  ARRAY_CIUDADES(CIUDADES('" + SqlCIUDADES + "')),  ARRAY_VACUNAS(VACUNAS('" + color_vacuna0 + "', '" + pr_vacuna0 + "'), VACUNAS('" + color_vacuna0 + "', '" + pr_vacuna0 + "'), VACUNAS('" + color_vacuna0 + "', '" + pr_vacuna0 + "'), VACUNAS('" + color_vacuna0 + "', '" + pr_vacuna0 + "')), null)";
 
 		
-		String insert_city = "INSERT INTO CIUDADES VALUES('" + nombre_ciudad + "', '" + infeccion_ciudad + "')";
-
+//		String insert_city = "INSERT INTO PARTIDA VALUES('" + nombre_ciudad + "', '" + infeccion_ciudad + "')";
+		
+//		String insert_city = "INSERT INTO ARRAY_CIUDADES VALUES('" + nombre_ciudad + "', '" + infeccion_ciudad + "')";
+		
+//		INSERT INTO PARTIDA VALUES(0, 0, DIFICULTAD, RONDAS, ACCIONES, BROTES, ARRAY_CIUDADES(CIUDADES(NOMBRE, INFECCION)), ARRAY_VACUNAS(VACUNAS(COLOR, PORCENTAJE)), WL);
 		
 		try {
 			Statement st = con.createStatement();
 			st.execute(sql);
 			
-			System.out.println("Player registrado correctamente");
+			System.out.println("Insert hecho correctamente correctamente");
 		} catch (SQLException e) {
 			System.out.println("Ha habido un error en el Insert " + e);
 		}
@@ -149,7 +166,8 @@ public class con__BBDD {
 	
 	 public static void main(String[] args) {
 	 
-		 insertarPersona(con);
+//		 insertarPersona(con);
+		 insertarPartida(con);
 		 
 	 }
 		

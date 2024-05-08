@@ -1,9 +1,11 @@
 package controladores;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
 
+import javax.swing.JButton;
 import javax.swing.Timer;
 
 import CargaDatos.controlDatos;
@@ -24,6 +26,7 @@ public class controlPartida {
 	public static int random;
 	public static boolean newGame = false;
 	public static int ciudadSize = 0;
+	public static String ciudadNombre = "";
 
 	public static void iniciar_Partida() {
 
@@ -232,6 +235,7 @@ public class controlPartida {
 				} else {
 					nivel++;
 					datos.getCiudades().get(random).setInfeccion(nivel);
+					//TODO
 				}
 			}
 	}
@@ -290,6 +294,7 @@ public class controlPartida {
 							
 						} else {
 							datos.getCiudades().get(j).setInfeccion(datos.getCiudades().get(j).getInfeccion()+1);
+							//cambiar imagen TODO
 						}
 					}
 				}
@@ -331,6 +336,7 @@ public class controlPartida {
 						datos.setAcciones(datos.getAcciones()-1);
 						partida.acciones.setText("Acciones: " + datos.getAcciones());
 						partida.ciudadesInf.setText("Ciudades infectadas: " + ciudadesInfectadas());
+
 					} else if (datos.getCiudades().get(ciudadSize).getEnfermedad().equalsIgnoreCase("Beta") && datos.getVacunas().get(1).getPorcentaje() == 100) {
 						datos.getCiudades().get(ciudadSize).setInfeccion(0);
 						System.out.println("Has curado la ciudad " + datos.getCiudades().get(ciudadSize).getNombre() + " con la vacuna " + datos.getVacunas().get(1).getNombre() + " y has dejado el nivel de infeccion en: " + datos.getCiudades().get(ciudadSize).getInfeccion());
@@ -355,6 +361,7 @@ public class controlPartida {
 						datos.setAcciones(datos.getAcciones()-1);
 						partida.acciones.setText("Acciones: " + datos.getAcciones());
 						partida.ciudadesInf.setText("Ciudades infectadas: " + ciudadesInfectadas());
+						ponerImages(ciudadSize,ciudadNombre);
 					} else if (datos.getCiudades().get(ciudadSize).getEnfermedad().equalsIgnoreCase("Beta") && datos.getVacunas().get(1).getPorcentaje() != 100) {
 						datos.getCiudades().get(ciudadSize).setInfeccion(datos.getCiudades().get(ciudadSize).getInfeccion()-1);
 						System.out.println("Has curado la ciudad " + datos.getCiudades().get(ciudadSize).getNombre() + " sin la vacuna " + datos.getVacunas().get(1).getNombre() + " y has dejado el nivel de infeccion en: " + datos.getCiudades().get(ciudadSize).getInfeccion());
@@ -386,4 +393,29 @@ public class controlPartida {
 		
 	}
 
+	public static void ponerImages(int ciudadPos, String nombreBtn) {
+		switch (datos.getCiudades().get(ciudadPos).getInfeccion()) {
+		case 0:
+			if (datos.getCiudades().get(ciudadPos).getNombre().contains(nombreBtn)) {
+				for (Component c : partida.game.getComponents() ) {
+					if (c instanceof JButton) {
+						if (c.getName().equals(nombreBtn)) {
+							((JButton) c).setIcon(null);
+						}
+						
+					}
+				}
+			}
+			break;
+		case 1:
+			if (datos.getCiudades().get(ciudadPos).getNombre().contains(nombreBtn)) {
+				System.out.println("gola");
+			}
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		}
+	}
 }
