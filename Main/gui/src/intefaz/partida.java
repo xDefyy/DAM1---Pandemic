@@ -85,7 +85,7 @@ public class partida extends JFrame implements ActionListener {
 	public static JButton Chicago;
 	public static JButton Atlanta;
 	public static JButton Montreal;
-	public static JButton NuevaYork;
+	public static JButton York;
 	public static JButton Washington;
 	public static JButton Londres;
 	public static JButton Madrid;
@@ -99,7 +99,7 @@ public class partida extends JFrame implements ActionListener {
 	public static JButton Bogota;
 	public static JButton Lima;
 	public static JButton Santiago;
-	public static JButton BuenosAires;
+	public static JButton Aires;
 	public static JButton Paulo;
 	public static JButton Lagos;
 	public static JButton Kinsasa;
@@ -119,7 +119,7 @@ public class partida extends JFrame implements ActionListener {
 	public static JButton Madras;
 	public static JButton Yakarta;
 	public static JButton Bangkok;
-	public static JButton HongKong;
+	public static JButton Kong;
 	public static JButton Shanghai;
 	public static JButton Pekin;
 	public static JButton Seul;
@@ -131,6 +131,71 @@ public class partida extends JFrame implements ActionListener {
 	public static JButton Sidney;
 	public static JPanel game;
 
+	//imagenes
+	
+	public static ImageIcon azul0 = new ImageIcon("src\\img\\inGame\\virusAzul0.png");
+	public static Image Alfa0 = azul0.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+	public static ImageIcon azulVirusCiudad0 = new ImageIcon(Alfa0);
+
+	public static ImageIcon azul = new ImageIcon("src\\img\\inGame\\virusAzul.png");
+	public static Image Alfa1 = azul.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+	public static ImageIcon azulVirusCiudad = new ImageIcon(Alfa1);
+
+	public static ImageIcon azul2 = new ImageIcon("src\\img\\inGame\\virusAzul2.png");
+	public static Image Alfa2 = azul2.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+	public static ImageIcon azulVirusCiudad2 = new ImageIcon(Alfa2);
+
+	public static ImageIcon azul3 = new ImageIcon("src\\img\\inGame\\virusAzul3.png");
+	public static Image Alfa3 = azul3.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+	public static ImageIcon azulVirusCiudad3 = new ImageIcon(Alfa3);
+
+	public static ImageIcon rojo0 = new ImageIcon("src\\img\\inGame\\virusRojo0.png");
+	public static Image beta0 = rojo0.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+	public static ImageIcon rojoVirusCiudad0 = new ImageIcon(beta0);
+
+	public static ImageIcon rojo = new ImageIcon("src\\img\\inGame\\virusRojo.png");
+	public static Image beta = rojo.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+	public static ImageIcon rojoVirusCiudad = new ImageIcon(beta);
+
+	public static ImageIcon rojo2 = new ImageIcon("src\\img\\inGame\\virusRojo2.png");
+	public static Image beta2 = rojo2.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+	public static ImageIcon rojoVirusCiudad2 = new ImageIcon(beta2);
+
+	public static ImageIcon rojo3 = new ImageIcon("src\\img\\inGame\\virusRojo3.png");
+	public static Image beta3 = rojo3.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+	public static ImageIcon rojoVirusCiudad3 = new ImageIcon(beta3);
+
+	public static ImageIcon amarillo0 = new ImageIcon("src\\img\\inGame\\virusAmarillo0.png");
+	public static Image gamma0 = amarillo0.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+	public static ImageIcon amarilloVirusCiudad0 = new ImageIcon(gamma0);
+
+	public static ImageIcon amarillo = new ImageIcon("src\\img\\inGame\\virusAmarillo.png");
+	public static Image gamma = amarillo.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+	public static ImageIcon amarilloVirusCiudad = new ImageIcon(gamma);
+
+	public static ImageIcon amarillo2 = new ImageIcon("src\\img\\inGame\\virusAmarillo.png");
+	public static Image gamma2 = amarillo2.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+	public static ImageIcon amarilloVirusCiudad2 = new ImageIcon(gamma2);
+
+	public static ImageIcon amarillo3 = new ImageIcon("src\\img\\inGame\\virusAmarillo3.png");
+	public static Image gamma3 = amarillo3.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+	public static ImageIcon amarilloVirusCiudad3 = new ImageIcon(gamma3);
+
+	public static ImageIcon negro0 = new ImageIcon("src\\img\\inGame\\virusNegro0.png");
+	public static Image delta0 = negro0.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+	public static ImageIcon negroVirusCiudad0 = new ImageIcon(delta0);
+
+	public static ImageIcon negro = new ImageIcon("src\\img\\inGame\\virusNegro.png");
+	public static Image delta = negro.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+	public static ImageIcon negroVirusCiudad = new ImageIcon(delta);
+
+	public static ImageIcon negro2 = new ImageIcon("src\\img\\inGame\\virusNegro2.png");
+	public static Image delta2 = negro2.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+	public static ImageIcon negroVirusCiudad2 = new ImageIcon(delta2);
+
+	public static ImageIcon negro3 = new ImageIcon("src\\img\\inGame\\virusNegro3.png");
+	public static Image delta3 = negro3.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+	public static ImageIcon negroVirusCiudad3 = new ImageIcon(delta3);
 
 	public partida()  {
 		
@@ -144,70 +209,6 @@ public class partida extends JFrame implements ActionListener {
 		Image IconPersonaje = personajes.getImage().getScaledInstance(screen.height / 7, screen.height / 7,
 				Image.SCALE_SMOOTH);
 		ImageIcon personajeIcon = new ImageIcon(IconPersonaje);
-		
-		ImageIcon azul0 = new ImageIcon("src\\img\\inGame\\virusAzul0.png");
-		Image Alfa0 = azul0.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
-		ImageIcon azulVirusCiudad0 = new ImageIcon(Alfa0);
-		
-		ImageIcon azul = new ImageIcon("src\\img\\inGame\\virusAzul.png");
-		Image Alfa1 = azul.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
-		ImageIcon azulVirusCiudad = new ImageIcon(Alfa1);
-		
-		ImageIcon azul2 = new ImageIcon("src\\img\\inGame\\virusAzul2.png");
-		Image Alfa2 = azul2.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
-		ImageIcon azulVirusCiudad2 = new ImageIcon(Alfa2);
-		
-		ImageIcon azul3 = new ImageIcon("src\\img\\inGame\\virusAzul3.png");
-		Image Alfa3 = azul3.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
-		ImageIcon azulVirusCiudad3 = new ImageIcon(Alfa3);
-		
-		ImageIcon rojo0 = new ImageIcon("src\\img\\inGame\\virusRojo0.png");
-		Image beta0 = rojo0.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
-		ImageIcon rojoVirusCiudad0 = new ImageIcon(beta0);
-		
-		ImageIcon rojo = new ImageIcon("src\\img\\inGame\\virusRojo.png");
-		Image beta = rojo.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
-		ImageIcon rojoVirusCiudad = new ImageIcon(beta);
-		
-		ImageIcon rojo2 = new ImageIcon("src\\img\\inGame\\virusRojo2.png");
-		Image beta2 = rojo2.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
-		ImageIcon rojoVirusCiudad2 = new ImageIcon(beta2);
-		
-		ImageIcon rojo3 = new ImageIcon("src\\img\\inGame\\virusRojo3.png");
-		Image beta3 = rojo3.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
-		ImageIcon rojoVirusCiudad3 = new ImageIcon(beta3);
-		
-		ImageIcon amarillo0 = new ImageIcon("src\\img\\inGame\\virusAmarillo0.png");
-		Image gamma0 = amarillo0.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
-		ImageIcon amarilloVirusCiudad0 = new ImageIcon(gamma0);
-		
-		ImageIcon amarillo = new ImageIcon("src\\img\\inGame\\virusAmarillo.png");
-		Image gamma = amarillo.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
-		ImageIcon amarilloVirusCiudad = new ImageIcon(gamma);
-		
-		ImageIcon amarillo2 = new ImageIcon("src\\img\\inGame\\virusAmarillo.png");
-		Image gamma2 = amarillo2.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
-		ImageIcon amarilloVirusCiudad2 = new ImageIcon(gamma2);
-		
-		ImageIcon amarillo3 = new ImageIcon("src\\img\\inGame\\virusAmarillo3.png");
-		Image gamma3 = amarillo3.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
-		ImageIcon amarilloVirusCiudad3 = new ImageIcon(gamma3);
-		
-		ImageIcon negro0 = new ImageIcon("src\\img\\inGame\\virusNegro0.png");
-		Image delta0 = negro0.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
-		ImageIcon negroVirusCiudad0 = new ImageIcon(delta0);
-		
-		ImageIcon negro = new ImageIcon("src\\img\\inGame\\virusNegro.png");
-		Image delta = negro.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
-		ImageIcon negroVirusCiudad = new ImageIcon(delta);
-		
-		ImageIcon negro2 = new ImageIcon("src\\img\\inGame\\virusNegro2.png");
-		Image delta2 = negro2.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
-		ImageIcon negroVirusCiudad2 = new ImageIcon(delta2);
-		
-		ImageIcon negro3 = new ImageIcon("src\\img\\inGame\\virusNegro3.png");
-		Image delta3 = negro3.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
-		ImageIcon negroVirusCiudad3 = new ImageIcon(delta3);
 		
 
 		LineBorder borderRojo = new LineBorder(new Color(137, 5, 78), 3);
@@ -273,16 +274,16 @@ public class partida extends JFrame implements ActionListener {
 		ciudadesBtn.add(Montreal);
 		game.add(Montreal);
 		
-		NuevaYork = new JButton();
-		NuevaYork.setOpaque(falso);
-		NuevaYork.setFocusPainted(falso);
-		NuevaYork.setContentAreaFilled(falso);
-		NuevaYork.setBorderPainted(falso);
-		NuevaYork.setBounds(385, 195, x ,x );
-		NuevaYork.setIcon(azulVirusCiudad0);
-		NuevaYork.setName("NuevaYork");
-		ciudadesBtn.add(NuevaYork);
-		game.add(NuevaYork);
+		York = new JButton();
+		York.setOpaque(falso);
+		York.setFocusPainted(falso);
+		York.setContentAreaFilled(falso);
+		York.setBorderPainted(falso);
+		York.setBounds(385, 195, x ,x );
+		York.setIcon(azulVirusCiudad0);
+		York.setName("York");
+		ciudadesBtn.add(York);
+		game.add(York);
 		
 		Washington = new JButton();
 		Washington.setOpaque(falso);
@@ -428,16 +429,16 @@ public class partida extends JFrame implements ActionListener {
 		ciudadesBtn.add(Santiago);
 		game.add(Santiago);
 		
-		BuenosAires = new JButton();
-		BuenosAires.setOpaque(falso);
-		BuenosAires.setFocusPainted(falso);
-		BuenosAires.setContentAreaFilled(falso);
-		BuenosAires.setBorderPainted(falso);
-		BuenosAires.setIcon(amarilloVirusCiudad0);
-		BuenosAires.setBounds(390, 590,x,x);
-		BuenosAires.setName("BuenosAires");
-		ciudadesBtn.add(BuenosAires);
-		game.add(BuenosAires);
+		Aires = new JButton();
+		Aires.setOpaque(falso);
+		Aires.setFocusPainted(falso);
+		Aires.setContentAreaFilled(falso);
+		Aires.setBorderPainted(falso);
+		Aires.setIcon(amarilloVirusCiudad0);
+		Aires.setBounds(390, 590,x,x);
+		Aires.setName("Aires");
+		ciudadesBtn.add(Aires);
+		game.add(Aires);
 		
 		Paulo = new JButton();
 		Paulo.setOpaque(falso);
@@ -649,16 +650,16 @@ public class partida extends JFrame implements ActionListener {
 		ciudadesBtn.add(Bangkok);
 		game.add(Bangkok);
 		
-		HongKong = new JButton();
-		HongKong.setOpaque(falso);
-		HongKong.setFocusPainted(falso);
-		HongKong.setContentAreaFilled(falso);
-		HongKong.setBorderPainted(falso);
-		HongKong.setBounds(1030,355,x,x);
-		HongKong.setIcon(rojoVirusCiudad0);
-		HongKong.setName("HongKong");
-		ciudadesBtn.add(HongKong);
-		game.add(HongKong);
+		Kong = new JButton();
+		Kong.setOpaque(falso);
+		Kong.setFocusPainted(falso);
+		Kong.setContentAreaFilled(falso);
+		Kong.setBorderPainted(falso);
+		Kong.setBounds(1030,355,x,x);
+		Kong.setIcon(rojoVirusCiudad0);
+		Kong.setName("Kong");
+		ciudadesBtn.add(Kong);
+		game.add(Kong);
 		
 		Shanghai = new JButton();
 		Shanghai.setOpaque(falso);
@@ -1092,31 +1093,31 @@ public class partida extends JFrame implements ActionListener {
 
 
 
-//		PrintStream printStream = new PrintStream(new OutputStream() {
-//			@Override
-//			public void write(int b) throws IOException {
-//				new Thread(() -> {
-//					textArea.append(String.valueOf((char) b));
-//					int lineCount = textArea.getLineCount();
-//					if (lineCount > 6) {
-//						try {
-//							int endOfFirstLine = textArea.getLineEndOffset(0);
-//							textArea.replaceRange("", 0, endOfFirstLine);
-//						} catch (Exception ex) {
-//							ex.printStackTrace();
-//						}
-//					}
-//					textArea.setCaretPosition(textArea.getDocument().getLength());
-//				}).start();
-//				try {
-//					Thread.sleep(10);
-//				} catch (InterruptedException e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//		System.setOut(printStream);
-//		System.setErr(printStream);
+		PrintStream printStream = new PrintStream(new OutputStream() {
+			@Override
+			public void write(int b) throws IOException {
+				new Thread(() -> {
+					textArea.append(String.valueOf((char) b));
+					int lineCount = textArea.getLineCount();
+					if (lineCount > 6) {
+						try {
+							int endOfFirstLine = textArea.getLineEndOffset(0);
+							textArea.replaceRange("", 0, endOfFirstLine);
+						} catch (Exception ex) {
+							ex.printStackTrace();
+						}
+					}
+					textArea.setCaretPosition(textArea.getDocument().getLength());
+				}).start();
+				try {
+					Thread.sleep(10);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		System.setOut(printStream);
+		System.setErr(printStream);
 		
 		
 		DAlfa.addActionListener(this);
@@ -1132,7 +1133,7 @@ public class partida extends JFrame implements ActionListener {
 		 Chicago.addActionListener(this);
 		 Atlanta.addActionListener(this);
 		 Montreal.addActionListener(this);
-		 NuevaYork.addActionListener(this);
+		 York.addActionListener(this);
 		 Washington.addActionListener(this);
 		 Londres.addActionListener(this);
 		 Madrid.addActionListener(this);
@@ -1146,7 +1147,7 @@ public class partida extends JFrame implements ActionListener {
 		 Bogota.addActionListener(this);
 		 Lima.addActionListener(this);
 		 Santiago.addActionListener(this);
-		 BuenosAires.addActionListener(this);
+		 Aires.addActionListener(this);
 		 Paulo.addActionListener(this);
 		 Lagos.addActionListener(this);
 		 Kinsasa.addActionListener(this);
@@ -1166,7 +1167,7 @@ public class partida extends JFrame implements ActionListener {
 		 Madras.addActionListener(this);
 		 Yakarta.addActionListener(this);
 		 Bangkok.addActionListener(this);
-		 HongKong.addActionListener(this);
+		 Kong.addActionListener(this);
 		 Shanghai.addActionListener(this);
 		 Pekin.addActionListener(this);
 		 Seul.addActionListener(this);
@@ -1351,14 +1352,14 @@ public class partida extends JFrame implements ActionListener {
 				}
 			});
 			vac.start();
-		} else if (source == NuevaYork) {
+		} else if (source == York) {
 			Thread vac = new Thread(new Runnable() {
 
 				@Override
 				public void run() {
 					System.out.println("Has seleccionado Nueva York");
 					controlPartida.ciudadSize = ciudadNumero("Nueva York");
-					controlPartida.ciudadNombre = "NuevaYork";
+					controlPartida.ciudadNombre = "York";
 					ciudadSeleccionada = true;
 
 				}
@@ -1536,14 +1537,14 @@ public class partida extends JFrame implements ActionListener {
 				}
 			});
 			vac.start();
-		} else if (source == BuenosAires) {
+		} else if (source == Aires) {
 			Thread vac = new Thread(new Runnable() {
 
 				@Override
 				public void run() {
 					System.out.println("Has seleccionado Buenos Aires");
 					controlPartida.ciudadSize = ciudadNumero("Buenos Aires");
-					controlPartida.ciudadNombre = "BuenosAires";
+					controlPartida.ciudadNombre = "Aires";
 					ciudadSeleccionada = true;
 
 
@@ -1813,14 +1814,14 @@ public class partida extends JFrame implements ActionListener {
 				}
 			});
 			vac.start();
-		} else if (source == HongKong) {
+		} else if (source == Kong) {
 			Thread vac = new Thread(new Runnable() {
 
 				@Override
 				public void run() {
 					System.out.println("Has seleccionado Hong Kong");
 					controlPartida.ciudadSize = ciudadNumero("Hong Kong");
-					controlPartida.ciudadNombre = "HongKong";
+					controlPartida.ciudadNombre = "Kong";
 					ciudadSeleccionada = true;
 
 				}

@@ -12,6 +12,7 @@ import CargaDatos.controlDatos;
 import inicio.Main;
 import intefaz.CargarParty;
 import intefaz.partida;
+import objetos.ciudad;
 import CargaDatos.datosPartida;
 import CargaDatos.savetoTXT;
 
@@ -235,10 +236,25 @@ public class controlPartida {
 				} else {
 					nivel++;
 					datos.getCiudades().get(random).setInfeccion(nivel);
-					//TODO
+					ponerImages(random, comprobacionNombreBoton(datos.getCiudades().get(random).getNombre()));
 				}
 			}
 	}
+	
+	public static String comprobacionNombreBoton(String CiudadNombre) {
+		for (Component c : partida.game.getComponents() ) {
+			
+			if (c instanceof JButton) {
+				if (c.getName().contains(CiudadNombre)) {
+					return c.getName();
+				} else if (CiudadNombre.contains(c.getName())) {
+					return c.getName();
+				} 
+			}
+		}
+		return "";
+	}
+	
 	public static void gestionar_InfeccionNewRound() {
 		int numCiudadesxRonda = Integer.valueOf(controlDatos.numCiudadesInfectadasRonda);
 		Random rand = new Random();
@@ -280,22 +296,27 @@ public class controlPartida {
 			for (int i = 0; i < datos.getCiudades().get(random).getCiudadesColindantes().length; i++) {
 				for (int j = 0; j < datos.getCiudades().size(); j++) {
 					if (datos.getCiudades().get(random).getCiudadesColindantes()[i].equalsIgnoreCase(datos.getCiudades().get(j).getNombre())) {
-						datos.getCiudades().get(j).setInfeccion(datos.getCiudades().get(j).getInfeccion()+1);
-						if (datos.getCiudades().get(j).getInfeccion() == 3) {
-							datos.setBrotes(datos.getBrotes() + 1);
-							partida.brotes.setText("Brotes:" + datos.getBrotes());
-							System.out.println("De las colindades se ha creado otro brote en: " + datos.getCiudades().get(j).getNombre());
-							try {
-						        Thread.sleep(1000); 
-						    } catch (InterruptedException e) {
-						        e.printStackTrace();
-						    }
-							gestionar_Fin_Partida();
+						if (datos.getCiudades().get(j).getInfeccion() < 4) {
 							
-						} else {
-							datos.getCiudades().get(j).setInfeccion(datos.getCiudades().get(j).getInfeccion()+1);
-							//cambiar imagen TODO
-						}
+							if (datos.getCiudades().get(j).getInfeccion() == 3) {
+								
+								datos.setBrotes(datos.getBrotes() + 1);
+								partida.brotes.setText("Brotes:" + datos.getBrotes());
+								System.out.println("De las colindades se ha creado otro brote en: " + datos.getCiudades().get(j).getNombre());
+								try {
+							        Thread.sleep(1000); 
+							    } catch (InterruptedException e) {
+							        e.printStackTrace();
+							    }
+								gestionar_Fin_Partida();
+								
+							} else {
+								datos.getCiudades().get(j).setInfeccion(datos.getCiudades().get(j).getInfeccion()+1);
+								System.out.println("Por el brote se ha infectado: " + datos.getCiudades().get(j).getNombre() + " al nivel " + datos.getCiudades().get(j).getInfeccion());
+								gestionar_Fin_Partida();
+							}
+							
+						} 
 					}
 				}
 				
@@ -331,55 +352,76 @@ public class controlPartida {
 				if ((datos.getAcciones() > 0) && (datos.getCiudades().get(ciudadSize)).getInfeccion() > 0 || datos.getCiudades().get(ciudadSize).getInfeccion() < 0 && partida.ciudadSeleccionada == true)  {
 					//funcion de curar con vacuna desarrollada
 					if (datos.getCiudades().get(ciudadSize).getEnfermedad().equalsIgnoreCase("Alfa") && datos.getVacunas().get(0).getPorcentaje() == 100) {
+						//ALFA azul
 						datos.getCiudades().get(ciudadSize).setInfeccion(0);
 						System.out.println("Has curado la ciudad " + datos.getCiudades().get(ciudadSize).getNombre() + " con la vacuna " + datos.getVacunas().get(0).getNombre() + " y has dejado el nivel de infeccion en: " + datos.getCiudades().get(ciudadSize).getInfeccion());
 						datos.setAcciones(datos.getAcciones()-1);
 						partida.acciones.setText("Acciones: " + datos.getAcciones());
 						partida.ciudadesInf.setText("Ciudades infectadas: " + ciudadesInfectadas());
-
+						ponerImages(ciudadSize,ciudadNombre);
+						
 					} else if (datos.getCiudades().get(ciudadSize).getEnfermedad().equalsIgnoreCase("Beta") && datos.getVacunas().get(1).getPorcentaje() == 100) {
+						//BETA rojo
 						datos.getCiudades().get(ciudadSize).setInfeccion(0);
 						System.out.println("Has curado la ciudad " + datos.getCiudades().get(ciudadSize).getNombre() + " con la vacuna " + datos.getVacunas().get(1).getNombre() + " y has dejado el nivel de infeccion en: " + datos.getCiudades().get(ciudadSize).getInfeccion());
 						datos.setAcciones(datos.getAcciones()-1);
 						partida.acciones.setText("Acciones: " + datos.getAcciones());
 						partida.ciudadesInf.setText("Ciudades infectadas: " + ciudadesInfectadas());
-					} else if (datos.getCiudades().get(ciudadSize).getEnfermedad().equalsIgnoreCase("Gamma") && datos.getVacunas().get(2).getPorcentaje() == 100) {
+						ponerImages(ciudadSize,ciudadNombre);
+						
+					} else if (datos.getCiudades().get(ciudadSize).getEnfermedad().equalsIgnoreCase("Delta") && datos.getVacunas().get(2).getPorcentaje() == 100) {
+						//DELTA negro
 						datos.getCiudades().get(ciudadSize).setInfeccion(0);
 						System.out.println("Has curado la ciudad " + datos.getCiudades().get(ciudadSize).getNombre() + " con la vacuna " + datos.getVacunas().get(2).getNombre() + " y has dejado el nivel de infeccion en: " + datos.getCiudades().get(ciudadSize).getInfeccion());
 						datos.setAcciones(datos.getAcciones()-1);
 						partida.acciones.setText("Acciones: " + datos.getAcciones());
 						partida.ciudadesInf.setText("Ciudades infectadas: " + ciudadesInfectadas());
-					} else if (datos.getCiudades().get(ciudadSize).getEnfermedad().equalsIgnoreCase("Delta") && datos.getVacunas().get(3).getPorcentaje() == 100) {
+						ponerImages(ciudadSize,ciudadNombre);
+						
+					} else if (datos.getCiudades().get(ciudadSize).getEnfermedad().equalsIgnoreCase("Gamma") && datos.getVacunas().get(3).getPorcentaje() == 100) {
+						//GAMMA amarrillo
 						datos.getCiudades().get(ciudadSize).setInfeccion(0);
 						System.out.println("Has curado la ciudad " + datos.getCiudades().get(ciudadSize).getNombre() + " con la vacuna " + datos.getVacunas().get(3).getNombre() + " y has dejado el nivel de infeccion en: " + datos.getCiudades().get(ciudadSize).getInfeccion());
 						datos.setAcciones(datos.getAcciones()-1);
 						partida.acciones.setText("Acciones: " + datos.getAcciones());
 						partida.ciudadesInf.setText("Ciudades infectadas: " + ciudadesInfectadas());
+						ponerImages(ciudadSize,ciudadNombre);
+						
 					} else if (datos.getCiudades().get(ciudadSize).getEnfermedad().equalsIgnoreCase("Alfa") && datos.getVacunas().get(0).getPorcentaje() != 100) {
+						
 						datos.getCiudades().get(ciudadSize).setInfeccion(datos.getCiudades().get(ciudadSize).getInfeccion()-1);
 						System.out.println("Has curado la ciudad " + datos.getCiudades().get(ciudadSize).getNombre() + " sin la vacuna " + datos.getVacunas().get(0).getNombre() + " y has dejado el nivel de infeccion en: " + datos.getCiudades().get(ciudadSize).getInfeccion());
 						datos.setAcciones(datos.getAcciones()-1);
 						partida.acciones.setText("Acciones: " + datos.getAcciones());
 						partida.ciudadesInf.setText("Ciudades infectadas: " + ciudadesInfectadas());
 						ponerImages(ciudadSize,ciudadNombre);
+						
 					} else if (datos.getCiudades().get(ciudadSize).getEnfermedad().equalsIgnoreCase("Beta") && datos.getVacunas().get(1).getPorcentaje() != 100) {
+						
 						datos.getCiudades().get(ciudadSize).setInfeccion(datos.getCiudades().get(ciudadSize).getInfeccion()-1);
 						System.out.println("Has curado la ciudad " + datos.getCiudades().get(ciudadSize).getNombre() + " sin la vacuna " + datos.getVacunas().get(1).getNombre() + " y has dejado el nivel de infeccion en: " + datos.getCiudades().get(ciudadSize).getInfeccion());
 						datos.setAcciones(datos.getAcciones()-1);
 						partida.acciones.setText("Acciones: " + datos.getAcciones());
 						partida.ciudadesInf.setText("Ciudades infectadas: " + ciudadesInfectadas());
-					} else if (datos.getCiudades().get(ciudadSize).getEnfermedad().equalsIgnoreCase("Gamma") && datos.getVacunas().get(2).getPorcentaje() != 100) {
+						ponerImages(ciudadSize,ciudadNombre);
+						
+					} else if (datos.getCiudades().get(ciudadSize).getEnfermedad().equalsIgnoreCase("Delta") && datos.getVacunas().get(2).getPorcentaje() != 100) {
+						
 						datos.getCiudades().get(ciudadSize).setInfeccion(datos.getCiudades().get(ciudadSize).getInfeccion()-1);
 						System.out.println("Has curado la ciudad " + datos.getCiudades().get(ciudadSize).getNombre() + " sin la vacuna " + datos.getVacunas().get(2).getNombre() + " y has dejado el nivel de infeccion en: " + datos.getCiudades().get(ciudadSize).getInfeccion());
 						datos.setAcciones(datos.getAcciones()-1);
 						partida.acciones.setText("Acciones: " + datos.getAcciones());
 						partida.ciudadesInf.setText("Ciudades infectadas: " + ciudadesInfectadas());
-					} else if (datos.getCiudades().get(ciudadSize).getEnfermedad().equalsIgnoreCase("Delta") && datos.getVacunas().get(3).getPorcentaje() != 100) {
+						ponerImages(ciudadSize,ciudadNombre);
+						
+					} else if (datos.getCiudades().get(ciudadSize).getEnfermedad().equalsIgnoreCase("Gamma") && datos.getVacunas().get(3).getPorcentaje() != 100) {
+						
 						datos.getCiudades().get(ciudadSize).setInfeccion(datos.getCiudades().get(ciudadSize).getInfeccion()-1);
 						System.out.println("Has curado la ciudad " + datos.getCiudades().get(ciudadSize).getNombre() + " sin la vacuna " + datos.getVacunas().get(3).getNombre() + " y has dejado el nivel de infeccion en: " + datos.getCiudades().get(ciudadSize).getInfeccion());
 						datos.setAcciones(datos.getAcciones()-1);
 						partida.acciones.setText("Acciones: " + datos.getAcciones());
 						partida.ciudadesInf.setText("Ciudades infectadas: " + ciudadesInfectadas());
+						ponerImages(ciudadSize,ciudadNombre);
 					} 
 				} else if (datos.getAcciones() == 0) {
 					System.out.println("Franko: No tienes acciones...");
@@ -392,15 +434,29 @@ public class controlPartida {
 		
 		
 	}
+	
 
+	
 	public static void ponerImages(int ciudadPos, String nombreBtn) {
+		
+		
 		switch (datos.getCiudades().get(ciudadPos).getInfeccion()) {
 		case 0:
 			if (datos.getCiudades().get(ciudadPos).getNombre().contains(nombreBtn)) {
 				for (Component c : partida.game.getComponents() ) {
 					if (c instanceof JButton) {
-						if (c.getName().equals(nombreBtn)) {
-							((JButton) c).setIcon(null);
+						if (c.getName().equals(nombreBtn) && datos.getCiudades().get(ciudadPos).getEnfermedad().equals("Alfa")) {
+							((JButton) c).setIcon(partida.azulVirusCiudad0);
+							break;
+						} else if (c.getName().equals(nombreBtn) && datos.getCiudades().get(ciudadPos).getEnfermedad().equals("Beta")) {
+							((JButton) c).setIcon(partida.rojoVirusCiudad0);
+							break;
+						} else if (c.getName().equals(nombreBtn) && datos.getCiudades().get(ciudadPos).getEnfermedad().equals("Delta")) {
+							((JButton) c).setIcon(partida.amarilloVirusCiudad0);
+							break;
+						} else if (c.getName().equals(nombreBtn) && datos.getCiudades().get(ciudadPos).getEnfermedad().equals("Gamma")) {
+							((JButton) c).setIcon(partida.negroVirusCiudad0);
+							break;
 						}
 						
 					}
@@ -409,12 +465,75 @@ public class controlPartida {
 			break;
 		case 1:
 			if (datos.getCiudades().get(ciudadPos).getNombre().contains(nombreBtn)) {
-				System.out.println("gola");
+				if (datos.getCiudades().get(ciudadPos).getNombre().contains(nombreBtn)) {
+					for (Component c : partida.game.getComponents() ) {
+						if (c instanceof JButton) {
+							if (c.getName().equals(nombreBtn) && datos.getCiudades().get(ciudadPos).getEnfermedad().equals("Alfa")) {
+								((JButton) c).setIcon(partida.azulVirusCiudad);
+								break;
+							} else if (c.getName().equals(nombreBtn) && datos.getCiudades().get(ciudadPos).getEnfermedad().equals("Beta")) {
+								((JButton) c).setIcon(partida.rojoVirusCiudad);
+								break;
+							} else if (c.getName().equals(nombreBtn) && datos.getCiudades().get(ciudadPos).getEnfermedad().equals("Delta")) {
+								((JButton) c).setIcon(partida.amarilloVirusCiudad);
+								break;
+							} else if (c.getName().equals(nombreBtn) && datos.getCiudades().get(ciudadPos).getEnfermedad().equals("Gamma")) {
+								((JButton) c).setIcon(partida.negroVirusCiudad);
+								break;
+							}
+							
+						}
+					}
+				}
 			}
 			break;
 		case 2:
+			if (datos.getCiudades().get(ciudadPos).getNombre().contains(nombreBtn)) {
+				if (datos.getCiudades().get(ciudadPos).getNombre().contains(nombreBtn)) {
+					for (Component c : partida.game.getComponents() ) {
+						if (c instanceof JButton) {
+							if (c.getName().equals(nombreBtn) && datos.getCiudades().get(ciudadPos).getEnfermedad().equals("Alfa")) {
+								((JButton) c).setIcon(partida.azulVirusCiudad2);
+								break;
+							} else if (c.getName().equals(nombreBtn) && datos.getCiudades().get(ciudadPos).getEnfermedad().equals("Beta")) {
+								((JButton) c).setIcon(partida.rojoVirusCiudad2);
+								break;
+							} else if (c.getName().equals(nombreBtn) && datos.getCiudades().get(ciudadPos).getEnfermedad().equals("Delta")) {
+								((JButton) c).setIcon(partida.amarilloVirusCiudad2);
+								break;
+							} else if (c.getName().equals(nombreBtn) && datos.getCiudades().get(ciudadPos).getEnfermedad().equals("Gamma")) {
+								((JButton) c).setIcon(partida.negroVirusCiudad2);
+								break;
+							}
+							
+						}
+					}
+				}
+			}
 			break;
 		case 3:
+			if (datos.getCiudades().get(ciudadPos).getNombre().contains(nombreBtn)) {
+				if (datos.getCiudades().get(ciudadPos).getNombre().contains(nombreBtn)) {
+					for (Component c : partida.game.getComponents() ) {
+						if (c instanceof JButton) {
+							if (c.getName().equals(nombreBtn) && datos.getCiudades().get(ciudadPos).getEnfermedad().equals("Alfa")) {
+								((JButton) c).setIcon(partida.azulVirusCiudad3);
+								break;
+							} else if (c.getName().equals(nombreBtn) && datos.getCiudades().get(ciudadPos).getEnfermedad().equals("Beta")) {
+								((JButton) c).setIcon(partida.rojoVirusCiudad3);
+								break;
+							} else if (c.getName().equals(nombreBtn) && datos.getCiudades().get(ciudadPos).getEnfermedad().equals("Gamma")) {
+								((JButton) c).setIcon(partida.amarilloVirusCiudad3);
+								break;
+							} else if (c.getName().equals(nombreBtn) && datos.getCiudades().get(ciudadPos).getEnfermedad().equals("Delta")) {
+								((JButton) c).setIcon(partida.negroVirusCiudad3);
+								break;
+							}
+							
+						}
+					}
+				}
+			}
 			break;
 		}
 	}
