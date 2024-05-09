@@ -57,10 +57,10 @@ public class partida extends JFrame implements ActionListener {
 	public static JProgressBar Beta = new JProgressBar();
 	public static JProgressBar Gamma = new JProgressBar();
 	public static JProgressBar Delta = new JProgressBar();
-	public static JButton DAlfa = new JButton("Desarrollar VIH");
-	public static JButton DBeta = new JButton("Desarrollar CANCER");
-	public static JButton DGamma = new JButton("Desarrollar SARS");
-	public static JButton DDelta = new JButton("Desarrollar NIGGA");
+	public static JButton DAlfa = new JButton("VIH");
+	public static JButton DBeta = new JButton("CANCER");
+	public static JButton DGamma = new JButton("SARS");
+	public static JButton DDelta = new JButton("NIGGA");
 	public static JButton finalizarRonda = new JButton("Finalizar Ronda");
 	public static JButton curar = new JButton("Curar");
 	public static JLabel rondas = new JLabel();
@@ -77,8 +77,9 @@ public class partida extends JFrame implements ActionListener {
 	public static Image iconoMusicaDes = iconoMusDes.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
 	public static ImageIcon iconoMusFinalDes = new ImageIcon(iconoMusicaDes);
 	public static boolean musica = true;
-	public static JLabel brotes;
-	public static JLabel ciudadesInf;
+	public static JLabel brotes = new JLabel();
+	public static JLabel scoreNum = new JLabel();
+	public static JLabel ciudadesInf = new JLabel();
 	public static boolean ciudadSeleccionada = false;
 	// botones
 	public static JButton Francisco;
@@ -173,7 +174,7 @@ public class partida extends JFrame implements ActionListener {
 	public static Image gamma = amarillo.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
 	public static ImageIcon amarilloVirusCiudad = new ImageIcon(gamma);
 
-	public static ImageIcon amarillo2 = new ImageIcon("src\\img\\inGame\\virusAmarillo.png");
+	public static ImageIcon amarillo2 = new ImageIcon("src\\img\\inGame\\virusAmarillo2.png");
 	public static Image gamma2 = amarillo2.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
 	public static ImageIcon amarilloVirusCiudad2 = new ImageIcon(gamma2);
 
@@ -212,19 +213,142 @@ public class partida extends JFrame implements ActionListener {
 		
 
 		LineBorder borderRojo = new LineBorder(new Color(137, 5, 78), 3);
+		
+		ImageIcon iconCurar = new ImageIcon("src\\img\\inGame\\IconoCurar.png");
+		Image iconCurarEs = iconCurar.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+		ImageIcon IconCurarFin = new ImageIcon(iconCurarEs);
+		
+		ImageIcon iconCurarOP = new ImageIcon("src\\img\\inGame\\IconoCurarOP.png");
+		Image iconCurarEsOP = iconCurarOP.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+		ImageIcon IconCurarFinop = new ImageIcon(iconCurarEsOP);
+		
+		ImageIcon iconDesarrolloAzul = new ImageIcon("src\\img\\inGame\\iconoDesarrolloAzul.png");
+		Image iconDesarrolloAzulES = iconDesarrolloAzul.getImage().getScaledInstance(50,50,Image.SCALE_DEFAULT);
+		ImageIcon iconDesarrolloAzulFIN = new ImageIcon(iconDesarrolloAzulES);
+		
+		ImageIcon iconDesarrolloAzulOP = new ImageIcon("src\\img\\inGame\\iconoDesarrolloAzulOP.png");
+		Image iconDesarrolloAzulOPes = iconDesarrolloAzulOP.getImage().getScaledInstance(50,50,Image.SCALE_DEFAULT);
+		ImageIcon iconDesarrolloAzulFINOP = new ImageIcon(iconDesarrolloAzulOPes);
+		
+		ImageIcon iconDesarrolloAmarillo = new ImageIcon("src\\img\\inGame\\iconoDesarrolloAmarillo.png");
+		Image iconDesarrolloAmarilloES = iconDesarrolloAmarillo.getImage().getScaledInstance(50,50,Image.SCALE_DEFAULT);
+		ImageIcon iconDesarrolloAmarilloFIN = new ImageIcon(iconDesarrolloAmarilloES);
+		
+		ImageIcon iconDesarrolloAmarilloOP = new ImageIcon("src\\img\\inGame\\iconoDesarrolloAmarilloOP.png");
+		Image iconDesarrolloAmarilloESOP = iconDesarrolloAmarilloOP.getImage().getScaledInstance(50,50,Image.SCALE_DEFAULT);
+		ImageIcon iconDesarrolloAmarilloFINOP = new ImageIcon(iconDesarrolloAmarilloESOP);
+		
+		ImageIcon iconDesarrolloNegro = new ImageIcon("src\\img\\inGame\\iconoDesarrolloNegro.png");
+		Image iconDesarrolloNegroES = iconDesarrolloNegro.getImage().getScaledInstance(50,50,Image.SCALE_DEFAULT);
+		ImageIcon iconDesarrolloNegroFIN = new ImageIcon(iconDesarrolloNegroES);
+		
+		ImageIcon iconDesarrolloNegroop = new ImageIcon("src\\img\\inGame\\iconoDesarrolloNegroOP.png");
+		Image iconDesarrolloNegroESop = iconDesarrolloNegroop.getImage().getScaledInstance(50,50,Image.SCALE_DEFAULT);
+		ImageIcon iconDesarrolloNegroFINop = new ImageIcon(iconDesarrolloNegroESop);
+		
+		ImageIcon iconDesarrolloRojo = new ImageIcon("src\\img\\inGame\\iconoDesarrolloRojo.png");
+		Image iconDesarrolloRojoES = iconDesarrolloRojo.getImage().getScaledInstance(50,50,Image.SCALE_DEFAULT);
+		ImageIcon iconDesarrolloRojofin = new ImageIcon(iconDesarrolloRojoES);
+		
+		ImageIcon iconDesarrolloRojoop = new ImageIcon("src\\img\\inGame\\iconoDesarrolloRojoOP.png");
+		Image iconDesarrolloRojoESOP = iconDesarrolloRojoop.getImage().getScaledInstance(50,50,Image.SCALE_DEFAULT);
+		ImageIcon iconDesarrolloRojofinOP = new ImageIcon(iconDesarrolloRojoESOP);
+		
+		curar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				curar.setForeground(new Color(200,5,78));
+				curar.setIcon(IconCurarFinop);
+			}
 
-		// pabel principal
+			@Override
+			public void mouseExited(MouseEvent e) {
+				curar.setForeground(new Color(137,5,78));
+				curar.setIcon(IconCurarFin);
+			}
+		});
+		
+		finalizarRonda.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				finalizarRonda.setForeground(new Color(200,5,78));
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				finalizarRonda.setForeground(new Color(137,5,78));
+
+			}
+		});
+		
+		DAlfa.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				DAlfa.setForeground(new Color(200,5,78));
+				DAlfa.setIcon(iconDesarrolloAzulFINOP);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				DAlfa.setForeground(new Color(137,5,78));
+				DAlfa.setIcon(iconDesarrolloAzulFIN);
+			}
+		});
+		
+		DGamma.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				DGamma.setForeground(new Color(200,5,78));
+				DGamma.setIcon(iconDesarrolloAmarilloFINOP);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				DGamma.setForeground(new Color(137,5,78));
+				DGamma.setIcon(iconDesarrolloAmarilloFIN);
+			}
+		});
+		
+		DDelta.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				DDelta.setForeground(new Color(200,5,78));
+				DDelta.setIcon(iconDesarrolloNegroFINop);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				DDelta.setForeground(new Color(137,5,78));
+				DDelta.setIcon(iconDesarrolloNegroFIN);
+			}
+		});
+		
+		DBeta.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				DBeta.setForeground(new Color(200,5,78));
+				DBeta.setIcon(iconDesarrolloRojofinOP);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				DBeta.setForeground(new Color(137,5,78));
+				DBeta.setIcon(iconDesarrolloRojofin);
+			}
+		});
+		
+		
+		
 		game = new JPanel() {
 			@Override
 			protected void paintComponent(Graphics g) {
 				super.paintComponent(g);
 				// Dibuja la imagen de fondo
-				ImageIcon iconoFondo = new ImageIcon("src\\img\\inGame\\mapa_acabado.png");
+				ImageIcon iconoFondo = new ImageIcon("src\\img\\inGame\\mar.jpeg");
 				Image imagenFondo = iconoFondo.getImage();
 				g.drawImage(imagenFondo, 0, 0, getWidth(), getHeight(), this);
 			}
 		};
-		
 		game.setLayout(null);
 		boolean falso = false;
 		int x = 50;
@@ -268,7 +392,7 @@ public class partida extends JFrame implements ActionListener {
 		Montreal.setFocusPainted(falso);
 		Montreal.setContentAreaFilled(falso);
 		Montreal.setBorderPainted(falso);
-		Montreal.setBounds(305,205,x,x);
+		Montreal.setBounds(307,205,x,x);
 		Montreal.setIcon(azulVirusCiudad0);
 		Montreal.setName("Montreal");
 		ciudadesBtn.add(Montreal);
@@ -279,7 +403,7 @@ public class partida extends JFrame implements ActionListener {
 		York.setFocusPainted(falso);
 		York.setContentAreaFilled(falso);
 		York.setBorderPainted(falso);
-		York.setBounds(385, 195, x ,x );
+		York.setBounds(387, 195, x ,x );
 		York.setIcon(azulVirusCiudad0);
 		York.setName("York");
 		ciudadesBtn.add(York);
@@ -314,7 +438,7 @@ public class partida extends JFrame implements ActionListener {
 		Madrid.setBorderPainted(falso);
 		Madrid.setIcon(azulVirusCiudad0);
 		Madrid.setName("Madrid");
-		Madrid.setBounds(535, 270, x,x);
+		Madrid.setBounds(535, 265, x,x);
 		ciudadesBtn.add(Madrid);
 		game.add(Madrid);
 		
@@ -379,7 +503,7 @@ public class partida extends JFrame implements ActionListener {
 		Miami.setFocusPainted(falso);
 		Miami.setContentAreaFilled(falso);
 		Miami.setBorderPainted(falso);
-		Miami.setBounds(300,312,x,x);
+		Miami.setBounds(298,310,x,x);
 		Miami.setIcon(amarilloVirusCiudad0);
 		Miami.setName("Miami");
 		ciudadesBtn.add(Miami);
@@ -390,7 +514,7 @@ public class partida extends JFrame implements ActionListener {
 		Mexico.setFocusPainted(falso);
 		Mexico.setContentAreaFilled(falso);
 		Mexico.setBorderPainted(falso);
-		Mexico.setBounds(225,335, x,x);
+		Mexico.setBounds(220,338, x,x);
 		Mexico.setIcon(amarilloVirusCiudad0);
 		Mexico.setName("Mexico");
 		ciudadesBtn.add(Mexico);
@@ -412,7 +536,7 @@ public class partida extends JFrame implements ActionListener {
 		Lima.setFocusPainted(falso);
 		Lima.setContentAreaFilled(falso);
 		Lima.setBorderPainted(falso);
-		Lima.setBounds(280, 490, x ,x);
+		Lima.setBounds(278, 500, x ,x);
 		Lima.setIcon(amarilloVirusCiudad0);
 		Lima.setName("Lima");
 		ciudadesBtn.add(Lima);
@@ -435,7 +559,7 @@ public class partida extends JFrame implements ActionListener {
 		Aires.setContentAreaFilled(falso);
 		Aires.setBorderPainted(falso);
 		Aires.setIcon(amarilloVirusCiudad0);
-		Aires.setBounds(390, 590,x,x);
+		Aires.setBounds(400, 585,x,x);
 		Aires.setName("Aires");
 		ciudadesBtn.add(Aires);
 		game.add(Aires);
@@ -445,7 +569,7 @@ public class partida extends JFrame implements ActionListener {
 		Paulo.setFocusPainted(falso);
 		Paulo.setContentAreaFilled(falso);
 		Paulo.setBorderPainted(falso);
-		Paulo.setBounds(425,520,x,x);
+		Paulo.setBounds(432,525,x,x);
 		Paulo.setIcon(amarilloVirusCiudad0);
 		Paulo.setName("Paulo");
 		ciudadesBtn.add(Paulo);
@@ -456,7 +580,7 @@ public class partida extends JFrame implements ActionListener {
 		Lagos.setFocusPainted(falso);
 		Lagos.setContentAreaFilled(falso);
 		Lagos.setBorderPainted(falso);
-		Lagos.setBounds(585, 425,x,x);
+		Lagos.setBounds(587, 420,x,x);
 		Lagos.setIcon(amarilloVirusCiudad0);
 		Lagos.setName("Lagos");
 		ciudadesBtn.add(Lagos);
@@ -467,7 +591,7 @@ public class partida extends JFrame implements ActionListener {
 		Kinsasa.setFocusPainted(falso);
 		Kinsasa.setContentAreaFilled(falso);
 		Kinsasa.setBorderPainted(falso);
-		Kinsasa.setBounds(695,425,x,x);
+		Kinsasa.setBounds(698,420,x,x);
 		Kinsasa.setIcon(amarilloVirusCiudad0);
 		Kinsasa.setName("Kinsasa");
 		ciudadesBtn.add(Kinsasa);
@@ -500,7 +624,7 @@ public class partida extends JFrame implements ActionListener {
 		Argel.setFocusPainted(falso);
 		Argel.setContentAreaFilled(falso);
 		Argel.setBorderPainted(falso);
-		Argel.setBounds(605,320,x,x);
+		Argel.setBounds(610,323,x,x);
 		Argel.setIcon(negroVirusCiudad0);
 		Argel.setName("Argel");
 		ciudadesBtn.add(Argel);
@@ -511,7 +635,7 @@ public class partida extends JFrame implements ActionListener {
 		Cairo.setFocusPainted(falso);
 		Cairo.setContentAreaFilled(falso);
 		Cairo.setBorderPainted(falso);
-		Cairo.setBounds(675, 355,x,x);
+		Cairo.setBounds(682, 352,x,x);
 		Cairo.setIcon(negroVirusCiudad0);
 		Cairo.setName("Cairo");
 		ciudadesBtn.add(Cairo);
@@ -523,7 +647,7 @@ public class partida extends JFrame implements ActionListener {
 		Riad.setFocusPainted(falso);
 		Riad.setContentAreaFilled(falso);
 		Riad.setBorderPainted(falso);
-		Riad.setBounds(765, 385, x ,x);
+		Riad.setBounds(768, 380, x ,x);
 		Riad.setIcon(negroVirusCiudad0);
 		Riad.setName("Riad");
 		ciudadesBtn.add(Riad);
@@ -534,7 +658,7 @@ public class partida extends JFrame implements ActionListener {
 		Estambul.setFocusPainted(falso);
 		Estambul.setContentAreaFilled(falso);
 		Estambul.setBorderPainted(falso);
-		Estambul.setBounds(680, 270,x,x);
+		Estambul.setBounds(685, 265,x,x);
 		Estambul.setIcon(negroVirusCiudad0);
 		Estambul.setName("Estambul");
 		ciudadesBtn.add(Estambul);
@@ -566,7 +690,7 @@ public class partida extends JFrame implements ActionListener {
 		Teheran.setOpaque(falso);
 		Teheran.setFocusPainted(falso);
 		Teheran.setContentAreaFilled(falso);
-		Teheran.setBounds(850,210,x,x);
+		Teheran.setBounds(847,213,x,x);
 		Teheran.setBorderPainted(falso);
 		Teheran.setIcon(negroVirusCiudad0);
 		Teheran.setName("Teheran");
@@ -578,7 +702,7 @@ public class partida extends JFrame implements ActionListener {
 		Karachi.setFocusPainted(falso);
 		Karachi.setContentAreaFilled(falso);
 		Karachi.setBorderPainted(falso);
-		Karachi.setBounds(825,305,x,x);
+		Karachi.setBounds(825,308,x,x);
 		Karachi.setName("Karachi");
 		Karachi.setIcon(negroVirusCiudad0);
 		ciudadesBtn.add(Karachi);
@@ -590,7 +714,7 @@ public class partida extends JFrame implements ActionListener {
 		Bombay.setContentAreaFilled(falso);
 		Bombay.setBorderPainted(falso);
 		Bombay.setIcon(negroVirusCiudad0);
-		Bombay.setBounds(840,385,x,x);
+		Bombay.setBounds(845,385,x,x);
 		Bombay.setName("Bombay");
 		ciudadesBtn.add(Bombay);
 		game.add(Bombay);
@@ -623,7 +747,7 @@ public class partida extends JFrame implements ActionListener {
 		Madras.setContentAreaFilled(falso);
 		Madras.setBorderPainted(falso);
 		Madras.setIcon(negroVirusCiudad0);
-		Madras.setBounds(910,425,x,x);
+		Madras.setBounds(910,420,x,x);
 		Madras.setName("Madras");
 		ciudadesBtn.add(Madras);
 		game.add(Madras);
@@ -634,7 +758,7 @@ public class partida extends JFrame implements ActionListener {
 		Yakarta.setContentAreaFilled(falso);
 		Yakarta.setBorderPainted(falso);
 		Yakarta.setIcon(rojoVirusCiudad0);
-		Yakarta.setBounds(955,500,x,x);
+		Yakarta.setBounds(960,500,x,x);
 		Yakarta.setName("Yakarta");
 		ciudadesBtn.add(Yakarta);
 		game.add(Yakarta);
@@ -643,7 +767,7 @@ public class partida extends JFrame implements ActionListener {
 		Bangkok.setOpaque(falso);
 		Bangkok.setFocusPainted(falso);
 		Bangkok.setContentAreaFilled(falso);
-		Bangkok.setBounds(975,395,x,x);
+		Bangkok.setBounds(977,390,x,x);
 		Bangkok.setBorderPainted(falso);
 		Bangkok.setIcon(rojoVirusCiudad0);
 		Bangkok.setName("Bangkok");
@@ -666,7 +790,7 @@ public class partida extends JFrame implements ActionListener {
 		Shanghai.setFocusPainted(falso);
 		Shanghai.setContentAreaFilled(falso);
 		Shanghai.setBorderPainted(falso);
-		Shanghai.setBounds(1030,275,x,x);
+		Shanghai.setBounds(1030,270,x,x);
 		Shanghai.setIcon(rojoVirusCiudad0);
 		Shanghai.setName("Shanghai");
 		ciudadesBtn.add(Shanghai);
@@ -690,7 +814,7 @@ public class partida extends JFrame implements ActionListener {
 		Seul.setBorderPainted(falso);
 		Seul.setIcon(rojoVirusCiudad0);
 		Seul.setName("Seul");
-		Seul.setBounds(1100,175,x,x);
+		Seul.setBounds(1105,180,x,x);
 		ciudadesBtn.add(Seul);
 		game.add(Seul);
 		
@@ -735,7 +859,7 @@ public class partida extends JFrame implements ActionListener {
 		Minh.setIcon(rojoVirusCiudad0);
 		Minh.setBorderPainted(falso);
 		Minh.setName("Minh");
-		Minh.setBounds(1030,450,x,x);
+		Minh.setBounds(1028,450,x,x);
 		ciudadesBtn.add(Minh);
 		game.add(Minh);	
 		
@@ -746,7 +870,7 @@ public class partida extends JFrame implements ActionListener {
 		Manila.setIcon(rojoVirusCiudad0);
 		Manila.setBorderPainted(falso);
 		Manila.setName("Manila");
-		Manila.setBounds(1100,430,x,x);
+		Manila.setBounds(1105,435,x,x);
 		ciudadesBtn.add(Manila);
 		game.add(Manila);	
 		
@@ -772,25 +896,24 @@ public class partida extends JFrame implements ActionListener {
 
 		JPanel botonCurarFinalizar = new JPanel();
 		botonCurarFinalizar.setOpaque(false);
-		botonCurarFinalizar.setLayout(new GridLayout(2, 1, 10, 10));
+		botonCurarFinalizar.setLayout(new GridLayout(2, 1, 10, 7));
 
-		
-		curar.setPreferredSize(new Dimension(150, 50));
-		curar.setBackground(new Color(0, 0, 0, 0));
-		curar.setOpaque(false);
+		curar.setPreferredSize(new Dimension (200, screen.height/7/2));
+		curar.setIcon(IconCurarFin);
+		curar.setOpaque(true);
 		curar.setContentAreaFilled(false);
-		curar.setBorderPainted(false);
+		curar.setBorderPainted(true);
 		curar.setFocusPainted(false);
-		curar.setFont(new Font("Arial", Font.BOLD, 10));
-		curar.setForeground(new Color(137, 5, 78));
-
-		finalizarRonda.setPreferredSize(new Dimension(150, 50));
-		finalizarRonda.setBackground(new Color(0, 0, 0, 0));
-		finalizarRonda.setOpaque(false);
+		curar.setFont(controlDatos.fuenteMC15());
+		curar.setForeground(new Color(137,5,78));
+		
+		
+		finalizarRonda.setPreferredSize(new Dimension (200,screen.height/7/2));
+		finalizarRonda.setOpaque(true);
 		finalizarRonda.setContentAreaFilled(false);
-		finalizarRonda.setBorderPainted(false);
+		finalizarRonda.setBorderPainted(true);
 		finalizarRonda.setFocusPainted(false);
-		finalizarRonda.setFont(new Font("Arial", Font.BOLD, 10));
+		finalizarRonda.setFont(controlDatos.fuenteMC15());
 		finalizarRonda.setForeground(new Color(137, 5, 78));
 
 		botonCurarFinalizar.add(curar);
@@ -822,43 +945,43 @@ public class partida extends JFrame implements ActionListener {
 		botonesTexto.add(textArea);
 
 		JPanel DesarrollarCura = new JPanel();
-		DesarrollarCura.setLayout(new GridLayout(2, 2, 10, 10));
+		DesarrollarCura.setLayout(new GridLayout(2, 2, 10, 2));
 		DesarrollarCura.setOpaque(false);
-
-		DAlfa.setPreferredSize(new Dimension(150, 50));
-		DAlfa.setBackground(new Color(0, 0, 0, 0));
-		DAlfa.setOpaque(false);
+		
+		DAlfa.setPreferredSize(new Dimension(200, screen.height/7/2));
+		DAlfa.setIcon(iconDesarrolloAzulFIN);
+		DAlfa.setOpaque(true);
 		DAlfa.setContentAreaFilled(false);
-		DAlfa.setBorderPainted(false);
+		DAlfa.setBorderPainted(true);
 		DAlfa.setFocusPainted(false);
-		DAlfa.setFont(new Font("Arial", Font.BOLD, 10));
+		DAlfa.setFont(controlDatos.fuenteMC15());
 		DAlfa.setForeground(new Color(137, 5, 78));
 
-		DBeta.setPreferredSize(new Dimension(150, 50));
-		DBeta.setBackground(new Color(0, 0, 0, 0));
-		DBeta.setOpaque(false);
+		DBeta.setPreferredSize(new Dimension(200, screen.height/7/2));
+		DBeta.setIcon(iconDesarrolloRojofin);
+		DBeta.setOpaque(true);
 		DBeta.setContentAreaFilled(false);
-		DBeta.setBorderPainted(false);
+		DBeta.setBorderPainted(true);
 		DBeta.setFocusPainted(false);
-		DBeta.setFont(new Font("Arial", Font.BOLD, 10));
+		DBeta.setFont(controlDatos.fuenteMC15());
 		DBeta.setForeground(new Color(137, 5, 78));
 
-		DGamma.setPreferredSize(new Dimension(150, 50));
-		DGamma.setBackground(new Color(0, 0, 0, 0));
-		DGamma.setOpaque(false);
+		DGamma.setPreferredSize(new Dimension(200, screen.height/7/2));
+		DGamma.setIcon(iconDesarrolloAmarilloFIN);
+		DGamma.setOpaque(true);
 		DGamma.setContentAreaFilled(false);
-		DGamma.setBorderPainted(false);
+		DGamma.setBorderPainted(true);
 		DGamma.setFocusPainted(false);
-		DGamma.setFont(new Font("Arial", Font.BOLD, 10));
+		DGamma.setFont(controlDatos.fuenteMC15());
 		DGamma.setForeground(new Color(137, 5, 78));
 
-		DDelta.setPreferredSize(new Dimension(150, 50));
-		DDelta.setBackground(new Color(0, 0, 0, 0));
-		DDelta.setOpaque(false);
+		DDelta.setPreferredSize(new Dimension(200, screen.height/7/2));
+		DDelta.setIcon(iconDesarrolloNegroFIN);
+		DDelta.setOpaque(true);
 		DDelta.setContentAreaFilled(false);
-		DDelta.setBorderPainted(false);
+		DDelta.setBorderPainted(true);
 		DDelta.setFocusPainted(false);
-		DDelta.setFont(new Font("Arial", Font.BOLD, 10));
+		DDelta.setFont(controlDatos.fuenteMC15());
 		DDelta.setForeground(new Color(137, 5, 78));
 
 		DesarrollarCura.add(DAlfa);
@@ -870,128 +993,288 @@ public class partida extends JFrame implements ActionListener {
 		botonesTexto.add(DesarrollarCura);
 
 		// panel derecha
-		JPanel stats = new JPanel() {
+		JPanel estadisticas = new JPanel(new GridBagLayout()){
 			@Override
 			protected void paintComponent(Graphics g) {
 				super.paintComponent(g);
-				// Dibuja la imagen de fondo
-				ImageIcon iconoFondo = new ImageIcon("src\\img\\inGame\\fondoStats.png");
-				Image imagenFondo = iconoFondo.getImage();
-				g.drawImage(imagenFondo, 0, 0, getWidth(), getHeight(), this);
+				Graphics2D g2d = (Graphics2D) g.create();
+				g2d.setColor(new Color(0, 0, 0, 128));
+				g2d.fillRect(0, 0, getWidth(), getHeight());
+				g2d.dispose();
 			}
 		};
-		stats.setPreferredSize(new Dimension(screen.width / 7, screen.height));
-		stats.setLayout(new GridBagLayout());
-
-		GridBagConstraints gbcStats = new GridBagConstraints();
-		gbcStats.gridx = 0;
-		gbcStats.gridy = 0;
-		gbcStats.insets = new Insets(10, 10, 10, 10);
-
-		JLabel score = new JLabel();
-		score.setText("Puntos: 0"); // TODO METER VARIABLE DE SCORE
-		score.setFont(new Font("Arial", Font.BOLD, 20));
-
-		stats.add(score, gbcStats);
-
-		gbcStats.gridy = 1;
-		ciudadesInf = new JLabel();
-		ciudadesInf.setText("Ciudades Infectadas: " ); 
-		ciudadesInf.setFont(new Font("Arial", Font.BOLD, 15));
-
-		stats.add(ciudadesInf, gbcStats);
+		estadisticas.setOpaque(false);
+		estadisticas.setBounds(0, 0, screen.width, screen.height/7);
 		
-		gbcStats.gridy = 2;
-		brotes = new JLabel();
-		brotes.setText("Brotes: "); // TODO METER VARIABLE DE SCORE
-		brotes.setFont(new Font("Arial", Font.BOLD, 15));
+		GridBagConstraints gbcEstadisticas = new GridBagConstraints();
+		
+		gbcEstadisticas.gridx = 0;
+		gbcEstadisticas.gridy = 0;
+		gbcEstadisticas.insets = new Insets(5, 10, 5, 10);
+		
+		JPanel ciudadesInfBrotes = new JPanel(new FlowLayout());
+		ciudadesInfBrotes.setOpaque(false);
+		
+		JPanel ciudadesInfPanel = new JPanel();
+		ciudadesInfPanel.setOpaque(false);
+		
+		JLabel ciudadesInfTXT = new JLabel();
+		ciudadesInfTXT.setFont(controlDatos.fuenteMC15());
+		ciudadesInfTXT.setHorizontalAlignment(JLabel.CENTER);
+		ciudadesInfTXT.setVerticalAlignment(JLabel.CENTER);
+		ciudadesInfTXT.setForeground(Color.white);
+		ciudadesInfTXT.setText("Infectados: ");
+		
+		ciudadesInf.setText("0");
+		ciudadesInf.setPreferredSize(new Dimension (30,30));
+		ciudadesInf.setFont(controlDatos.fuenteMC15());
+		ciudadesInf.setBorder(border);
+		ciudadesInf.setHorizontalAlignment(JLabel.CENTER);
+		ciudadesInf.setVerticalAlignment(JLabel.CENTER);
+		ciudadesInf.setOpaque(true);
+		ciudadesInf.setBackground(Color.LIGHT_GRAY);
+		ciudadesInf.setForeground(Color.red);
+		
+		ciudadesInfPanel.add(ciudadesInfTXT);
+		ciudadesInfPanel.add(ciudadesInf);
+		
+		JPanel brotesPanel = new JPanel(new FlowLayout());
+		brotesPanel.setOpaque(false);
+		
+		JLabel textBrotes = new JLabel();
+		textBrotes.setFont(controlDatos.fuenteMC15());
+		textBrotes.setHorizontalAlignment(JLabel.CENTER);
+		textBrotes.setVerticalAlignment(JLabel.CENTER);
+		textBrotes.setForeground(Color.white);
+		textBrotes.setText("Brotes: ");
+		
+		brotes.setText("0");
+		brotes.setPreferredSize(new Dimension (30,30));
+		brotes.setFont(controlDatos.fuenteMC15());
+		brotes.setBorder(border);
+		brotes.setHorizontalAlignment(JLabel.CENTER);
+		brotes.setVerticalAlignment(JLabel.CENTER);
+		brotes.setOpaque(true);
+		brotes.setBackground(Color.LIGHT_GRAY);
+		brotes.setForeground(Color.red);
+		
+		brotesPanel.add(textBrotes);
+		brotesPanel.add(brotes);
+		
+		ciudadesInfBrotes.add(ciudadesInfPanel);
+		ciudadesInfBrotes.add(brotesPanel);
+		
+		estadisticas.add(ciudadesInfBrotes, gbcEstadisticas);
+		
 
-		stats.add(brotes, gbcStats);
-
-		gbcStats.gridy = 3;
-
-		rondas.setFont(new Font("Arial", Font.BOLD, 15));
-
-		stats.add(rondas, gbcStats);
-
-
+		
+		gbcEstadisticas.gridx = 1;
+		estadisticas.add(brotesPanel, gbcEstadisticas);
+		
+		
+	
+		
+		gbcEstadisticas.gridx = 2;
+		gbcEstadisticas.insets = new Insets(10, 30, 10, 30);
+		JPanel barras1 = new JPanel(new GridBagLayout());
+		barras1.setOpaque(false);
+		
+		GridBagConstraints gbcBarras1 = new GridBagConstraints();
+		
+		gbcBarras1.insets = new Insets(10, 10, 10, 10);
+		gbcBarras1.gridx = 0;
+		gbcBarras1.gridy = 0;
+		
 		Alfa.setUI(new javax.swing.plaf.basic.BasicProgressBarUI() {
 			protected Color getSelectionForeground() {
-				return Color.black; // Cambia el color de la barra cuando progresa
+				return Color.black; 
 			}
 		});
 
-		Alfa.setStringPainted(true); // Muestra el valor actual de la barra de progreso
-		Alfa.setString("Progreso VIH = " + Alfa.getValue());
-		Alfa.setMinimum(0); // Valor mínimo de la barra de progreso
-		Alfa.setMaximum(100); // Valor máximo de la barra de progreso
+		Alfa.setStringPainted(true);
+		Alfa.setString("VIH: " + Alfa.getValue() + "%");
+		Alfa.setMinimum(0); 
+		Alfa.setMaximum(100);
+		Alfa.setBorder(new LineBorder(new Color(79, 164, 184),3));
+		Alfa.setBackground(Color.LIGHT_GRAY);
+		Alfa.setFont(controlDatos.fuenteTexto10());
 		Alfa.setValue(0);
-		Alfa.setBorder(softBevelBorder);
-
-		gbcStats.gridy = 4;
-		stats.add(Alfa, gbcStats);
-
-		gbcStats.gridy = 5;
+		
+		barras1.add(Alfa,gbcBarras1);
+		gbcBarras1.gridy = 1;
 		Beta.setStringPainted(true); // Muestra el valor actual de la barra de progreso
-		Beta.setString("Progreso CANCER = " + Beta.getValue());
+		Beta.setString("CANCER" + Beta.getValue()+"%");
 		Beta.setMinimum(0); // Valor mínimo de la barra de progreso
 		Beta.setMaximum(100); // Valor máximo de la barra de progreso
 		Beta.setValue(0);
-		Beta.setBorder(softBevelBorder);
+		Beta.setBorder(new LineBorder(Color.red,3));
+		Beta.setFont(controlDatos.fuenteTexto10());
+		Beta.setBackground(Color.LIGHT_GRAY);
 		Beta.setUI(new javax.swing.plaf.basic.BasicProgressBarUI() {
 			protected Color getSelectionForeground() {
 				return Color.black; // Cambia el color de la barra cuando progresa
 			}
 		});
-
-		stats.add(Beta, gbcStats);
-
-		gbcStats.gridy = 6;
+		
+		barras1.add(Beta,gbcBarras1);
+		
+		
+		estadisticas.add(barras1, gbcEstadisticas);
+		
+		gbcEstadisticas.gridx= 3;
+		
+		JPanel scorePanel = new JPanel(new GridBagLayout());
+		scorePanel.setOpaque(false);
+		
+		GridBagConstraints gbcScore = new GridBagConstraints();
+		
+		gbcScore.gridx = 0;
+		gbcScore.gridy = 0;
+		gbcScore.insets = new Insets(0, 20, 2, 20);
+		JLabel scoreTexto = new JLabel();
+		scoreTexto.setFont(controlDatos.fuentecargar40());
+		scoreTexto.setHorizontalAlignment(JLabel.CENTER);
+		scoreTexto.setVerticalAlignment(JLabel.CENTER);
+		scoreTexto.setForeground(new Color(79, 220, 100));
+		scoreTexto.setText("PUNTOS");
+		
+		scorePanel.add(scoreTexto, gbcScore);
+		gbcScore.gridy = 1;
+		scoreNum.setText("0");
+		scoreNum.setPreferredSize(new Dimension (300,20));
+		scoreNum.setFont(controlDatos.fuenteMC15());
+		scoreNum.setBorder(border);
+		scoreNum.setHorizontalAlignment(JLabel.CENTER);
+		scoreNum.setVerticalAlignment(JLabel.CENTER);
+		scoreNum.setOpaque(true);
+		scoreNum.setBackground(Color.LIGHT_GRAY);
+		scoreNum.setForeground(Color.black);
+		
+		scorePanel.add(scoreNum, gbcScore);
+		
+		gbcScore.gridy = 2;
+		
+		JPanel botonesConfigInfo = new JPanel();
+		botonesConfigInfo.setOpaque(true);
+		
+		JButton opciones = new JButton();
+		opciones.setPreferredSize(new Dimension(25, 25));
+		opciones.setOpaque(true);
+		opciones.setBackground(Color.black);
+		opciones.setContentAreaFilled(false);
+		opciones.setBorderPainted(false);
+		opciones.setFocusPainted(false);
+		
+		botonesConfigInfo.add(opciones);
+		scorePanel.add(botonesConfigInfo, gbcScore);
+		
+		estadisticas.add(scorePanel, gbcEstadisticas);
+		
+		gbcEstadisticas.gridx = 4;
+		
+		JPanel barras2 = new JPanel(new GridBagLayout());
+		barras2.setOpaque(false);
+		
+		GridBagConstraints gbcBarras2 = new GridBagConstraints();
+		
+		gbcBarras2.insets = new Insets(10, 10, 10, 10);
+		gbcBarras2.gridx = 0;
+		gbcBarras2.gridy = 0;
+		
 		Gamma.setStringPainted(true); // Muestra el valor actual de la barra de progreso
-		Gamma.setString("Progreso SARS = " + Gamma.getValue());
+		Gamma.setString("SARS: " + Gamma.getValue()+ "%") ;
 		Gamma.setMinimum(0); // Valor mínimo de la barra de progreso
 		Gamma.setMaximum(100); // Valor máximo de la barra de progreso
 		Gamma.setValue(0);
-		Gamma.setBorder(softBevelBorder);
+		Gamma.setBackground(Color.LIGHT_GRAY);
+		Gamma.setBorder(new LineBorder(Color.YELLOW,3));
+		Gamma.setFont(controlDatos.fuenteTexto10());
 		Gamma.setUI(new javax.swing.plaf.basic.BasicProgressBarUI() {
 			protected Color getSelectionForeground() {
 				return Color.black; // Cambia el color de la barra cuando progresa
 			}
 		});
-
-		stats.add(Gamma, gbcStats);
-
-		gbcStats.gridy = 7;
+		
+		barras2.add(Gamma, gbcBarras2);
+		gbcBarras2.gridy = 1;
+		
 		Delta.setStringPainted(true); // Muestra el valor actual de la barra de progreso
-		Delta.setString("Progreso NIGGA = " + Delta.getValue());
+		Delta.setString("NIGGA: " + Delta.getValue()+ "%");
 		Delta.setMinimum(0); // Valor mínimo de la barra de progreso
 		Delta.setMaximum(100); // Valor máximo de la barra de progreso
 		Delta.setValue(0);
-		Delta.setBorder(softBevelBorder);
+		Delta.setBackground(Color.LIGHT_GRAY);
+		Delta.setBorder(new LineBorder(Color.black,3));
+		Delta.setFont(controlDatos.fuenteTexto10());
 		Delta.setUI(new javax.swing.plaf.basic.BasicProgressBarUI() {
 			protected Color getSelectionForeground() {
 				return Color.black; // Cambia el color de la barra cuando progresa
 			}
 		});
+		
+		barras2.add(Delta, gbcBarras2);
+		
+		estadisticas.add(barras2, gbcEstadisticas);
+		
+		gbcEstadisticas.gridx = 5;
+		
+		JPanel accionesRondas = new JPanel(new FlowLayout());
+		accionesRondas.setOpaque(false);
+		
+		JPanel accionesPanel = new JPanel(new FlowLayout());
+		accionesPanel.setOpaque(false);
+		
+		JLabel TextAcciones = new JLabel();
+		TextAcciones.setFont(controlDatos.fuenteMC15());
+		TextAcciones.setHorizontalAlignment(JLabel.CENTER);
+		TextAcciones.setVerticalAlignment(JLabel.CENTER);
+		TextAcciones.setForeground(Color.white);
+		TextAcciones.setText("Acciones: ");
+		
+		acciones.setText("4");
+		acciones.setPreferredSize(new Dimension (30,30));
+		acciones.setFont(controlDatos.fuenteMC15());
+		acciones.setBorder(border);
+		acciones.setHorizontalAlignment(JLabel.CENTER);
+		acciones.setVerticalAlignment(JLabel.CENTER);
+		acciones.setOpaque(true);
+		acciones.setBackground(Color.LIGHT_GRAY);
+		acciones.setForeground(Color.red);
+		
+		accionesPanel.add(TextAcciones);
+		accionesPanel.add(acciones);
+		
+		JPanel RondasPanel = new JPanel(new FlowLayout());
+		RondasPanel.setOpaque(false);
+		
+		JLabel textRondas = new JLabel();
+		textRondas.setFont(controlDatos.fuenteMC15());
+		textRondas.setHorizontalAlignment(JLabel.CENTER);
+		textRondas.setVerticalAlignment(JLabel.CENTER);
+		textRondas.setForeground(Color.white);
+		textRondas.setText("Rondas: ");
+		
+		rondas.setText("0");
+		rondas.setPreferredSize(new Dimension (30,30));
+		rondas.setFont(controlDatos.fuenteMC15());
+		rondas.setBorder(border);
+		rondas.setHorizontalAlignment(JLabel.CENTER);
+		rondas.setVerticalAlignment(JLabel.CENTER);
+		rondas.setOpaque(true);
+		rondas.setBackground(Color.LIGHT_GRAY);
+		rondas.setForeground(Color.red);
+		
+		RondasPanel.add(textRondas);
+		RondasPanel.add(rondas);
+		
+		accionesRondas.add(accionesPanel);
+		accionesRondas.add(RondasPanel);
+		
+		estadisticas.add(accionesRondas, gbcEstadisticas);
+		
 
-		stats.add(Delta, gbcStats);
-
-		gbcStats.gridy = 8;
-
-		acciones.setText("Acciones : 4");
-
-		stats.add(acciones, gbcStats);
-
-		gbcStats.gridy = 9;
-		JButton opciones = new JButton("OPCIONES");
-		opciones.setPreferredSize(new Dimension(150, 50));
-		opciones.setBackground(new Color(0, 0, 0, 0));
-		opciones.setOpaque(false);
-		opciones.setContentAreaFilled(false);
-		opciones.setBorderPainted(false);
-		opciones.setFocusPainted(false);
-		opciones.setFont(new Font("Arial", Font.BOLD, 20));
-		opciones.setForeground(new Color(137, 5, 78));
+		
+		game.add(estadisticas);
 
 		JPopupMenu popupMenu = new JPopupMenu() {
 			@Override
@@ -1089,7 +1372,7 @@ public class partida extends JFrame implements ActionListener {
 		});
 		
 		
-		stats.add(opciones, gbcStats);
+
 
 
 
@@ -1178,9 +1461,12 @@ public class partida extends JFrame implements ActionListener {
 		 Manila.addActionListener(this);
 		 Sidney.addActionListener(this);
 		
+
+		 
 		this.add(game, BorderLayout.CENTER);
-		this.add(stats, BorderLayout.EAST);
 		this.add(botonesTexto, BorderLayout.SOUTH);
+		
+		
 		this.setSize(screen.width, screen.height);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null); // siempre centro

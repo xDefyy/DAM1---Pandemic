@@ -17,7 +17,7 @@ public class Main {
 	public static void main(String[] args) {
 		reproductor.cargarSonido("src\\musica\\musicaMenuMC.wav");
 		reproductor.reproducirConRepetir();
-		
+
 	}
 	
 }

@@ -242,6 +242,25 @@ public class controlDatos {
             return defaultFont;
         }
 	}
+    
+    public static Font fuenteTexto10() {
+		try {
+        	File fuente = new File("src\\fuente\\fuenteTexto.ttf");
+            
+            Font font = Font.createFont(Font.TRUETYPE_FONT, fuente);
+            
+            // Tamaño de la fuente (en puntos)
+            float fontSize = 10;
+            
+            font = font.deriveFont(fontSize);
+            return font;
+
+        } catch (IOException | FontFormatException e) {
+        	Font defaultFont = new Font("Arial", Font.PLAIN, 15);
+            e.printStackTrace();
+            return defaultFont;
+        }
+	}
     public static Font fuenteMC() {
 		try {
         	File fuente = new File("src\\fuente\\Minecraft.ttf");
@@ -261,6 +280,25 @@ public class controlDatos {
             return defaultFont;
         }
 	}
+    public static Font fuenteMC15() {
+		try {
+        	File fuente = new File("src\\fuente\\Minecraft.ttf");
+            
+            Font font = Font.createFont(Font.TRUETYPE_FONT, fuente);
+           
+            // Tamaño de la fuente (en puntos)
+            float fontSize = 15f;
+            
+            font = font.deriveFont(fontSize);
+            GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(font);
+            return font;
+
+        } catch (IOException | FontFormatException e) {
+        	Font defaultFont = new Font("Arial", Font.PLAIN, 15);
+            e.printStackTrace();
+            return defaultFont;
+        }
+	}
     public static Font fuentecargar() {
 		try {
         	File fuente = new File("src\\fuente\\fuenteCargarParty.ttf");
@@ -269,6 +307,25 @@ public class controlDatos {
            
             // Tamaño de la fuente (en puntos)
             float fontSize = 45f;
+            
+            font = font.deriveFont(fontSize);
+            GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(font);
+            return font;
+
+        } catch (IOException | FontFormatException e) {
+        	Font defaultFont = new Font("Arial", Font.PLAIN, 15);
+            e.printStackTrace();
+            return defaultFont;
+        }
+	}
+    public static Font fuentecargar40() {
+		try {
+        	File fuente = new File("src\\fuente\\fuenteCargarParty.ttf");
+            
+            Font font = Font.createFont(Font.TRUETYPE_FONT, fuente);
+           
+            // Tamaño de la fuente (en puntos)
+            float fontSize = 40f;
             
             font = font.deriveFont(fontSize);
             GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(font);
