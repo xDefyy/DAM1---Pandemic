@@ -1,6 +1,7 @@
 package inicio;
 
 
+import controladores.controlPartida;
 import controladores.reproductorWav;
 import intefaz.CargarParty;
 import intefaz.Reglas;

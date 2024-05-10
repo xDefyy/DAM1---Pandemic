@@ -1,5 +1,6 @@
 package controladores;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,6 +8,7 @@ import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.Timer;
+import javax.swing.border.LineBorder;
 
 import CargaDatos.controlDatos;
 import inicio.Main;
@@ -14,7 +16,6 @@ import intefaz.CargarParty;
 import intefaz.partida;
 import objetos.ciudad;
 import CargaDatos.datosPartida;
-import CargaDatos.savetoTXT;
 
 public class controlPartida {
 
@@ -25,14 +26,12 @@ public class controlPartida {
 	public static int progresoD;
 	public static int aux;
 	public static int random;
-	public static boolean newGame = false;
 	public static int ciudadSize = 0;
 	public static String ciudadNombre = "";
 	public static boolean resetGame = false;
 
 	public static void iniciar_Partida() {
-
-		newGame = true;
+		
 		int pdesarrollo = Integer.valueOf(controlDatos.desarrolloVacuna);
 
 		controlDatos.cargarCiudades();
@@ -53,19 +52,31 @@ public class controlPartida {
 			resetGame();
 			gestionar_InfeccionNewGame();
 		}
-
+		
+		
+		
 		partida.ciudadesInf.setText("" + ciudadesInfectadas());
 		partida.rondas.setText("" + datos.getRondas());
 		partida.brotes.setText("" + datos.getBrotes());
-
+		
+		try {
+			Thread.sleep(500);
+			partida.nuke.setEnabled(true);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 	public static void resetGame() {
 
 		for (int i = 0; i < datos.getCiudades().size(); i++) {
+			
 			if (datos.getCiudades().get(i).getInfeccion() != 0) {
 				datos.getCiudades().get(i).setInfeccion(0);
 				ponerImages(i, comprobacionNombreBoton(datos.getCiudades().get(i).getNombre()));
+			} else if (datos.getCiudades().get(i).isNuke()) {
+				datos.getCiudades().get(i).setNuke(false);
 			}
 		}
 		partida.textArea.setText("");
@@ -90,14 +101,24 @@ public class controlPartida {
 		partida.brotes.setText("0");
 		partida.acciones.setText("4");
 		partida.rondas.setText("0");
-		
+		for (Component c : partida.game.getComponents()) {
+
+			if (c instanceof JButton) {
+				((JButton) c).setBorderPainted(false);
+				((JButton) c).setBorder(null);
+			}
+		}
 	}
 
 	public static void iniciar_Partida_Guardada(String id) {
 
+		int pdesarrollo = Integer.valueOf(controlDatos.desarrolloVacuna);
+		
 		controlDatos.cargarCiudades();
 		controlDatos.cargarVacunas();
 		controlDatos.cargarVirus();
+		
+		datos = new datosPartida(controlDatos.ciudades, controlDatos.virus, controlDatos.vacunas, 0, 0, pdesarrollo, 4);
 
 	}
 
@@ -148,11 +169,15 @@ public class controlPartida {
 					e.printStackTrace();
 				}
 				partida.ciudadesInf.setText("" + ciudadesInfectadas());
+				
+				//TODO 
 			}
 		});
 		vac.start();
 
 	}
+	
+	
 
 	public static void gestionar_Vacuna(int valor) {
 		if (datos.getAcciones() == 4) {
@@ -330,13 +355,23 @@ public class controlPartida {
 		for (int i = 0; i < numCiudadesxRonda; i++) {
 			random = rand.nextInt(48);
 			int nivel = datos.getCiudades().get(random).getInfeccion();
-			nivel++;
-			datos.getCiudades().get(random).setInfeccion(nivel);
-			ponerImages(random, comprobacionNombreBoton(datos.getCiudades().get(random).getNombre()));
-			if (datos.getCiudades().get(random).getInfeccion() < 4) {
-				System.out.println("Se ha infectado " + datos.getCiudades().get(random).getNombre() + " con el nivel "
-						+ datos.getCiudades().get(random).getInfeccion());
+			if (datos.getCiudades().get(random).isNuke()) {
+				nivel++;
+				nivel++;
+				datos.getCiudades().get(random).setInfeccion(nivel);
+				gestionar_Brote();
+			} else if (!datos.getCiudades().get(random).isNuke()) {
+				nivel++;
+				datos.getCiudades().get(random).setInfeccion(nivel);
+				if (datos.getCiudades().get(random).getInfeccion() < 4) {
+					System.out.println("Se ha infectado " + datos.getCiudades().get(random).getNombre() + " con el nivel "
+							+ datos.getCiudades().get(random).getInfeccion());
+				}
 			}
+			
+			ponerImages(random, comprobacionNombreBoton(datos.getCiudades().get(random).getNombre()));
+			
+			
 
 			gestionar_Brote();
 			try {
@@ -350,10 +385,17 @@ public class controlPartida {
 	public static void gestionar_Brote() {
 
 		// comprobacion de brote
-		if (datos.getCiudades().get(random).getInfeccion() == 4) {
-			datos.setBrotes(datos.getBrotes() + 1);
-			System.out.println(
-					"Se ha infectado " + datos.getCiudades().get(random).getNombre() + " se ha producido un brote.");
+		if (datos.getCiudades().get(random).getInfeccion() >= 4) {
+			if (datos.getCiudades().get(random).getInfeccion() == 4) {
+				datos.setBrotes(datos.getBrotes() + 1);
+				System.out.println(
+						"Se ha infectado " + datos.getCiudades().get(random).getNombre() + " y se ha producido un brote.");
+			} else if (datos.getCiudades().get(random).getInfeccion() == 5) {
+				datos.setBrotes(datos.getBrotes() + 2);
+				System.out.println("Debido a la ciudad atomica se ha producido 2 brotes al ser infectada.");
+			}
+			
+			
 			try {
 				Thread.sleep(500);
 			} catch (InterruptedException e) {
@@ -381,11 +423,26 @@ public class controlPartida {
 							gestionar_Fin_Partida();
 
 						} else {
-							datos.getCiudades().get(j).setInfeccion(datos.getCiudades().get(j).getInfeccion() + 1);
+							if (datos.getCiudades().get(j).isNuke()) {
+								if (datos.getCiudades().get(j).getInfeccion() < 2) {
+									datos.getCiudades().get(j).setInfeccion(datos.getCiudades().get(j).getInfeccion() + 2);
+									System.out.println("Ciudad atomico: " + datos.getCiudades().get(j).getNombre() + " se ha subido a nivel: " + datos.getCiudades().get(j).getInfeccion());
+									gestionar_Fin_Partida();
+								} else {
+									datos.getCiudades().get(j).setInfeccion(3);
+									datos.setBrotes(datos.getBrotes()+2);
+									gestionar_Fin_Partida();
+								}
+								
+							} else  if (!datos.getCiudades().get(j).isNuke()){
+								datos.getCiudades().get(j).setInfeccion(datos.getCiudades().get(j).getInfeccion() + 1);
+								System.out.println("Por el brote se ha infectado: " + datos.getCiudades().get(j).getNombre()
+										+ " al nivel " + datos.getCiudades().get(j).getInfeccion());
+								gestionar_Fin_Partida();
+							}
+							
 							ponerImages(j, comprobacionNombreBoton(datos.getCiudades().get(j).getNombre()));
-							System.out.println("Por el brote se ha infectado: " + datos.getCiudades().get(j).getNombre()
-									+ " al nivel " + datos.getCiudades().get(j).getInfeccion());
-							gestionar_Fin_Partida();
+							
 						}
 
 					}
@@ -543,6 +600,55 @@ public class controlPartida {
 		});
 		vac.start();
 
+	}
+	
+	public static void nuke() {
+		if (partida.ciudadSeleccionada && datos.getAcciones() > 2 && !datos.getCiudades().get(ciudadSize).isNuke() && datos.getCiudades().get(ciudadSize).getInfeccion() > 0) {
+			for (int i = 0; i < datos.getCiudades().get(ciudadSize).getCiudadesColindantes().length; i++) {
+				datos.getCiudades().get(ciudadSize).setNuke(true);
+				datos.getCiudades().get(ciudadSize).setInfeccion(0);
+				ponerImages(ciudadSize, comprobacionNombreBoton(datos.getCiudades().get(ciudadSize).getNombre()));
+				
+				for (Component c : partida.game.getComponents()) {
+					if (c instanceof JButton) {
+						if (c.getName().equals(comprobacionNombreBoton(ciudadNombre))) {
+							((JButton) c).setBorderPainted(true);
+							((JButton) c).setBorder(new LineBorder(Color.red,2));
+							break;
+						}
+					}
+				}
+				
+				for (int j = 0; j < datos.getCiudades().size(); j++) {
+					if (datos.getCiudades().get(j).getNombre().equals(datos.getCiudades().get(ciudadSize).getCiudadesColindantes()[i])) {
+						datos.getCiudades().get(j).setInfeccion(0);
+						datos.getCiudades().get(j).setNuke(true);
+						for (Component c : partida.game.getComponents()) {
+							if (c instanceof JButton) {
+								if (c.getName().equals(comprobacionNombreBoton(datos.getCiudades().get(j).getNombre()))) {
+									((JButton) c).setBorderPainted(true);
+									((JButton) c).setBorder(new LineBorder(Color.red,2));
+									break;
+								}
+							}
+						}
+						ponerImages(j, comprobacionNombreBoton(datos.getCiudades().get(j).getNombre()));
+					}
+				}
+				
+			}
+			datos.setAcciones(datos.getAcciones() - 3);
+			partida.acciones.setText("" + datos.getAcciones());
+			//restar puntos TODO
+		} else if (datos.getAcciones() < 2) {
+			System.out.println("Franko: No tienes acciones...");
+		} else if (datos.getCiudades().get(ciudadSize).isNuke()) {
+			System.out.println("Franko: No puedes tirar la bomba donde ya la tiraste o donde se haya expandido la bomba.");
+		} else if (!partida.ciudadSeleccionada) {
+			System.out.println("Franko: Selecciona una ciudad antes.");
+		} else if (datos.getCiudades().get(ciudadSize).getInfeccion() == 0) {
+			System.out.println("Franko: Terrorista, porque intentarias tirar una bomba a una ciudad que no tiene infeccion.");
+		}
 	}
 
 	public static void ponerImages(int ciudadPos, String nombreBtn) {

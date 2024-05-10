@@ -54,6 +54,7 @@ import inicio.Main;
 import objetos.ciudad;
 
 public class partida extends JFrame implements ActionListener {
+	public static usuarioGetName usuarioNombre = new usuarioGetName();
 	public static JProgressBar Alfa = new JProgressBar();
 	public static JProgressBar Beta = new JProgressBar();
 	public static JProgressBar Gamma = new JProgressBar();
@@ -132,6 +133,8 @@ public class partida extends JFrame implements ActionListener {
 	public static JButton Manila;
 	public static JButton Sidney;
 	public static JPanel game;
+	public static JPopupMenu nombre;
+	public static JButton nuke;
 
 	//imagenes
 	
@@ -198,11 +201,10 @@ public class partida extends JFrame implements ActionListener {
 	public static ImageIcon negro3 = new ImageIcon("src\\img\\inGame\\virusNegro3.png");
 	public static Image delta3 = negro3.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
 	public static ImageIcon negroVirusCiudad3 = new ImageIcon(delta3);
+	public static Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 
 	public partida()  {
 		
-		SoftBevelBorder softBevelBorder = new SoftBevelBorder(SoftBevelBorder.LOWERED);
-		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		ImageIcon iconoIcono = new ImageIcon("src\\img\\inGame\\icono.png");
 		Image imagenIcono = iconoIcono.getImage().getScaledInstance(400, 400, Image.SCALE_SMOOTH);
 		ImageIcon imgFinalIcono = new ImageIcon(imagenIcono);
@@ -262,6 +264,16 @@ public class partida extends JFrame implements ActionListener {
 		ImageIcon iconoVolver = new ImageIcon("src\\img\\main\\volver.png");
 		Image iconoVolverES = iconoVolver.getImage().getScaledInstance(50,50,Image.SCALE_DEFAULT);
 		ImageIcon iconVolverFIN = new ImageIcon(iconoVolverES);
+		
+		ImageIcon iconoBomba = new ImageIcon("src\\img\\inGame\\bombaIcono.png");
+		Image iconoBombaES = iconoBomba.getImage().getScaledInstance(50,50,Image.SCALE_DEFAULT);
+		ImageIcon iconoBombaFIN = new ImageIcon(iconoBombaES);
+		
+		ImageIcon iconoBombaOP = new ImageIcon("src\\img\\inGame\\bombaIconoOP.png");
+		Image iconoBombaOPES = iconoBombaOP.getImage().getScaledInstance(50,50,Image.SCALE_DEFAULT);
+		ImageIcon iconoBombaFINOP = new ImageIcon(iconoBombaOPES);
+		
+		
 		
 		curar.addMouseListener(new MouseAdapter() {
 			@Override
@@ -894,6 +906,31 @@ public class partida extends JFrame implements ActionListener {
 		ciudadesBtn.add(Sidney);
 		game.add(Sidney);
 		
+		nuke = new JButton();
+		nuke.setOpaque(falso);
+		nuke.setFocusPainted(falso);
+		nuke.setContentAreaFilled(falso);
+		nuke.setBorderPainted(falso);
+		nuke.setName("Sidney");
+		nuke.setBounds(1450,650,x,x);
+		nuke.setEnabled(false);
+		nuke.setIcon(iconoBombaFIN);
+		game.add(nuke);
+		nuke.addActionListener(this);
+		
+		
+		nuke.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				nuke.setIcon(iconoBombaFINOP);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				nuke.setIcon(iconoBombaFIN);
+			}
+		});
+		
 		
 		
 		// panel izquierdo botones
@@ -1364,6 +1401,7 @@ public class partida extends JFrame implements ActionListener {
 		volver.setFocusPainted(false);
 		GridBagConstraints gbcPopUP = new GridBagConstraints();
 		
+		guardarSalir.addActionListener(this);
 		music.addActionListener(this);
 		
 		gbcPopUP.insets = new Insets(10,10,10,10);
@@ -1390,8 +1428,11 @@ public class partida extends JFrame implements ActionListener {
 			}
 		});
 		
-		
-
+		nombre = new JPopupMenu();
+		nombre.setOpaque(true);
+		nombre.setPreferredSize(new Dimension(500, 500));
+		nombre.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
+		nombre.setLayout(new GridBagLayout());
 
 
 
@@ -2271,22 +2312,22 @@ public class partida extends JFrame implements ActionListener {
 
 				@Override
 				public void run() {
-					//LLAMAR FUNCION DE GUARDAR TODO
-					
-					Main.cargarPrincipal.setVisible(true);
-					controlPartida.resetGame = true;
-	    	        Timer timer = new Timer(300, new ActionListener() {
-	    	            public void actionPerformed(ActionEvent e) {
-	    					CargarParty.game.setVisible(false);
-	    	            }
-	    	        });
-	    	        timer.setRepeats(false);
-	    	        timer.start();
+					usuarioNombre.setVisible(true);
+					CargarParty.game.setVisible(false);
 
+
+				}
+			});
+			vac.start();
+		} else if (source == nuke) {
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					controlPartida.nuke();
 				}
 			});
 			vac.start();
 		}
 	}
-
 }

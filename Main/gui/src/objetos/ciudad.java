@@ -6,13 +6,23 @@ public class ciudad {
 	private String enfermedad;
 	private int infeccion;
 	private String[] ciudadesColindantes;
+	private boolean nuke;
 	
-	public ciudad(String nombre, int[] coordenadas, String enfermedad, int infeccion, String[] ciudadesColindantes) {
+	public ciudad(String nombre, int[] coordenadas, String enfermedad, int infeccion, String[] ciudadesColindantes, boolean nuke) {
 		this.nombre = nombre;
 		this.coordenadas = coordenadas;
 		this.enfermedad = enfermedad;
 		this.infeccion = infeccion;
 		this.ciudadesColindantes = ciudadesColindantes;
+		this.nuke = nuke;
+	}
+
+	public boolean isNuke() {
+		return nuke;
+	}
+
+	public void setNuke(boolean nuke) {
+		this.nuke = nuke;
 	}
 
 	public String getNombre() {

@@ -884,8 +884,7 @@ public class CargarParty extends JFrame implements ActionListener {
 	    	        timer.start();
 	        		
 	        		controlDatos.controlDificultad(dificultad);
-	        		controlPartida.iniciar_Partida();
-					
+	        		controlPartida.iniciar_Partida();					
 				}
 	        });
 	        vac.start();
