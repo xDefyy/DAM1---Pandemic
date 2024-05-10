@@ -9,6 +9,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import controladores.controlPartida;
+import intefaz.CargarParty;
 import intefaz.usuarioGetName;
 import objetos.ciudad;
 import objetos.vacunas;
@@ -39,6 +41,7 @@ public class controlDatos {
 	public static ArrayList<vacunas> vacunas = new ArrayList<>();
 	public static Connection con = conectarBaseDatos();
 	private static String ficheroXml;
+	public static String ganar_perder = "";
 
 	public static Connection conectarBaseDatos() {
 		Connection con = null;
@@ -161,7 +164,56 @@ public class controlDatos {
 
 		String nombre = usuarioGetName.userFinal;
 		newPlayer(nombre, con);
+		insertarPartida(con);
+		
+		
 	}
+	
+	public static void insertarPartida(Connection con) {
+        int diff = CargarParty.dificultad;
+        int numeroPlayer = getPlayerID();
+        int rondas = controlPartida.datos.getRondas();
+        int acciones = controlPartida.datos.getAcciones();
+        int brotes = controlPartida.datos.getBrotes();
+
+        
+        StringBuilder SqlCIUDADES = new StringBuilder();
+        for (int i = 0; i < controlPartida.datos.getCiudades().size(); i++) {
+            String nombre_ciudad = controlPartida.datos.getCiudades().get(i).getNombre();
+            boolean ciudadNuked = controlPartida.datos.getCiudades().get(i).isNuke();
+            String nuked = "";
+            if (ciudadNuked == true) {
+            	nuked = "S";
+            } else if (ciudadNuked == false) {
+            	nuked = "N";
+            }
+            int infeccion_ciudad = controlPartida.datos.getCiudades().get(i).getInfeccion();
+            SqlCIUDADES.append("CIUDADES('" + nombre_ciudad + "', " + infeccion_ciudad + "'," + nuked + "'" + ")");
+            if (i < controlPartida.datos.getCiudades().size() - 1) {
+                SqlCIUDADES.append(", ");
+            }
+        }
+
+        StringBuilder SqlVACUNAS = new StringBuilder();
+        for (int i = 0; i < controlPartida.datos.getVacunas().size(); i++) {
+            String color_vacuna = controlPartida.datos.getVacunas().get(i).getColor();
+            int pr_vacuna = controlPartida.datos.getVacunas().get(i).getPorcentaje();
+            SqlVACUNAS.append("VACUNAS('" + color_vacuna + "', " + pr_vacuna + ")");
+            if (i < controlPartida.datos.getVacunas().size() - 1) {
+                SqlVACUNAS.append(", ");
+            }
+        }
+
+        String sql = "INSERT INTO PARTIDA VALUES(0 ," + numeroPlayer + ", " + diff + ", " + rondas + ", " + acciones + ", " + brotes
+                + ", ARRAY_CIUDADES(" + SqlCIUDADES.toString() + "), ARRAY_VACUNAS(" + SqlVACUNAS.toString() + "), " + "'" + ganar_perder + "', TO_DATE(SYSDATE,'DD-MM-YYYY,HH24:MI:SS'))";
+
+        try {
+            Statement st = con.createStatement();
+            st.execute(sql);
+        } catch (SQLException e) {
+            System.out.println("Ha habido un error en el Insert " + e);
+        }
+    }
 
 	public static void newPlayer(String nombre,Connection con) {
 
@@ -179,9 +231,24 @@ public class controlDatos {
 
 	}
 	
-	public static void getPlayerID() {
-		
+	public static int getPlayerID() {
+		String selectMaxIDP = "SELECT MAX(ID_P) FROM PLAYERS";
+		int jugadorID = 0;
+		  try {
+		        Statement maxIDP = con.createStatement();
+		        ResultSet rsMaxIDP = maxIDP.executeQuery(selectMaxIDP);
+		        
+		        while (rsMaxIDP.next()) {
+		        	jugadorID = rsMaxIDP.getInt("MAX(ID_P)");
+		        }
+		        
+		  } catch (SQLException e) {
+		        e.printStackTrace();
+		        return 0;
+		  }
+		  return jugadorID;
 	}
+
 
 	public static void cargarRecord() {
 

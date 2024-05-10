@@ -69,7 +69,7 @@ public class con__BBDD {
         }
 
         String sql = "INSERT INTO PARTIDA VALUES(0 ," + 1 + ", " + diff + ", " + rondas + ", " + acciones + ", " + brotes
-                + ", ARRAY_CIUDADES(" + SqlCIUDADES.toString() + "), ARRAY_VACUNAS(" + SqlVACUNAS.toString() + "), " + "'" + ganar_perder + "', SYSDATE)";
+                + ", ARRAY_CIUDADES(" + SqlCIUDADES.toString() + "), ARRAY_VACUNAS(" + SqlVACUNAS.toString() + "), " + "'" + ganar_perder + "', TO_DATE(SYSDATE,'DD-MM-YYYY,HH24:MI:SS'))";
 
         try {
             Statement st = con.createStatement();
@@ -92,6 +92,7 @@ public class con__BBDD {
 	        while (rsCiudades.next()) {
 	            String nombreCiudad = rsCiudades.getString("nombre");
 	            int infeccionCiudad = rsCiudades.getInt("infeccion");
+	            
 	            
 	            for (int i = 0; i < 48; i++) {
 	            	if (controlPartida.datos.getCiudades().get(i).getNombre().equalsIgnoreCase(nombreCiudad)) {
