@@ -170,7 +170,7 @@ public class controlPartida {
 				}
 				partida.ciudadesInf.setText("" + ciudadesInfectadas());
 				
-				//TODO 
+				//TODO desactivar boton de nuke
 			}
 		});
 		vac.start();
@@ -428,9 +428,13 @@ public class controlPartida {
 									datos.getCiudades().get(j).setInfeccion(datos.getCiudades().get(j).getInfeccion() + 2);
 									System.out.println("Ciudad atomico: " + datos.getCiudades().get(j).getNombre() + " se ha subido a nivel: " + datos.getCiudades().get(j).getInfeccion());
 									gestionar_Fin_Partida();
-								} else {
+								} else if (datos.getCiudades().get(j).getInfeccion() == 3) {
 									datos.getCiudades().get(j).setInfeccion(3);
 									datos.setBrotes(datos.getBrotes()+2);
+									gestionar_Fin_Partida();
+								} else if (datos.getCiudades().get(j).getInfeccion() == 2) {
+									datos.getCiudades().get(j).setInfeccion(3);
+									datos.setBrotes(datos.getBrotes()+1);
 									gestionar_Fin_Partida();
 								}
 								
@@ -467,9 +471,7 @@ public class controlPartida {
 			if (infeccionTotal >= derrotaEnfermedad) {
 				System.out.println("has perdido por infecciones");
 				break;
-			} else {
-				infeccionTotal = 0;
-			}
+			} 
 		}
 	}
 
@@ -605,6 +607,7 @@ public class controlPartida {
 	public static void nuke() {
 		if (partida.ciudadSeleccionada && datos.getAcciones() > 2 && !datos.getCiudades().get(ciudadSize).isNuke() && datos.getCiudades().get(ciudadSize).getInfeccion() > 0) {
 			for (int i = 0; i < datos.getCiudades().get(ciudadSize).getCiudadesColindantes().length; i++) {
+				
 				datos.getCiudades().get(ciudadSize).setNuke(true);
 				datos.getCiudades().get(ciudadSize).setInfeccion(0);
 				ponerImages(ciudadSize, comprobacionNombreBoton(datos.getCiudades().get(ciudadSize).getNombre()));
