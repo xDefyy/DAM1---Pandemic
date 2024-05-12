@@ -27,9 +27,9 @@ public class con__BBDD {
 
 	
 
-	
-	
 	public static String ganar_perder = "";
+	
+	
 	
 	public static void insertarPartida(Connection con) {
         int diff = CargarParty.dificultad;
