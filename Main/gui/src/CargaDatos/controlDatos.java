@@ -41,7 +41,7 @@ public class controlDatos {
 	public static ArrayList<vacunas> vacunas = new ArrayList<>();
 	public static Connection con = conectarBaseDatos();
 	private static String ficheroXml;
-	public static String ganar_perder = "";
+	public static String ganar_perder = "NF";
 
 	public static Connection conectarBaseDatos() {
 		Connection con = null;
@@ -175,6 +175,7 @@ public class controlDatos {
         int rondas = controlPartida.datos.getRondas();
         int acciones = controlPartida.datos.getAcciones();
         int brotes = controlPartida.datos.getBrotes();
+        int puntuacion = 0;
 
         
         StringBuilder SqlCIUDADES = new StringBuilder();
@@ -188,7 +189,7 @@ public class controlDatos {
             	nuked = "N";
             }
             int infeccion_ciudad = controlPartida.datos.getCiudades().get(i).getInfeccion();
-            SqlCIUDADES.append("CIUDADES('" + nombre_ciudad + "', " + infeccion_ciudad + "'," + nuked + "'" + ")");
+            SqlCIUDADES.append("CIUDADES('" + nombre_ciudad + "', " + infeccion_ciudad + ",'" + nuked + "'" + ")");
             if (i < controlPartida.datos.getCiudades().size() - 1) {
                 SqlCIUDADES.append(", ");
             }
@@ -203,9 +204,11 @@ public class controlDatos {
                 SqlVACUNAS.append(", ");
             }
         }
+        
+       
+        String sql = "INSERT INTO PARTIDA VALUES(0 ," + numeroPlayer + ", " + puntuacion + ", " + diff + ", " + rondas + ", " + acciones + ", " + brotes
+                + ", ARRAY_CIUDADES(" + SqlCIUDADES.toString() + "), ARRAY_VACUNAS(" + SqlVACUNAS.toString() + "), " + "'" + ganar_perder + "'" + ", TO_DATE(SYSDATE,'DD-MM-YYYY,HH24:MI:SS'))";
 
-        String sql = "INSERT INTO PARTIDA VALUES(0 ," + numeroPlayer + ", " + diff + ", " + rondas + ", " + acciones + ", " + brotes
-                + ", ARRAY_CIUDADES(" + SqlCIUDADES.toString() + "), ARRAY_VACUNAS(" + SqlVACUNAS.toString() + "), " + "'" + ganar_perder + "', TO_DATE(SYSDATE,'DD-MM-YYYY,HH24:MI:SS'))";
 
         try {
             Statement st = con.createStatement();
@@ -405,6 +408,26 @@ public class controlDatos {
 
 			// Tamaño de la fuente (en puntos)
 			float fontSize = 15f;
+
+			font = font.deriveFont(fontSize);
+			GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(font);
+			return font;
+
+		} catch (IOException | FontFormatException e) {
+			Font defaultFont = new Font("Arial", Font.PLAIN, 15);
+			e.printStackTrace();
+			return defaultFont;
+		}
+	}
+	
+	public static Font fuenteMC12() {
+		try {
+			File fuente = new File("src\\fuente\\Minecraft.ttf");
+
+			Font font = Font.createFont(Font.TRUETYPE_FONT, fuente);
+
+			// Tamaño de la fuente (en puntos)
+			float fontSize = 12f;
 
 			font = font.deriveFont(fontSize);
 			GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(font);
