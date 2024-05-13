@@ -73,7 +73,7 @@ public class usuarioGetName extends JFrame implements ActionListener {
 		submt.setContentAreaFilled(false);
 		submt.setBorderPainted(false);
 		submt.setFocusPainted(false);
-		submt.setFont(controlDatos.fuentecargar());
+		submt.setFont(controlDatos.fuentecargar(45f));
 		submt.setForeground(new Color(137, 5, 78));
 
 		submt.addMouseListener(new MouseAdapter() {
@@ -92,7 +92,7 @@ public class usuarioGetName extends JFrame implements ActionListener {
 
 		campoTexto = new JTextField();
 		campoTexto.setText("username");
-		campoTexto.setFont(controlDatos.fuenteMC());
+		campoTexto.setFont(controlDatos.fuenteMC(15.5f));
 		campoTexto.setPreferredSize(new Dimension(200, 50));
 		campoTexto.setForeground(Color.black);
 		campoTexto.setBackground(new Color(240, 240, 240));

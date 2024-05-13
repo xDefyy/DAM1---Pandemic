@@ -950,7 +950,7 @@ public class partida extends JFrame implements ActionListener {
 		curar.setContentAreaFilled(false);
 		curar.setBorderPainted(true);
 		curar.setFocusPainted(false);
-		curar.setFont(controlDatos.fuenteMC15());
+		curar.setFont(controlDatos.fuenteMC(15f));
 		curar.setForeground(new Color(137,5,78));
 		
 		
@@ -959,7 +959,7 @@ public class partida extends JFrame implements ActionListener {
 		finalizarRonda.setContentAreaFilled(false);
 		finalizarRonda.setBorderPainted(true);
 		finalizarRonda.setFocusPainted(false);
-		finalizarRonda.setFont(controlDatos.fuenteMC15());
+		finalizarRonda.setFont(controlDatos.fuenteMC(15f));
 		finalizarRonda.setForeground(new Color(137, 5, 78));
 
 		botonCurarFinalizar.add(curar);
@@ -977,7 +977,7 @@ public class partida extends JFrame implements ActionListener {
 		textArea.setPreferredSize(new Dimension(screen.width / 2, screen.height / 7));
 
 		// Tipo de letra personalizado
-		textArea.setFont(controlDatos.fuenteMC());
+		textArea.setFont(controlDatos.fuenteMC(15.5f));
 
 		// Color de fondo y texto
 		textArea.setBackground(Color.LIGHT_GRAY);
@@ -1000,7 +1000,7 @@ public class partida extends JFrame implements ActionListener {
 		DAlfa.setContentAreaFilled(false);
 		DAlfa.setBorderPainted(true);
 		DAlfa.setFocusPainted(false);
-		DAlfa.setFont(controlDatos.fuenteMC15());
+		DAlfa.setFont(controlDatos.fuenteMC(15f));
 		DAlfa.setForeground(new Color(137, 5, 78));
 
 		DBeta.setPreferredSize(new Dimension(200, screen.height/7/2));
@@ -1009,7 +1009,7 @@ public class partida extends JFrame implements ActionListener {
 		DBeta.setContentAreaFilled(false);
 		DBeta.setBorderPainted(true);
 		DBeta.setFocusPainted(false);
-		DBeta.setFont(controlDatos.fuenteMC15());
+		DBeta.setFont(controlDatos.fuenteMC(15f));
 		DBeta.setForeground(new Color(137, 5, 78));
 
 		DGamma.setPreferredSize(new Dimension(200, screen.height/7/2));
@@ -1018,7 +1018,7 @@ public class partida extends JFrame implements ActionListener {
 		DGamma.setContentAreaFilled(false);
 		DGamma.setBorderPainted(true);
 		DGamma.setFocusPainted(false);
-		DGamma.setFont(controlDatos.fuenteMC15());
+		DGamma.setFont(controlDatos.fuenteMC(15f));
 		DGamma.setForeground(new Color(137, 5, 78));
 
 		DDelta.setPreferredSize(new Dimension(200, screen.height/7/2));
@@ -1027,7 +1027,7 @@ public class partida extends JFrame implements ActionListener {
 		DDelta.setContentAreaFilled(false);
 		DDelta.setBorderPainted(true);
 		DDelta.setFocusPainted(false);
-		DDelta.setFont(controlDatos.fuenteMC15());
+		DDelta.setFont(controlDatos.fuenteMC(15f));
 		DDelta.setForeground(new Color(137, 5, 78));
 
 		DesarrollarCura.add(DAlfa);
@@ -1065,7 +1065,7 @@ public class partida extends JFrame implements ActionListener {
 		ciudadesInfPanel.setOpaque(false);
 		
 		JLabel ciudadesInfTXT = new JLabel();
-		ciudadesInfTXT.setFont(controlDatos.fuenteMC15());
+		ciudadesInfTXT.setFont(controlDatos.fuenteMC(15f));
 		ciudadesInfTXT.setHorizontalAlignment(JLabel.CENTER);
 		ciudadesInfTXT.setVerticalAlignment(JLabel.CENTER);
 		ciudadesInfTXT.setForeground(Color.white);
@@ -1073,7 +1073,7 @@ public class partida extends JFrame implements ActionListener {
 		
 		ciudadesInf.setText("0");
 		ciudadesInf.setPreferredSize(new Dimension (30,30));
-		ciudadesInf.setFont(controlDatos.fuenteMC15());
+		ciudadesInf.setFont(controlDatos.fuenteMC(15f));
 		ciudadesInf.setBorder(border);
 		ciudadesInf.setHorizontalAlignment(JLabel.CENTER);
 		ciudadesInf.setVerticalAlignment(JLabel.CENTER);
@@ -1088,7 +1088,7 @@ public class partida extends JFrame implements ActionListener {
 		brotesPanel.setOpaque(false);
 		
 		JLabel textBrotes = new JLabel();
-		textBrotes.setFont(controlDatos.fuenteMC15());
+		textBrotes.setFont(controlDatos.fuenteMC(15f));
 		textBrotes.setHorizontalAlignment(JLabel.CENTER);
 		textBrotes.setVerticalAlignment(JLabel.CENTER);
 		textBrotes.setForeground(Color.white);
@@ -1096,7 +1096,7 @@ public class partida extends JFrame implements ActionListener {
 		
 		brotes.setText("0");
 		brotes.setPreferredSize(new Dimension (30,30));
-		brotes.setFont(controlDatos.fuenteMC15());
+		brotes.setFont(controlDatos.fuenteMC(15f));
 		brotes.setBorder(border);
 		brotes.setHorizontalAlignment(JLabel.CENTER);
 		brotes.setVerticalAlignment(JLabel.CENTER);
@@ -1143,7 +1143,7 @@ public class partida extends JFrame implements ActionListener {
 		Alfa.setMaximum(100);
 		Alfa.setBorder(new LineBorder(new Color(79, 164, 184),3));
 		Alfa.setBackground(Color.LIGHT_GRAY);
-		Alfa.setFont(controlDatos.fuenteTexto10());
+		Alfa.setFont(controlDatos.fuenteTexto(10f));
 		Alfa.setValue(0);
 		
 		barras1.add(Alfa,gbcBarras1);
@@ -1154,7 +1154,7 @@ public class partida extends JFrame implements ActionListener {
 		Beta.setMaximum(100); // Valor máximo de la barra de progreso
 		Beta.setValue(0);
 		Beta.setBorder(new LineBorder(Color.red,3));
-		Beta.setFont(controlDatos.fuenteTexto10());
+		Beta.setFont(controlDatos.fuenteTexto(10f));
 		Beta.setBackground(Color.LIGHT_GRAY);
 		Beta.setUI(new javax.swing.plaf.basic.BasicProgressBarUI() {
 			protected Color getSelectionForeground() {
@@ -1178,7 +1178,7 @@ public class partida extends JFrame implements ActionListener {
 		gbcScore.gridy = 0;
 		gbcScore.insets = new Insets(0, 20, 2, 20);
 		JLabel scoreTexto = new JLabel();
-		scoreTexto.setFont(controlDatos.fuentecargar40());
+		scoreTexto.setFont(controlDatos.fuentecargar(40f));
 		scoreTexto.setHorizontalAlignment(JLabel.CENTER);
 		scoreTexto.setVerticalAlignment(JLabel.CENTER);
 		scoreTexto.setForeground(new Color(79, 220, 100));
@@ -1188,7 +1188,7 @@ public class partida extends JFrame implements ActionListener {
 		gbcScore.gridy = 1;
 		scoreNum.setText("0");
 		scoreNum.setPreferredSize(new Dimension (300,20));
-		scoreNum.setFont(controlDatos.fuenteMC15());
+		scoreNum.setFont(controlDatos.fuenteMC(15f));
 		scoreNum.setBorder(border);
 		scoreNum.setHorizontalAlignment(JLabel.CENTER);
 		scoreNum.setVerticalAlignment(JLabel.CENTER);
@@ -1244,7 +1244,7 @@ public class partida extends JFrame implements ActionListener {
 		Gamma.setValue(0);
 		Gamma.setBackground(Color.LIGHT_GRAY);
 		Gamma.setBorder(new LineBorder(Color.YELLOW,3));
-		Gamma.setFont(controlDatos.fuenteTexto10());
+		Gamma.setFont(controlDatos.fuenteTexto(10f));
 		Gamma.setUI(new javax.swing.plaf.basic.BasicProgressBarUI() {
 			protected Color getSelectionForeground() {
 				return Color.black; // Cambia el color de la barra cuando progresa
@@ -1261,7 +1261,7 @@ public class partida extends JFrame implements ActionListener {
 		Delta.setValue(0);
 		Delta.setBackground(Color.LIGHT_GRAY);
 		Delta.setBorder(new LineBorder(Color.black,3));
-		Delta.setFont(controlDatos.fuenteTexto10());
+		Delta.setFont(controlDatos.fuenteTexto(10f));
 		Delta.setUI(new javax.swing.plaf.basic.BasicProgressBarUI() {
 			protected Color getSelectionForeground() {
 				return Color.black; // Cambia el color de la barra cuando progresa
@@ -1281,7 +1281,7 @@ public class partida extends JFrame implements ActionListener {
 		accionesPanel.setOpaque(false);
 		
 		JLabel TextAcciones = new JLabel();
-		TextAcciones.setFont(controlDatos.fuenteMC15());
+		TextAcciones.setFont(controlDatos.fuenteMC(15f));
 		TextAcciones.setHorizontalAlignment(JLabel.CENTER);
 		TextAcciones.setVerticalAlignment(JLabel.CENTER);
 		TextAcciones.setForeground(Color.white);
@@ -1289,7 +1289,7 @@ public class partida extends JFrame implements ActionListener {
 		
 		acciones.setText("4");
 		acciones.setPreferredSize(new Dimension (30,30));
-		acciones.setFont(controlDatos.fuenteMC15());
+		acciones.setFont(controlDatos.fuenteMC(15f));
 		acciones.setBorder(border);
 		acciones.setHorizontalAlignment(JLabel.CENTER);
 		acciones.setVerticalAlignment(JLabel.CENTER);
@@ -1304,7 +1304,7 @@ public class partida extends JFrame implements ActionListener {
 		RondasPanel.setOpaque(false);
 		
 		JLabel textRondas = new JLabel();
-		textRondas.setFont(controlDatos.fuenteMC15());
+		textRondas.setFont(controlDatos.fuenteMC(15f));
 		textRondas.setHorizontalAlignment(JLabel.CENTER);
 		textRondas.setVerticalAlignment(JLabel.CENTER);
 		textRondas.setForeground(Color.white);
@@ -1312,7 +1312,7 @@ public class partida extends JFrame implements ActionListener {
 		
 		rondas.setText("0");
 		rondas.setPreferredSize(new Dimension (30,30));
-		rondas.setFont(controlDatos.fuenteMC15());
+		rondas.setFont(controlDatos.fuenteMC(15f));
 		rondas.setBorder(border);
 		rondas.setHorizontalAlignment(JLabel.CENTER);
 		rondas.setVerticalAlignment(JLabel.CENTER);
@@ -1351,7 +1351,7 @@ public class partida extends JFrame implements ActionListener {
 		
 		volverAlMenu = new JMenuItem("VOLVER AL MENU PRINCIPAL");
 		volverAlMenu.setOpaque(false);
-		volverAlMenu.setFont(controlDatos.fuentecargar());
+		volverAlMenu.setFont(controlDatos.fuentecargar(45f));
 		volverAlMenu.setForeground(new Color(173, 216, 240));
 		volverAlMenu.setIcon(iconoMusFinal);
 		volverAlMenu.setContentAreaFilled(false);
@@ -1362,7 +1362,7 @@ public class partida extends JFrame implements ActionListener {
 		
 		music = new JMenuItem("ACTIVADO");
 		music.setOpaque(false);
-		music.setFont(controlDatos.fuentecargar());
+		music.setFont(controlDatos.fuentecargar(45f));
 		music.setForeground(new Color(173, 216, 240));
 		music.setIcon(iconoMusFinal);
 		music.setContentAreaFilled(false);
@@ -1373,7 +1373,7 @@ public class partida extends JFrame implements ActionListener {
 		
 		reglas = new JMenuItem("REGLAS Y INFO");
 		reglas.setOpaque(false);
-		reglas.setFont(controlDatos.fuentecargar());
+		reglas.setFont(controlDatos.fuentecargar(45f));
 		reglas.setForeground(new Color(173, 216, 240));
 		reglas.setIcon(iconoMusFinal);
 		reglas.setContentAreaFilled(false);
@@ -1384,7 +1384,7 @@ public class partida extends JFrame implements ActionListener {
 		
 		guardarSalir = new JMenuItem("GUARDAR Y SALIR");
 		guardarSalir.setOpaque(false);
-		guardarSalir.setFont(controlDatos.fuentecargar());
+		guardarSalir.setFont(controlDatos.fuentecargar(45f));
 		guardarSalir.setForeground(new Color(173, 216, 240));
 		guardarSalir.setIcon(iconGuardarFIN);
 		guardarSalir.setContentAreaFilled(false);
@@ -1393,7 +1393,7 @@ public class partida extends JFrame implements ActionListener {
 		
 		JMenuItem volver = new JMenuItem("VOLVER AL JUEGO");
 		volver.setOpaque(false);
-		volver.setFont(controlDatos.fuentecargar());
+		volver.setFont(controlDatos.fuentecargar(45f));
 		volver.setForeground(new Color(173, 216, 240));
 		volver.setIcon(iconVolverFIN);
 		volver.setContentAreaFilled(false);

@@ -135,7 +135,7 @@ public class CargarParty extends JFrame implements ActionListener {
 		dificultad.setOpaque(false);
 
 		JLabel dificultadIm = new JLabel("Dificultad - ");
-		dificultadIm.setFont(controlDatos.fuentecargar());
+		dificultadIm.setFont(controlDatos.fuentecargar(45f));
 		dificultadIm.setForeground(Color.LIGHT_GRAY);
 		dificultad.add(dificultadIm);
 
@@ -157,13 +157,13 @@ public class CargarParty extends JFrame implements ActionListener {
 
 		JLabel textofacil = new JLabel();
 		textofacil.setForeground(Color.white);
-		textofacil.setFont(controlDatos.fuenteTexto15());
+		textofacil.setFont(controlDatos.fuenteTexto(15f));
 		textofacil.setText("Bienvenido al modo");
 		descFacil.add(textofacil);
 
 		JLabel textofacil2 = new JLabel();
 		textofacil2.setForeground(new Color(79, 240, 100));
-		textofacil2.setFont(controlDatos.fuenteTexto15());
+		textofacil2.setFont(controlDatos.fuenteTexto(15f));
 		textofacil2.setText("Chupete");
 
 		descFacil.add(textofacil2);
@@ -176,7 +176,7 @@ public class CargarParty extends JFrame implements ActionListener {
 		gbcEasyAbajo.weighty = 1.0; // Peso vertical (para expandirse verticalmente)
 
 		JLabel desc = new JLabel();
-		FontMetrics metrics = desc.getFontMetrics(controlDatos.fuenteMC());
+		FontMetrics metrics = desc.getFontMetrics(controlDatos.fuenteMC(15.5f));
 		int textocupado = metrics.getHeight() + screen.height / 12;
 		String pixel = textocupado + "px";
 		desc.setPreferredSize(mundo);
@@ -185,7 +185,7 @@ public class CargarParty extends JFrame implements ActionListener {
 				+ ";'><br><br>Aquí, las epidemias se manejan con facilidad y los desafíos son prácticamente inexistentes. ¡Relájate mientras te paseas por el jardín de infancia del juego salvando vidas...");
 		desc.setForeground(Color.white);
 		desc.setOpaque(false);
-		desc.setFont(controlDatos.fuenteMC());
+		desc.setFont(controlDatos.fuenteMC(15.5f));
 
 		dificultadEz.add(desc, gbcEasyAbajo);
 
@@ -195,7 +195,7 @@ public class CargarParty extends JFrame implements ActionListener {
 		bFacil.setOpaque(true);
 		bFacil.setBorder(new LineBorder(Color.white));
 		bFacil.setBackground(Color.gray);
-		bFacil.setFont(controlDatos.fuentecargar());
+		bFacil.setFont(controlDatos.fuentecargar(45f));
 		bFacil.setContentAreaFilled(true);
 		bFacil.setBorderPainted(true);
 		bFacil.setFocusPainted(false);
@@ -280,7 +280,7 @@ public class CargarParty extends JFrame implements ActionListener {
 		dificultad2.setOpaque(false);
 
 		JLabel dificultadIm2 = new JLabel("Dificultad - ");
-		dificultadIm2.setFont(controlDatos.fuentecargar());
+		dificultadIm2.setFont(controlDatos.fuentecargar(45f));
 		dificultadIm2.setForeground(Color.LIGHT_GRAY);
 		dificultad2.add(dificultadIm2);
 
@@ -302,13 +302,13 @@ public class CargarParty extends JFrame implements ActionListener {
 
 		JLabel textonormal = new JLabel();
 		textonormal.setForeground(Color.white);
-		textonormal.setFont(controlDatos.fuenteTexto15());
+		textonormal.setFont(controlDatos.fuenteTexto(15f));
 		textonormal.setText("Bienvenido al modo");
 		descNormal.add(textonormal);
 
 		JLabel textonormal2 = new JLabel();
 		textonormal2.setForeground(new Color(173, 216, 240));
-		textonormal2.setFont(controlDatos.fuenteTexto15());
+		textonormal2.setFont(controlDatos.fuenteTexto(15f));
 		textonormal2.setText("Normal");
 
 		descNormal.add(textonormal2);
@@ -328,7 +328,7 @@ public class CargarParty extends JFrame implements ActionListener {
 				+ ";'><br><br>¡Salva ciudades y detén pandemias en este desafiante juego de estrategia global! Como líder de un equipo de expertos en salud, tu misión es desarrollar una cura y proteger a la población.");
 		desc2.setForeground(Color.white);
 		desc2.setOpaque(false);
-		desc2.setFont(controlDatos.fuenteMC());
+		desc2.setFont(controlDatos.fuenteMC(15.5f));
 
 		dificultadNormal.add(desc2, gbcNormalAbajo);
 
@@ -339,7 +339,7 @@ public class CargarParty extends JFrame implements ActionListener {
 		bNormal.setOpaque(true);
 		bNormal.setBorder(new LineBorder(Color.white));
 		bNormal.setBackground(Color.gray);
-		bNormal.setFont(controlDatos.fuentecargar());
+		bNormal.setFont(controlDatos.fuentecargar(45f));
 		bNormal.setContentAreaFilled(true);
 		bNormal.setBorderPainted(true);
 		bNormal.setFocusPainted(false);
@@ -423,7 +423,7 @@ public class CargarParty extends JFrame implements ActionListener {
 		dificultad3.setOpaque(false);
 
 		JLabel dificultadIm3 = new JLabel("Dificultad - ");
-		dificultadIm3.setFont(controlDatos.fuentecargar());
+		dificultadIm3.setFont(controlDatos.fuentecargar(45f));
 		dificultadIm3.setForeground(Color.LIGHT_GRAY);
 		dificultad3.add(dificultadIm3);
 
@@ -445,13 +445,13 @@ public class CargarParty extends JFrame implements ActionListener {
 
 		JLabel textoDificil = new JLabel();
 		textoDificil.setForeground(Color.white);
-		textoDificil.setFont(controlDatos.fuenteTexto15());
+		textoDificil.setFont(controlDatos.fuenteTexto(15f));
 		textoDificil.setText("Bienvenido al modo");
 		descDificil.add(textoDificil);
 
 		JLabel textoDificil2 = new JLabel();
 		textoDificil2.setForeground(new Color(230, 70, 79));
-		textoDificil2.setFont(controlDatos.fuenteTexto15());
+		textoDificil2.setFont(controlDatos.fuenteTexto(15f));
 		textoDificil2.setText("Crisis");
 
 		descDificil.add(textoDificil2);
@@ -472,7 +472,7 @@ public class CargarParty extends JFrame implements ActionListener {
 						+ ";'><br><br>¡La situación es crítica! Tu tarea es urgente: contener la pandemia, distribuir recursos y salvar ciudades. ¿Tienes lo necesario para liderar la respuesta mundial?");
 		desc3.setForeground(Color.white);
 		desc3.setOpaque(false);
-		desc3.setFont(controlDatos.fuenteMC());
+		desc3.setFont(controlDatos.fuenteMC(15.5f));
 
 		dificultadDif.add(desc3, gbcDificilAbajo);
 
@@ -482,7 +482,7 @@ public class CargarParty extends JFrame implements ActionListener {
 		bDificil.setOpaque(true);
 		bDificil.setBorder(new LineBorder(Color.white));
 		bDificil.setBackground(Color.gray);
-		bDificil.setFont(controlDatos.fuentecargar());
+		bDificil.setFont(controlDatos.fuentecargar(45f));
 		bDificil.setContentAreaFilled(true);
 		bDificil.setBorderPainted(true);
 		bDificil.setFocusPainted(false);

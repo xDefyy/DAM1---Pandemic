@@ -2,7 +2,7 @@
 <facil>
 	   <numCiudadesInfectadasInicio>5</numCiudadesInfectadasInicio>
 	   <numCuidadesInfectadasRonda>3</numCuidadesInfectadasRonda>
-	   <numEnfermedadesActivasDerrota>30</numEnfermedadesActivasDerrota>
-	   <numBrotesDerrota>8</numBrotesDerrota>
+	   <numEnfermedadesActivasDerrota>35</numEnfermedadesActivasDerrota>
+	   <numBrotesDerrota>10</numBrotesDerrota>
 	   <desarrollovacuna>25</desarrollovacuna>
 </facil>
