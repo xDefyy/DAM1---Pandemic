@@ -171,7 +171,29 @@ public class controlDatos {
 		thread.start();
 		
 	}
-	
+	public static int numeroPartidas (int dificultad) {
+        int partidas = 0;
+
+        String sqlNumeroPartidas = "SELECT COUNT (ID_PARTIDA) \n"
+                + "    FROM PARTIDA \n"
+                + "    WHERE DIFICULTAD = " + dificultad + " AND WL = 'NF'";
+
+        try {
+
+            Statement stNombrePuntos = con.createStatement();
+            ResultSet rsPartidas = stNombrePuntos.executeQuery(sqlNumeroPartidas);
+
+            while (rsPartidas.next()) {
+                partidas = rsPartidas.getInt("COUNT(ID_PARTIDA)"); 
+            }
+
+         } catch (SQLException e) {
+                e.printStackTrace();
+                System.out.println("MAL");
+         }
+
+        return partidas;
+    }
 	public static void insertarPartida(Connection con) {
         int diff = CargarParty.dificultad;
         int numeroPlayer = getPlayerID();

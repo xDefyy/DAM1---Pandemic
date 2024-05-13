@@ -133,6 +133,20 @@ public class pantallaPrincipal extends JFrame {
             }
         });
         
+        button3.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		Main.cargarRecords.setVisible(true);
+    	    	
+    	        Timer timer = new Timer(300, new ActionListener() {
+    	            public void actionPerformed(ActionEvent e) {
+    	            	Main.cargarPrincipal.setVisible(false);
+    	            }
+    	        });
+    	        timer.setRepeats(false);
+    	        timer.start();
+    	    }
+    	});	
+        
         gbc.gridy++;
         JButton button4 = new JButton("REGLAS");
         button4.setBackground(new Color(0,0,0,0));
