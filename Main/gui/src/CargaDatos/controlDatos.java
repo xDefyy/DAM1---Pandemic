@@ -258,22 +258,62 @@ public class controlDatos {
 	}
 
 
-	public static String topEz() {
-		String select = "SELECT puntuacion\n"
-				+ "FROM PARTIDA \n"
-				+ "WHERE wl = 'W' AND dificultad = 0 \n"
-				+ "ORDER BY puntuacion desc";
-		try {
-	        Statement stCiudades = con.createStatement();
-	        ResultSet rsCiudades = stCiudades.executeQuery(sqlCiudades);
+	public static String[] topEz() {
+		String selectPuntuacionNOM = "SELECT j.username, p.puntuacion \n"
+				+ "FROM players j \n"
+				+ "INNER JOIN partida p ON j.id_p = p.id_p \n"
+				+ "WHERE p.wl = 'W' AND p.dificultad = 0 \n"
+				+ "ORDER BY p.puntuacion desc";
 		
+		String nombrePuntos[] = new String[5];
+		
+		try {
+			
+	        Statement stNombrePuntos = con.createStatement();
+	        ResultSet rsPuntos = stNombrePuntos.executeQuery(selectPuntuacionNOM);
+	        
+	        int contador = 0;
+	        while (rsPuntos.next()) {
+	        	
+	            String nombre = rsPuntos.getString("username");
+	            int puntos = rsPuntos.getInt("puntuacion");
+	            
+	            String concatenado = nombre + ": " + puntos;
+	            
+	            switch (contador) {
+	            case 0:
+	            	nombrePuntos[contador] = concatenado;
+	            	contador++;	            	
+	            	break;
+	            case 1:
+	            	nombrePuntos[contador] = concatenado;
+	            	contador++;
+	            	break;
+	            case 2:
+	            	nombrePuntos[contador] = concatenado;
+	            	contador++;
+	            	break;
+	            case 3:
+	            	nombrePuntos[contador] = concatenado;
+	            	contador++;
+	            	break;
+	            case 4:
+	            	nombrePuntos[contador] = concatenado;
+	            	contador++;
+	            	break;
+	            } 
+	            
+	            
+	            
+	        }
+	        
 		 } catch (SQLException e) {
 		        e.printStackTrace();
 		        System.out.println("MAL");
 		 }
 		
 		
-		return name;
+		return nombrePuntos;
 	}
 
 	public static void controlDificultad(int valor) {

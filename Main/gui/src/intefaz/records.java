@@ -182,8 +182,9 @@ public class records extends JFrame{
 		gbcEasyAbajo.gridy = 2;
 		gbcEasyAbajo.insets = new Insets(10, 10, 10, 10);
 		
+		
 		for (int i = 1; i < 6; i ++) {
-//			topEZ();
+			   
 			String textoTop = i + ". ";
 			JPanel topPanel = new JPanel(new FlowLayout());
 			topPanel.setOpaque(false);
@@ -191,8 +192,8 @@ public class records extends JFrame{
 			JPanel numero = new JPanel();
 			numero.setOpaque(false);
 			
-			JLabel top = new JLabel(textoTop + "");
-			top.setFont(controlDatos.fuenteMC(30f));
+			JLabel top = new JLabel(textoTop + controlDatos.topEz()[i-1]);
+			top.setFont(controlDatos.fuenteMC(28f));
 			top.setForeground(Color.white);
 			
 			numero.add(top);
