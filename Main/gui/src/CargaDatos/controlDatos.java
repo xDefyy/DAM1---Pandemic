@@ -258,11 +258,11 @@ public class controlDatos {
 	}
 
 
-	public static String[] topEz() {
+	public static String[] topEz(int dificultad) {
 		String selectPuntuacionNOM = "SELECT j.username, p.puntuacion \n"
 				+ "FROM players j \n"
 				+ "INNER JOIN partida p ON j.id_p = p.id_p \n"
-				+ "WHERE p.wl = 'W' AND p.dificultad = 0 \n"
+				+ "WHERE p.wl = 'W' AND p.dificultad = "+ dificultad +" \n"
 				+ "ORDER BY p.puntuacion desc";
 		
 		String nombrePuntos[] = new String[5];

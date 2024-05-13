@@ -192,9 +192,10 @@ public class records extends JFrame{
 			JPanel numero = new JPanel();
 			numero.setOpaque(false);
 			
-			JLabel top = new JLabel(textoTop + controlDatos.topEz()[i-1]);
-			top.setFont(controlDatos.fuenteMC(28f));
+			JLabel top = new JLabel(textoTop + controlDatos.topEz(0)[i-1]);
+			top.setFont(controlDatos.fuenteMC(26f));
 			top.setForeground(Color.white);
+			
 			
 			numero.add(top);
 			
@@ -206,7 +207,7 @@ public class records extends JFrame{
 
 		
 
-		easyGeneral.add(dificultadEz, gbcEasy);
+		easyGeneral.add(dificultadEz, gbcEasyAbajo);
 		
 		JPanel normalGeneral = new JPanel(new GridBagLayout()) {
 			@Override
@@ -236,8 +237,10 @@ public class records extends JFrame{
 
 		normalGeneral.add(mundoNor, gbcNormal);
 
-		// agregar layout de dificultad
 		gbcNormal.gridy = 1;
+		gbcNormal.gridheight = 2;
+		gbcNormal.weighty = 1.0;
+		gbcNormal.fill = GridBagConstraints.VERTICAL;
 
 		JPanel dificultadNormal = new JPanel(new GridBagLayout()) {
 			@Override
@@ -262,7 +265,7 @@ public class records extends JFrame{
 		JPanel dificultad2 = new JPanel(new FlowLayout());
 		dificultad2.setOpaque(false);
 
-		JLabel dificultadIm2 = new JLabel("Dificultad - ");
+		JLabel dificultadIm2 = new JLabel("RECORDS - ");
 		dificultadIm2.setFont(controlDatos.fuentecargar(45f));
 		dificultadIm2.setForeground(Color.LIGHT_GRAY);
 		dificultad2.add(dificultadIm2);
@@ -286,36 +289,45 @@ public class records extends JFrame{
 		JLabel textonormal = new JLabel();
 		textonormal.setForeground(Color.white);
 		textonormal.setFont(controlDatos.fuenteTexto(15f));
-		textonormal.setText("Bienvenido al modo");
+		textonormal.setText("TOP 5 - ");
 		descNormal.add(textonormal);
 
 		JLabel textonormal2 = new JLabel();
 		textonormal2.setForeground(new Color(173, 216, 240));
 		textonormal2.setFont(controlDatos.fuenteTexto(15f));
-		textonormal2.setText("Normal");
+		textonormal2.setText("NORMAL");
 
 		descNormal.add(textonormal2);
 
 		dificultadNormal.add(descNormal, gbcNormalAbajo);
 
 		gbcNormalAbajo.gridy = 2;
-		gbcNormalAbajo.fill = GridBagConstraints.BOTH; // Expande vertical y horizontalmente
-		gbcNormalAbajo.weightx = 1.0; // Peso horizontal (para expandirse horizontalmente)
-		gbcNormalAbajo.weighty = 1.0; // Peso vertical (para expandirse verticalmente)
+		gbcNormalAbajo.insets = new Insets(10, 10, 10, 10);
+		
+		
+		for (int i = 1; i < 6; i ++) {
+			   
+			String textoTop = i + ". ";
+			JPanel topPanel = new JPanel(new FlowLayout());
+			topPanel.setOpaque(false);
+			
+			JPanel numero = new JPanel();
+			numero.setOpaque(false);
+			
+			JLabel top = new JLabel(textoTop + controlDatos.topEz(1)[i-1]);
+			top.setFont(controlDatos.fuenteMC(26f));
+			top.setForeground(Color.white);
+			
+			
+			numero.add(top);
+			
+			topPanel.add(numero);
+			
+			dificultadNormal.add(topPanel, gbcNormalAbajo);
+			gbcNormalAbajo.gridy++;
+		}
 
-//		JLabel desc2 = new JLabel();
-//
-//		desc2.setPreferredSize(mundo);
-//		desc2.setText("<html><div style='text-align: center; margin-left: 32px; margin-right: 10px; padding-bottom:"
-//				+ pixel
-//				+ ";'><br><br>¡Salva ciudades y detén pandemias en este desafiante juego de estrategia global! Como líder de un equipo de expertos en salud, tu misión es desarrollar una cura y proteger a la población.");
-//		desc2.setForeground(Color.white);
-//		desc2.setOpaque(false);
-//		desc2.setFont(controlDatos.fuenteMC(15.5f));
-
-//		dificultadNormal.add(desc2, gbcNormalAbajo);
-
-		normalGeneral.add(dificultadNormal, gbcNormal);
+		normalGeneral.add(dificultadNormal, gbcNormalAbajo);
 		
 		JPanel dificilGeneral = new JPanel(new GridBagLayout()) {
 			@Override
@@ -347,6 +359,9 @@ public class records extends JFrame{
 
 		// agregar layout de dificultad
 		gbcDificil.gridy = 1;
+		gbcDificil.gridheight = 2;
+		gbcDificil.weighty = 1.0;
+		gbcDificil.fill = GridBagConstraints.VERTICAL;
 
 		JPanel dificultadDif = new JPanel(new GridBagLayout()) {
 			@Override
@@ -371,7 +386,7 @@ public class records extends JFrame{
 		JPanel dificultad3 = new JPanel(new FlowLayout());
 		dificultad3.setOpaque(false);
 
-		JLabel dificultadIm3 = new JLabel("Dificultad - ");
+		JLabel dificultadIm3 = new JLabel("RECORDS - ");
 		dificultadIm3.setFont(controlDatos.fuentecargar(45f));
 		dificultadIm3.setForeground(Color.LIGHT_GRAY);
 		dificultad3.add(dificultadIm3);
@@ -395,37 +410,48 @@ public class records extends JFrame{
 		JLabel textoDificil = new JLabel();
 		textoDificil.setForeground(Color.white);
 		textoDificil.setFont(controlDatos.fuenteTexto(15f));
-		textoDificil.setText("Bienvenido al modo");
+		textoDificil.setText("TOP 5 -");
 		descDificil.add(textoDificil);
 
 		JLabel textoDificil2 = new JLabel();
 		textoDificil2.setForeground(new Color(230, 70, 79));
 		textoDificil2.setFont(controlDatos.fuenteTexto(15f));
-		textoDificil2.setText("Crisis");
+		textoDificil2.setText(" Crisis");
 
 		descDificil.add(textoDificil2);
 
 		dificultadDif.add(descDificil, gbcDificilAbajo);
 
 		gbcDificilAbajo.gridy = 2;
-		gbcDificilAbajo.fill = GridBagConstraints.BOTH; 
-		gbcDificilAbajo.weightx = 1.0; 
-		gbcDificilAbajo.weighty = 1.0; 
+		
+		gbcDificilAbajo.insets = new Insets(10, 10, 10, 10);
+		
+		
+		for (int i = 1; i < 6; i ++) {
+			   
+			String textoTop = i + ". ";
+			JPanel topPanel = new JPanel(new FlowLayout());
+			topPanel.setOpaque(false);
+			
+			JPanel numero = new JPanel();
+			numero.setOpaque(false);
+			
+			JLabel top = new JLabel(textoTop + controlDatos.topEz(2)[i-1]);
+			
+			top.setFont(controlDatos.fuenteMC(26f));
+			top.setForeground(Color.white);
+			
+			numero.add(top);
+			
+			topPanel.add(numero);
+			
+			dificultadDif.add(topPanel, gbcDificilAbajo);
+			gbcDificilAbajo.gridy++;
+		}
+		
+		
 
-		JLabel desc3 = new JLabel();
-
-//		desc3.setPreferredSize(mundo);
-//		desc3.setText(
-//				"<html><body><div style='text-align: center; margin-left: 32px; margin-right: 10px; padding-bottom:"
-//						+ pixel
-//						+ ";'><br><br>¡La situación es crítica! Tu tarea es urgente: contener la pandemia, distribuir recursos y salvar ciudades. ¿Tienes lo necesario para liderar la respuesta mundial?");
-//		desc3.setForeground(Color.white);
-//		desc3.setOpaque(false);
-//		desc3.setFont(controlDatos.fuenteMC(15.5f));
-
-		dificultadDif.add(desc3, gbcDificilAbajo);
-
-		dificilGeneral.add(dificultadDif, gbcDificil);
+		dificilGeneral.add(dificultadDif, gbcDificilAbajo);
 		
 		JButton volver = new JButton("VOLVER");
 		volver.setBackground(new Color(0, 0, 0, 0));
