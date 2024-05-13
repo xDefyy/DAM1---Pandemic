@@ -658,7 +658,7 @@ public class Reglas extends JFrame {
 		gbcNuke.gridwidth = 2;
 		gbcNuke.fill = GridBagConstraints.HORIZONTAL;
 		
-		JLabel descNuke = new JLabel("<html><center>Quita la infeccion en la ciudad y en sus colindantes, deja el efecto 'Atomico'");
+		JLabel descNuke = new JLabel("<html><center><br>Quita la infeccion en la ciudad y en sus colindantes, deja el efecto 'Atomico'");
 		descNuke.setFont(controlDatos.fuenteMC(14.2f));
 		descNuke.setForeground(Color.white);
 		
