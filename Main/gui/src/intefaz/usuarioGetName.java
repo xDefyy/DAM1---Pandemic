@@ -126,30 +126,35 @@ public class usuarioGetName extends JFrame implements ActionListener {
 				public void run() {
 					String user = campoTexto.getText();
 					userFinal = "";
-
 					for (int i = 0; i < user.length(); i++) {
 						userFinal += user.charAt(i);
 						if (userFinal.length() == 10) {
 							break;
 						}
 					}
-
+					
 					JOptionPane.showMessageDialog(null, "Se ha guardado como: " + userFinal, "Info",
 							JOptionPane.INFORMATION_MESSAGE);
 					
 					controlDatos.guardarPartida();
 					
 					campoTexto.setText("username");
-					Timer timer = new Timer(500, new ActionListener() {
+					Timer timer = new Timer(100, new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							Main.cargarPrincipal.setVisible(true);
 							controlPartida.resetGame = true;
-
 							partida.usuarioNombre.setVisible(false);
+							
 						}
 					});
 					timer.setRepeats(false);
 					timer.start();
+					
+					
+
+					
+
+					
 
 				}
 			});

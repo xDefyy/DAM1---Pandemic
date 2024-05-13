@@ -863,10 +863,17 @@ public class Reglas extends JFrame {
 		});
 		volver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.cargarPrincipal.setVisible(true);
+				
+				if (partida.partidaReglas) {
+					CargarParty.game.setVisible(true);
+				} else {
+					Main.cargarPrincipal.setVisible(true);
+				}
+				
+				
 				Timer timer = new Timer(300, new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						Main.cargarParty.setVisible(false);
+						Main.CargarReglas.setVisible(false);
 					}
 				});
 				timer.setRepeats(false);

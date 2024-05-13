@@ -29,14 +29,20 @@ public class controlPartida {
 	public static int ciudadSize = 0;
 	public static String ciudadNombre = "";
 	public static boolean resetGame = false;
+	public static boolean datosCargados = false;
+	public static boolean datosCargadosPartida = false;
 
 	public static void iniciar_Partida() {
 		
 		int pdesarrollo = Integer.valueOf(controlDatos.desarrolloVacuna);
-
-		controlDatos.cargarCiudades();
-		controlDatos.cargarVacunas();
-		controlDatos.cargarVirus();
+		
+		if (!datosCargados) {
+			controlDatos.cargarCiudades();
+			controlDatos.cargarVacunas();
+			controlDatos.cargarVirus();
+			datosCargados = true;
+		}
+		
 
 		datos = new datosPartida(controlDatos.ciudades, controlDatos.virus, controlDatos.vacunas, 0, 0, pdesarrollo, 4);
 
@@ -114,9 +120,12 @@ public class controlPartida {
 
 		int pdesarrollo = Integer.valueOf(controlDatos.desarrolloVacuna);
 		
-		controlDatos.cargarCiudades();
-		controlDatos.cargarVacunas();
-		controlDatos.cargarVirus();
+		if (!datosCargadosPartida) {
+			controlDatos.cargarCiudades();
+			controlDatos.cargarVacunas();
+			controlDatos.cargarVirus();
+			datosCargadosPartida = true;
+		}
 		
 		datos = new datosPartida(controlDatos.ciudades, controlDatos.virus, controlDatos.vacunas, 0, 0, pdesarrollo, 4);
 

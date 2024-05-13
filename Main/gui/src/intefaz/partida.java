@@ -202,7 +202,7 @@ public class partida extends JFrame implements ActionListener {
 	public static Image delta3 = negro3.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
 	public static ImageIcon negroVirusCiudad3 = new ImageIcon(delta3);
 	public static Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-
+	public static boolean partidaReglas = false;
 	public partida()  {
 		
 		ImageIcon iconoIcono = new ImageIcon("src\\img\\inGame\\icono.png");
@@ -273,7 +273,13 @@ public class partida extends JFrame implements ActionListener {
 		Image iconoBombaOPES = iconoBombaOP.getImage().getScaledInstance(50,50,Image.SCALE_DEFAULT);
 		ImageIcon iconoBombaFINOP = new ImageIcon(iconoBombaOPES);
 		
+		ImageIcon iconoReglas = new ImageIcon("src\\img\\inGame\\reglasIcono.png");
+		Image iconoReglasES = iconoReglas.getImage().getScaledInstance(50,50,Image.SCALE_DEFAULT);
+		ImageIcon iconoReglasFIN = new ImageIcon(iconoReglasES);
 		
+		ImageIcon iconoMain = new ImageIcon("src\\img\\inGame\\inicioIcono.png");
+		Image iconoMainES = iconoMain.getImage().getScaledInstance(50,50,Image.SCALE_DEFAULT);
+		ImageIcon iconoMainFIN = new ImageIcon(iconoMainES);
 		
 		curar.addMouseListener(new MouseAdapter() {
 			@Override
@@ -1353,7 +1359,7 @@ public class partida extends JFrame implements ActionListener {
 		volverAlMenu.setOpaque(false);
 		volverAlMenu.setFont(controlDatos.fuentecargar(45f));
 		volverAlMenu.setForeground(new Color(173, 216, 240));
-		volverAlMenu.setIcon(iconoMusFinal);
+		volverAlMenu.setIcon(iconoMainFIN);
 		volverAlMenu.setContentAreaFilled(false);
 		volverAlMenu.setBorderPainted(false);
 		volverAlMenu.setFocusPainted(false);
@@ -1375,7 +1381,7 @@ public class partida extends JFrame implements ActionListener {
 		reglas.setOpaque(false);
 		reglas.setFont(controlDatos.fuentecargar(45f));
 		reglas.setForeground(new Color(173, 216, 240));
-		reglas.setIcon(iconoMusFinal);
+		reglas.setIcon(iconoReglasFIN);
 		reglas.setContentAreaFilled(false);
 		reglas.setBorderPainted(false);
 		reglas.setFocusPainted(false);
@@ -1436,31 +1442,31 @@ public class partida extends JFrame implements ActionListener {
 
 
 
-//		PrintStream printStream = new PrintStream(new OutputStream() {
-//			@Override
-//			public void write(int b) throws IOException {
-//				new Thread(() -> {
-//					textArea.append(String.valueOf((char) b));
-//					int lineCount = textArea.getLineCount();
-//					if (lineCount > 6) {
-//						try {
-//							int endOfFirstLine = textArea.getLineEndOffset(0);
-//							textArea.replaceRange("", 0, endOfFirstLine);
-//						} catch (Exception ex) {
-//							ex.printStackTrace();
-//						}
-//					}
-//					textArea.setCaretPosition(textArea.getDocument().getLength());
-//				}).start();
-//				try {
-//					Thread.sleep(10);
-//				} catch (InterruptedException e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//		System.setOut(printStream);
-//		System.setErr(printStream);
+		PrintStream printStream = new PrintStream(new OutputStream() {
+			@Override
+			public void write(int b) throws IOException {
+				new Thread(() -> {
+					textArea.append(String.valueOf((char) b));
+					int lineCount = textArea.getLineCount();
+					if (lineCount > 6) {
+						try {
+							int endOfFirstLine = textArea.getLineEndOffset(0);
+							textArea.replaceRange("", 0, endOfFirstLine);
+						} catch (Exception ex) {
+							ex.printStackTrace();
+						}
+					}
+					textArea.setCaretPosition(textArea.getDocument().getLength());
+				}).start();
+				try {
+					Thread.sleep(10);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		System.setOut(printStream);
+		System.setErr(printStream);
 		
 		
 		DAlfa.addActionListener(this);
@@ -2296,6 +2302,7 @@ public class partida extends JFrame implements ActionListener {
 				public void run() {
 					Main.cargarPrincipal.setVisible(true);
 					controlPartida.resetGame = true;
+					partidaReglas = false;
 	    	        Timer timer = new Timer(300, new ActionListener() {
 	    	            public void actionPerformed(ActionEvent e) {
 	    					CargarParty.game.setVisible(false);
@@ -2314,7 +2321,7 @@ public class partida extends JFrame implements ActionListener {
 				public void run() {
 					usuarioNombre.setVisible(true);
 					CargarParty.game.setVisible(false);
-
+					partidaReglas = false;
 
 				}
 			});
@@ -2325,6 +2332,19 @@ public class partida extends JFrame implements ActionListener {
 				@Override
 				public void run() {
 					controlPartida.nuke();
+				}
+			});
+			vac.start();
+		} else if (source == reglas) {
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					Main.CargarReglas.setVisible(true);
+					CargarParty.game.setVisible(false);
+					partidaReglas = true;
+
+
 				}
 			});
 			vac.start();

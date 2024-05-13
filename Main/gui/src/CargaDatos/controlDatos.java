@@ -46,8 +46,8 @@ public class controlDatos {
 	public static Connection conectarBaseDatos() {
 		Connection con = null;
 		String url = "jdbc:oracle:thin:@oracle.ilerna.com:1521:xe";
-		String user = "DAM1_2324_YAN_LIQIAN";
-		String password = "liqian";
+		String user = "DAM1_2324_MAY_KADER";
+		String password = "kader";
 
 		System.out.println("Intentando conectarse a la base de datos");
 
@@ -161,11 +161,14 @@ public class controlDatos {
 	}
 
 	public static void guardarPartida() {
-
-		String nombre = usuarioGetName.userFinal;
-		newPlayer(nombre, con);
-		insertarPartida(con);
-		
+		Thread thread = new Thread(new Runnable() {
+			public void run() {
+				String nombre = usuarioGetName.userFinal;
+				newPlayer(nombre, con);
+				insertarPartida(con);
+			}
+		});
+		thread.start();
 		
 	}
 	
@@ -194,7 +197,7 @@ public class controlDatos {
                 SqlCIUDADES.append(", ");
             }
         }
-
+        System.out.println(SqlCIUDADES.toString());
         StringBuilder SqlVACUNAS = new StringBuilder();
         for (int i = 0; i < controlPartida.datos.getVacunas().size(); i++) {
             String color_vacuna = controlPartida.datos.getVacunas().get(i).getColor();
@@ -204,7 +207,7 @@ public class controlDatos {
                 SqlVACUNAS.append(", ");
             }
         }
-        
+        System.out.println(SqlVACUNAS.toString());
        
         String sql = "INSERT INTO PARTIDA VALUES(0 ," + numeroPlayer + ", " + puntuacion + ", " + diff + ", " + rondas + ", " + acciones + ", " + brotes
                 + ", ARRAY_CIUDADES(" + SqlCIUDADES.toString() + "), ARRAY_VACUNAS(" + SqlVACUNAS.toString() + "), " + "'" + ganar_perder + "'" + ", TO_DATE(SYSDATE,'DD-MM-YYYY,HH24:MI:SS'))";
@@ -213,6 +216,8 @@ public class controlDatos {
         try {
             Statement st = con.createStatement();
             st.execute(sql);
+            SqlCIUDADES.setLength(0);
+            SqlVACUNAS.setLength(0);
         } catch (SQLException e) {
             System.out.println("Ha habido un error en el Insert " + e);
         }
@@ -253,12 +258,22 @@ public class controlDatos {
 	}
 
 
-	public static void cargarRecord() {
-
-	}
-
-	public static void guardarRecord() {
-
+	public static String topEz() {
+		String select = "SELECT puntuacion\n"
+				+ "FROM PARTIDA \n"
+				+ "WHERE wl = 'W' AND dificultad = 0 \n"
+				+ "ORDER BY puntuacion desc";
+		try {
+	        Statement stCiudades = con.createStatement();
+	        ResultSet rsCiudades = stCiudades.executeQuery(sqlCiudades);
+		
+		 } catch (SQLException e) {
+		        e.printStackTrace();
+		        System.out.println("MAL");
+		 }
+		
+		
+		return name;
 	}
 
 	public static void controlDificultad(int valor) {
