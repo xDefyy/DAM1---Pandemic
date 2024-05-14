@@ -193,9 +193,14 @@ public class pantallaCargar extends JFrame {
 		gbcpartidas.gridx = 0;
 		gbcpartidas.gridy = 0;
 		
-		ArrayList<String[]> info = new ArrayList<>();
+		ArrayList<String[]> info = new ArrayList<>(controlDatos.mostrarInfoCargar(0));
 		
-		info = controlDatos.mostrarInfoCargar(0);
+		for (int i = 0; i < info.size(); i++) {
+			System.out.println(info.get(i)[0]);
+			System.out.println(info.get(i)[1]);
+			System.out.println(info.get(i)[2]);
+			System.out.println(info.get(i)[3]);
+		}
 		
 		for (int i = 0; i < info.size(); i++) {
 			
@@ -205,10 +210,7 @@ public class pantallaCargar extends JFrame {
 			GridBagConstraints gbcPartidaPanel = new GridBagConstraints();
 			
 			for (int j = 0; j < info.get(i).length; j++) {
-				System.out.println(info.get(i)[0]);
-				System.out.println(info.get(i)[1]);
-				System.out.println(info.get(i)[2]);
-				System.out.println(info.get(i)[3]);
+
 				switch (j) {
 				case 0:
 					JLabel username = new JLabel("" + info.get(i)[j]);

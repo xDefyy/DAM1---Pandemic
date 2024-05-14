@@ -285,13 +285,13 @@ public class controlDatos {
 				+ "WHERE P.WL = 'NF' AND p.dificultad = " + dificultad;
 		
 		ArrayList<String[]> info = new ArrayList<>();
-		String[] infoPartida = new String [4];
 		
 		try {
 	        Statement sql = con.createStatement();
 	        ResultSet resultSQL = sql.executeQuery(sqlMostrarInfo);
 	        
 	        while (resultSQL.next()) {
+	        	String[] infoPartida = new String [4];
 	        	infoPartida[0] = resultSQL.getString("USERNAME");
 	        	infoPartida[1] = resultSQL.getString("RONDAS");
 	        	infoPartida[2] = resultSQL.getString("PUNTUACION");
@@ -307,6 +307,7 @@ public class controlDatos {
 		return info;
 	}
 	
+
 
 	public static String[] topEz(int dificultad) {
 		String selectPuntuacionNOM = "SELECT j.username, p.puntuacion \n"
