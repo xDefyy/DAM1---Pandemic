@@ -110,6 +110,20 @@ public class pantallaPrincipal extends JFrame {
             }
         });
         
+        button2.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		Main.partidas.setVisible(true);
+    	    	
+    	        Timer timer = new Timer(300, new ActionListener() {
+    	            public void actionPerformed(ActionEvent e) {
+    	            	Main.cargarPrincipal.setVisible(false);
+    	            }
+    	        });
+    	        timer.setRepeats(false);
+    	        timer.start();
+    	    }
+    	});
+        
         gbc.gridy++;
         JButton button3 = new JButton("RECORDS");
         button3.setBackground(new Color(0,0,0,0));

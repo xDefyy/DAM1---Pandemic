@@ -17,6 +17,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 import javax.swing.ImageIcon;
@@ -24,6 +25,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import javax.swing.border.EtchedBorder;
@@ -34,7 +36,7 @@ import inicio.Main;
 import oracle.net.jdbc.TNSAddress.AddressList;
 
 public class pantallaCargar extends JFrame {
-
+	
 	public pantallaCargar() {
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		JPanel panelgeneral = new JPanel(new GridBagLayout()) {
@@ -185,15 +187,73 @@ public class pantallaCargar extends JFrame {
 		
 		
 		JPanel Partidas = new JPanel(new GridBagLayout());
+		Partidas.setOpaque(false);
 		GridBagConstraints gbcpartidas = new GridBagConstraints();
 		
 		gbcpartidas.gridx = 0;
 		gbcpartidas.gridy = 0;
+		
+		ArrayList<String[]> info = new ArrayList<>();
+		
+		info = controlDatos.mostrarInfoCargar(0);
+		
+		for (int i = 0; i < info.size(); i++) {
+			
+			JPanel partidaPanel = new JPanel(new GridBagLayout());
+			partidaPanel.setOpaque(false);
+			
+			GridBagConstraints gbcPartidaPanel = new GridBagConstraints();
+			
+			for (int j = 0; j < info.get(i).length; j++) {
+				System.out.println(info.get(i)[0]);
+				System.out.println(info.get(i)[1]);
+				System.out.println(info.get(i)[2]);
+				System.out.println(info.get(i)[3]);
+				switch (j) {
+				case 0:
+					JLabel username = new JLabel("" + info.get(i)[j]);
+					username.setFont(controlDatos.fuenteMC(10f));
+					username.setForeground(Color.white);
+					partidaPanel.add(username, gbcPartidaPanel);
+					break;
+				case 1:
+					int rondasNum = Integer.valueOf(info.get(i)[j]);
+					JLabel rondas = new JLabel("" + rondasNum);
+					rondas.setFont(controlDatos.fuenteMC(10f));
+					rondas.setForeground(Color.white);
+					gbcPartidaPanel.gridy = 1;
+					partidaPanel.add(rondas, gbcPartidaPanel);
+					break;
+				case 2:
+					int puntuacionNum = Integer.valueOf(info.get(i)[j]);
+					JLabel puntuacion = new JLabel("" + puntuacionNum);
+					puntuacion.setFont(controlDatos.fuenteMC(10f));
+					puntuacion.setForeground(Color.white);
+					gbcPartidaPanel.gridy = 2;
+					partidaPanel.add(puntuacion, gbcPartidaPanel);
+					break;
+				case 3:
+					JLabel dia = new JLabel("" + info.get(i)[j]);
+					dia.setFont(controlDatos.fuenteMC(10f));
+					dia.setForeground(Color.white);
+					gbcPartidaPanel.gridy = 3;
+					partidaPanel.add(dia, gbcPartidaPanel);
+					break;
+				}	
 				
-		for (int i = 0; i < controlDatos.numeroPartidas(0); i++) {
+			}
 			
-			
+			Partidas.add(partidaPanel,gbcpartidas);
+			gbcpartidas.gridy++;
 		}
+			
+		
+		
+		JScrollPane scroll = new JScrollPane();
+		
+		scroll.add(Partidas);
+		
+		dificultadEz.add(Partidas, gbcEasyAbajo);
 		
 
 		easyGeneral.add(dificultadEz, gbcEasy);
@@ -442,7 +502,7 @@ public class pantallaCargar extends JFrame {
 				Main.cargarPrincipal.setVisible(true);
 				Timer timer = new Timer(300, new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						Main.cargarParty.setVisible(false);
+						Main.partidas.setVisible(false);
 					}
 				});
 				timer.setRepeats(false);
@@ -481,14 +541,5 @@ public class pantallaCargar extends JFrame {
 		this.setTitle("Pandemic @Kader, @Liqi");
 		this.setIconImage(imgFinalIcono.getImage());
 	}
-	
-	public static void main(String args[]) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                new pantallaCargar().setVisible(true);
-            }
-        });
-		System.out.print(controlDatos.numeroPartidas(0));
-    }
 	
 }

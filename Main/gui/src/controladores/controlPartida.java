@@ -380,8 +380,8 @@ public class controlPartida {
 			
 			ponerImages(random, comprobacionNombreBoton(datos.getCiudades().get(random).getNombre()));
 			
+			gestionar_Fin_Partida();
 			
-
 			gestionar_Brote();
 			try {
 				Thread.sleep(350);
@@ -651,6 +651,7 @@ public class controlPartida {
 			}
 			datos.setAcciones(datos.getAcciones() - 3);
 			partida.acciones.setText("" + datos.getAcciones());
+			partida.ciudadesInf.setText("" + ciudadesInfectadas());
 			//restar puntos TODO
 		} else if (datos.getAcciones() < 2) {
 			System.out.println("Franko: No tienes acciones...");

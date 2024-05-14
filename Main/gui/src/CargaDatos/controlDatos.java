@@ -45,7 +45,7 @@ public class controlDatos {
 
 	public static Connection conectarBaseDatos() {
 		Connection con = null;
-		String url = "jdbc:oracle:thin:@oracle.ilerna.com:1521:xe";
+		String url = "jdbc:oracle:thin:@192.168.3.26:1521:xe";
 		String user = "DAM1_2324_MAY_KADER";
 		String password = "kader";
 
@@ -232,7 +232,7 @@ public class controlDatos {
         System.out.println(SqlVACUNAS.toString());
        
         String sql = "INSERT INTO PARTIDA VALUES(0 ," + numeroPlayer + ", " + puntuacion + ", " + diff + ", " + rondas + ", " + acciones + ", " + brotes
-                + ", ARRAY_CIUDADES(" + SqlCIUDADES.toString() + "), ARRAY_VACUNAS(" + SqlVACUNAS.toString() + "), " + "'" + ganar_perder + "'" + ", TO_DATE(SYSDATE,'DD-MM-YYYY,HH24:MI:SS'))";
+                + ", ARRAY_CIUDADES(" + SqlCIUDADES.toString() + "), ARRAY_VACUNAS(" + SqlVACUNAS.toString() + "), " + "'" + ganar_perder + "'" + ", SYSTIMESTAMP";
 
 
         try {
@@ -274,11 +274,39 @@ public class controlDatos {
 		        
 		  } catch (SQLException e) {
 		        e.printStackTrace();
-		        return 0;
 		  }
 		  return jugadorID;
 	}
-
+	
+	public static ArrayList<String[]> mostrarInfoCargar(int dificultad) {
+		String sqlMostrarInfo = "SELECT j.username, p.rondas, p.puntuacion, TO_CHAR(p.dia , 'DD-MM-YY HH24:MI:SS') AS dia \n"
+				+ "FROM PARTIDA p \n"
+				+ "INNER JOIN players j ON p.id_p = j.id_p \n"
+				+ "WHERE P.WL = 'NF' AND p.dificultad = " + dificultad;
+		
+		ArrayList<String[]> info = new ArrayList<>();
+		String[] infoPartida = new String [4];
+		
+		try {
+	        Statement sql = con.createStatement();
+	        ResultSet resultSQL = sql.executeQuery(sqlMostrarInfo);
+	        
+	        while (resultSQL.next()) {
+	        	infoPartida[0] = resultSQL.getString("USERNAME");
+	        	infoPartida[1] = resultSQL.getString("RONDAS");
+	        	infoPartida[2] = resultSQL.getString("PUNTUACION");
+	        	infoPartida[3] = resultSQL.getString("DIA");
+	        	
+	        	info.add(infoPartida);
+	        }
+	        
+	  } catch (SQLException e) {
+	        e.printStackTrace();
+	  }
+		
+		return info;
+	}
+	
 
 	public static String[] topEz(int dificultad) {
 		String selectPuntuacionNOM = "SELECT j.username, p.puntuacion \n"
