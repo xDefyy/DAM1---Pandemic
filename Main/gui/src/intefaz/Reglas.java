@@ -44,8 +44,6 @@ public class Reglas extends JFrame {
 		Image imagenIcono = iconoIcono.getImage().getScaledInstance(75, 75, Image.SCALE_SMOOTH);
 		ImageIcon imgFinalIcono = new ImageIcon(imagenIcono);
 		
-		//declarar images
-		
 		ImageIcon alfa = new ImageIcon("src\\img\\reglas\\iconoDesarrolloAzul.png");
 		Image alfaEscalado = alfa.getImage().getScaledInstance(70, 70, Image.SCALE_SMOOTH);
 		ImageIcon AlfaFIN = new ImageIcon(alfaEscalado);

@@ -29,13 +29,30 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 
 import CargaDatos.controlDatos;
+import controladores.controlPartida;
 import inicio.Main;
 import oracle.net.jdbc.TNSAddress.AddressList;
 
-public class records extends JFrame{
+public class records extends JFrame{ 
+
+	
+	public static JPanel topFacil = new JPanel(new GridBagLayout());
+	public static GridBagConstraints gbcTopFacil = new GridBagConstraints();
+
+	public static JPanel topNormal = new JPanel(new GridBagLayout());
+	public static GridBagConstraints gbcTopNormal = new GridBagConstraints();
+	
+	public static JPanel topDificil = new JPanel(new GridBagLayout());
+	public static GridBagConstraints gbcTopDificil = new GridBagConstraints();
+
 	
 	public records() {
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+		
+		ImageIcon iconoIcono = new ImageIcon("src\\img\\main\\icono.png");
+		Image imagenIcono = iconoIcono.getImage().getScaledInstance(400, 400, Image.SCALE_SMOOTH);
+		ImageIcon imgFinalIcono = new ImageIcon(imagenIcono);
+		
 		JPanel panelgeneral = new JPanel(new GridBagLayout()) {
 			@Override
 			protected void paintComponent(Graphics g) {
@@ -80,9 +97,7 @@ public class records extends JFrame{
 		Image imgdificilesOP = imgDificilOP.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT);
 		ImageIcon mundoimgdificilOP = new ImageIcon(imgdificilesOP);
 		
-		ImageIcon iconoIcono = new ImageIcon("src\\img\\main\\icono.png");
-		Image imagenIcono = iconoIcono.getImage().getScaledInstance(400, 400, Image.SCALE_SMOOTH);
-		ImageIcon imgFinalIcono = new ImageIcon(imagenIcono);
+		
 		
 		JPanel easyGeneral = new JPanel(new GridBagLayout()) {
 			@Override
@@ -183,30 +198,11 @@ public class records extends JFrame{
 		gbcEasyAbajo.insets = new Insets(10, 10, 10, 10);
 		
 		
-		for (int i = 1; i < 6; i ++) {
-			   
-			String textoTop = i + ". ";
-			JPanel topPanel = new JPanel(new FlowLayout());
-			topPanel.setOpaque(false);
-			
-			JPanel numero = new JPanel();
-			numero.setOpaque(false);
-			
-			JLabel top = new JLabel(textoTop + controlDatos.topEz(0)[i-1]);
-			top.setFont(controlDatos.fuenteMC(26f));
-			top.setForeground(Color.white);
-			
-			
-			numero.add(top);
-			
-			topPanel.add(numero);
-			
-			dificultadEz.add(topPanel, gbcEasyAbajo);
-			gbcEasyAbajo.gridy++;
-		}
-
+		topFacil.setOpaque(false);
+		topFacil.setPreferredSize(new Dimension((int) widthScreen - 4, 250));
 		
-
+		dificultadEz.add(topFacil,gbcEasyAbajo);
+		
 		easyGeneral.add(dificultadEz, gbcEasyAbajo);
 		
 		JPanel normalGeneral = new JPanel(new GridBagLayout()) {
@@ -304,28 +300,11 @@ public class records extends JFrame{
 		gbcNormalAbajo.gridy = 2;
 		gbcNormalAbajo.insets = new Insets(10, 10, 10, 10);
 		
+		topNormal.setOpaque(false);
+		topNormal.setPreferredSize(new Dimension((int) widthScreen - 4, 250));
 		
-		for (int i = 1; i < 6; i ++) {
-			   
-			String textoTop = i + ". ";
-			JPanel topPanel = new JPanel(new FlowLayout());
-			topPanel.setOpaque(false);
-			
-			JPanel numero = new JPanel();
-			numero.setOpaque(false);
-			
-			JLabel top = new JLabel(textoTop + controlDatos.topEz(1)[i-1]);
-			top.setFont(controlDatos.fuenteMC(26f));
-			top.setForeground(Color.white);
-			
-			
-			numero.add(top);
-			
-			topPanel.add(numero);
-			
-			dificultadNormal.add(topPanel, gbcNormalAbajo);
-			gbcNormalAbajo.gridy++;
-		}
+		dificultadNormal.add(topNormal,gbcNormalAbajo);
+		
 
 		normalGeneral.add(dificultadNormal, gbcNormalAbajo);
 		
@@ -427,27 +406,10 @@ public class records extends JFrame{
 		gbcDificilAbajo.insets = new Insets(10, 10, 10, 10);
 		
 		
-		for (int i = 1; i < 6; i ++) {
-			   
-			String textoTop = i + ". ";
-			JPanel topPanel = new JPanel(new FlowLayout());
-			topPanel.setOpaque(false);
-			
-			JPanel numero = new JPanel();
-			numero.setOpaque(false);
-			
-			JLabel top = new JLabel(textoTop + controlDatos.topEz(2)[i-1]);
-			
-			top.setFont(controlDatos.fuenteMC(26f));
-			top.setForeground(Color.white);
-			
-			numero.add(top);
-			
-			topPanel.add(numero);
-			
-			dificultadDif.add(topPanel, gbcDificilAbajo);
-			gbcDificilAbajo.gridy++;
-		}
+		topDificil.setOpaque(false);
+		topDificil.setPreferredSize(new Dimension((int) widthScreen - 4, 250));
+		
+		dificultadDif.add(topDificil,gbcNormalAbajo);
 		
 		
 
@@ -498,8 +460,8 @@ public class records extends JFrame{
 		gbcGeneral.gridx = 2;
 		panelgeneral.add(dificilGeneral,gbcGeneral);
 		
-
 		JPanel botonVolver = new JPanel();
+		
 		botonVolver.setBackground(Color.black);
 		botonVolver.add(volver);
 		

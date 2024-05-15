@@ -155,6 +155,8 @@ public class pantallaPrincipal extends JFrame {
         
         button3.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+        		
+        		controlPartida.GUIrecordsActualizar();
         		Main.cargarRecords.setVisible(true);
     	    	
     	        Timer timer = new Timer(300, new ActionListener() {
@@ -225,7 +227,7 @@ public class pantallaPrincipal extends JFrame {
             }
         });
         
-        button5.addActionListener(new ActionListener() {  //Esto hace que el boton este a la espera para hacer la funcion de abajo
+        button5.addActionListener(new ActionListener() {  
             public void actionPerformed(ActionEvent e) {
             	System.exit(0);
             }
@@ -240,16 +242,16 @@ public class pantallaPrincipal extends JFrame {
 		verCre.setBackground(Color.black);
 	        
 		this.add(verCre, BorderLayout.SOUTH);
-        // Agregar el panel de opciones al centro de la ventana principal
+
         this.getContentPane().add(opciones, BorderLayout.CENTER);
         
-        // Establecer el tamaño de la ventana y hacerla visible
+
         this.setSize(screen.width, screen.height);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setLocationRelativeTo(null); // siempre centro
-		this.setResizable(false); // no se puede ajustar
-		this.setExtendedState(JFrame.MAXIMIZED_BOTH); // pantalla completa
-		this.setUndecorated(true); // quita la barra de arriba
+		this.setLocationRelativeTo(null); 
+		this.setResizable(false);
+		this.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		this.setUndecorated(true);
 		this.setVisible(true);
 		this.setTitle("Pandemic @Kader, @Liqi");
 		this.setIconImage(imgFinalIcono.getImage());

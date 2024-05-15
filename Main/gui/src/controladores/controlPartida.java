@@ -4,12 +4,14 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Insets;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -25,6 +27,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JViewport;
 import javax.swing.Timer;
+import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 
 import CargaDatos.controlDatos;
@@ -32,6 +35,7 @@ import inicio.Main;
 import intefaz.CargarParty;
 import intefaz.pantallaCargar;
 import intefaz.partida;
+import intefaz.records;
 import objetos.ciudad;
 import CargaDatos.datosPartida;
 
@@ -800,8 +804,6 @@ public class controlPartida {
 	
 	public static void GUIpantallaCargar() {
 		
-		pantallaCargar.Partidas.removeAll();
-		
 		ArrayList<String[]> info = new ArrayList<>(controlDatos.mostrarInfoCargar(0));
 		
 		ImageIcon botonPlay = new ImageIcon("src\\img\\partidasGuardadas\\botonPlay.png");
@@ -1475,6 +1477,81 @@ public class controlPartida {
 		viewport3.setOpaque(false);
 		
 		
+		
+	}
+	
+	
+	public static void GUIrecordsActualizar() {
+		
+		records.topFacil.removeAll();
+		
+		records.gbcTopFacil.gridx = 0;
+		records.gbcTopFacil.gridy = 0;
+		records.gbcTopFacil.insets = new Insets(10,10,10,10);
+		
+		for (int i = 1; i < 6; i ++) {
+			
+			String textoTop = i + ". ";
+			JPanel topPanel = new JPanel(new FlowLayout());
+			topPanel.setOpaque(false);
+			
+			JLabel top = new JLabel(textoTop + controlDatos.topEz(0)[i-1]);
+			top.setFont(controlDatos.fuenteMC(26f));
+			top.setForeground(Color.white);
+			
+			topPanel.add(top);
+			
+			records.topFacil.add(top, records.gbcTopFacil);
+			records.gbcTopFacil.gridy++;
+			
+		}
+		
+		
+		records.topNormal.removeAll();
+		
+		records.gbcTopNormal.gridx = 0;
+		records.gbcTopNormal.gridy = 0;
+		records.gbcTopNormal.insets = new Insets(10,10,10,10);
+		
+		for (int i = 1; i < 6; i ++) {
+			
+			String textoTop = i + ". ";
+			JPanel topPanel = new JPanel(new FlowLayout());
+			topPanel.setOpaque(false);
+			
+			JLabel top = new JLabel(textoTop + controlDatos.topEz(1)[i-1]);
+			top.setFont(controlDatos.fuenteMC(26f));
+			top.setForeground(Color.white);
+			
+			topPanel.add(top);
+			
+			records.topNormal.add(top, records.gbcTopNormal);
+			records.gbcTopNormal.gridy++;
+			
+		}
+		
+		records.topDificil.removeAll();
+		
+		records.gbcTopDificil.gridx = 0;
+		records.gbcTopDificil.gridy = 0;
+		records.gbcTopDificil.insets = new Insets(10,10,10,10);
+		
+		for (int i = 1; i < 6; i ++) {
+			
+			String textoTop = i + ". ";
+			JPanel topPanel = new JPanel(new FlowLayout());
+			topPanel.setOpaque(false);
+			
+			JLabel top = new JLabel(textoTop + controlDatos.topEz(1)[i-1]);
+			top.setFont(controlDatos.fuenteMC(26f));
+			top.setForeground(Color.white);
+			
+			topPanel.add(top);
+			
+			records.topDificil.add(top, records.gbcTopDificil);
+			records.gbcTopDificil.gridy++;
+			
+		}
 		
 	}
 	
