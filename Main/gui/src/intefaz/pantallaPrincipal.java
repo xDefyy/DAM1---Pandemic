@@ -114,9 +114,7 @@ public class pantallaPrincipal extends JFrame {
         button2.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
     			
-        		
-        		
-        		
+        		controlPartida.GUIpantallaCargar();
         		
         		Main.partidas.setVisible(true);
         		
