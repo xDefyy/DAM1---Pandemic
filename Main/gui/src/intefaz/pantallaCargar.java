@@ -20,12 +20,14 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JViewport;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import javax.swing.border.EtchedBorder;
@@ -35,7 +37,25 @@ import CargaDatos.controlDatos;
 import inicio.Main;
 import oracle.net.jdbc.TNSAddress.AddressList;
 
-public class pantallaCargar extends JFrame {
+public class pantallaCargar extends JFrame implements ActionListener {
+
+	public static JButton play;
+	public static JButton playNor;
+	public static JButton playDif;
+
+	public static JButton eliminar;
+	public static JButton eliminarNor;
+	public static JButton eliminarDif;
+	
+	public static ArrayList<String[]> info = new ArrayList<>(controlDatos.mostrarInfoCargar(0));
+	public static ArrayList<String[]> infoNor = new ArrayList<>(controlDatos.mostrarInfoCargar(1));
+	public static ArrayList<String[]> infoDif = new ArrayList<>(controlDatos.mostrarInfoCargar(2));
+	
+	public static JScrollPane scrollNor = new JScrollPane();
+	public static JScrollPane scroll = new JScrollPane();
+	public static JScrollPane scrollDif = new JScrollPane();
+	
+	public static JPanel Partidas;
 	
 	public pantallaCargar() {
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
@@ -62,7 +82,7 @@ public class pantallaCargar extends JFrame {
 		ImageIcon mundoDificil = new ImageIcon("src\\img\\nuevaPartida\\dificil.gif");
 		Image mundoDificiles = mundoDificil.getImage().getScaledInstance(250, 250, Image.SCALE_DEFAULT);
 		ImageIcon dificil = new ImageIcon(mundoDificiles);
-		
+
 		ImageIcon imgFacil = new ImageIcon("src\\img\\nuevaPartida\\imgFacil.png"); // 115 px y 300fps
 		Image imgEs = imgFacil.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT);
 		ImageIcon mundoimgFacil = new ImageIcon(imgEs);
@@ -74,7 +94,7 @@ public class pantallaCargar extends JFrame {
 		ImageIcon imgDificil = new ImageIcon("src\\img\\nuevaPartida\\imgDificil.png"); // 115 px y 300fps
 		Image imgdificiles = imgDificil.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT);
 		ImageIcon mundoimgdificil = new ImageIcon(imgdificiles);
-		
+
 		ImageIcon imgNormalOP = new ImageIcon("src\\img\\nuevaPartida\\imgNormalOP.png"); // 115 px y 300fps
 		Image imgNormalesOP = imgNormalOP.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT);
 		ImageIcon mundoimgNormalOP = new ImageIcon(imgNormalesOP);
@@ -82,11 +102,27 @@ public class pantallaCargar extends JFrame {
 		ImageIcon imgDificilOP = new ImageIcon("src\\img\\nuevaPartida\\imgDificilOP.png"); // 115 px y 300fps
 		Image imgdificilesOP = imgDificilOP.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT);
 		ImageIcon mundoimgdificilOP = new ImageIcon(imgdificilesOP);
-		
+
 		ImageIcon iconoIcono = new ImageIcon("src\\img\\main\\icono.png");
 		Image imagenIcono = iconoIcono.getImage().getScaledInstance(400, 400, Image.SCALE_SMOOTH);
 		ImageIcon imgFinalIcono = new ImageIcon(imagenIcono);
-		
+
+		ImageIcon botonPlay = new ImageIcon("src\\img\\partidasGuardadas\\botonPlay.png");
+		Image botonPlayES = botonPlay.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+		ImageIcon botonPlayFin = new ImageIcon(botonPlayES);
+
+		ImageIcon botonPlayOP = new ImageIcon("src\\img\\partidasGuardadas\\botonPlayOP.png");
+		Image botonPlayESOP = botonPlayOP.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+		ImageIcon botonPlayFinOP = new ImageIcon(botonPlayESOP);
+
+		ImageIcon botonEliminar = new ImageIcon("src\\img\\partidasGuardadas\\botonEliminar.png");
+		Image botonEliminarES = botonEliminar.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+		ImageIcon botonEliminarFIN = new ImageIcon(botonEliminarES);
+
+		ImageIcon botonEliminarOP = new ImageIcon("src\\img\\partidasGuardadas\\botonEliminarOP.png");
+		Image botonEliminarOPES = botonEliminarOP.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+		ImageIcon botonEliminarFINOP = new ImageIcon(botonEliminarOPES);
+
 		JPanel easyGeneral = new JPanel(new GridBagLayout()) {
 			@Override
 			protected void paintComponent(Graphics g) {
@@ -116,13 +152,11 @@ public class pantallaCargar extends JFrame {
 
 		easyGeneral.add(mundoEz, gbcEasy);
 
-		
 		gbcEasy.gridy = 1;
 		gbcEasy.gridheight = 2;
 		gbcEasy.weighty = 1.0;
 		gbcEasy.fill = GridBagConstraints.VERTICAL;
-		
-		
+
 		JPanel dificultadEz = new JPanel(new GridBagLayout()) {
 			@Override
 			protected void paintComponent(Graphics g) {
@@ -170,7 +204,7 @@ public class pantallaCargar extends JFrame {
 		JLabel textofacil = new JLabel();
 		textofacil.setForeground(Color.white);
 		textofacil.setFont(controlDatos.fuenteTexto(15f));
-		textofacil.setText("Partidas Guardadas Modo - ");
+		textofacil.setText("Partidas del Modo - ");
 		descFacil.add(textofacil);
 
 		JLabel textofacil2 = new JLabel();
@@ -179,87 +213,241 @@ public class pantallaCargar extends JFrame {
 		textofacil2.setText("Chupetes");
 
 		descFacil.add(textofacil2);
-		
+
 		dificultadEz.add(descFacil, gbcEasyAbajo);
 
 		gbcEasyAbajo.gridy = 2;
 		gbcEasyAbajo.insets = new Insets(10, 10, 10, 10);
-		
-		
-		JPanel Partidas = new JPanel(new GridBagLayout());
+
+		Partidas = new JPanel(new GridBagLayout()) {
+			@Override
+			protected void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				Graphics2D g2d = (Graphics2D) g.create();
+				g2d.setColor(new Color(0, 0, 0, 0));
+				g2d.fillRect(0, 0, getWidth(), getHeight());
+				g2d.dispose();
+			}
+		};
+		Partidas.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		Partidas.setOpaque(false);
 		GridBagConstraints gbcpartidas = new GridBagConstraints();
-		
+
 		gbcpartidas.gridx = 0;
 		gbcpartidas.gridy = 0;
+
 		
-		ArrayList<String[]> info = new ArrayList<>(controlDatos.mostrarInfoCargar(0));
-		
+
 		for (int i = 0; i < info.size(); i++) {
-			System.out.println(info.get(i)[0]);
-			System.out.println(info.get(i)[1]);
-			System.out.println(info.get(i)[2]);
-			System.out.println(info.get(i)[3]);
-		}
-		
-		for (int i = 0; i < info.size(); i++) {
-			
-			JPanel partidaPanel = new JPanel(new GridBagLayout());
+
+			JPanel partidaPanel = new JPanel(new GridBagLayout()) {
+				@Override
+				protected void paintComponent(Graphics g) {
+					super.paintComponent(g);
+					Graphics2D g2d = (Graphics2D) g.create();
+					g2d.setColor(new Color(0, 51, 102, 128));
+					g2d.fillRect(0, 0, getWidth(), getHeight());
+					g2d.dispose();
+				}
+			};
+			partidaPanel.setPreferredSize(new Dimension(375, 100));
 			partidaPanel.setOpaque(false);
-			
+			partidaPanel.setBorder(new LineBorder(Color.LIGHT_GRAY));
+
 			GridBagConstraints gbcPartidaPanel = new GridBagConstraints();
+
+			gbcPartidaPanel.gridx = 0;
+			gbcPartidaPanel.gridy = 0;
+			gbcPartidaPanel.weighty = 1.0;
+			gbcPartidaPanel.gridheight = 4;
+			gbcPartidaPanel.fill = GridBagConstraints.VERTICAL;
+
+			eliminar = new JButton(botonEliminarFIN);
+			eliminar.setName("XEZ " + i);
+			eliminar.setContentAreaFilled(false);
+			eliminar.setFocusPainted(false);
+			eliminar.setBorderPainted(false);
+
+			eliminar.addActionListener(this);
+
+			partidaPanel.add(eliminar, gbcPartidaPanel);
+
+			final JButton eliminarFinal = eliminar;
 			
-			for (int j = 0; j < info.get(i).length; j++) {
+			eliminar.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					eliminarFinal.setIcon(botonEliminarFINOP);
+					partidaPanel.setBorder(new LineBorder(Color.pink, 2));
+				}
+
+				@Override
+				public void mouseExited(MouseEvent e) {
+					eliminarFinal.setIcon(botonEliminarFIN);
+					partidaPanel.setBorder(new LineBorder(Color.lightGray, 2));
+				}
+			});
+
+			gbcPartidaPanel.weighty = 0.0;
+			gbcPartidaPanel.gridheight = 1;
+			gbcPartidaPanel.fill = GridBagConstraints.NONE;
+
+			for (int j = 0; j < info.get(i).length + 1; j++) {
 
 				switch (j) {
 				case 0:
-					JLabel username = new JLabel("" + info.get(i)[j]);
-					username.setFont(controlDatos.fuenteMC(10f));
-					username.setForeground(Color.white);
-					partidaPanel.add(username, gbcPartidaPanel);
+					JPanel usuarioPanel = new JPanel(new FlowLayout());
+					usuarioPanel.setOpaque(false);
+
+					JLabel jugador = new JLabel("Jugador: ");
+					jugador.setFont(controlDatos.fuenteMC(15f));
+					jugador.setForeground(Color.white);
+
+					JLabel username = new JLabel("" + info.get(i)[j].toUpperCase());
+					username.setFont(controlDatos.fuenteMC(15f));
+					username.setForeground(new Color(79, 240, 100));
+
+					usuarioPanel.add(jugador);
+					usuarioPanel.add(username);
+					gbcPartidaPanel.gridy = 0;
+					gbcPartidaPanel.gridx = 1;
+					partidaPanel.add(usuarioPanel, gbcPartidaPanel);
 					break;
 				case 1:
+					JPanel rondasPanel = new JPanel(new FlowLayout());
+					rondasPanel.setOpaque(false);
+
+					JLabel rondas = new JLabel("N. Ronda: ");
+					rondas.setFont(controlDatos.fuenteMC(12f));
+					rondas.setForeground(Color.lightGray);
+
 					int rondasNum = Integer.valueOf(info.get(i)[j]);
-					JLabel rondas = new JLabel("" + rondasNum);
-					rondas.setFont(controlDatos.fuenteMC(10f));
-					rondas.setForeground(Color.white);
+					JLabel num = new JLabel("" + rondasNum);
+					num.setFont(controlDatos.fuenteMC(12f));
+					num.setForeground(Color.lightGray);
+
+					rondasPanel.add(rondas);
+					rondasPanel.add(num);
+
 					gbcPartidaPanel.gridy = 1;
-					partidaPanel.add(rondas, gbcPartidaPanel);
+					gbcPartidaPanel.gridx = 1;
+					partidaPanel.add(rondasPanel, gbcPartidaPanel);
 					break;
 				case 2:
 					int puntuacionNum = Integer.valueOf(info.get(i)[j]);
-					JLabel puntuacion = new JLabel("" + puntuacionNum);
-					puntuacion.setFont(controlDatos.fuenteMC(10f));
-					puntuacion.setForeground(Color.white);
+					JLabel puntuacion = new JLabel("Puntos: " + puntuacionNum);
+					puntuacion.setFont(controlDatos.fuenteMC(12f));
+					puntuacion.setForeground(Color.lightGray);
 					gbcPartidaPanel.gridy = 2;
+					gbcPartidaPanel.gridx = 1;
 					partidaPanel.add(puntuacion, gbcPartidaPanel);
 					break;
 				case 3:
-					JLabel dia = new JLabel("" + info.get(i)[j]);
+					JLabel dia = new JLabel("Ult. Jugado: (" + info.get(i)[j] + ")");
 					dia.setFont(controlDatos.fuenteMC(10f));
-					dia.setForeground(Color.white);
+					dia.setForeground(Color.lightGray);
 					gbcPartidaPanel.gridy = 3;
+					gbcPartidaPanel.gridx = 1;
 					partidaPanel.add(dia, gbcPartidaPanel);
 					break;
-				}	
-				
+				}
+
 			}
+
+			gbcPartidaPanel.gridx = 2;
+			gbcPartidaPanel.gridy = 0;
+			gbcPartidaPanel.weighty = 1.0;
+			gbcPartidaPanel.gridheight = 4;
+			gbcPartidaPanel.fill = GridBagConstraints.VERTICAL;
+
+			play = new JButton(botonPlayFin);
+			play.setName("EZ " + i);
+			play.setContentAreaFilled(false);
+			play.setFocusPainted(false);
+			play.setBorderPainted(false);
+
+			play.addActionListener(this);
+
+			partidaPanel.add(play, gbcPartidaPanel);
+
+			final JButton playFinal = play;
 			
-			Partidas.add(partidaPanel,gbcpartidas);
+			play.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					playFinal.setIcon(botonPlayFinOP);
+					partidaPanel.setBorder(new LineBorder(Color.green, 2));
+				}
+
+				@Override
+				public void mouseExited(MouseEvent e) {
+					playFinal.setIcon(botonPlayFin);
+					partidaPanel.setBorder(new LineBorder(Color.LIGHT_GRAY, 2));
+				}
+			});
+
+			gbcPartidaPanel.weighty = 0.0;
+			gbcPartidaPanel.gridheight = 1;
+			gbcPartidaPanel.fill = GridBagConstraints.NONE;
+
+			gbcpartidas.insets = new Insets(10, 10, 10, 10);
+
+			Partidas.add(partidaPanel, gbcpartidas);
 			gbcpartidas.gridy++;
 		}
-			
-		
-		
-		JScrollPane scroll = new JScrollPane();
-		
-		scroll.add(Partidas);
-		
-		dificultadEz.add(Partidas, gbcEasyAbajo);
+
+		scroll.setOpaque(false);
+
 		
 
-		easyGeneral.add(dificultadEz, gbcEasy);
+		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
+		JViewport viewport = scroll.getViewport();
+		viewport.setOpaque(false);
+
+		GridBagConstraints gbcScroll = new GridBagConstraints();
+
+		gbcScroll.gridx = 0;
+		gbcScroll.gridy = 2; // o la posición que desees
+		gbcScroll.weightx = 1.0;
+		gbcScroll.weighty = 1.0;
+		gbcScroll.fill = GridBagConstraints.BOTH;
 		
+		
+		if (info.size() == 0) {
+			JPanel noGameEz = new JPanel() {
+				@Override
+				protected void paintComponent(Graphics g) {
+					super.paintComponent(g);
+					Graphics2D g2d = (Graphics2D) g.create();
+					g2d.setColor(new Color(0, 0, 0, 0));
+					g2d.fillRect(0, 0, getWidth(), getHeight());
+					g2d.dispose();
+				}
+			};
+			noGameEz.setPreferredSize(new Dimension(300, 75));
+			noGameEz.setOpaque(false);
+			noGameEz.setBorder(new LineBorder(Color.LIGHT_GRAY));
+
+			JLabel noGameText = new JLabel("NO HAY PARTIDAS GUARDADAS");
+			noGameText.setVerticalAlignment(JLabel.CENTER);
+			noGameText.setHorizontalAlignment(JLabel.CENTER);
+			noGameText.setFont(controlDatos.fuentecargar(30f));
+			noGameText.setForeground(Color.white);
+
+			noGameEz.add(noGameText);
+
+			scroll.setViewportView(noGameEz);
+		} else {
+			scroll.setViewportView(Partidas);
+		}
+		
+		dificultadEz.add(scroll, gbcScroll);
+
+		easyGeneral.add(dificultadEz, gbcEasy);
+
+		// PANEL NORMAL
 		JPanel normalGeneral = new JPanel(new GridBagLayout()) {
 			@Override
 			protected void paintComponent(Graphics g) {
@@ -288,8 +476,10 @@ public class pantallaCargar extends JFrame {
 
 		normalGeneral.add(mundoNor, gbcNormal);
 
-		// agregar layout de dificultad
 		gbcNormal.gridy = 1;
+		gbcNormal.gridheight = 2;
+		gbcNormal.weighty = 1.0;
+		gbcNormal.fill = GridBagConstraints.VERTICAL;
 
 		JPanel dificultadNormal = new JPanel(new GridBagLayout()) {
 			@Override
@@ -338,7 +528,7 @@ public class pantallaCargar extends JFrame {
 		JLabel textonormal = new JLabel();
 		textonormal.setForeground(Color.white);
 		textonormal.setFont(controlDatos.fuenteTexto(15f));
-		textonormal.setText("Partidas Guardadas Modo - ");
+		textonormal.setText("Partidas del Modo - ");
 		descNormal.add(textonormal);
 
 		JLabel textonormal2 = new JLabel();
@@ -351,24 +541,227 @@ public class pantallaCargar extends JFrame {
 		dificultadNormal.add(descNormal, gbcNormalAbajo);
 
 		gbcNormalAbajo.gridy = 2;
-		gbcNormalAbajo.fill = GridBagConstraints.BOTH; // Expande vertical y horizontalmente
-		gbcNormalAbajo.weightx = 1.0; // Peso horizontal (para expandirse horizontalmente)
-		gbcNormalAbajo.weighty = 1.0; // Peso vertical (para expandirse verticalmente)
+		gbcNormalAbajo.insets = new Insets(10, 10, 10, 10);
 
-//		JLabel desc2 = new JLabel();
-//
-//		desc2.setPreferredSize(mundo);
-//		desc2.setText("<html><div style='text-align: center; margin-left: 32px; margin-right: 10px; padding-bottom:"
-//				+ pixel
-//				+ ";'><br><br>¡Salva ciudades y detén pandemias en este desafiante juego de estrategia global! Como líder de un equipo de expertos en salud, tu misión es desarrollar una cura y proteger a la población.");
-//		desc2.setForeground(Color.white);
-//		desc2.setOpaque(false);
-//		desc2.setFont(controlDatos.fuenteMC(15.5f));
+		JPanel PartidasNormal = new JPanel(new GridBagLayout()) {
+			@Override
+			protected void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				Graphics2D g2d = (Graphics2D) g.create();
+				g2d.setColor(new Color(0, 0, 0, 0));
+				g2d.fillRect(0, 0, getWidth(), getHeight());
+				g2d.dispose();
+			}
+		};
+		PartidasNormal.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+		PartidasNormal.setOpaque(false);
+		GridBagConstraints gbcPartidasNor = new GridBagConstraints();
 
-//		dificultadNormal.add(desc2, gbcNormalAbajo);
+		gbcPartidasNor.gridx = 0;
+		gbcPartidasNor.gridy = 0;
+
+		
+
+		for (int i = 0; i < infoNor.size(); i++) {
+
+			JPanel partidaPanel = new JPanel(new GridBagLayout()) {
+				@Override
+				protected void paintComponent(Graphics g) {
+					super.paintComponent(g);
+					Graphics2D g2d = (Graphics2D) g.create();
+					g2d.setColor(new Color(0, 51, 102, 128));
+					g2d.fillRect(0, 0, getWidth(), getHeight());
+					g2d.dispose();
+				}
+			};
+			partidaPanel.setPreferredSize(new Dimension(375, 100));
+			partidaPanel.setOpaque(false);
+			partidaPanel.setBorder(new LineBorder(Color.LIGHT_GRAY, 2));
+
+			GridBagConstraints gbcPartidaPanel = new GridBagConstraints();
+
+			gbcPartidaPanel.gridx = 0;
+			gbcPartidaPanel.gridy = 0;
+			gbcPartidaPanel.weighty = 1.0;
+			gbcPartidaPanel.gridheight = 4;
+			gbcPartidaPanel.fill = GridBagConstraints.VERTICAL;
+
+			eliminarNor = new JButton(botonEliminarFIN);
+			eliminarNor.setName("XNOR " + i);
+			eliminarNor.setContentAreaFilled(false);
+			eliminarNor.setFocusPainted(false);
+			eliminarNor.setBorderPainted(false);
+
+			eliminarNor.addActionListener(this);
+
+			partidaPanel.add(eliminarNor, gbcPartidaPanel);
+			
+			final JButton eliminarNorFinal = eliminarNor;
+			
+			eliminarNor.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					eliminarNorFinal.setIcon(botonEliminarFINOP);
+					partidaPanel.setBorder(new LineBorder(Color.pink, 2));
+				}
+
+				@Override
+				public void mouseExited(MouseEvent e) {
+					eliminarNorFinal.setIcon(botonEliminarFIN);
+					partidaPanel.setBorder(new LineBorder(Color.lightGray, 2));
+				}
+			});
+
+			eliminarNor.addActionListener(this);
+
+			gbcPartidaPanel.weighty = 0.0;
+			gbcPartidaPanel.gridheight = 1;
+			gbcPartidaPanel.fill = GridBagConstraints.NONE;
+
+			for (int j = 0; j < infoNor.get(i).length + 1; j++) {
+
+				switch (j) {
+				case 0:
+					JPanel usuarioPanel = new JPanel(new FlowLayout());
+					usuarioPanel.setOpaque(false);
+
+					JLabel jugador = new JLabel("Jugador: ");
+					jugador.setFont(controlDatos.fuenteMC(15f));
+					jugador.setForeground(Color.white);
+
+					JLabel username = new JLabel("" + infoNor.get(i)[j].toUpperCase());
+					username.setFont(controlDatos.fuenteMC(15f));
+					username.setForeground(new Color(79, 240, 100));
+
+					usuarioPanel.add(jugador);
+					usuarioPanel.add(username);
+					gbcPartidaPanel.gridy = 0;
+					gbcPartidaPanel.gridx = 1;
+					partidaPanel.add(usuarioPanel, gbcPartidaPanel);
+					break;
+				case 1:
+					JPanel rondasPanel = new JPanel(new FlowLayout());
+					rondasPanel.setOpaque(false);
+
+					JLabel rondas = new JLabel("N. Ronda: ");
+					rondas.setFont(controlDatos.fuenteMC(12f));
+					rondas.setForeground(Color.lightGray);
+
+					int rondasNum = Integer.valueOf(infoNor.get(i)[j]);
+					JLabel num = new JLabel("" + rondasNum);
+					num.setFont(controlDatos.fuenteMC(12f));
+					num.setForeground(Color.lightGray);
+
+					rondasPanel.add(rondas);
+					rondasPanel.add(num);
+
+					gbcPartidaPanel.gridy = 1;
+					gbcPartidaPanel.gridx = 1;
+					partidaPanel.add(rondasPanel, gbcPartidaPanel);
+					break;
+				case 2:
+					int puntuacionNum = Integer.valueOf(infoNor.get(i)[j]);
+					JLabel puntuacion = new JLabel("Puntos: " + puntuacionNum);
+					puntuacion.setFont(controlDatos.fuenteMC(12f));
+					puntuacion.setForeground(Color.lightGray);
+					gbcPartidaPanel.gridy = 2;
+					gbcPartidaPanel.gridx = 1;
+					partidaPanel.add(puntuacion, gbcPartidaPanel);
+					break;
+				case 3:
+					JLabel dia = new JLabel("Ult. Jugado: (" + infoNor.get(i)[j] + ")");
+					dia.setFont(controlDatos.fuenteMC(10f));
+					dia.setForeground(Color.lightGray);
+					gbcPartidaPanel.gridy = 3;
+					gbcPartidaPanel.gridx = 1;
+					partidaPanel.add(dia, gbcPartidaPanel);
+					break;
+				}
+
+			}
+
+			gbcPartidaPanel.gridx = 2;
+			gbcPartidaPanel.gridy = 0;
+			gbcPartidaPanel.weighty = 1.0;
+			gbcPartidaPanel.gridheight = 4;
+			gbcPartidaPanel.fill = GridBagConstraints.VERTICAL;
+
+			playNor = new JButton(botonPlayFin);
+			playNor.setName("NOR " + i);
+			playNor.setContentAreaFilled(false);
+			playNor.setFocusPainted(false);
+			playNor.setBorderPainted(false);
+
+			playNor.addActionListener(this);
+
+			partidaPanel.add(playNor, gbcPartidaPanel);
+			
+			final JButton playNorFinal = playNor;
+			
+			playNor.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					playNorFinal.setIcon(botonPlayFinOP);
+					partidaPanel.setBorder(new LineBorder(Color.green, 2));
+				}
+
+				@Override
+				public void mouseExited(MouseEvent e) {
+					playNorFinal.setIcon(botonPlayFin);
+					partidaPanel.setBorder(new LineBorder(Color.lightGray, 2));
+				}
+			});
+
+			gbcPartidaPanel.weighty = 0.0;
+			gbcPartidaPanel.gridheight = 1;
+			gbcPartidaPanel.fill = GridBagConstraints.NONE;
+
+			gbcPartidasNor.insets = new Insets(10, 10, 10, 10);
+
+			PartidasNormal.add(partidaPanel, gbcPartidasNor);
+			gbcPartidasNor.gridy++;
+		}
+
+		scrollNor.setOpaque(false);
+
+		if (infoNor.size() == 0) {
+			JPanel noGameEz = new JPanel() {
+				@Override
+				protected void paintComponent(Graphics g) {
+					super.paintComponent(g);
+					Graphics2D g2d = (Graphics2D) g.create();
+					g2d.setColor(new Color(0, 0, 0, 0));
+					g2d.fillRect(0, 0, getWidth(), getHeight());
+					g2d.dispose();
+				}
+			};
+			noGameEz.setPreferredSize(new Dimension(300, 75));
+			noGameEz.setOpaque(false);
+			noGameEz.setBorder(new LineBorder(Color.LIGHT_GRAY));
+
+			JLabel noGameText = new JLabel("NO HAY PARTIDAS GUARDADAS");
+			noGameText.setVerticalAlignment(JLabel.CENTER);
+			noGameText.setHorizontalAlignment(JLabel.CENTER);
+			noGameText.setFont(controlDatos.fuentecargar(30f));
+			noGameText.setForeground(Color.white);
+
+			noGameEz.add(noGameText);
+
+			scrollNor.setViewportView(noGameEz);
+		} else {
+			scrollNor.setViewportView(PartidasNormal);
+		}
+
+		scrollNor.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		scrollNor.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
+		JViewport viewport2 = scrollNor.getViewport();
+		viewport2.setOpaque(false);
+
+		dificultadNormal.add(scrollNor, gbcScroll);
 
 		normalGeneral.add(dificultadNormal, gbcNormal);
-		
+
 		JPanel dificilGeneral = new JPanel(new GridBagLayout()) {
 			@Override
 			protected void paintComponent(Graphics g) {
@@ -397,8 +790,10 @@ public class pantallaCargar extends JFrame {
 
 		dificilGeneral.add(mundoDif, gbcDificil);
 
-		// agregar layout de dificultad
 		gbcDificil.gridy = 1;
+		gbcDificil.gridheight = 2;
+		gbcDificil.weighty = 1.0;
+		gbcDificil.fill = GridBagConstraints.VERTICAL;
 
 		JPanel dificultadDif = new JPanel(new GridBagLayout()) {
 			@Override
@@ -447,7 +842,7 @@ public class pantallaCargar extends JFrame {
 		JLabel textoDificil = new JLabel();
 		textoDificil.setForeground(Color.white);
 		textoDificil.setFont(controlDatos.fuenteTexto(15f));
-		textoDificil.setText("Partidas Guardadas Modo - ");
+		textoDificil.setText("Partidas del Modo - ");
 		descDificil.add(textoDificil);
 
 		JLabel textoDificil2 = new JLabel();
@@ -460,25 +855,224 @@ public class pantallaCargar extends JFrame {
 		dificultadDif.add(descDificil, gbcDificilAbajo);
 
 		gbcDificilAbajo.gridy = 2;
-		gbcDificilAbajo.fill = GridBagConstraints.BOTH; 
-		gbcDificilAbajo.weightx = 1.0; 
-		gbcDificilAbajo.weighty = 1.0; 
+		gbcDificilAbajo.insets = new Insets(10, 10, 10, 10);
 
-		JLabel desc3 = new JLabel();
+		JPanel PartidasDificil = new JPanel(new GridBagLayout()) {
+			@Override
+			protected void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				Graphics2D g2d = (Graphics2D) g.create();
+				g2d.setColor(new Color(0, 0, 0, 0));
+				g2d.fillRect(0, 0, getWidth(), getHeight());
+				g2d.dispose();
+			}
+		};
+		PartidasDificil.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+		PartidasDificil.setOpaque(false);
+		GridBagConstraints gbcpartidasDif = new GridBagConstraints();
 
-//		desc3.setPreferredSize(mundo);
-//		desc3.setText(
-//				"<html><body><div style='text-align: center; margin-left: 32px; margin-right: 10px; padding-bottom:"
-//						+ pixel
-//						+ ";'><br><br>¡La situación es crítica! Tu tarea es urgente: contener la pandemia, distribuir recursos y salvar ciudades. ¿Tienes lo necesario para liderar la respuesta mundial?");
-//		desc3.setForeground(Color.white);
-//		desc3.setOpaque(false);
-//		desc3.setFont(controlDatos.fuenteMC(15.5f));
+		gbcpartidasDif.gridx = 0;
+		gbcpartidasDif.gridy = 0;
 
-		dificultadDif.add(desc3, gbcDificilAbajo);
+		
+
+		for (int i = 0; i < infoDif.size(); i++) {
+
+			JPanel partidaPanel = new JPanel(new GridBagLayout()) {
+				@Override
+				protected void paintComponent(Graphics g) {
+					super.paintComponent(g);
+					Graphics2D g2d = (Graphics2D) g.create();
+					g2d.setColor(new Color(0, 51, 102, 128));
+					g2d.fillRect(0, 0, getWidth(), getHeight());
+					g2d.dispose();
+				}
+			};
+			partidaPanel.setPreferredSize(new Dimension(375, 100));
+			partidaPanel.setOpaque(false);
+			partidaPanel.setBorder(new LineBorder(Color.LIGHT_GRAY));
+
+			GridBagConstraints gbcPartidaPanel = new GridBagConstraints();
+
+			gbcPartidaPanel.gridx = 0;
+			gbcPartidaPanel.gridy = 0;
+			gbcPartidaPanel.weighty = 1.0;
+			gbcPartidaPanel.gridheight = 4;
+			gbcPartidaPanel.fill = GridBagConstraints.VERTICAL;
+
+			eliminarDif = new JButton(botonEliminarFIN);
+			eliminarDif.setName("XDIF " + i);
+			eliminarDif.setContentAreaFilled(false);
+			eliminarDif.setFocusPainted(false);
+			eliminarDif.setBorderPainted(false);
+
+			eliminarDif.addActionListener(this);
+
+			partidaPanel.add(eliminarDif, gbcPartidaPanel);
+
+			final JButton finalEliminarDif = eliminarDif;
+			
+			eliminarDif.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					finalEliminarDif.setIcon(botonEliminarFINOP);
+					partidaPanel.setBorder(new LineBorder(Color.pink, 2));
+				}
+
+				@Override
+				public void mouseExited(MouseEvent e) {
+					finalEliminarDif.setIcon(botonEliminarFIN);
+					partidaPanel.setBorder(new LineBorder(Color.lightGray, 2));
+				}
+			});
+
+			gbcPartidaPanel.weighty = 0.0;
+			gbcPartidaPanel.gridheight = 1;
+			gbcPartidaPanel.fill = GridBagConstraints.NONE;
+
+			for (int j = 0; j < infoDif.get(i).length + 1; j++) {
+
+				switch (j) {
+				case 0:
+					JPanel usuarioPanel = new JPanel(new FlowLayout());
+					usuarioPanel.setOpaque(false);
+
+					JLabel jugador = new JLabel("Jugador: ");
+					jugador.setFont(controlDatos.fuenteMC(15f));
+					jugador.setForeground(Color.white);
+
+					JLabel username = new JLabel("" + infoDif.get(i)[j].toUpperCase());
+					username.setFont(controlDatos.fuenteMC(15f));
+					username.setForeground(new Color(79, 240, 100));
+
+					usuarioPanel.add(jugador);
+					usuarioPanel.add(username);
+					gbcPartidaPanel.gridy = 0;
+					gbcPartidaPanel.gridx = 1;
+					partidaPanel.add(usuarioPanel, gbcPartidaPanel);
+					break;
+				case 1:
+					JPanel rondasPanel = new JPanel(new FlowLayout());
+					rondasPanel.setOpaque(false);
+
+					JLabel rondas = new JLabel("N. Ronda: ");
+					rondas.setFont(controlDatos.fuenteMC(12f));
+					rondas.setForeground(Color.lightGray);
+
+					int rondasNum = Integer.valueOf(infoDif.get(i)[j]);
+					JLabel num = new JLabel("" + rondasNum);
+					num.setFont(controlDatos.fuenteMC(12f));
+					num.setForeground(Color.lightGray);
+
+					rondasPanel.add(rondas);
+					rondasPanel.add(num);
+
+					gbcPartidaPanel.gridy = 1;
+					gbcPartidaPanel.gridx = 1;
+					partidaPanel.add(rondasPanel, gbcPartidaPanel);
+					break;
+				case 2:
+					int puntuacionNum = Integer.valueOf(infoDif.get(i)[j]);
+					JLabel puntuacion = new JLabel("Puntos: " + puntuacionNum);
+					puntuacion.setFont(controlDatos.fuenteMC(12f));
+					puntuacion.setForeground(Color.lightGray);
+					gbcPartidaPanel.gridy = 2;
+					gbcPartidaPanel.gridx = 1;
+					partidaPanel.add(puntuacion, gbcPartidaPanel);
+					break;
+				case 3:
+					JLabel dia = new JLabel("Ult. Jugado: (" + infoDif.get(i)[j] + ")");
+					dia.setFont(controlDatos.fuenteMC(10f));
+					dia.setForeground(Color.lightGray);
+					gbcPartidaPanel.gridy = 3;
+					gbcPartidaPanel.gridx = 1;
+					partidaPanel.add(dia, gbcPartidaPanel);
+					break;
+				}
+
+			}
+
+			gbcPartidaPanel.gridx = 2;
+			gbcPartidaPanel.gridy = 0;
+			gbcPartidaPanel.weighty = 1.0;
+			gbcPartidaPanel.gridheight = 4;
+			gbcPartidaPanel.fill = GridBagConstraints.VERTICAL;
+
+			playDif = new JButton(botonPlayFin);
+			playDif.setName("DIF " + i);
+			playDif.setContentAreaFilled(false);
+			playDif.setFocusPainted(false);
+			playDif.setBorderPainted(false);
+
+			playDif.addActionListener(this);
+
+			partidaPanel.add(playDif, gbcPartidaPanel);
+			
+			final JButton finalPlayDif = playDif;
+			
+			playDif.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					finalPlayDif.setIcon(botonPlayFinOP);
+					partidaPanel.setBorder(new LineBorder(Color.green, 2));
+				}
+
+				@Override
+				public void mouseExited(MouseEvent e) {
+					finalPlayDif.setIcon(botonPlayFin);
+					partidaPanel.setBorder(new LineBorder(Color.LIGHT_GRAY, 2));
+				}
+			});
+
+			gbcPartidaPanel.weighty = 0.0;
+			gbcPartidaPanel.gridheight = 1;
+			gbcPartidaPanel.fill = GridBagConstraints.NONE;
+
+			gbcpartidasDif.insets = new Insets(10, 10, 10, 10);
+
+			PartidasDificil.add(partidaPanel, gbcpartidasDif);
+			gbcpartidasDif.gridy++;
+		}
+
+		scrollDif.setOpaque(false);
+		if (infoDif.size() == 0) {
+			JPanel noGameEz = new JPanel() {
+				@Override
+				protected void paintComponent(Graphics g) {
+					super.paintComponent(g);
+					Graphics2D g2d = (Graphics2D) g.create();
+					g2d.setColor(new Color(0, 0, 0, 0));
+					g2d.fillRect(0, 0, getWidth(), getHeight());
+					g2d.dispose();
+				}
+			};
+			noGameEz.setPreferredSize(new Dimension(300, 75));
+			noGameEz.setOpaque(false);
+			noGameEz.setBorder(new LineBorder(Color.LIGHT_GRAY));
+
+			JLabel noGameText = new JLabel("NO HAY PARTIDAS GUARDADAS");
+			noGameText.setVerticalAlignment(JLabel.CENTER);
+			noGameText.setHorizontalAlignment(JLabel.CENTER);
+			noGameText.setFont(controlDatos.fuentecargar(30f));
+			noGameText.setForeground(Color.white);
+
+			noGameEz.add(noGameText);
+
+			scrollDif.setViewportView(noGameEz);
+		} else {
+			scrollDif.setViewportView(PartidasDificil);
+		}
+
+		scrollDif.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		scrollDif.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
+		JViewport viewport3 = scrollDif.getViewport();
+		viewport3.setOpaque(false);
+
+		dificultadDif.add(scrollDif, gbcScroll);
 
 		dificilGeneral.add(dificultadDif, gbcDificil);
-		
+
 		JButton volver = new JButton("VOLVER");
 		volver.setBackground(new Color(0, 0, 0, 0));
 		volver.setOpaque(false);
@@ -511,24 +1105,23 @@ public class pantallaCargar extends JFrame {
 				timer.start();
 			}
 		});
-		
+
 		GridBagConstraints gbcGeneral = new GridBagConstraints();
 		gbcGeneral.gridx = 0;
 		gbcGeneral.insets = new Insets(2, 2, 2, 2);
-		
+
 		panelgeneral.add(easyGeneral, gbcGeneral);
-		
+
 		gbcGeneral.gridx = 1;
-		panelgeneral.add(normalGeneral,gbcGeneral);
-		
+		panelgeneral.add(normalGeneral, gbcGeneral);
+
 		gbcGeneral.gridx = 2;
-		panelgeneral.add(dificilGeneral,gbcGeneral);
-		
+		panelgeneral.add(dificilGeneral, gbcGeneral);
 
 		JPanel botonVolver = new JPanel();
 		botonVolver.setBackground(Color.black);
 		botonVolver.add(volver);
-		
+
 		this.add(botonVolver, BorderLayout.SOUTH);
 
 		this.getContentPane().add(panelgeneral, BorderLayout.CENTER);
@@ -543,5 +1136,48 @@ public class pantallaCargar extends JFrame {
 		this.setTitle("Pandemic @Kader, @Liqi");
 		this.setIconImage(imgFinalIcono.getImage());
 	}
-	
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		JButton botonPresionado = (JButton) e.getSource();
+
+		String nombreBoton = botonPresionado.getName();
+
+		String[] botonPos = new String[2];
+
+		botonPos = nombreBoton.split(" ");
+
+		
+
+		switch (botonPos[0]) {
+		case "DIF":
+			System.out.println(botonPos[0]);
+			System.out.println(botonPos[1]);
+			break;
+		case "NOR":
+			System.out.println(botonPos[0]);
+			System.out.println(botonPos[1]);
+			break;
+		case "EZ":
+			System.out.println(botonPos[0]);
+			System.out.println(botonPos[1]);
+			break;
+		case "XDIF":
+			System.out.println(botonPos[0]);
+			System.out.println(botonPos[1]);
+			break;
+		case "XNOR":
+			System.out.println(botonPos[0]);
+			System.out.println(botonPos[1]);
+			break;
+		case "XEZ":
+			System.out.println(botonPos[0]);
+			System.out.println(botonPos[1]);
+			break;
+
+		}
+
+
+	}
+
 }

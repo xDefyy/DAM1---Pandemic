@@ -1,7 +1,11 @@
 package CargaDatos;
 
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontFormatException;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GraphicsEnvironment;
 import java.io.BufferedReader;
 import java.io.File;
@@ -14,6 +18,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -24,6 +31,7 @@ import org.w3c.dom.NodeList;
 
 import controladores.controlPartida;
 import intefaz.CargarParty;
+import intefaz.pantallaCargar;
 import intefaz.usuarioGetName;
 import objetos.ciudad;
 import objetos.vacunas;
@@ -45,7 +53,7 @@ public class controlDatos {
 
 	public static Connection conectarBaseDatos() {
 		Connection con = null;
-		String url = "jdbc:oracle:thin:@192.168.3.26:1521:xe";
+		String url = "jdbc:oracle:thin:@oracle.ilerna.com:1521:xe";
 		String user = "DAM1_2324_MAY_KADER";
 		String password = "kader";
 
@@ -219,7 +227,7 @@ public class controlDatos {
                 SqlCIUDADES.append(", ");
             }
         }
-        System.out.println(SqlCIUDADES.toString());
+
         StringBuilder SqlVACUNAS = new StringBuilder();
         for (int i = 0; i < controlPartida.datos.getVacunas().size(); i++) {
             String color_vacuna = controlPartida.datos.getVacunas().get(i).getColor();
@@ -229,10 +237,10 @@ public class controlDatos {
                 SqlVACUNAS.append(", ");
             }
         }
-        System.out.println(SqlVACUNAS.toString());
+
        
         String sql = "INSERT INTO PARTIDA VALUES(0 ," + numeroPlayer + ", " + puntuacion + ", " + diff + ", " + rondas + ", " + acciones + ", " + brotes
-                + ", ARRAY_CIUDADES(" + SqlCIUDADES.toString() + "), ARRAY_VACUNAS(" + SqlVACUNAS.toString() + "), " + "'" + ganar_perder + "'" + ", SYSTIMESTAMP";
+                + ", ARRAY_CIUDADES(" + SqlCIUDADES.toString() + "), ARRAY_VACUNAS(" + SqlVACUNAS.toString() + "), " + "'" + ganar_perder + "'" + ", SYSTIMESTAMP)";
 
 
         try {
@@ -279,10 +287,11 @@ public class controlDatos {
 	}
 	
 	public static ArrayList<String[]> mostrarInfoCargar(int dificultad) {
-		String sqlMostrarInfo = "SELECT j.username, p.rondas, p.puntuacion, TO_CHAR(p.dia , 'DD-MM-YY HH24:MI:SS') AS dia \n"
+		String sqlMostrarInfo = "SELECT j.username, p.rondas, p.puntuacion, TO_CHAR(p.dia , 'DD-MM-YY HH24:MI') AS dia \n"
 				+ "FROM PARTIDA p \n"
 				+ "INNER JOIN players j ON p.id_p = j.id_p \n"
-				+ "WHERE P.WL = 'NF' AND p.dificultad = " + dificultad;
+				+ "WHERE P.WL = 'NF' AND p.dificultad = " + dificultad + "\n"
+				+ "ORDER BY p.dia DESC";
 		
 		ArrayList<String[]> info = new ArrayList<>();
 		
@@ -296,14 +305,13 @@ public class controlDatos {
 	        	infoPartida[1] = resultSQL.getString("RONDAS");
 	        	infoPartida[2] = resultSQL.getString("PUNTUACION");
 	        	infoPartida[3] = resultSQL.getString("DIA");
-	        	
 	        	info.add(infoPartida);
+	        	
 	        }
 	        
 	  } catch (SQLException e) {
 	        e.printStackTrace();
 	  }
-		
 		return info;
 	}
 	
@@ -366,7 +374,7 @@ public class controlDatos {
 		
 		return nombrePuntos;
 	}
-
+	
 	public static void controlDificultad(int valor) {
 		String nodePrincipal = "";
 		if (valor == 0) {

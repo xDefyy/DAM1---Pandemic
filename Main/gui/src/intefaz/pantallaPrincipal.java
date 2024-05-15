@@ -10,6 +10,7 @@ import java.io.IOException;
 import javax.swing.*;
 
 import CargaDatos.controlDatos;
+import controladores.controlPartida;
 import controladores.reproductorWav;
 import inicio.Main;
 
@@ -112,10 +113,17 @@ public class pantallaPrincipal extends JFrame {
         
         button2.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+    			
+        		
+        		
+        		
+        		
         		Main.partidas.setVisible(true);
+        		
     	    	
     	        Timer timer = new Timer(300, new ActionListener() {
     	            public void actionPerformed(ActionEvent e) {
+    	            	
     	            	Main.cargarPrincipal.setVisible(false);
     	            }
     	        });
