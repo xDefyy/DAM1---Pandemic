@@ -510,16 +510,16 @@ public class pantallaCargar extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		//TODO ERROR VACUNA, ERROR CIUDADES INFECTADAS, IMAGENES CIUDADES INFECTADAS, datos todavia no creado 	
+
 		JButton botonPresionado = (JButton) e.getSource();
 
 		String nombreBoton = botonPresionado.getName();
 
 		int idp = controlDatos.selectIDPartida(nombreBoton);
 		
-		System.out.println(idp);
+		controlDatos.selectDiff(idp);
 		
-		controlDatos.controlDificultad(controlDatos.dificultad);
+		controlDatos.controlDificultad(controlDatos.diff);
 		
 		controlPartida.iniciar_Partida_Guardada();
 		

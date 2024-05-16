@@ -36,6 +36,7 @@ import CargaDatos.controlDatos;
 import inicio.Main;
 import intefaz.CargarParty;
 import intefaz.ganarPerder;
+//import intefaz.ganarPerder;
 import intefaz.pantallaCargar;
 import intefaz.partida;
 import intefaz.records;
@@ -157,6 +158,14 @@ public class controlPartida {
 		}
 		
 		datos = new datosPartida(controlDatos.ciudades, controlDatos.virus, controlDatos.vacunas, 0, 0, pdesarrollo, 4, 0);
+		
+		progresoA = datos.getpDesarrollo();
+		progresoB = datos.getpDesarrollo();
+		progresoG = datos.getpDesarrollo();
+		progresoD = datos.getpDesarrollo();
+		aux = datos.getpDesarrollo();
+		
+		partida.nuke.setEnabled(true);
 
 	}
 
@@ -596,9 +605,9 @@ public class controlPartida {
 					win.setFont(controlDatos.fuentecargar(150f));
 					win.setForeground(Color.green);
 					win.setHorizontalAlignment(SwingConstants.CENTER);
-					ganarPerder.general.add(win, BorderLayout.CENTER);
+//					ganarPerder.general.add(win, BorderLayout.CENTER);
 					CargarParty.game.setVisible(false);
-					partida.winLoseFrame.setVisible(true);
+//					partida.winLoseFrame.setVisible(true);
 					resetGame();
 					
 				}
@@ -1036,8 +1045,8 @@ public class controlPartida {
 					JLabel username = new JLabel("" + info.get(i)[j].toUpperCase());
 					username.setFont(controlDatos.fuenteMC(15f));
 					username.setForeground(new Color(79, 240, 100));
-					pantallaCargar.play.setName(info.get(i)[j].toUpperCase());
-					pantallaCargar.eliminar.setName(info.get(i)[j].toUpperCase());
+					pantallaCargar.play.setName(info.get(i)[j]);
+					pantallaCargar.eliminar.setName(info.get(i)[j]);
 					
 					
 					usuarioPanel.add(jugador);
@@ -1266,8 +1275,8 @@ public class controlPartida {
 					JLabel username = new JLabel("" + infoNor.get(i)[j].toUpperCase());
 					username.setFont(controlDatos.fuenteMC(15f));
 					username.setForeground(new Color(79, 240, 100));
-					pantallaCargar.playNor.setName(infoNor.get(i)[j].toUpperCase());
-					pantallaCargar.eliminarNor.setName(infoNor.get(i)[j].toUpperCase());
+					pantallaCargar.playNor.setName(infoNor.get(i)[j]);
+					pantallaCargar.eliminarNor.setName(infoNor.get(i)[j]);
 					
 					
 					usuarioPanel.add(jugador);
@@ -1483,8 +1492,8 @@ public class controlPartida {
 					JLabel username = new JLabel("" + infoDif.get(i)[j].toUpperCase());
 					username.setFont(controlDatos.fuenteMC(15f));
 					username.setForeground(new Color(79, 240, 100));
-					pantallaCargar.playDif.setName(infoDif.get(i)[j].toUpperCase());
-					pantallaCargar.eliminarDif.setName(infoDif.get(i)[j].toUpperCase());
+					pantallaCargar.playDif.setName(infoDif.get(i)[j]);
+					pantallaCargar.eliminarDif.setName(infoDif.get(i)[j]);
 					
 					
 					usuarioPanel.add(jugador);
@@ -1690,10 +1699,25 @@ public class controlPartida {
 	
 	public static void actualizarGuiPartidaCargado() {
 		
+//		System.out.println(datos.getAcciones());
+//		System.out.println(datos.getRondas());
+		
 		partida.acciones.setText("" + datos.getAcciones());
 		partida.brotes.setText("" + datos.getBrotes());
 		partida.rondas.setText("" + datos.getRondas());
 		partida.scoreNum.setText("" + datos.getPuntuancion());
+		
+		partida.Alfa.setValue(datos.getVacunas().get(0).getPorcentaje());
+		partida.Beta.setValue(datos.getVacunas().get(1).getPorcentaje());
+		partida.Gamma.setValue(datos.getVacunas().get(2).getPorcentaje());
+		partida.Delta.setValue(datos.getVacunas().get(3).getPorcentaje());
+		
+		partida.Alfa.setString("VIH: " + datos.getVacunas().get(0).getPorcentaje() + "%");
+		partida.Beta.setString("CANCER: " + datos.getVacunas().get(1).getPorcentaje() + "%");
+		partida.Gamma.setString("SARS: " + datos.getVacunas().get(2).getPorcentaje() + "%");
+		partida.Delta.setString("NIGGA: " + datos.getVacunas().get(3).getPorcentaje() + "%");
+		
+		partida.ciudadesInf.setText("" + controlPartida.ciudadesInfectadas());
 		
 		for (int i = 0; i < datos.getCiudades().size(); i++) {
 			

@@ -38,7 +38,7 @@ import objetos.vacunas;
 import objetos.virus;
 
 public class controlDatos {
-	public static int dificultad = 0;
+	public static int diff = 0;
 	public static String numCiudadesInfectadasInicio = "";
 	public static String numCiudadesInfectadasRonda = "";
 	public static String numEnfermedadesActivasDerrota = "";
@@ -53,7 +53,7 @@ public class controlDatos {
 
 	public static Connection conectarBaseDatos() {
 		Connection con = null;
-		String url = "jdbc:oracle:thin:@192.168.3.26:1521:xe";
+		String url = "jdbc:oracle:thin:@oracle.ilerna.com:1521:xe";
 		String user = "DAM1_2324_MAY_KADER";
 		String password = "kader";
 
@@ -203,12 +203,12 @@ public class controlDatos {
         return partidas;
     }
 	public static void insertarPartida(Connection con) {
-        int diff = CargarParty.dificultad;
+        diff = CargarParty.dificultad;
         int numeroPlayer = getPlayerID();
         int rondas = controlPartida.datos.getRondas();
         int acciones = controlPartida.datos.getAcciones();
         int brotes = controlPartida.datos.getBrotes();
-        int puntuacion = 0;
+        int puntuacion = controlPartida.datos.getPuntuancion();
 
         
         StringBuilder SqlCIUDADES = new StringBuilder();
@@ -428,7 +428,7 @@ public class controlDatos {
 	}
 	
 	public static void selectPartida(int idpartida,Connection con) {
-	    String sqlCiudades = "SELECT p.puntuacion, p.dificultad, p.rondas, p.acciones, p.brotes, c.nombre, c.infeccion, c.nuked FROM PARTIDA p, TABLE(p.ARRAY_CIUDADES) c WHERE ID_PARTIDA =" + idpartida;
+	    String sqlCiudades = "SELECT p.puntuacion, p.rondas, p.acciones, p.brotes, c.nombre, c.infeccion, c.nuked FROM PARTIDA p, TABLE(p.ARRAY_CIUDADES) c WHERE ID_PARTIDA =" + idpartida;
 	    String sqlVacunas = "SELECT v.color, v.porcentaje FROM PARTIDA p, TABLE(p.ARRAY_VACUNAS) v WHERE ID_PARTIDA =" + idpartida;
 
 	    try {
@@ -440,7 +440,6 @@ public class controlDatos {
 
 	            
 	            int puntuacion = rsCiudades.getInt("puntuacion");
-	            dificultad = rsCiudades.getInt("dificultad");
 	            int rondas = rsCiudades.getInt("rondas"); 
 	            int acciones = rsCiudades.getInt("acciones");
 	            int brotes = rsCiudades.getInt("brotes");
@@ -453,22 +452,24 @@ public class controlDatos {
 	            
 	            String nombreCiudad = rsCiudades.getString("nombre");
 	            int infeccionCiudad = rsCiudades.getInt("infeccion");
-	            String nuked = rsCiudades.getString("infeccion");
+	            String nuked = rsCiudades.getString("nuked");
 	            
-	            if (nuked.equalsIgnoreCase("S")) {
-	            	bomba = true;
-	            } else if (nuked.equalsIgnoreCase("N")) {
-	            	bomba = false;
-	            }
+	          
 	            
 	            for (int i = 0; i < 48; i++) {
 	            	if (controlPartida.datos.getCiudades().get(i).getNombre().equalsIgnoreCase(nombreCiudad)) {
+	            		
+	            		  if (nuked.equalsIgnoreCase("S")) {
+	      	            	bomba = true;
+	      	            } else if (nuked.equalsIgnoreCase("N")) {
+	      	            	bomba = false;
+	      	            }
+	            		  
 		                controlPartida.datos.getCiudades().get(i).setInfeccion(infeccionCiudad);
 		                controlPartida.datos.getCiudades().get(i).setNuke(bomba);
 	            	}
 	            }
 	        }
-	        
 	        
 
 	        Statement stVacunas = con.createStatement();
@@ -534,6 +535,28 @@ public class controlDatos {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	public static void selectDiff(int idp) {
+		
+	    String sqlDificultad = "SELECT dificultad FROM PARTIDA WHERE ID_PARTIDA =" + idp;
+	    
+	    try {
+	        Statement stDiff = con.createStatement();
+	        ResultSet rsDiff = stDiff.executeQuery(sqlDificultad);
+
+	        while (rsDiff.next()) {
+
+	            diff = rsDiff.getInt("dificultad");
+
+	        } 
+	        
+	    	} catch (SQLException e) {
+		        e.printStackTrace();
+		  }
+		
+	}
+	
 
 	public static Font fuenteTitulo() {
 		try {

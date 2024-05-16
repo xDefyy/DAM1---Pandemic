@@ -84,7 +84,8 @@ public class partida extends JFrame implements ActionListener {
 	public static JLabel scoreNum = new JLabel();
 	public static JLabel ciudadesInf = new JLabel();
 	public static boolean ciudadSeleccionada = false;
-	// botones
+	
+	// Botones
 	public static JButton Francisco;
 	public static JButton Chicago;
 	public static JButton Atlanta;
@@ -2307,6 +2308,7 @@ public class partida extends JFrame implements ActionListener {
 	    	        Timer timer = new Timer(300, new ActionListener() {
 	    	            public void actionPerformed(ActionEvent e) {
 	    					CargarParty.game.setVisible(false);
+	    					
 	    	            }
 	    	        });
 	    	        timer.setRepeats(false);

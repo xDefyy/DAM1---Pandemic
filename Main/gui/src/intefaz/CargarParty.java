@@ -23,7 +23,7 @@ public class CargarParty extends JFrame implements ActionListener {
 	public static JButton bFacil; 
 	public static JButton bDificil; 
 	private CardLayout cards;
-	public static int dificultad = 0;
+	public static int dificultad = -1;
 	public CargarParty() {
 
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
