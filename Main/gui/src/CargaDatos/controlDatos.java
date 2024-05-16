@@ -38,7 +38,7 @@ import objetos.vacunas;
 import objetos.virus;
 
 public class controlDatos {
-
+	public static int dificultad = 0;
 	public static String numCiudadesInfectadasInicio = "";
 	public static String numCiudadesInfectadasRonda = "";
 	public static String numEnfermedadesActivasDerrota = "";
@@ -135,8 +135,8 @@ public class controlDatos {
 
 	}
 
-	public static void cargarVacunas() { // Pensar nombre potente vacuna VIH CANCER SARS ++ Nucle de inyeccion de
-											// generacion de grandes antibioticos (NIGGA)
+	public static void cargarVacunas() { 
+			
 
 		vacunas vacuna_alpha = new vacunas("VIH", "Azul", 0);
 		vacunas vacuna_beta = new vacunas("CANCER", "Rojo", 0);
@@ -269,6 +269,33 @@ public class controlDatos {
 
 	}
 	
+	
+	public static ArrayList<String> nombresUser() {
+		ArrayList<String> nombres = new ArrayList<>();
+		
+		String sqlNombres = "SELECT USERNAME \n"
+                + "    FROM PLAYERS \n";
+
+        try {
+
+            Statement stNombres = con.createStatement();
+            ResultSet rsNombres = stNombres.executeQuery(sqlNombres);
+
+            while (rsNombres.next()) {
+                String nombre = rsNombres.getString("USERNAME"); 
+                nombres.add(nombre);
+            }
+
+         } catch (SQLException e) {
+                e.printStackTrace();
+                System.out.println("MAL");
+         }
+		
+		
+		
+		return nombres;
+	}
+	
 	public static int getPlayerID() {
 		String selectMaxIDP = "SELECT MAX(ID_P) FROM PLAYERS";
 		int jugadorID = 0;
@@ -374,6 +401,97 @@ public class controlDatos {
 		
 		return nombrePuntos;
 	}
+	
+	public static int selectIDPartida(String user) {
+		int id = 0;
+		String sql = "SELECT p.id_partida \n"
+				+ "FROM PARTIDA p \n"
+				+ "INNER JOIN players j ON j.id_p = p.id_p \n"
+				+ "WHERE USERNAME ='" + user + "'";
+		try {
+			
+	        Statement stIDPARTIDA = con.createStatement();
+	        ResultSet rsID = stIDPARTIDA.executeQuery(sql);
+	        
+	        while (rsID.next()) {
+	        	
+	        	id = rsID.getInt("id_partida");
+	        	
+	        }
+		
+		 } catch (SQLException e) {
+		        e.printStackTrace();
+		        System.out.println("MAL");
+		 }
+	        
+		return id;
+	}
+	
+	public static void selectPartida(int idpartida,Connection con) {
+	    String sqlCiudades = "SELECT p.puntuacion, p.dificultad, p.rondas, p.acciones, p.brotes, c.nombre, c.infeccion, c.nuked FROM PARTIDA p, TABLE(p.ARRAY_CIUDADES) c WHERE ID_PARTIDA =" + idpartida;
+	    String sqlVacunas = "SELECT v.color, v.porcentaje FROM PARTIDA p, TABLE(p.ARRAY_VACUNAS) v WHERE ID_PARTIDA =" + idpartida;
+
+	    try {
+	        Statement stCiudades = con.createStatement();
+	        ResultSet rsCiudades = stCiudades.executeQuery(sqlCiudades);
+	        
+	        boolean bomba = false;
+	        while (rsCiudades.next()) {
+
+	            
+	            int puntuacion = rsCiudades.getInt("puntuacion");
+	            dificultad = rsCiudades.getInt("dificultad");
+	            int rondas = rsCiudades.getInt("rondas"); 
+	            int acciones = rsCiudades.getInt("acciones");
+	            int brotes = rsCiudades.getInt("brotes");
+	            
+	            controlPartida.datos.setPuntuancion(puntuacion);
+	            controlPartida.datos.setAcciones(acciones);
+	            controlPartida.datos.setRondas(rondas);
+	            controlPartida.datos.setBrotes(brotes);
+	            
+	            
+	            String nombreCiudad = rsCiudades.getString("nombre");
+	            int infeccionCiudad = rsCiudades.getInt("infeccion");
+	            String nuked = rsCiudades.getString("infeccion");
+	            
+	            if (nuked.equalsIgnoreCase("S")) {
+	            	bomba = true;
+	            } else if (nuked.equalsIgnoreCase("N")) {
+	            	bomba = false;
+	            }
+	            
+	            for (int i = 0; i < 48; i++) {
+	            	if (controlPartida.datos.getCiudades().get(i).getNombre().equalsIgnoreCase(nombreCiudad)) {
+		                controlPartida.datos.getCiudades().get(i).setInfeccion(infeccionCiudad);
+		                controlPartida.datos.getCiudades().get(i).setNuke(bomba);
+	            	}
+	            }
+	        }
+	        
+	        
+
+	        Statement stVacunas = con.createStatement();
+	        ResultSet rsVacunas = stVacunas.executeQuery(sqlVacunas);
+
+	        while (rsVacunas.next()) {
+	            String color = rsVacunas.getString("color");
+	            int porcentaje = rsVacunas.getInt("porcentaje");
+
+	            for (int i = 0; i < 4; i++) {
+	            	if (controlPartida.datos.getVacunas().get(i).getColor().equalsIgnoreCase(color)) {
+	            		controlPartida.datos.getVacunas().get(i).setPorcentaje(porcentaje);
+	            	}
+	            }
+                
+	        }
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        System.out.println("MAL");
+	    }
+	}
+	
 	
 	public static void controlDificultad(int valor) {
 		String nodePrincipal = "";

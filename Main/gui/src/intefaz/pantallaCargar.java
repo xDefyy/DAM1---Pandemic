@@ -34,6 +34,7 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 
 import CargaDatos.controlDatos;
+import controladores.controlPartida;
 import inicio.Main;
 import oracle.net.jdbc.TNSAddress.AddressList;
 
@@ -46,10 +47,6 @@ public class pantallaCargar extends JFrame implements ActionListener {
 	public static JButton eliminar;
 	public static JButton eliminarNor;
 	public static JButton eliminarDif;
-	
-
-	
-	public static ArrayList<String[]> infoDif = new ArrayList<>(controlDatos.mostrarInfoCargar(2));
 	
 	public static JScrollPane scrollNor = new JScrollPane();
 	public static JScrollPane scroll = new JScrollPane();
@@ -513,45 +510,28 @@ public class pantallaCargar extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		//TODO ERROR VACUNA, ERROR CIUDADES INFECTADAS, IMAGENES CIUDADES INFECTADAS, datos todavia no creado 	
 		JButton botonPresionado = (JButton) e.getSource();
 
 		String nombreBoton = botonPresionado.getName();
 
-		String[] botonPos = new String[2];
-
-		botonPos = nombreBoton.split(" ");
-
+		int idp = controlDatos.selectIDPartida(nombreBoton);
 		
-
-		switch (botonPos[0]) {
-		case "DIF":
-			System.out.println(botonPos[0]);
-			System.out.println(botonPos[1]);
-			break;
-		case "NOR":
-			System.out.println(botonPos[0]);
-			System.out.println(botonPos[1]);
-			break;
-		case "EZ":
-			System.out.println(botonPos[0]);
-			System.out.println(botonPos[1]);
-			break;
-		case "XDIF":
-			System.out.println(botonPos[0]);
-			System.out.println(botonPos[1]);
-			break;
-		case "XNOR":
-			System.out.println(botonPos[0]);
-			System.out.println(botonPos[1]);
-			break;
-		case "XEZ":
-			System.out.println(botonPos[0]);
-			System.out.println(botonPos[1]);
-			break;
-
-		}
-
-
+		System.out.println(idp);
+		
+		controlDatos.controlDificultad(controlDatos.dificultad);
+		
+		controlPartida.iniciar_Partida_Guardada();
+		
+		controlDatos.selectPartida(idp, controlDatos.con);
+		
+		controlPartida.actualizarGuiPartidaCargado();
+		
+		Main.partidas.setVisible(false);
+		CargarParty.game.setVisible(true);
+		
+		
+		
 	}
 
 }

@@ -14,9 +14,10 @@ public class datosPartida {
 	private int rondas;
 	private int pDesarrollo;
 	private int acciones;
+	private int puntuancion;
 	
 	public datosPartida(ArrayList<ciudad> ciudades, ArrayList<virus> virus, ArrayList<vacunas> vacunas, int brotes,
-		int rondas, int pDesarrollo, int acciones) {
+		int rondas, int pDesarrollo, int acciones, int puntuacion) {
 		this.ciudades = ciudades;
 		this.virus = virus;
 		this.vacunas = vacunas;
@@ -81,5 +82,15 @@ public class datosPartida {
 	public void setAcciones(int acciones) {
 		this.acciones = acciones;
 	}
+
+	public int getPuntuancion() {
+		return puntuancion;
+	}
+
+	public void setPuntuancion(int puntuancion) {
+		this.puntuancion = puntuancion;
+	}
+	
+	
 	
 }

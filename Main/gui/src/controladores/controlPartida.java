@@ -1,5 +1,6 @@
 package controladores;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -26,6 +27,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JViewport;
+import javax.swing.SwingConstants;
 import javax.swing.Timer;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
@@ -33,6 +35,7 @@ import javax.swing.border.LineBorder;
 import CargaDatos.controlDatos;
 import inicio.Main;
 import intefaz.CargarParty;
+import intefaz.ganarPerder;
 import intefaz.pantallaCargar;
 import intefaz.partida;
 import intefaz.records;
@@ -66,7 +69,7 @@ public class controlPartida {
 		}
 		
 
-		datos = new datosPartida(controlDatos.ciudades, controlDatos.virus, controlDatos.vacunas, 0, 0, pdesarrollo, 4);
+		datos = new datosPartida(controlDatos.ciudades, controlDatos.virus, controlDatos.vacunas, 0, 0, pdesarrollo, 4, 0);
 
 		progresoA = datos.getpDesarrollo();
 		progresoB = datos.getpDesarrollo();
@@ -97,7 +100,11 @@ public class controlPartida {
 	}
 
 	public static void resetGame() {
-
+		
+		partida.scoreNum.setText("0");
+		datos.setPuntuancion(0);
+		
+		
 		for (int i = 0; i < datos.getCiudades().size(); i++) {
 			
 			if (datos.getCiudades().get(i).getInfeccion() != 0) {
@@ -138,7 +145,7 @@ public class controlPartida {
 		}
 	}
 
-	public static void iniciar_Partida_Guardada(String id) {
+	public static void iniciar_Partida_Guardada() {
 
 		int pdesarrollo = Integer.valueOf(controlDatos.desarrolloVacuna);
 		
@@ -149,7 +156,7 @@ public class controlPartida {
 			datosCargadosPartida = true;
 		}
 		
-		datos = new datosPartida(controlDatos.ciudades, controlDatos.virus, controlDatos.vacunas, 0, 0, pdesarrollo, 4);
+		datos = new datosPartida(controlDatos.ciudades, controlDatos.virus, controlDatos.vacunas, 0, 0, pdesarrollo, 4, 0);
 
 	}
 
@@ -168,7 +175,19 @@ public class controlPartida {
 			@Override
 			public void run() {
 				partida.finalizarRonda.setEnabled(false);
-
+				
+				if (datos.getRondas() <= 6) {
+					
+					datos.setPuntuancion(datos.getPuntuancion() - 50);
+					partida.scoreNum.setText("" + datos.getPuntuancion());
+					
+				} else if (datos.getRondas() > 6) {
+					
+					datos.setPuntuancion(datos.getPuntuancion() - 80);
+					partida.scoreNum.setText("" + datos.getPuntuancion());
+					
+				}
+				
 				int turno = datos.getRondas();
 				turno++;
 
@@ -182,7 +201,7 @@ public class controlPartida {
 				// limpia el texto
 				gestionar_InfeccionNewRound();
 				try {
-					Thread.sleep(1800);
+					Thread.sleep(1500);
 					partida.finalizarRonda.setEnabled(true);
 					if (datos.getVacunas().get(0).getPorcentaje() != 100) {
 						partida.DAlfa.setEnabled(true);
@@ -217,21 +236,31 @@ public class controlPartida {
 					public void run() {
 						try {
 							for (int i = partida.Alfa.getValue(); i <= progresoA; i++) {
-								partida.Alfa.setValue(i); // Actualiza el valor de la barra de progreso
+								partida.Alfa.setValue(i); 
 								partida.Alfa.setString("VIH: " + partida.Alfa.getValue() + "%");
-								Thread.sleep(50); // Espera un momento para simular el progreso
+								Thread.sleep(50); 
 								if (partida.Alfa.getValue() == 100) {
-									partida.Alfa.setString("Completado VIH");
-									System.out.println("Franko: Bien hecho!");
+									partida.Alfa.setString("VIH 100%");
+									System.out.println("Franko: Bien hecho! Has conseguido 250 puntos!");
 									partida.DAlfa.setEnabled(false);
+									
+									datos.setPuntuancion(datos.getPuntuancion()+250);
+									partida.scoreNum.setText(""+ datos.getPuntuancion());
+									
 								}
 								if (partida.Alfa.getValue() == progresoA) {
 									System.out.println("Franko: Has desarrolado el " + partida.Alfa.getValue()
-											+ "% y gastado todas tus acciones.");
+											+ "% y gastado todas tus acciones, has conseguido 75 puntos.");
+									
+									datos.setPuntuancion(datos.getPuntuancion()+75);
+									partida.scoreNum.setText(""+ datos.getPuntuancion());
+									
+									
 								}
 								datos.getVacunas().get(0).setPorcentaje(partida.Alfa.getValue());
 							}
 							progresoA += aux;
+							gestionar_Ganar();
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 						}
@@ -247,17 +276,29 @@ public class controlPartida {
 								partida.Beta.setString("CANCER: " + partida.Beta.getValue() + "%");
 								Thread.sleep(50); // Espera un momento para simular el progreso
 								if (partida.Beta.getValue() == 100) {
-									partida.Beta.setString("Completado Cancer");
-									System.out.println("Franko: Bien hecho!");
+									partida.Beta.setString("CANCER 100%");
+									System.out.println("Franko: Bien hecho! Has conseguido 250 puntos!");
 									partida.DBeta.setEnabled(false);
+									
+									datos.setPuntuancion(datos.getPuntuancion()+250);
+									partida.scoreNum.setText(""+ datos.getPuntuancion());
+									
 								}
 								if (partida.Beta.getValue() == progresoB) {
 									System.out.println("Franko: Has desarrolado el " + partida.Beta.getValue()
-											+ "% y gastado todas tus acciones.");
+											+ "% y gastado todas tus acciones, has conseguido 75 puntos");
+									
+									
+									datos.setPuntuancion(datos.getPuntuancion()+75);
+									partida.scoreNum.setText(""+ datos.getPuntuancion());
+									
+									
+									
 								}
 								datos.getVacunas().get(1).setPorcentaje(partida.Beta.getValue());
 							}
 							progresoB += aux;
+							gestionar_Ganar();
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 						}
@@ -273,17 +314,27 @@ public class controlPartida {
 								partida.Gamma.setString("SARS: " + partida.Gamma.getValue() + "%");
 								Thread.sleep(50); // Espera un momento para simular el progreso
 								if (partida.Gamma.getValue() == 100) {
-									partida.Gamma.setString("Completado SARS");
-									System.out.println("Franko: Bien hecho!");
+									partida.Gamma.setString("SARS 100%");
+									System.out.println("Franko: Bien hecho! Has conseguido 250 puntos!");
 									partida.DGamma.setEnabled(false);
+									
+									
+									datos.setPuntuancion(datos.getPuntuancion()+250);
+									partida.scoreNum.setText(""+ datos.getPuntuancion());
+									
 								}
 								if (partida.Gamma.getValue() == progresoG) {
 									System.out.println("Franko: Has desarrolado el " + partida.Gamma.getValue()
-											+ "% y gastado todas tus acciones.");
+											+ "% y gastado todas tus acciones, has conseguido 75 puntos!");
+									
+									datos.setPuntuancion(datos.getPuntuancion()+75);
+									partida.scoreNum.setText(""+ datos.getPuntuancion());
+									
 								}
 								datos.getVacunas().get(2).setPorcentaje(partida.Gamma.getValue());
 							}
 							progresoG += aux;
+							gestionar_Ganar();
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 						}
@@ -299,17 +350,26 @@ public class controlPartida {
 								partida.Delta.setString("NIGGA: " + partida.Delta.getValue() + "%");
 								Thread.sleep(50); // Espera un momento para simular el progreso
 								if (partida.Delta.getValue() == 100) {
-									partida.Delta.setString("Completado NIGGA");
-									System.out.println("Franko: Bien hecho!");
+									partida.Delta.setString("NIGGA 100%");
+									System.out.println("Franko: Bien hecho! Has conseguido 250 puntos!");
 									partida.DDelta.setEnabled(false);
 
+									datos.setPuntuancion(datos.getPuntuancion()+250);
+									partida.scoreNum.setText(""+ datos.getPuntuancion());
+									
+									
 								}
 								if (partida.Delta.getValue() == progresoD) {
 									System.out.println("Franko: Has desarrolado el " + partida.Delta.getValue()
-											+ "% y gastado todas tus acciones.");
+											+ "% y gastado todas tus acciones, has conseguido 75 puntos!");
+									
+									datos.setPuntuancion(datos.getPuntuancion()+75);
+									partida.scoreNum.setText(""+ datos.getPuntuancion());
+									
 								}
 								datos.getVacunas().get(3).setPorcentaje(partida.Delta.getValue());
 							}
+							gestionar_Ganar();
 							progresoD += aux;
 						} catch (InterruptedException e) {
 							e.printStackTrace();
@@ -486,24 +546,71 @@ public class controlPartida {
 			}
 		}
 	}
-
+	
+	//TODO ACTUALIZAR GUI CUANDO CARGA PARTIDA, COMPROBAR SI VOLVER AL MENU FUNCIONA CUANDO CARGA LA PARTIDA
+	//TODO HACER QUE LOS BTNS FUNCIONEN DE CARGAR Y ELIMINAR PARTIDA
+	
 	public static void gestionar_Fin_Partida() {
 		int derrotaBrote = Integer.valueOf(controlDatos.numBrotesDerrota);
 		int derrotaEnfermedad = Integer.valueOf(controlDatos.numEnfermedadesActivasDerrota);
 		int infeccionTotal = 0;
 
 		if (datos.getBrotes() >= derrotaBrote) {
-			System.out.println("Has perdido por los brotes"); // cambiar por panel de Franco aparece diciendo muy bien
-																// hecho (si pierdes)
+			JLabel win = new JLabel("<html><center>HAS PERDIDO POR BROTES :/");
+			win.setFont(controlDatos.fuentecargar(150f));
+			win.setForeground(Color.red);
+			win.setHorizontalAlignment(SwingConstants.CENTER);
+			ganarPerder.general.add(win, BorderLayout.CENTER);
+			
+			CargarParty.game.setVisible(false);
+			partida.winLoseFrame.setVisible(true);
+			resetGame(); 
 		}
 
 		for (int i = 0; i < datos.getCiudades().size(); i++) {
 			infeccionTotal += datos.getCiudades().get(i).getInfeccion();
 			if (infeccionTotal >= derrotaEnfermedad) {
-				System.out.println("has perdido por infecciones");
+				JLabel win = new JLabel("<html><center>HAS PERDIDO POR INFECCIONES :/");
+				win.setFont(controlDatos.fuentecargar(150f));
+				win.setForeground(Color.RED);
+				win.setHorizontalAlignment(SwingConstants.CENTER);
+				ganarPerder.general.add(win, BorderLayout.CENTER);
+				
+				CargarParty.game.setVisible(false);
+				partida.winLoseFrame.setVisible(true);
+				resetGame();
 				break;
 			} 
 		}
+	}
+	
+	public static void gestionar_Ganar() {
+		
+		Thread vac = new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				if (datos.getVacunas().get(0).getPorcentaje() == 100 && datos.getVacunas().get(1).getPorcentaje() == 100 && datos.getVacunas().get(2).getPorcentaje() == 100 && datos.getVacunas().get(3).getPorcentaje() == 100) {
+					
+					JLabel win = new JLabel("HAS GANADO!!");
+					win.setFont(controlDatos.fuentecargar(150f));
+					win.setForeground(Color.green);
+					win.setHorizontalAlignment(SwingConstants.CENTER);
+					ganarPerder.general.add(win, BorderLayout.CENTER);
+					CargarParty.game.setVisible(false);
+					partida.winLoseFrame.setVisible(true);
+					resetGame();
+					
+				}
+				
+
+
+			}
+		});
+		vac.start();
+		
+		
+		
 	}
 
 	public static void gestionar_Cura() {
@@ -623,6 +730,11 @@ public class controlPartida {
 						partida.ciudadesInf.setText("" + ciudadesInfectadas());
 						ponerImages(ciudadSize, ciudadNombre);
 					}
+					
+					datos.setPuntuancion(datos.getPuntuancion() + 20);
+					partida.scoreNum.setText(""+datos.getPuntuancion());
+					System.out.println("Franko: Has ganado 20 puntos.");
+					
 				} else if (datos.getAcciones() == 0) {
 					System.out.println("Franko: No tienes acciones...");
 				} else if (datos.getCiudades().get(ciudadSize).getInfeccion() == 0) {
@@ -674,16 +786,25 @@ public class controlPartida {
 			datos.setAcciones(datos.getAcciones() - 3);
 			partida.acciones.setText("" + datos.getAcciones());
 			partida.ciudadesInf.setText("" + ciudadesInfectadas());
-			//restar puntos TODO
+			
+			datos.setPuntuancion(datos.getPuntuancion()-100);
+			partida.scoreNum.setText("" + datos.getPuntuancion());
+			
+			
+			
 		} else if (datos.getAcciones() < 2) {
 			System.out.println("Franko: No tienes acciones...");
 		} else if (datos.getCiudades().get(ciudadSize).isNuke()) {
 			System.out.println("Franko: No puedes tirar la bomba donde ya la tiraste o donde se haya expandido la bomba.");
+			datos.setPuntuancion(datos.getPuntuancion() - 1);
+			partida.scoreNum.setText("" + datos.getPuntuancion());
 		} else if (!partida.ciudadSeleccionada) {
 			System.out.println("Franko: Selecciona una ciudad antes.");
 		} else if (datos.getCiudades().get(ciudadSize).getInfeccion() == 0) {
 			System.out.println("Franko: Terrorista, porque intentarias tirar una bomba a una ciudad que no tiene infeccion.");
-		}
+			datos.setPuntuancion(datos.getPuntuancion() - 2);
+			partida.scoreNum.setText("" + datos.getPuntuancion());
+	}
 	}
 
 	public static void ponerImages(int ciudadPos, String nombreBtn) {
@@ -868,10 +989,14 @@ public class controlPartida {
 			gbcPartidaPanel.fill = GridBagConstraints.VERTICAL;
 
 			pantallaCargar.eliminar = new JButton(botonEliminarFIN);
-			pantallaCargar.eliminar.setName("XEZ " + i);
 			pantallaCargar.eliminar.setContentAreaFilled(false);
 			pantallaCargar.eliminar.setFocusPainted(false);
 			pantallaCargar.eliminar.setBorderPainted(false);
+			
+			pantallaCargar.play = new JButton(botonPlayFin);
+			pantallaCargar.play.setContentAreaFilled(false);
+			pantallaCargar.play.setFocusPainted(false);
+			pantallaCargar.play.setBorderPainted(false);
 
 			pantallaCargar.eliminar.addActionListener(Main.partidas);
 
@@ -911,7 +1036,10 @@ public class controlPartida {
 					JLabel username = new JLabel("" + info.get(i)[j].toUpperCase());
 					username.setFont(controlDatos.fuenteMC(15f));
 					username.setForeground(new Color(79, 240, 100));
-
+					pantallaCargar.play.setName(info.get(i)[j].toUpperCase());
+					pantallaCargar.eliminar.setName(info.get(i)[j].toUpperCase());
+					
+					
 					usuarioPanel.add(jugador);
 					usuarioPanel.add(username);
 					gbcPartidaPanel.gridy = 0;
@@ -965,11 +1093,7 @@ public class controlPartida {
 			gbcPartidaPanel.gridheight = 4;
 			gbcPartidaPanel.fill = GridBagConstraints.VERTICAL;
 
-			pantallaCargar.play = new JButton(botonPlayFin);
-			pantallaCargar.play.setName("EZ " + i);
-			pantallaCargar.play.setContentAreaFilled(false);
-			pantallaCargar.play.setFocusPainted(false);
-			pantallaCargar.play.setBorderPainted(false);
+			
 
 			pantallaCargar.play.addActionListener(Main.partidas);
 
@@ -1093,11 +1217,15 @@ public class controlPartida {
 			gbcPartidaPanel.fill = GridBagConstraints.VERTICAL;
 
 			pantallaCargar.eliminarNor = new JButton(botonEliminarFIN);
-			pantallaCargar.eliminarNor.setName("XNOR " + i);
 			pantallaCargar.eliminarNor.setContentAreaFilled(false);
 			pantallaCargar.eliminarNor.setFocusPainted(false);
 			pantallaCargar.eliminarNor.setBorderPainted(false);
 
+			pantallaCargar.playNor = new JButton(botonPlayFin);
+			pantallaCargar.playNor.setContentAreaFilled(false);
+			pantallaCargar.playNor.setFocusPainted(false);
+			pantallaCargar.playNor.setBorderPainted(false);
+			
 			pantallaCargar.eliminarNor.addActionListener(Main.partidas);
 
 			partidaPanel.add(pantallaCargar.eliminarNor, gbcPartidaPanel);
@@ -1138,7 +1266,10 @@ public class controlPartida {
 					JLabel username = new JLabel("" + infoNor.get(i)[j].toUpperCase());
 					username.setFont(controlDatos.fuenteMC(15f));
 					username.setForeground(new Color(79, 240, 100));
-
+					pantallaCargar.playNor.setName(infoNor.get(i)[j].toUpperCase());
+					pantallaCargar.eliminarNor.setName(infoNor.get(i)[j].toUpperCase());
+					
+					
 					usuarioPanel.add(jugador);
 					usuarioPanel.add(username);
 					gbcPartidaPanel.gridy = 0;
@@ -1191,12 +1322,6 @@ public class controlPartida {
 			gbcPartidaPanel.weighty = 1.0;
 			gbcPartidaPanel.gridheight = 4;
 			gbcPartidaPanel.fill = GridBagConstraints.VERTICAL;
-
-			pantallaCargar.playNor = new JButton(botonPlayFin);
-			pantallaCargar.playNor.setName("NOR " + i);
-			pantallaCargar.playNor.setContentAreaFilled(false);
-			pantallaCargar.playNor.setFocusPainted(false);
-			pantallaCargar.playNor.setBorderPainted(false);
 
 			pantallaCargar.playNor.addActionListener(Main.partidas);
 
@@ -1269,6 +1394,7 @@ public class controlPartida {
 		pantallaCargar.PartidasDificil.removeAll();
 		
 		
+		ArrayList<String[]> infoDif = new ArrayList<>(controlDatos.mostrarInfoCargar(2));
 		
 		
 		pantallaCargar.PartidasDificil = new JPanel(new GridBagLayout()) {
@@ -1285,7 +1411,7 @@ public class controlPartida {
 		pantallaCargar.PartidasDificil.setOpaque(false);
 		
 		
-		for (int i = 0; i < pantallaCargar.infoDif.size(); i++) {
+		for (int i = 0; i < infoDif.size(); i++) {
 
 			JPanel partidaPanel = new JPanel(new GridBagLayout()) {
 				@Override
@@ -1310,11 +1436,15 @@ public class controlPartida {
 			gbcPartidaPanel.fill = GridBagConstraints.VERTICAL;
 
 			pantallaCargar.eliminarDif = new JButton(botonEliminarFIN);
-			pantallaCargar.eliminarDif.setName("XDIF " + i);
 			pantallaCargar.eliminarDif.setContentAreaFilled(false);
 			pantallaCargar.eliminarDif.setFocusPainted(false);
 			pantallaCargar.eliminarDif.setBorderPainted(false);
 
+			pantallaCargar.playDif = new JButton(botonPlayFin);
+			pantallaCargar.playDif.setContentAreaFilled(false);
+			pantallaCargar.playDif.setFocusPainted(false);
+			pantallaCargar.playDif.setBorderPainted(false);
+			
 			pantallaCargar.eliminarDif.addActionListener(Main.partidas);
 
 			partidaPanel.add(pantallaCargar.eliminarDif, gbcPartidaPanel);
@@ -1339,7 +1469,7 @@ public class controlPartida {
 			gbcPartidaPanel.gridheight = 1;
 			gbcPartidaPanel.fill = GridBagConstraints.NONE;
 
-			for (int j = 0; j < pantallaCargar.infoDif.get(i).length + 1; j++) {
+			for (int j = 0; j < infoDif.get(i).length + 1; j++) {
 
 				switch (j) {
 				case 0:
@@ -1350,10 +1480,13 @@ public class controlPartida {
 					jugador.setFont(controlDatos.fuenteMC(15f));
 					jugador.setForeground(Color.white);
 
-					JLabel username = new JLabel("" + pantallaCargar.infoDif.get(i)[j].toUpperCase());
+					JLabel username = new JLabel("" + infoDif.get(i)[j].toUpperCase());
 					username.setFont(controlDatos.fuenteMC(15f));
 					username.setForeground(new Color(79, 240, 100));
-
+					pantallaCargar.playDif.setName(infoDif.get(i)[j].toUpperCase());
+					pantallaCargar.eliminarDif.setName(infoDif.get(i)[j].toUpperCase());
+					
+					
 					usuarioPanel.add(jugador);
 					usuarioPanel.add(username);
 					gbcPartidaPanel.gridy = 0;
@@ -1368,7 +1501,7 @@ public class controlPartida {
 					rondas.setFont(controlDatos.fuenteMC(12f));
 					rondas.setForeground(Color.lightGray);
 
-					int rondasNum = Integer.valueOf(pantallaCargar.infoDif.get(i)[j]);
+					int rondasNum = Integer.valueOf(infoDif.get(i)[j]);
 					JLabel num = new JLabel("" + rondasNum);
 					num.setFont(controlDatos.fuenteMC(12f));
 					num.setForeground(Color.lightGray);
@@ -1381,7 +1514,7 @@ public class controlPartida {
 					partidaPanel.add(rondasPanel, gbcPartidaPanel);
 					break;
 				case 2:
-					int puntuacionNum = Integer.valueOf(pantallaCargar.infoDif.get(i)[j]);
+					int puntuacionNum = Integer.valueOf(infoDif.get(i)[j]);
 					JLabel puntuacion = new JLabel("Puntos: " + puntuacionNum);
 					puntuacion.setFont(controlDatos.fuenteMC(12f));
 					puntuacion.setForeground(Color.lightGray);
@@ -1390,7 +1523,7 @@ public class controlPartida {
 					partidaPanel.add(puntuacion, gbcPartidaPanel);
 					break;
 				case 3:
-					JLabel dia = new JLabel("Ult. Jugado: (" + pantallaCargar.infoDif.get(i)[j] + ")");
+					JLabel dia = new JLabel("Ult. Jugado: (" + infoDif.get(i)[j] + ")");
 					dia.setFont(controlDatos.fuenteMC(10f));
 					dia.setForeground(Color.lightGray);
 					gbcPartidaPanel.gridy = 3;
@@ -1407,12 +1540,8 @@ public class controlPartida {
 			gbcPartidaPanel.gridheight = 4;
 			gbcPartidaPanel.fill = GridBagConstraints.VERTICAL;
 
-			pantallaCargar.playDif = new JButton(botonPlayFin);
-			pantallaCargar.playDif.setName("DIF " + i);
-			pantallaCargar.playDif.setContentAreaFilled(false);
-			pantallaCargar.playDif.setFocusPainted(false);
-			pantallaCargar.playDif.setBorderPainted(false);
 
+			
 			pantallaCargar.playDif.addActionListener(Main.partidas);
 
 			partidaPanel.add(pantallaCargar.playDif, gbcPartidaPanel);
@@ -1444,7 +1573,7 @@ public class controlPartida {
 		}
 
 		pantallaCargar.scrollDif.setOpaque(false);
-		if (pantallaCargar.infoDif.size() == 0) {
+		if (infoDif.size() == 0) {
 			JPanel noGameEz = new JPanel() {
 				@Override
 				protected void paintComponent(Graphics g) {
@@ -1546,7 +1675,7 @@ public class controlPartida {
 			JPanel topPanel = new JPanel(new FlowLayout());
 			topPanel.setOpaque(false);
 			
-			JLabel top = new JLabel(textoTop + controlDatos.topEz(1)[i-1]);
+			JLabel top = new JLabel(textoTop + controlDatos.topEz(2)[i-1]);
 			top.setFont(controlDatos.fuenteMC(26f));
 			top.setForeground(Color.white);
 			
@@ -1556,6 +1685,34 @@ public class controlPartida {
 			records.gbcTopDificil.gridy++;
 			
 		}
+		
+	}
+	
+	public static void actualizarGuiPartidaCargado() {
+		
+		partida.acciones.setText("" + datos.getAcciones());
+		partida.brotes.setText("" + datos.getBrotes());
+		partida.rondas.setText("" + datos.getRondas());
+		partida.scoreNum.setText("" + datos.getPuntuancion());
+		
+		for (int i = 0; i < datos.getCiudades().size(); i++) {
+			
+			ponerImages(i, comprobacionNombreBoton(datos.getCiudades().get(i).getNombre()));
+			for (Component c : partida.game.getComponents()) {
+
+				if (c instanceof JButton) {
+					if (c.getName().equalsIgnoreCase(comprobacionNombreBoton(datos.getCiudades().get(i).getNombre())) && datos.getCiudades().get(i).isNuke()) {
+						
+						((JButton) c).setBorderPainted(true);
+						((JButton) c).setBorder(new LineBorder(Color.red));
+
+					}
+
+				}
+			}
+		}
+		
+		
 		
 	}
 	

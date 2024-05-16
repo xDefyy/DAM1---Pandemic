@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -125,37 +126,43 @@ public class usuarioGetName extends JFrame implements ActionListener {
 				@Override
 				public void run() {
 					String user = campoTexto.getText();
-					userFinal = "";
-					for (int i = 0; i < user.length(); i++) {
-						userFinal += user.charAt(i);
-						if (userFinal.length() == 10) {
+					userFinal = user;
+					
+					ArrayList<String> usuarios = new ArrayList<>(controlDatos.nombresUser());
+					boolean nombreRept = false;
+					for (int i = 0; i < usuarios.size(); i++) {
+						if (userFinal.equalsIgnoreCase(usuarios.get(i))) {
+							JOptionPane.showMessageDialog(null, "Nombre Existente", "Alerta",
+									JOptionPane.ERROR_MESSAGE);
+							nombreRept = true;
 							break;
 						}
+ 					}
+					
+					if (userFinal.length() > 10 || userFinal.length() == 0) {
+						JOptionPane.showMessageDialog(null, "NO se puede más de 10 letras, o dejarlo en blanco", "Alerta",
+								JOptionPane.ERROR_MESSAGE);
+					} else if (userFinal.length() < 10 && userFinal.length() > 0 && !nombreRept) {
+						JOptionPane.showMessageDialog(null, "Se ha guardado como: " + userFinal, "Info",
+								JOptionPane.INFORMATION_MESSAGE);
+						
+						controlDatos.guardarPartida();
+						nombreRept = false;
+						
+						Timer timer = new Timer(100, new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								Main.cargarPrincipal.setVisible(true);
+								controlPartida.resetGame = true;
+								partida.usuarioNombre.setVisible(false);
+								
+							}
+						});
+						timer.setRepeats(false);
+						timer.start();
+						
 					}
-					
-					JOptionPane.showMessageDialog(null, "Se ha guardado como: " + userFinal, "Info",
-							JOptionPane.INFORMATION_MESSAGE);
-					
-					controlDatos.guardarPartida();
-					
+
 					campoTexto.setText("username");
-					Timer timer = new Timer(100, new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-							Main.cargarPrincipal.setVisible(true);
-							controlPartida.resetGame = true;
-							partida.usuarioNombre.setVisible(false);
-							
-						}
-					});
-					timer.setRepeats(false);
-					timer.start();
-					
-					
-
-					
-
-					
-
 				}
 			});
 			vac.start();

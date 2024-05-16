@@ -55,6 +55,7 @@ import objetos.ciudad;
 
 public class partida extends JFrame implements ActionListener {
 	public static usuarioGetName usuarioNombre = new usuarioGetName();
+	public static ganarPerder winLoseFrame = new ganarPerder();
 	public static JProgressBar Alfa = new JProgressBar();
 	public static JProgressBar Beta = new JProgressBar();
 	public static JProgressBar Gamma = new JProgressBar();
