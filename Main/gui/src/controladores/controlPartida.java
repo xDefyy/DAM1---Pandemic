@@ -822,6 +822,8 @@ public class controlPartida {
 		Image botonEliminarOPES = botonEliminarOP.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
 		ImageIcon botonEliminarFINOP = new ImageIcon(botonEliminarOPES);
 		
+		pantallaCargar.Partidas.removeAll();
+		
 		pantallaCargar.Partidas = new JPanel(new GridBagLayout()) {
 			@Override
 			protected void paintComponent(Graphics g) {
@@ -1044,7 +1046,7 @@ public class controlPartida {
 		
 		
 		
-		
+		pantallaCargar.PartidasNormal.removeAll();
 		
 		
 		
@@ -1264,7 +1266,7 @@ public class controlPartida {
 		
 		
 		
-		
+		pantallaCargar.PartidasDificil.removeAll();
 		
 		
 		
@@ -1484,6 +1486,8 @@ public class controlPartida {
 	public static void GUIrecordsActualizar() {
 		
 		records.topFacil.removeAll();
+		records.topNormal.removeAll();
+		records.topDificil.removeAll();
 		
 		records.gbcTopFacil.gridx = 0;
 		records.gbcTopFacil.gridy = 0;
