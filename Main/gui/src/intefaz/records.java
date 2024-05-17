@@ -33,6 +33,12 @@ import controladores.controlPartida;
 import inicio.Main;
 import oracle.net.jdbc.TNSAddress.AddressList;
 
+
+/**
+ * @author Liqi y Kader
+ * 
+ */
+
 public class records extends JFrame{ 
 
 	

@@ -5,6 +5,11 @@ import objetos.ciudad;
 import objetos.virus;
 import objetos.vacunas;
 
+/**
+ * @author Liqi y Kader
+ * 
+ */
+
 public class datosPartida {
 	
 	private  ArrayList<ciudad> ciudades = new ArrayList<>();

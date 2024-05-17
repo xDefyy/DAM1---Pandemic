@@ -1,6 +1,10 @@
 package objetos;
 public class ciudad {
 
+	/**
+	 * @author Liqi y Kader
+	 * 
+	 */
 	private String nombre;
 	private int[] coordenadas;
 	private String enfermedad;

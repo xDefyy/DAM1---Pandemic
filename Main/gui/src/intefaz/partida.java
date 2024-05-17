@@ -53,6 +53,11 @@ import controladores.controlPartida;
 import inicio.Main;
 import objetos.ciudad;
 
+/**
+ * @author Liqi y Kader
+ * 
+ */
+
 public class partida extends JFrame implements ActionListener {
 	public static usuarioGetName usuarioNombre = new usuarioGetName();
 	public static ganarPerder winLoseFrame = new ganarPerder();
@@ -2304,6 +2309,7 @@ public class partida extends JFrame implements ActionListener {
 				public void run() {
 					Main.cargarPrincipal.setVisible(true);
 					controlPartida.resetGame = true;
+					controlPartida.resetGame();
 					partidaReglas = false;
 	    	        Timer timer = new Timer(300, new ActionListener() {
 	    	            public void actionPerformed(ActionEvent e) {

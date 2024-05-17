@@ -12,15 +12,22 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import CargaDatos.controlDatos;
 import inicio.Main;
 
-public class ganarPerder extends JFrame {
+/**
+ * @author Liqi y Kader
+ * 
+ */
+
+public class ganarPerder extends JFrame implements ActionListener {
 	
 	public static JPanel general = new JPanel();
 	
@@ -97,6 +104,25 @@ public class ganarPerder extends JFrame {
 		this.setVisible(false);
 		this.setTitle("Pandemic @Kader, @Liqi");
 		this.setIconImage(imgFinalIcono.getImage());
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		Object source = e.getSource();
+		
+		if (source == pantallaCargar.btnConfirmar) {
+			System.out.println(pantallaCargar.idpartida2);
+			System.out.println(pantallaCargar.idPlayer);
+			controlDatos.deleteGame(pantallaCargar.idpartida2, pantallaCargar.idPlayer);
+			partida.winLoseFrame.setVisible(false);
+			Main.cargarPrincipal.setVisible(true);
+			general.removeAll();
+			general.repaint();
+			general.revalidate();
+			
+			
+		} 
 		
 	}
 	

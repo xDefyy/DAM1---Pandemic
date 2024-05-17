@@ -43,6 +43,11 @@ import intefaz.records;
 import objetos.ciudad;
 import CargaDatos.datosPartida;
 
+/**
+ * @author Liqi y Kader
+ * 
+ */
+
 public class controlPartida {
 
 	public static datosPartida datos;
@@ -81,7 +86,6 @@ public class controlPartida {
 		if (!resetGame) {
 			gestionar_InfeccionNewGame();
 		} else if (resetGame) {
-			resetGame();
 			gestionar_InfeccionNewGame();
 		}
 		
@@ -102,6 +106,7 @@ public class controlPartida {
 
 	public static void resetGame() {
 		
+		partida.ciudadesInf.setText("0");
 		partida.scoreNum.setText("0");
 		datos.setPuntuancion(0);
 		
@@ -111,7 +116,8 @@ public class controlPartida {
 			if (datos.getCiudades().get(i).getInfeccion() != 0) {
 				datos.getCiudades().get(i).setInfeccion(0);
 				ponerImages(i, comprobacionNombreBoton(datos.getCiudades().get(i).getNombre()));
-			} else if (datos.getCiudades().get(i).isNuke()) {
+			} 
+			if  (datos.getCiudades().get(i).isNuke()) {
 				datos.getCiudades().get(i).setNuke(false);
 			}
 		}
@@ -556,8 +562,6 @@ public class controlPartida {
 		}
 	}
 	
-	//TODO ACTUALIZAR GUI CUANDO CARGA PARTIDA, COMPROBAR SI VOLVER AL MENU FUNCIONA CUANDO CARGA LA PARTIDA
-	//TODO HACER QUE LOS BTNS FUNCIONEN DE CARGAR Y ELIMINAR PARTIDA
 	
 	public static void gestionar_Fin_Partida() {
 		int derrotaBrote = Integer.valueOf(controlDatos.numBrotesDerrota);
@@ -605,9 +609,9 @@ public class controlPartida {
 					win.setFont(controlDatos.fuentecargar(150f));
 					win.setForeground(Color.green);
 					win.setHorizontalAlignment(SwingConstants.CENTER);
-//					ganarPerder.general.add(win, BorderLayout.CENTER);
+					ganarPerder.general.add(win, BorderLayout.CENTER);
 					CargarParty.game.setVisible(false);
-//					partida.winLoseFrame.setVisible(true);
+					partida.winLoseFrame.setVisible(true);
 					resetGame();
 					
 				}
@@ -1046,7 +1050,7 @@ public class controlPartida {
 					username.setFont(controlDatos.fuenteMC(15f));
 					username.setForeground(new Color(79, 240, 100));
 					pantallaCargar.play.setName(info.get(i)[j]);
-					pantallaCargar.eliminar.setName(info.get(i)[j]);
+					pantallaCargar.eliminar.setName("X " + info.get(i)[j]);
 					
 					
 					usuarioPanel.add(jugador);
@@ -1276,7 +1280,7 @@ public class controlPartida {
 					username.setFont(controlDatos.fuenteMC(15f));
 					username.setForeground(new Color(79, 240, 100));
 					pantallaCargar.playNor.setName(infoNor.get(i)[j]);
-					pantallaCargar.eliminarNor.setName(infoNor.get(i)[j]);
+					pantallaCargar.eliminarNor.setName("X " + infoNor.get(i)[j]);
 					
 					
 					usuarioPanel.add(jugador);
@@ -1493,7 +1497,7 @@ public class controlPartida {
 					username.setFont(controlDatos.fuenteMC(15f));
 					username.setForeground(new Color(79, 240, 100));
 					pantallaCargar.playDif.setName(infoDif.get(i)[j]);
-					pantallaCargar.eliminarDif.setName(infoDif.get(i)[j]);
+					pantallaCargar.eliminarDif.setName("X " + infoDif.get(i)[j]);
 					
 					
 					usuarioPanel.add(jugador);

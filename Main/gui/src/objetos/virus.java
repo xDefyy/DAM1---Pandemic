@@ -1,5 +1,10 @@
 package objetos;
 public class virus {
+	
+	/**
+	 * @author Liqi y Kader
+	 * 
+	 */
 	private String identificador;
 	private String nombre;
 	private String color;

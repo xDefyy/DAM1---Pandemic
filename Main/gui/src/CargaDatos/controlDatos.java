@@ -37,6 +37,11 @@ import objetos.ciudad;
 import objetos.vacunas;
 import objetos.virus;
 
+/**
+ * @author Liqi y Kader
+ * 
+ */
+
 public class controlDatos {
 	public static int diff = 0;
 	public static String numCiudadesInfectadasInicio = "";
@@ -492,6 +497,43 @@ public class controlDatos {
 	        System.out.println("MAL");
 	    }
 	}
+	
+	public static int getPlayerByName(String user) {
+		String sql = "SELECT ID_P FROM PLAYERS WHERE USERNAME = '" + user + "'";
+		int x = 0;
+		try {
+	        Statement stIDP = con.createStatement();
+	        ResultSet rsIDP = stIDP.executeQuery(sql);
+	        while (rsIDP.next()) {
+	        	x = rsIDP.getInt("ID_P");
+	        	System.out.println("soy x:"+x);
+	        }
+	        
+	        
+		} catch (SQLException e) {
+	        e.printStackTrace();
+	        System.out.println("MAL");
+	    }
+		return x;
+	}
+	
+	public static void deleteGame(int idp, int player) {
+		String sql = "DELETE FROM PARTIDA WHERE ID_PARTIDA = " + idp;
+		String sqlUser = "DELETE FROM PLAYERS WHERE ID_P = " + player;
+		
+		try {
+	        Statement stDeletePartida = con.createStatement();
+	        
+	        stDeletePartida.executeUpdate(sql);
+	        stDeletePartida.executeUpdate(sqlUser);
+	        
+		} catch (SQLException e) {
+	        e.printStackTrace();
+	        System.out.println("MAL");
+	    }
+	}
+	
+	
 	
 	
 	public static void controlDificultad(int valor) {

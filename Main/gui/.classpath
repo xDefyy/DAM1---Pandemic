@@ -7,7 +7,7 @@
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3"/>
-	<classpathentry kind="lib" path="C:/Users/kader/Desktop/DAM1---Pandemic/ojdbc8.jar">
+	<classpathentry kind="lib" path="C:/Users/Liqi/Documents/DAM1---Pandemic/ojdbc8.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>

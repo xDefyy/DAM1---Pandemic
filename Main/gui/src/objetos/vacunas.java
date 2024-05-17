@@ -1,5 +1,10 @@
 package objetos;
 public class vacunas {
+	/**
+	 * @author Liqi y Kader
+	 * 
+	 */
+	
 	private String nombre;
 	private String color;
 	private int porcentaje;

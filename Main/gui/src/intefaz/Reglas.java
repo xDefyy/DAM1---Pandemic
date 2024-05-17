@@ -32,6 +32,11 @@ import javax.swing.border.LineBorder;
 import CargaDatos.controlDatos;
 import inicio.Main;
 
+/**
+ * @author Liqi y Kader
+ * 
+ */
+
 public class Reglas extends JFrame {
 	
 	public Reglas() {

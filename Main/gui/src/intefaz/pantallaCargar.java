@@ -28,6 +28,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JViewport;
+import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import javax.swing.border.EtchedBorder;
@@ -37,6 +38,11 @@ import CargaDatos.controlDatos;
 import controladores.controlPartida;
 import inicio.Main;
 import oracle.net.jdbc.TNSAddress.AddressList;
+
+/**
+ * @author Liqi y Kader
+ * 
+ */
 
 public class pantallaCargar extends JFrame implements ActionListener {
 
@@ -63,6 +69,10 @@ public class pantallaCargar extends JFrame implements ActionListener {
 	public static JPanel Partidas = new JPanel();
 	public static JPanel PartidasNormal = new JPanel();
 	public static JPanel PartidasDificil = new JPanel();
+	
+	public static JButton btnConfirmar = new JButton();
+	public static int idpartida2 = 0;
+	public static int idPlayer = 0;
 	
 	public pantallaCargar() {
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
@@ -514,21 +524,69 @@ public class pantallaCargar extends JFrame implements ActionListener {
 		JButton botonPresionado = (JButton) e.getSource();
 
 		String nombreBoton = botonPresionado.getName();
+		
+		if (nombreBoton.charAt(0) == ('X') && nombreBoton.charAt(1) == ' ' ){
+			
+			String[] btn = nombreBoton.split(" ");
 
-		int idp = controlDatos.selectIDPartida(nombreBoton);
+			idpartida2 = controlDatos.selectIDPartida(btn[1]);
+			idPlayer = controlDatos.getPlayerByName(btn[1]);
+
+			JPanel paneles = new JPanel(new GridBagLayout());
+			paneles.setOpaque(false);
+			
+			GridBagConstraints gbcPaneles = new GridBagConstraints();
+			gbcPaneles.gridx = 0;
+			gbcPaneles.gridy = 0;
+			
+			
+			JLabel confirmar = new JLabel("<html><center>Vas a borrar la partida, estas seguro? :/ (Franko esta triste)");
+			confirmar.setFont(controlDatos.fuentecargar(50f));
+			confirmar.setForeground(Color.red);
+			confirmar.setHorizontalAlignment(SwingConstants.CENTER);
+			
+			paneles.add(confirmar, gbcPaneles);
+			
+			gbcPaneles.gridy++;
+			gbcPaneles.insets = new Insets (50,10,10,10);
+			
+			btnConfirmar = new JButton("Confirmar :(");
+			btnConfirmar.setForeground(Color.red);
+			btnConfirmar.setOpaque(false);
+			btnConfirmar.setFocusPainted(false);
+			btnConfirmar.setContentAreaFilled(false);
+			btnConfirmar.setBorderPainted(true);
+			btnConfirmar.setFont(controlDatos.fuenteMC(20f));
+			
+			btnConfirmar.addActionListener(partida.winLoseFrame);
+			
+			paneles.add(btnConfirmar, gbcPaneles);
+			
+			ganarPerder.general.add(paneles, BorderLayout.CENTER);
+			
+			Main.partidas.setVisible(false);
+			partida.winLoseFrame.setVisible(true);
+			
+		} else {
+			
+			int idp = controlDatos.selectIDPartida(nombreBoton);
+			
+			controlDatos.selectDiff(idp);
+			
+			controlDatos.controlDificultad(controlDatos.diff);
+			
+			controlPartida.iniciar_Partida_Guardada();
+			
+			controlDatos.selectPartida(idp, controlDatos.con);
+			
+			controlPartida.actualizarGuiPartidaCargado();
+			
+			Main.partidas.setVisible(false);
+			CargarParty.game.setVisible(true);
+				
+		}
 		
-		controlDatos.selectDiff(idp);
 		
-		controlDatos.controlDificultad(controlDatos.diff);
-		
-		controlPartida.iniciar_Partida_Guardada();
-		
-		controlDatos.selectPartida(idp, controlDatos.con);
-		
-		controlPartida.actualizarGuiPartidaCargado();
-		
-		Main.partidas.setVisible(false);
-		CargarParty.game.setVisible(true);
 		
 		
 		

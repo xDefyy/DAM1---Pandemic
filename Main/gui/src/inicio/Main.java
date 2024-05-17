@@ -9,7 +9,10 @@ import intefaz.pantallaCargar;
 import intefaz.pantallaPrincipal;
 import intefaz.records;
 
-
+/**
+ * @author Liqi y Kader
+ * 
+ */
 
 public class Main {
 	
@@ -20,6 +23,8 @@ public class Main {
     public static reproductorWav reproductor = new reproductorWav();
     public static pantallaCargar partidas = new pantallaCargar();
 	public static void main(String[] args) {
+		
+		
 		reproductor.cargarSonido("src\\musica\\musicaMenuMC.wav");
 		reproductor.reproducirConRepetir();
 

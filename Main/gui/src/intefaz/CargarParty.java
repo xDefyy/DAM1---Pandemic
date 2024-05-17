@@ -17,6 +17,11 @@ import CargaDatos.controlDatos;
 import controladores.controlPartida;
 import inicio.Main;
 
+/**
+ * @author Liqi y Kader
+ * 
+ */
+
 public class CargarParty extends JFrame implements ActionListener {
 	public static partida game = new partida();
 	public static JButton bNormal;

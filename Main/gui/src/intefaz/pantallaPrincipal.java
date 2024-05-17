@@ -14,6 +14,11 @@ import controladores.controlPartida;
 import controladores.reproductorWav;
 import inicio.Main;
 
+/**
+ * @author Liqi y Kader
+ * 
+ */
+
 public class pantallaPrincipal extends JFrame {
 
 	public pantallaPrincipal() {
