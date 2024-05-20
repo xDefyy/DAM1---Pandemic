@@ -67,11 +67,12 @@ public class controlPartida {
 		
 		int pdesarrollo = Integer.valueOf(controlDatos.desarrolloVacuna);
 		
-		if (!datosCargados) {
+		if (!datosCargados || !datosCargadosPartida) {
 			controlDatos.cargarCiudades();
 			controlDatos.cargarVacunas();
 			controlDatos.cargarVirus();
 			datosCargados = true;
+			datosCargadosPartida = true;
 		}
 		
 
@@ -156,10 +157,11 @@ public class controlPartida {
 
 		int pdesarrollo = Integer.valueOf(controlDatos.desarrolloVacuna);
 		
-		if (!datosCargadosPartida) {
+		if (!datosCargadosPartida || !datosCargados) {
 			controlDatos.cargarCiudades();
 			controlDatos.cargarVacunas();
 			controlDatos.cargarVirus();
+			datosCargados = true;
 			datosCargadosPartida = true;
 		}
 		
@@ -1702,9 +1704,6 @@ public class controlPartida {
 	}
 	
 	public static void actualizarGuiPartidaCargado() {
-		
-//		System.out.println(datos.getAcciones());
-//		System.out.println(datos.getRondas());
 		
 		partida.acciones.setText("" + datos.getAcciones());
 		partida.brotes.setText("" + datos.getBrotes());

@@ -112,8 +112,6 @@ public class ganarPerder extends JFrame implements ActionListener {
 		Object source = e.getSource();
 		
 		if (source == pantallaCargar.btnConfirmar) {
-			System.out.println(pantallaCargar.idpartida2);
-			System.out.println(pantallaCargar.idPlayer);
 			controlDatos.deleteGame(pantallaCargar.idpartida2, pantallaCargar.idPlayer);
 			partida.winLoseFrame.setVisible(false);
 			Main.cargarPrincipal.setVisible(true);

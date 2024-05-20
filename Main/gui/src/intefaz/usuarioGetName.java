@@ -144,8 +144,8 @@ public class usuarioGetName extends JFrame implements ActionListener {
 						}
  					}
 					
-					if (userFinal.length() > 10 || userFinal.length() == 0) {
-						JOptionPane.showMessageDialog(null, "NO se puede más de 10 letras, o dejarlo en blanco", "Alerta",
+					if (userFinal.length() > 10 || userFinal.length() == 0 || userFinal.contains(" ")) {
+						JOptionPane.showMessageDialog(null, "NO se puede más de 10 letras, o dejarlo en blanco, ni espacios", "Alerta",
 								JOptionPane.ERROR_MESSAGE);
 					} else if (userFinal.length() < 10 && userFinal.length() > 0 && !nombreRept) {
 						JOptionPane.showMessageDialog(null, "Se ha guardado como: " + userFinal, "Info",

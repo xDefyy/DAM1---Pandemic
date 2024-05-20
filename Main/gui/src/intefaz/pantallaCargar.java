@@ -74,6 +74,10 @@ public class pantallaCargar extends JFrame implements ActionListener {
 	public static int idpartida2 = 0;
 	public static int idPlayer = 0;
 	
+	public static boolean partidaCargada = false;
+	public static int idp = 0;
+	public static String usuario = "";
+	
 	public pantallaCargar() {
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		JPanel panelgeneral = new JPanel(new GridBagLayout()) {
@@ -528,7 +532,7 @@ public class pantallaCargar extends JFrame implements ActionListener {
 		if (nombreBoton.charAt(0) == ('X') && nombreBoton.charAt(1) == ' ' ){
 			
 			String[] btn = nombreBoton.split(" ");
-
+			
 			idpartida2 = controlDatos.selectIDPartida(btn[1]);
 			idPlayer = controlDatos.getPlayerByName(btn[1]);
 
@@ -569,8 +573,10 @@ public class pantallaCargar extends JFrame implements ActionListener {
 			
 		} else {
 			
-			int idp = controlDatos.selectIDPartida(nombreBoton);
 			
+			
+			idp = controlDatos.selectIDPartida(nombreBoton);
+			usuario = nombreBoton;
 			controlDatos.selectDiff(idp);
 			
 			controlDatos.controlDificultad(controlDatos.diff);
@@ -580,6 +586,8 @@ public class pantallaCargar extends JFrame implements ActionListener {
 			controlDatos.selectPartida(idp, controlDatos.con);
 			
 			controlPartida.actualizarGuiPartidaCargado();
+			
+			partidaCargada = true;
 			
 			Main.partidas.setVisible(false);
 			CargarParty.game.setVisible(true);

@@ -32,6 +32,7 @@ import org.w3c.dom.NodeList;
 import controladores.controlPartida;
 import intefaz.CargarParty;
 import intefaz.pantallaCargar;
+import intefaz.partida;
 import intefaz.usuarioGetName;
 import objetos.ciudad;
 import objetos.vacunas;
@@ -58,7 +59,7 @@ public class controlDatos {
 
 	public static Connection conectarBaseDatos() {
 		Connection con = null;
-		String url = "jdbc:oracle:thin:@oracle.ilerna.com:1521:xe";
+		String url = "jdbc:oracle:thin:@192.168.3.26:1521:xe";
 		String user = "DAM1_2324_MAY_KADER";
 		String password = "kader";
 
@@ -166,10 +167,6 @@ public class controlDatos {
 		virus.add(virus_beta);
 		virus.add(virus_gamma);
 		virus.add(virus_delta);
-
-	}
-
-	public static void cargarPartida() {
 
 	}
 
@@ -506,7 +503,6 @@ public class controlDatos {
 	        ResultSet rsIDP = stIDP.executeQuery(sql);
 	        while (rsIDP.next()) {
 	        	x = rsIDP.getInt("ID_P");
-	        	System.out.println("soy x:"+x);
 	        }
 	        
 	        
@@ -525,7 +521,25 @@ public class controlDatos {
 	        Statement stDeletePartida = con.createStatement();
 	        
 	        stDeletePartida.executeUpdate(sql);
-	        stDeletePartida.executeUpdate(sqlUser);
+
+
+	        	stDeletePartida.executeUpdate(sqlUser);
+
+
+	        
+	        
+		} catch (SQLException e) {
+	        e.printStackTrace();
+	        System.out.println("MAL");
+	    }
+	}
+	
+	public static void deleteGameNoUser(int idp) {
+		String sql = "DELETE FROM PARTIDA WHERE ID_PARTIDA = " + idp;
+		try {
+	        Statement stDeletePartida = con.createStatement();
+	        
+	        stDeletePartida.executeUpdate(sql);
 	        
 		} catch (SQLException e) {
 	        e.printStackTrace();
@@ -596,6 +610,60 @@ public class controlDatos {
 	    	} catch (SQLException e) {
 		        e.printStackTrace();
 		  }
+		
+	}
+	
+	
+	public static void sobreEscribirPartida(int partida, int player) {
+
+        int rondas = controlPartida.datos.getRondas();
+        int acciones = controlPartida.datos.getAcciones();
+        int brotes = controlPartida.datos.getBrotes();
+        int puntuacion = controlPartida.datos.getPuntuancion();
+
+        
+        StringBuilder SqlCIUDADES = new StringBuilder();
+        for (int i = 0; i < controlPartida.datos.getCiudades().size(); i++) {
+            String nombre_ciudad = controlPartida.datos.getCiudades().get(i).getNombre();
+            boolean ciudadNuked = controlPartida.datos.getCiudades().get(i).isNuke();
+            String nuked = "";
+            if (ciudadNuked == true) {
+            	nuked = "S";
+            } else if (ciudadNuked == false) {
+            	nuked = "N";
+            }
+            int infeccion_ciudad = controlPartida.datos.getCiudades().get(i).getInfeccion();
+            SqlCIUDADES.append("CIUDADES('" + nombre_ciudad + "', " + infeccion_ciudad + ",'" + nuked + "'" + ")");
+            if (i < controlPartida.datos.getCiudades().size() - 1) {
+                SqlCIUDADES.append(", ");
+            }
+        }
+
+        StringBuilder SqlVACUNAS = new StringBuilder();
+        for (int i = 0; i < controlPartida.datos.getVacunas().size(); i++) {
+            String color_vacuna = controlPartida.datos.getVacunas().get(i).getColor();
+            int pr_vacuna = controlPartida.datos.getVacunas().get(i).getPorcentaje();
+            SqlVACUNAS.append("VACUNAS('" + color_vacuna + "', " + pr_vacuna + ")");
+            if (i < controlPartida.datos.getVacunas().size() - 1) {
+                SqlVACUNAS.append(", ");
+            }
+        }
+
+       
+        String sql = "INSERT INTO PARTIDA VALUES("+ partida +"," + player + ", " + puntuacion + ", " + diff + ", " + rondas + ", " + acciones + ", " + brotes
+                + ", ARRAY_CIUDADES(" + SqlCIUDADES.toString() + "), ARRAY_VACUNAS(" + SqlVACUNAS.toString() + "), " + "'" + ganar_perder + "'" + ", SYSTIMESTAMP)";
+
+
+        try {
+            Statement st = con.createStatement();
+            st.execute(sql);
+            SqlCIUDADES.setLength(0);
+            SqlVACUNAS.setLength(0);
+        } catch (SQLException e) {
+            System.out.println("Ha habido un error en el Insert " + e);
+        }
+		
+		
 		
 	}
 	

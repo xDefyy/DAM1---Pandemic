@@ -39,6 +39,7 @@ import javax.swing.JProgressBar;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import javax.swing.UIManager;
@@ -2328,10 +2329,32 @@ public class partida extends JFrame implements ActionListener {
 
 				@Override
 				public void run() {
-					usuarioNombre.setVisible(true);
-					CargarParty.game.setVisible(false);
-					partidaReglas = false;
+					if (pantallaCargar.partidaCargada) {
+						
+						JLabel save = new JLabel("<html><center>Has sobreescrito la partida");
+						save.setFont(controlDatos.fuentecargar(120f));
+						save.setForeground(Color.green);
+						save.setHorizontalAlignment(SwingConstants.CENTER);
+						ganarPerder.general.add(save, BorderLayout.CENTER);
+						
+						winLoseFrame.setVisible(true);
+						CargarParty.game.setVisible(false);
+						
+						int idplayer = controlDatos.getPlayerByName(pantallaCargar.usuario);
+						
+						controlDatos.deleteGameNoUser(pantallaCargar.idp);
 
+						controlDatos.sobreEscribirPartida(pantallaCargar.idp, idplayer);
+						
+						pantallaCargar.partidaCargada = false;
+						
+						controlPartida.resetGame();
+						
+					} else {
+						usuarioNombre.setVisible(true);
+						CargarParty.game.setVisible(false);
+						partidaReglas = false;
+					}
 				}
 			});
 			vac.start();
