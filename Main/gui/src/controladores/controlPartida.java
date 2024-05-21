@@ -26,6 +26,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 import javax.swing.JViewport;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
@@ -49,7 +50,7 @@ import CargaDatos.datosPartida;
  */
 
 public class controlPartida {
-
+	
 	public static datosPartida datos;
 	public static int progresoA;
 	public static int progresoB;
@@ -132,9 +133,9 @@ public class controlPartida {
 		partida.Delta.setValue(0);
 		partida.Gamma.setValue(0);
 		partida.Alfa.setString("VIH: " + partida.Alfa.getValue() + "%");
-		partida.Gamma.setString("SARS: " + partida.Beta.getValue() + "%");
-		partida.Gamma.setString("SARS: " + partida.Beta.getValue() + "%");
-		partida.Delta.setString("NIGGA: " + partida.Beta.getValue() + "%");
+		partida.Beta.setString("CANCER: " + partida.Beta.getValue() + "%");
+		partida.Gamma.setString("SARS: " + partida.Gamma.getValue() + "%");
+		partida.Delta.setString("NIGGA: " + partida.Delta.getValue() + "%");
 		for (int i = 0; i < datos.getVacunas().size(); i++) {
 			if (datos.getVacunas().get(i).getPorcentaje() != 0) {
 				datos.getVacunas().get(i).setPorcentaje(0);
@@ -576,7 +577,7 @@ public class controlPartida {
 			win.setForeground(Color.red);
 			win.setHorizontalAlignment(SwingConstants.CENTER);
 			ganarPerder.general.add(win, BorderLayout.CENTER);
-			
+			//TODO DELETE A BBDD
 			CargarParty.game.setVisible(false);
 			partida.winLoseFrame.setVisible(true);
 			resetGame(); 
@@ -590,7 +591,7 @@ public class controlPartida {
 				win.setForeground(Color.RED);
 				win.setHorizontalAlignment(SwingConstants.CENTER);
 				ganarPerder.general.add(win, BorderLayout.CENTER);
-				
+				//TODO DELETE A BBDD
 				CargarParty.game.setVisible(false);
 				partida.winLoseFrame.setVisible(true);
 				resetGame();
@@ -598,6 +599,8 @@ public class controlPartida {
 			} 
 		}
 	}
+	public static JButton enviar = new JButton();
+	public static JTextField text = new JTextField();
 	
 	public static void gestionar_Ganar() {
 		
@@ -607,14 +610,89 @@ public class controlPartida {
 			public void run() {
 				if (datos.getVacunas().get(0).getPorcentaje() == 100 && datos.getVacunas().get(1).getPorcentaje() == 100 && datos.getVacunas().get(2).getPorcentaje() == 100 && datos.getVacunas().get(3).getPorcentaje() == 100) {
 					
-					JLabel win = new JLabel("HAS GANADO!!");
-					win.setFont(controlDatos.fuentecargar(150f));
-					win.setForeground(Color.green);
-					win.setHorizontalAlignment(SwingConstants.CENTER);
-					ganarPerder.general.add(win, BorderLayout.CENTER);
-					CargarParty.game.setVisible(false);
-					partida.winLoseFrame.setVisible(true);
-					resetGame();
+					if (pantallaCargar.partidaCargadaWin) {
+						
+						controlDatos.updateWin();
+						JPanel ganarNombre = new JPanel(new GridBagLayout());
+						ganarNombre.setOpaque(false);
+						
+						GridBagConstraints gbcGN = new GridBagConstraints();
+						
+						gbcGN.gridx = 0;
+						gbcGN.gridy = 0;
+						
+						JLabel win = new JLabel("HAS GANADO!!");
+						win.setFont(controlDatos.fuentecargar(150f));
+						win.setForeground(Color.green);
+						win.setHorizontalAlignment(SwingConstants.CENTER);
+						
+						ganarNombre.add(win, gbcGN);
+						
+						pantallaCargar.partidaCargadaWin = false;
+						ganarPerder.general.add(ganarNombre, BorderLayout.CENTER);
+						CargarParty.game.setVisible(false);
+						partida.winLoseFrame.setVisible(true);
+						
+					} else {
+						JPanel ganarNombre = new JPanel(new GridBagLayout());
+						ganarNombre.setOpaque(false);
+						
+						GridBagConstraints gbcGN = new GridBagConstraints();
+						
+						gbcGN.gridx = 0;
+						gbcGN.gridy = 0;
+						
+						JLabel win = new JLabel("HAS GANADO!!");
+						win.setFont(controlDatos.fuentecargar(150f));
+						win.setForeground(Color.green);
+						win.setHorizontalAlignment(SwingConstants.CENTER);
+						
+						ganarNombre.add(win, gbcGN);
+						
+						JPanel nombre = new JPanel(new FlowLayout());
+						nombre.setOpaque(false);
+						enviar = new JButton("Enviar");
+						enviar.setOpaque(false);
+						enviar.setContentAreaFilled(false);
+						enviar.setBorderPainted(false);
+						enviar.setFocusPainted(false);
+						enviar.setFont(controlDatos.fuentecargar(45f));
+						enviar.setForeground(new Color(137, 5, 78));
+
+						enviar.addMouseListener(new MouseAdapter() {
+							@Override
+							public void mouseEntered(MouseEvent e) {
+								enviar.setForeground(new Color(200, 5, 78));
+							}
+
+							@Override
+							public void mouseExited(MouseEvent e) {
+								enviar.setForeground(new Color(137, 5, 78));
+							}
+						});
+
+						text = new JTextField();
+						text.setText("username");
+						text.setFont(controlDatos.fuenteMC(15.5f));
+						text.setPreferredSize(new Dimension(200, 50));
+						text.setForeground(Color.black);
+						text.setBackground(new Color(240, 240, 240));
+						nombre.add(text);
+						nombre.add(enviar);
+						
+						gbcGN.gridy = 1;
+						
+						ganarNombre.add(nombre, gbcGN);
+						
+						enviar.addActionListener(partida.winLoseFrame);
+
+
+						
+						ganarPerder.general.add(ganarNombre, BorderLayout.CENTER);
+						CargarParty.game.setVisible(false);
+						partida.winLoseFrame.setVisible(true);
+					}
+					
 					
 				}
 				
@@ -1721,6 +1799,22 @@ public class controlPartida {
 		partida.Delta.setString("NIGGA: " + datos.getVacunas().get(3).getPorcentaje() + "%");
 		
 		partida.ciudadesInf.setText("" + controlPartida.ciudadesInfectadas());
+		
+		if (partida.Alfa.getValue() == 100) {
+			partida.DAlfa.setEnabled(false);
+		}
+		
+		if (partida.Beta.getValue() == 100) {
+			partida.DBeta.setEnabled(false);
+		}
+		
+		if (partida.Delta.getValue() == 100) {
+			partida.DDelta.setEnabled(false);
+		}
+		
+		if (partida.Gamma.getValue() == 100) {
+			partida.DGamma.setEnabled(false);
+		}
 		
 		for (int i = 0; i < datos.getCiudades().size(); i++) {
 			

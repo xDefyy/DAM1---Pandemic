@@ -151,7 +151,7 @@ public class usuarioGetName extends JFrame implements ActionListener {
 						JOptionPane.showMessageDialog(null, "Se ha guardado como: " + userFinal, "Info",
 								JOptionPane.INFORMATION_MESSAGE);
 						
-						controlDatos.guardarPartida();
+						controlDatos.guardarPartida(userFinal);
 						nombreRept = false;
 						
 						Timer timer = new Timer(100, new ActionListener() {

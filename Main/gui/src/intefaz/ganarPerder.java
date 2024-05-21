@@ -11,15 +11,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import CargaDatos.controlDatos;
+import controladores.controlPartida;
 import inicio.Main;
 
 /**
@@ -29,6 +32,7 @@ import inicio.Main;
 
 public class ganarPerder extends JFrame implements ActionListener {
 	
+	public static String userFinal = "";
 	public static JPanel general = new JPanel();
 	
 	ganarPerder() {
@@ -120,7 +124,57 @@ public class ganarPerder extends JFrame implements ActionListener {
 			general.revalidate();
 			
 			
-		} 
+		} else if (source == controlPartida.enviar) {
+			Thread vac = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					String user = controlPartida.text.getText();
+					userFinal = user;
+					
+					ArrayList<String> usuarios = new ArrayList<>(controlDatos.nombresUser());
+					boolean nombreRept = false;
+					for (int i = 0; i < usuarios.size(); i++) {
+						if (userFinal.equalsIgnoreCase(usuarios.get(i))) {
+							JOptionPane.showMessageDialog(null, "Nombre Existente", "Alerta",
+									JOptionPane.ERROR_MESSAGE);
+							nombreRept = true;
+							break;
+						}
+ 					}
+					
+					if (userFinal.length() > 10 || userFinal.length() == 0 || userFinal.contains(" ")) {
+						JOptionPane.showMessageDialog(null, "NO se puede más de 10 letras, o dejarlo en blanco, ni espacios", "Alerta",
+								JOptionPane.ERROR_MESSAGE);
+					} else if (userFinal.length() < 10 && userFinal.length() > 0 && !nombreRept) {
+						JOptionPane.showMessageDialog(null, "Se ha guardado como: " + userFinal, "Info",
+								JOptionPane.INFORMATION_MESSAGE);
+						
+						controlDatos.guardarPartida(userFinal);
+						nombreRept = false;
+						controlDatos.ganar_perder = "W";
+						Timer timer = new Timer(100, new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								Main.cargarPrincipal.setVisible(true);
+								controlPartida.resetGame = true;
+								partida.winLoseFrame.setVisible(false);
+								general.removeAll();
+								general.repaint();
+								general.revalidate();
+								controlPartida.resetGame();
+								
+							}
+						});
+						timer.setRepeats(false);
+						timer.start();
+						
+					}
+
+					controlPartida.text.setText("username");
+				}
+			});
+			vac.start();
+		}
 		
 	}
 	

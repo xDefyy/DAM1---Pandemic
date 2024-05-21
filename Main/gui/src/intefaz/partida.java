@@ -2351,6 +2351,7 @@ public class partida extends JFrame implements ActionListener {
 						controlPartida.resetGame();
 						
 					} else {
+						
 						usuarioNombre.setVisible(true);
 						CargarParty.game.setVisible(false);
 						partidaReglas = false;

@@ -170,10 +170,9 @@ public class controlDatos {
 
 	}
 
-	public static void guardarPartida() {
+	public static void guardarPartida(String nombre) {
 		Thread thread = new Thread(new Runnable() {
 			public void run() {
-				String nombre = usuarioGetName.userFinal;
 				newPlayer(nombre, con);
 				insertarPartida(con);
 			}
@@ -244,7 +243,8 @@ public class controlDatos {
         String sql = "INSERT INTO PARTIDA VALUES(0 ," + numeroPlayer + ", " + puntuacion + ", " + diff + ", " + rondas + ", " + acciones + ", " + brotes
                 + ", ARRAY_CIUDADES(" + SqlCIUDADES.toString() + "), ARRAY_VACUNAS(" + SqlVACUNAS.toString() + "), " + "'" + ganar_perder + "'" + ", SYSTIMESTAMP)";
 
-
+        ganar_perder = "NF";
+        
         try {
             Statement st = con.createStatement();
             st.execute(sql);
@@ -549,7 +549,6 @@ public class controlDatos {
 	
 	
 	
-	
 	public static void controlDificultad(int valor) {
 		String nodePrincipal = "";
 		if (valor == 0) {
@@ -665,6 +664,26 @@ public class controlDatos {
 		
 		
 		
+	}
+	
+	public static void updateWin() {
+
+		String sql = "UPDATE PARTIDA SET WL = 'W' WHERE ID_PARTIDA = " + pantallaCargar.idp; 
+		String sql2 = "UPDATE PARTIDA SET DIA = SYSTIMESTAMP WHERE ID_PARTIDA = " + pantallaCargar.idp; 
+		String sql3 = "UPDATE PARTIDA SET PUNTUACION = "+ controlPartida.datos.getPuntuancion() +" WHERE ID_PARTIDA = " + pantallaCargar.idp; 
+		
+		try {
+			 Statement stUpdate = con.createStatement();
+		        
+			 stUpdate.executeUpdate(sql);
+			 stUpdate.executeUpdate(sql2);
+			 stUpdate.executeUpdate(sql3);
+		        
+		        
+			} catch (SQLException e) {
+		        e.printStackTrace();
+		        System.out.println("MAL");
+		    }
 	}
 	
 

@@ -78,6 +78,8 @@ public class pantallaCargar extends JFrame implements ActionListener {
 	public static int idp = 0;
 	public static String usuario = "";
 	
+	public static boolean partidaCargadaWin = false;
+	
 	public pantallaCargar() {
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		JPanel panelgeneral = new JPanel(new GridBagLayout()) {
@@ -588,6 +590,7 @@ public class pantallaCargar extends JFrame implements ActionListener {
 			controlPartida.actualizarGuiPartidaCargado();
 			
 			partidaCargada = true;
+			partidaCargadaWin = true;
 			
 			Main.partidas.setVisible(false);
 			CargarParty.game.setVisible(true);
