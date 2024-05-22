@@ -115,16 +115,7 @@ public class ganarPerder extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();
 		
-		if (source == pantallaCargar.btnConfirmar) {
-			controlDatos.deleteGame(pantallaCargar.idpartida2, pantallaCargar.idPlayer);
-			partida.winLoseFrame.setVisible(false);
-			Main.cargarPrincipal.setVisible(true);
-			general.removeAll();
-			general.repaint();
-			general.revalidate();
-			
-			
-		} else if (source == controlPartida.enviar) {
+		 if (source == controlPartida.enviar) {
 			Thread vac = new Thread(new Runnable() {
 
 				@Override

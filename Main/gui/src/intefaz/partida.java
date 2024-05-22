@@ -1450,31 +1450,31 @@ public class partida extends JFrame implements ActionListener {
 
 
 
-//		PrintStream printStream = new PrintStream(new OutputStream() {
-//			@Override
-//			public void write(int b) throws IOException {
-//				new Thread(() -> {
-//					textArea.append(String.valueOf((char) b));
-//					int lineCount = textArea.getLineCount();
-//					if (lineCount > 6) {
-//						try {
-//							int endOfFirstLine = textArea.getLineEndOffset(0);
-//							textArea.replaceRange("", 0, endOfFirstLine);
-//						} catch (Exception ex) {
-//							ex.printStackTrace();
-//						}
-//					}
-//					textArea.setCaretPosition(textArea.getDocument().getLength());
-//				}).start();
-//				try {
-//					Thread.sleep(10);
-//				} catch (InterruptedException e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//		System.setOut(printStream);
-//		System.setErr(printStream);
+		PrintStream printStream = new PrintStream(new OutputStream() {
+			@Override
+			public void write(int b) throws IOException {
+				new Thread(() -> {
+					textArea.append(String.valueOf((char) b));
+					int lineCount = textArea.getLineCount();
+					if (lineCount > 6) {
+						try {
+							int endOfFirstLine = textArea.getLineEndOffset(0);
+							textArea.replaceRange("", 0, endOfFirstLine);
+						} catch (Exception ex) {
+							ex.printStackTrace();
+						}
+					}
+					textArea.setCaretPosition(textArea.getDocument().getLength());
+				}).start();
+				try {
+					Thread.sleep(5);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		System.setOut(printStream);
+		System.setErr(printStream);
 		
 		
 		DAlfa.addActionListener(this);
@@ -2311,6 +2311,7 @@ public class partida extends JFrame implements ActionListener {
 					Main.cargarPrincipal.setVisible(true);
 					controlPartida.resetGame = true;
 					controlPartida.resetGame();
+					pantallaCargar.partidaCargada = false;
 					partidaReglas = false;
 	    	        Timer timer = new Timer(300, new ActionListener() {
 	    	            public void actionPerformed(ActionEvent e) {

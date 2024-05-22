@@ -536,8 +536,10 @@ public class pantallaCargar extends JFrame implements ActionListener {
 			String[] btn = nombreBoton.split(" ");
 			
 			idpartida2 = controlDatos.selectIDPartida(btn[1]);
+			System.out.println("soy antes del delete" + idpartida2);
 			idPlayer = controlDatos.getPlayerByName(btn[1]);
-
+			System.out.println(idPlayer);
+			
 			JPanel paneles = new JPanel(new GridBagLayout());
 			paneles.setOpaque(false);
 			
@@ -564,7 +566,20 @@ public class pantallaCargar extends JFrame implements ActionListener {
 			btnConfirmar.setBorderPainted(true);
 			btnConfirmar.setFont(controlDatos.fuenteMC(20f));
 			
-			btnConfirmar.addActionListener(partida.winLoseFrame);
+			btnConfirmar.addActionListener(new ActionListener() {
+	        	public void actionPerformed(ActionEvent e) {
+	        			
+	        			controlDatos.deleteGame(pantallaCargar.idpartida2, pantallaCargar.idPlayer);
+	        			partida.winLoseFrame.setVisible(false);
+	        			Main.cargarPrincipal.setVisible(true);
+	        			ganarPerder.general.removeAll();
+	        			ganarPerder.general.repaint();
+	        			ganarPerder.general.revalidate();
+	        			
+	        			
+	        	
+	    	    }
+	    	});	;
 			
 			paneles.add(btnConfirmar, gbcPaneles);
 			

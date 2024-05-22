@@ -65,7 +65,7 @@ public class controlPartida {
 	public static boolean datosCargadosPartida = false;
 
 	public static void iniciar_Partida() {
-		
+
 		int pdesarrollo = Integer.valueOf(controlDatos.desarrolloVacuna);
 		
 		if (!datosCargados || !datosCargadosPartida) {

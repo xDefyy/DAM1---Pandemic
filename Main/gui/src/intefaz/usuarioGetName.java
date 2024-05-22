@@ -10,6 +10,8 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -102,6 +104,7 @@ public class usuarioGetName extends JFrame implements ActionListener {
 		campoTexto.setPreferredSize(new Dimension(200, 50));
 		campoTexto.setForeground(Color.black);
 		campoTexto.setBackground(new Color(240, 240, 240));
+		
 		nombre.add(campoTexto);
 		nombre.add(submt);
 

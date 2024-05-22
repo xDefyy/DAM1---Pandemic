@@ -175,6 +175,7 @@ public class controlDatos {
 			public void run() {
 				newPlayer(nombre, con);
 				insertarPartida(con);
+				controlPartida.resetGame();
 			}
 		});
 		thread.start();
@@ -519,7 +520,8 @@ public class controlDatos {
 		
 		try {
 	        Statement stDeletePartida = con.createStatement();
-	        
+	        System.out.println("soy el delete" +idp);
+			System.out.println(player);
 	        stDeletePartida.executeUpdate(sql);
 
 
