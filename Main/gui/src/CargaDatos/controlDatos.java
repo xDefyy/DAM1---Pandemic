@@ -60,8 +60,8 @@ public class controlDatos {
 	public static Connection conectarBaseDatos() {
 		Connection con = null;
 		String url = "jdbc:oracle:thin:@192.168.3.26:1521:xe";
-		String user = "DAM1_2324_MAY_KADER";
-		String password = "kader";
+		String user = "Username";
+		String password = "password";
 
 		System.out.println("Intentando conectarse a la base de datos");
 
